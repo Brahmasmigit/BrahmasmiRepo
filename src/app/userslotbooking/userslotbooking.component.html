@@ -1,0 +1,155 @@
+<style type="text/css">
+body{
+    margin-top:20px;
+    background:#eee;
+}
+.gradient-brand-color {
+    background-image: -webkit-linear-gradient(0deg, #376be6 0%, #6470ef 100%);
+    background-image: -ms-linear-gradient(0deg, #376be6 0%, #6470ef 100%);
+    color: #fff;
+}
+.contact-info__wrapper {
+    overflow: hidden;
+    border-radius: .625rem .625rem 0 0
+}
+
+@media (min-width: 1024px) {
+    .contact-info__wrapper {
+        border-radius: 0 .625rem .625rem 0;
+        padding: 5rem !important
+    }
+}
+.contact-info__list span.position-absolute {
+    left: 0
+}
+.z-index-101 {
+    z-index: 101;
+}
+.list-style--none {
+    list-style: none;
+}
+.contact__wrapper {
+    background-color: #fff;
+    border-radius: 0 0 .625rem .625rem
+}
+
+@media (min-width: 1024px) {
+    .contact__wrapper {
+        border-radius: .625rem 0 .625rem .625rem
+    }
+}
+@media (min-width: 1024px) {
+    .contact-form__wrapper {
+        padding: 5rem !important
+    }
+}
+.shadow-lg, .shadow-lg--on-hover:hover {
+    box-shadow: 0 1rem 3rem rgba(132,138,163,0.1) !important;
+}
+
+</style>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
+    <a class="navbar-brand" href="#">Brahmasmi</a>
+    <span style="width: 500px;"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/vendordashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Register As A Professional</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Help</a>
+        </li>
+       
+      </ul>
+     
+    
+
+    </div>
+  </nav>
+  <div class="container-fluid jumbotron" style="background-color: linen;" >
+    
+
+    <div class="contact__wrapper shadow-lg mt-n9">
+        <div class="row no-gutters">
+  
+            <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2">
+                
+                <h3 class="color--white mb-5">Order Summary</h3>
+    
+                <ul class="contact-info__list list-style--none position-relative z-index-101">
+                    <li class="mb-4 pl-4">
+                         City:  Hyderabad
+                    </li>
+                    <li class="mb-4 pl-4">
+                        Location: Bachupally
+                    </li>
+                    <li class="mb-4 pl-4">
+                        
+                        Pooja name: Annaprasanam
+    
+                       
+                    </li>
+                    <li class="mb-4 pl-4"> <input type="radio" id="male" name="gender" value="male" checked>
+                        <label for="male">Pay Full Amount</label><br>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Pay Advance</label><br>
+                    </li>
+                    <li class="pull-right mb-4 pl-4 font-weight-bold">
+                       Total: RS 2,800 
+                     
+                    </li>
+                  
+                   
+                </ul>
+             
+    
+            </div>
+    
+            <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
+                <form (ngSubmit)="Booking()" class="contact-form form-validate" novalidate="novalidate">
+                    <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="form-group">
+                                <label class="required-field" for="date">Select Date</label>
+                                <input type="date" class="form-control" id="date" name="date" [(ngModel)]="booking.BookingDate">
+                            </div>
+                        </div>
+    
+                        <div class="col-sm-12 mb-3">
+                            <div class="form-group">
+                                <label for="time">Time Preference</label>
+                                <input type="time" width="100px" class="form-control" id="time" name="time" [(ngModel)]="booking.BookingTime">
+                            </div>
+                        </div>
+    
+                        <div class="col-sm-12 mb-3">
+                            <div class="form-group">
+                                <label class="required-field" for="comments">Requirements/ Comments</label>
+                                <textarea class="form-control" id="comments" name="comments" [(ngModel)]="booking.ReviewComments"></textarea>
+                            </div>
+                        </div>
+    
+                        <div class="col-sm-12 mb-3">
+                            <div class="form-group pull-right">
+                                <button type="submit"  class="btn btn-primary">Proceed To Cart</button>
+                            </div>
+                        </div>
+    
+                    </div>
+                </form>
+            </div>
+            <!-- End Contact Form Wrapper -->
+            
+      
+       
+        </div>
+    </div>
+
+  </div>

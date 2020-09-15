@@ -1,0 +1,135 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
+    <a class="navbar-brand" href="#">Brahmasmi</a>
+    <span style="width: 500px;"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/vendordashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">My Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Help</a>
+        </li>
+       
+      </ul>
+     
+     <ul class="navbar-nav ml-auto nav-flex-icons">
+        
+        <li class="nav-item avatar dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <img src="../../assets/profileicon.png" style="height: 30px;width:30px;" class="rounded-circle z-depth-0"
+              alt="avatar image">
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+            aria-labelledby="navbarDropdownMenuLink-55">
+            <a class="dropdown-item" routerLink="/vendorprofile" routerLinkActive="active">My Profile</a>
+            <a class="dropdown-item" href="#">My Earnings</a>
+            <a class="dropdown-item" href="#">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+  <div class="pull-right pr-4">
+      <span style="margin-right:10px ;">{{isChecked ? 'Online':'Offline'}}</span>
+    <label class="switch">
+       
+        <input [(ngModel)]="isChecked"  type="checkbox" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+   
+  <div class="jumbotron" style="background-color: linen;" >
+<table align="center">
+    <tbody>
+
+<tr><td>
+  
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked=""> Current     <span class="badge badge-primary badge-pill" style="background-color:#886f87;">{{ongoing.length}}</span>
+          </label>
+        <label class="btn btn-primary">
+          <input type="radio" name="options" id="option1" autocomplete="off"> Tomorrow  <span class="badge  badge-pill" style="background-color:#886f87;"></span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" name="options" id="option2" autocomplete="off"> Current Week  <span class="badge badge-primary badge-pill" style="background-color:#886f87;"></span>
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Upcoming  <span class="badge badge-primary badge-pill" style="background-color:#886f87;"></span>
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> History  <span class="badge badge-primary badge-pill" style="background-color:#886f87;"></span>
+          </label>
+      </div>
+</td></tr>
+<tr><td style="height: 25px;"></td></tr>
+    </tbody>
+</table>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let item of ongoing">
+            <div class="card border-primary mb-3 w-100">
+                <div class="card-header">{{item.serviceName}}  <div class="pull-right">{{item.bookingStatus}}</div></div>
+               
+                <div class="card-body" style="height: 150px;">
+               
+                    <div class="conatiner-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="../../assets/profileicon.png"/>
+                            </div>
+                            <div class="col-md-8">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">User Name: {{item.username}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">Location: {{item.bookingLocation}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">Date: {{item.bookingDate}}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">Timings: {{item.bookingTime}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                 
+                </div>
+                <div class="card-footer" style="background-color:#dfefef;color: white;text-align: center;font-weight: bold;">
+                  <!--<button type="button" class="btn btn-primary" (click)="Accept(item.bookingId)">Accept</button>-->
+                  <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <button type="button" class="btn btn-primary">Update Status</button>
+                    <div class="btn-group" role="group">
+                      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" (click)="Accept(item.bookingId,2)">Accept</a>
+                        <a class="dropdown-item" (click)="Accept(item.bookingId,3)">In Progress</a>
+                        <a class="dropdown-item" (click)="Accept(item.bookingId,6)">Notify Admin</a>
+                        <a class="dropdown-item" (click)="Accept(item.bookingId,4)">Cancel</a>
+                      </div>
+                    </div>
+                  </div>
+                    <button type="button" class="btn btn-primary" style="margin-left: 10px;">View Booking</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+    
