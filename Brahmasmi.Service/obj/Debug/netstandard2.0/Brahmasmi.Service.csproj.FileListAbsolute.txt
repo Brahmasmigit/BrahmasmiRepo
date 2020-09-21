@@ -1,0 +1,8 @@
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\bin\Debug\netstandard2.0\Brahmasmi.Service.deps.json
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\bin\Debug\netstandard2.0\Brahmasmi.Service.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\obj\Debug\netstandard2.0\Brahmasmi.Service.AssemblyInfoInputs.cache
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\obj\Debug\netstandard2.0\Brahmasmi.Service.AssemblyInfo.cs
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\bin\Debug\netstandard2.0\Brahmasmi.Service.pdb
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\obj\Debug\netstandard2.0\Brahmasmi.Service.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\obj\Debug\netstandard2.0\Brahmasmi.Service.pdb
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\obj\Debug\netstandard2.0\Brahmasmi.Service.csproj.CoreCompileInputs.cache

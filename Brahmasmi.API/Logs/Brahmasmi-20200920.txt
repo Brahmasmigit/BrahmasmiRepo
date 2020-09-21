@@ -1,0 +1,73 @@
+2020-09-20T12:47:34.4946172+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T12:47:34.5168737+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T12:47:34.5185873+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T13:17:12.5322940+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T13:17:26.2393358+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T13:17:26.2748031+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T13:17:26.2777651+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T13:20:09.8220505+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T13:20:20.4562687+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T13:20:20.4717255+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T13:20:20.4733893+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T13:24:52.6250830+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T13:25:04.1215492+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T13:25:04.1485152+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T13:25:04.1531460+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T13:25:34.2753695+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T13:25:44.2587151+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T13:25:44.2821954+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T13:25:44.2849956+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T13:49:37.9606133+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T16:12:02.7710577+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T16:12:02.7988525+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T16:12:02.8009993+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T16:56:55.6262346+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T18:22:57.4565010+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T18:22:57.4751530+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T18:22:57.4752889+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T18:23:57.5220657+05:30 80000116-0000-f900-b63f-84710c7967bb [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Uncommittable transaction is detected at the end of the batch. The transaction is rolled back.
+   at Brahmasmi.Service.Dapperr.Execute(String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 75
+   at Brahmasmi.Repository.UserBookingRepository.UserBooking(List`1 userBooking) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\UserBookingRepository.cs:line 57
+   at Brahmasmi.API.Controllers.UserBookingController.UserSlotBooking(List`1 userBooking) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\UserBookingController.cs:line 35
+ClientConnectionId:5b28882b-e9e9-45c0-b198-936f6a3ac590
+Error Number:3998,State:1,Class:16 (5b0ddb06)
+2020-09-20T18:24:43.0320584+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T18:25:26.4143021+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T18:25:26.4407251+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T18:25:26.4428075+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T18:25:51.8874428+05:30 8000011b-0000-f900-b63f-84710c7967bb [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Uncommittable transaction is detected at the end of the batch. The transaction is rolled back.
+   at Brahmasmi.Service.Dapperr.Execute(String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 75
+   at Brahmasmi.Repository.UserBookingRepository.UserBooking(List`1 userBooking) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\UserBookingRepository.cs:line 58
+   at Brahmasmi.API.Controllers.UserBookingController.UserSlotBooking(List`1 userBooking) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\UserBookingController.cs:line 35
+ClientConnectionId:5f37363b-8bd4-438c-9d3d-72df1c788aa8
+Error Number:3998,State:1,Class:16 (d4cf0528)
+2020-09-20T18:30:38.7984458+05:30 800000f5-0003-ff00-b63f-84710c7967bb [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Uncommittable transaction is detected at the end of the batch. The transaction is rolled back.
+   at Brahmasmi.Service.Dapperr.Execute(String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 75
+   at Brahmasmi.Repository.UserBookingRepository.UserBooking(List`1 userBooking) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\UserBookingRepository.cs:line 58
+   at Brahmasmi.API.Controllers.UserBookingController.UserSlotBooking(List`1 userBooking) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\UserBookingController.cs:line 35
+ClientConnectionId:5f37363b-8bd4-438c-9d3d-72df1c788aa8
+Error Number:3998,State:1,Class:16 (d4cf0528)
+2020-09-20T18:51:19.8783142+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T18:51:28.4399347+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T18:51:28.4603708+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T18:51:28.4604611+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T19:27:23.4837140+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T19:31:06.8011866+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T19:31:06.8193456+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T19:31:06.8210542+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T19:51:59.6640217+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T20:10:54.3834099+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T20:10:54.3984848+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T20:10:54.3986482+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T20:27:28.6464867+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T20:27:42.7745147+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T20:27:42.7911137+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T20:27:42.7935177+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T21:02:34.2660898+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T22:34:23.6979184+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T22:34:23.7157891+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T22:34:23.7159792+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-09-20T22:38:15.3832464+05:30  [INF] Application is shutting down... (90f52c38)
+2020-09-20T22:38:28.6824300+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-20T22:38:28.6980979+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-20T22:38:28.6997150+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
