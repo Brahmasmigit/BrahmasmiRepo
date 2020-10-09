@@ -1,0 +1,6 @@
+2020-10-08T11:04:30.6247221+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-08T11:04:30.6882521+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-08T11:04:30.6883640+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-10-08T11:05:03.9648910+05:30 80000007-0003-ff00-b63f-84710c7967bb [INF] 90909090 (4f7939e4)
+2020-10-08T11:05:04.0399792+05:30 80000007-0003-ff00-b63f-84710c7967bb [INF] end (b0c485d7)
+2020-10-08T12:28:10.6871976+05:30  [INF] Application is shutting down... (90f52c38)

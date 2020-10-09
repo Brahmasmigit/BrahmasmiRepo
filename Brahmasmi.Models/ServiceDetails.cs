@@ -7,6 +7,8 @@ namespace Brahmasmi.Models
     {
         public int ServiceId { get; set; }
 
+        public int VendorId { get; set; }
+
         public int ServiceTypeId { get; set; }
         public string ServiceName { get; set; }
 

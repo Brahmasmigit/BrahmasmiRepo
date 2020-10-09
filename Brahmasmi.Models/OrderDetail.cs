@@ -9,6 +9,7 @@ namespace Brahmasmi.Models
         public string EmailId { get; set; }
         public int Total { get; set; }
         public string ModeofPayment { get; set; }
+        public string ServiceName { get; set; }
 
 
     }

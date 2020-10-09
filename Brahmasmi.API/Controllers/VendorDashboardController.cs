@@ -30,12 +30,12 @@ namespace Brahmasmi.API.Controllers
 
 
         [EnableCors("CorsPolicy")]
-        [HttpGet("{vendorid}")]
-        public async Task<ActionResult<VendorDashboard>> GetOngoing(int vendorid)
+        [HttpGet]
+        public async Task<ActionResult<VendorDashboard>> GetBookedDetails(int vendorId, string calendarType)
         {
             try
             {
-                var result = await Task.FromResult(vendorDashboardRepository.GetOngoing(vendorid));
+                var result = await Task.FromResult(vendorDashboardRepository.GetOngoing(vendorId, calendarType));
                 return Ok(result);
             }
             catch (Exception ex)

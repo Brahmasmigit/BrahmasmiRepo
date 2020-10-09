@@ -5,6 +5,7 @@ namespace Brahmasmi.Repository
 {
     public interface ILoginRepository
     {
-        Login Login(string mobileNumber);
+        User UserLogin(string mobilenumber);
+        Vendor VendorLogin(string mobilenumber);
     }
 }

@@ -17,10 +17,11 @@ namespace Brahmasmi.Repository
         {
             dapper = _dapper;
         }
-        public List<VendorDashboard> GetOngoing(int vendorid)
+        public List<VendorDashboard> GetOngoing(int vendorid, string calendarType)
         {
             var dbParam = new DynamicParameters();
             dbParam.Add("vendorid", vendorid, DbType.Int32);
+            dbParam.Add("calendartype", calendarType, DbType.String);
             var result = dapper.GetAll<VendorDashboard>("[dbo].[SP_VENDORONGOING]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);

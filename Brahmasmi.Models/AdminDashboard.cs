@@ -16,7 +16,9 @@ namespace Brahmasmi.Models
 
         public int BookingStatusID { get; set; }
 
-        
+        public string BookingAmount { get; set; }
+        public string PaymentMode { get; set; }
+
 
     }
 }

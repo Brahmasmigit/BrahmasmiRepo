@@ -28,5 +28,32 @@ namespace Brahmasmi.Repository
             return result;
 
         }
+        public List<Services> SearchServices(string search)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("search", search, DbType.String);
+            var result = dapper.GetAll<Services>("[dbo].[SP_SEARCHSERVICE]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+           // dapper.ExecuteTableType();
+            return result;
+
+        }
+        //public List<Services> test(string search)
+        //{
+        //    var dbParam = new DynamicParameters();
+        //    //dbParam.Add("search", lst,D);
+        //    dbParam.Add("@PersonList", PersonList.AsTableValuedParameter("[dbo].[udtt_PersonList]"));
+        //    var result = dapper.GetAll<Services>("[dbo].[SP_SEARCHSERVICE]"
+        //         , dbParam,
+        //         commandType: CommandType.StoredProcedure);
+        //    return result;
+
+        //}
+        //List<Services> lst = new List<Services>();
+        //DataTable dt = new DataTable();
+     
+
+     
     }
 }

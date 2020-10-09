@@ -17,15 +17,25 @@ namespace Brahmasmi.Repository
         {
             dapper = _dapper;
         }
-        public Login Login(string mobileNumber)
+        public User UserLogin(string mobilenumber)
         {
             var dbParam = new DynamicParameters();
-            dbParam.Add("mobilenumber", mobileNumber, DbType.String);
-            var result = dapper.Get<Login>("[dbo].[sp_getusers]"
+            dbParam.Add("User_MobileNumber", mobilenumber, DbType.String);
+            var result = dapper.Get<User>("[dbo].[SP_Get_User]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);
             return result;
-          
+
+        }
+        public Vendor VendorLogin(string mobilenumber)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("Vendor_MobileNumber", mobilenumber, DbType.String);
+            var result = dapper.Get<Vendor>("[dbo].[SP_Get_Vendor]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
         }
     }
 }

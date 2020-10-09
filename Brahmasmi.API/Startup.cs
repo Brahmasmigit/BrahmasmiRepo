@@ -54,6 +54,10 @@ namespace Brahmasmi.API
             services.AddScoped<IAdminDashboardRepository, AdminDashboardRepository>();
             services.AddScoped<IPackageRepository, PackageRepository>();
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUtilitiesRepository, UtilitiesRepository>();
+            services.AddScoped<IVendorEnquiryRepository,VendorEnquiryRepository>();
+            services.AddScoped<IVendorRepository, VendorRepository>();
             services.AddScoped<IDapper, Dapperr>();
         }
 

@@ -29,11 +29,26 @@ namespace Brahmasmi.API.Controllers
 
         [EnableCors("CorsPolicy")]
         [HttpGet]
-        public async Task<ActionResult<ServiceType>> GetServices(int servicetypeId, int cityId)
+        public async Task<ActionResult<Services>> GetServices(int servicetypeId, int cityId)
         {
             try
             {
                 var result = await Task.FromResult(serviceRepository.GetServices(servicetypeId, cityId));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet("{search}")]
+        public async Task<ActionResult<Services>> SearchService(string search)
+        {
+            try
+            {
+                var result = await Task.FromResult(serviceRepository.SearchServices(search));
                 return Ok(result);
             }
             catch (Exception ex)
