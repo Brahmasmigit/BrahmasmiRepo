@@ -35,8 +35,11 @@ namespace Brahmasmi.Repository
                     {
                         result[i].lstItems = new List<PoojaItems>();
                         result[i].lstProcedures = new List<string>();
+                        result[i].PackageName = lstpkg[i].Key;
+                       
                         foreach (var item in lstpkg[i])
                         {
+                            result[i].Price = item.Price;
                             result[i].lstItems.Add(new PoojaItems()
                             {
                                 ItemName = item.ItemName,
