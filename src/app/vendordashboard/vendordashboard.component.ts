@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import {VendorDashboardService} from './vendordashboard.service';
 import {EventModel} from '../shared/models/eventmodel';
 import {EventListenerService} from '../shared/services/eventlistener.service';
@@ -15,18 +15,29 @@ export class VendordashboardComponent implements OnInit {
   ongoing:[]=[];
   errorMessage:any;
   booking:any={};
+  vendorId:any;
+  userInfo:any={}
   constructor(private activatedRoute: ActivatedRoute,
     private vendorDashboardService:VendorDashboardService,
+    private router:Router,
     private eventListenerService:EventListenerService) { }
 
   ngOnInit(): void {
-    var vendorid=1;
-    this.getOngoing(vendorid);
+    if(sessionStorage.getItem("userInfo")!=null)
+    {
+      this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
+      this.vendorId=this.userInfo.userId;
+      this.getOngoing(this.vendorId,"current");
+    }
+    else
+    {
+      this.router.navigate(['/login']);
+    }
   }
 
-  getOngoing(vendorid)
+  getOngoing(vendorid,calendarType)
   {
-    this.vendorDashboardService.getOngoing(vendorid).subscribe(
+    this.vendorDashboardService.getOngoing(vendorid,calendarType).subscribe(
       (data) => {
           if (data) {
               this.ongoing = data;
@@ -34,10 +45,10 @@ export class VendordashboardComponent implements OnInit {
 
       },
       (error) => {
-          this.errorMessage = error;     
+          this.errorMessage = error;
       },
       () => {
-       
+
       });
   }
 
@@ -51,8 +62,7 @@ export class VendordashboardComponent implements OnInit {
           if (data) {
               if(data=="1")
               {
-                var vendorid=1;
-                this.getOngoing(vendorid);
+                this.getOngoing(this.vendorId,"current");
               }
               else
               {
@@ -62,10 +72,10 @@ export class VendordashboardComponent implements OnInit {
 
       },
       (error) => {
-          this.errorMessage = error;     
+          this.errorMessage = error;
       },
       () => {
-       
+
       });
   //this.eventListenerService.addToEventBus("Accept",true);
   }

@@ -11,44 +11,49 @@ export class UserslotbookingComponent implements OnInit {
 
   booking:any={};
   errorMessage:string;
-  serviceId:number;
-  serviceTypeId:number;
+  serviceId:any;
+  serviceTypeId:any;
+  serviceName:any;
+  orderdetails:any=[];
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router ,
     private serviceDetailsService:UserSlotBookingService
     )
    {
-     this.serviceId= this.activatedRoute.snapshot.params['serviceId'];
-     this.serviceTypeId= this.activatedRoute.snapshot.params['serviceTypeId'];
+
     }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.serviceId = params.serviceId;
+      this.serviceTypeId = params.serviceTypeId;
+
+    } );
+    if(sessionStorage.getItem("orderdetails")!=null)
+    {
+      this.orderdetails=JSON.parse(sessionStorage.getItem("orderdetails"));
+      this.orderdetails.forEach(element => {
+        if(element.ServiceId==this.serviceId)
+        {
+          this.booking.cityName=element.CityName;
+          this.booking.serviceName=element.ServiceName;
+          this.booking.Total=element.Total;
+          this.booking.packageName=element.PackageName;
+        }
+      });
+    }
   }
   Booking()
   {
-    this.booking.ServiceId=this.serviceId;
-    this.booking.ServiceTypeId=this.serviceTypeId;
-    this.booking.BookingStatusId=1;
-    this.booking.UserId=1;
-    this.booking.VendorId=1;
-    this.booking.BookingLocation="Bachupally, Hyderabad"
-    this.booking.BookingType="User Booking"
-    this.serviceDetailsService.UserBooking(this.booking).subscribe(
-      (data) => {
-          if (data) {
-            if(data=="1")
-            {
-              this.router.navigate(['/userdashboard']);
-            }
-          }
-
-      },
-      (error) => {
-          this.errorMessage = error;     
-      },
-      () => {
-       
+    this.orderdetails.forEach((element,i) => {
+      if(element.ServiceId==this.serviceId)
+      {
+        this.orderdetails[i].BookingDate=this.booking.BookingDate;
+        this.orderdetails[i].BookingTime=this.booking.BookingTime;
+        this.orderdetails[i].ReviewComments=this.booking.ReviewComments;
       }
-    );
+    });
+    sessionStorage.setItem("orderdetails", JSON.stringify(this.orderdetails));
+    this.router.navigate(['/usercart'], { queryParams: { serviceId: this.serviceId,serviceTypeId:this.serviceTypeId} });
   }
 }

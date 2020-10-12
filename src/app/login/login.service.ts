@@ -16,21 +16,36 @@ export class LoginService {
 
     }
 
-    getLoginDetails(mobileNumber): Observable<any> {
-        return this.http.get<any>(this.API_URL + "login/" + mobileNumber)
-        .pipe(
-            tap(status => console.log("status: " + status)),
-            catchError(this.handleError)
-        );
-    }
-    RegisterUser(register)
+    sendOTPToUser(contact)
     {
-        return this.http.post(this.API_URL + 'login/Register',register)
+        return this.http.post(this.API_URL + 'Login/SendOTP',contact)
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)
         );
     }
+    getUser(mobileNumber): Observable<any> {
+      return this.http.get<any>(this.API_URL + "Login/UserExist/" + mobileNumber)
+      .pipe(
+          tap(Userstatus => console.log("Userstatus: " + Userstatus)),
+          catchError(this.handleError)
+      );
+  }
+  getVendorData(mobileNumber): Observable<any> {
+      return this.http.get<any>(this.API_URL + "Login/VendorExist/" + mobileNumber)
+      .pipe(
+          tap(Vendorstatus => console.log("Vendorstatus: " + Vendorstatus)),
+          catchError(this.handleError)
+      );
+  }
+  SaveUserData(user): Observable<any>
+  {
+      return this.http.post<any>(this.API_URL + 'User/RegisterUser',user)
+      .pipe(
+          tap(status => console.log("status: " + status)),
+          catchError(this.handleError)
+      );
+  }
     private handleError(error: any) {
         console.error(error);
         return throwError(error);

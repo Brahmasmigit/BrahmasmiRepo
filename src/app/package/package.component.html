@@ -1,0 +1,265 @@
+<style type="text/css">
+  body{
+      margin-top:20px;
+      background:#eee;
+  }
+  .gradient-brand-color {
+      background-image: -webkit-linear-gradient(0deg, #376be6 0%, #6470ef 100%);
+      background-image: -ms-linear-gradient(0deg, #376be6 0%, #6470ef 100%);
+      color: #fff;
+  }
+  .contact-info__wrapper {
+      overflow: hidden;
+      border-radius: .625rem .625rem 0 0
+  }
+
+  @media (min-width: 1024px) {
+      .contact-info__wrapper {
+          border-radius: 0 .625rem .625rem 0;
+          padding: 5rem !important
+      }
+  }
+  .contact-info__list span.position-absolute {
+      left: 0
+  }
+  .z-index-101 {
+      z-index: 101;
+  }
+  .list-style--none {
+      list-style: none;
+  }
+  .contact__wrapper {
+      background-color: #fff;
+      border-radius: 0 0 .625rem .625rem
+  }
+
+  @media (min-width: 1024px) {
+      .contact__wrapper {
+          border-radius: .625rem 0 .625rem .625rem
+      }
+  }
+  @media (min-width: 1024px) {
+      .contact-form__wrapper {
+          padding: 5rem !important
+      }
+  }
+  .shadow-lg, .shadow-lg--on-hover:hover {
+      box-shadow: 0 1rem 3rem rgba(132,138,163,0.1) !important;
+  }
+
+<!--Model css-->
+body {
+	font-family: 'Varela Round', sans-serif;
+}
+.modal-confirm {
+	color: #636363;
+	width: 550px;
+}
+.modal-confirm .modal-content {
+	padding: 20px;
+	border-radius: 5px;
+	border: none;
+}
+.modal-confirm .modal-header {
+	padding: 0 15px;
+	border-bottom: none;
+	position: relative;
+}
+.modal-confirm h4 {
+	display: inline-block;
+	font-size: 26px;
+}
+.modal-confirm .close {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+}
+.modal-confirm .modal-body {
+	color: #999;
+}
+.modal-confirm .modal-footer {
+	background: #ecf0f1;
+	border-color: #e6eaec;
+	text-align: right;
+	margin: 0 -20px -20px;
+	border-radius: 0 0 5px 5px;
+}
+.modal-confirm .btn {
+	color: #fff;
+	border-radius: 4px;
+	transition: all 0.4s;
+	border: none;
+	padding: 8px 20px;
+	outline: none !important;
+}
+.modal-confirm .btn-info {
+	background: #b0c1c6;
+}
+.modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+	background: #92a9af;
+}
+.modal-confirm .btn-danger {
+	background: #f15e5e;
+}
+.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+	background: #ee3535;
+}
+.modal-confirm .modal-footer .btn + .btn {
+	margin-left: 10px;
+}
+.trigger-btn {
+	display: inline-block;
+	margin: 100px auto;
+}
+.border-right {
+    border-right: 1px solid red;
+    height:100%;
+}
+.red{
+  background-color:red
+}
+.testbg{
+  background-color: blue;
+  width: 200px;
+}
+  </style>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
+  <a class="navbar-brand" href="#">Brahmasmi</a>
+  <span style="width: 500px;"></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/vendordashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">My Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Help</a>
+      </li>
+
+    </ul>
+
+   <ul class="navbar-nav ml-auto nav-flex-icons">
+
+      <li class="nav-item avatar dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <img src="../../assets/profileicon.png" style="height: 30px;width:30px;" class="rounded-circle z-depth-0"
+            alt="avatar image">
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+          aria-labelledby="navbarDropdownMenuLink-55">
+          <a class="dropdown-item" routerLink="/vendorprofile" routerLinkActive="active">My Profile</a>
+          <a class="dropdown-item" href="#">My Earnings</a>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+
+<div class="container-fluid jumbotron" style="background-color: linen;" >
+
+
+  <div class="contact__wrapper shadow-lg mt-n9">
+      <div class="row no-gutters">
+
+          <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2">
+
+              <h3 class="color--white mb-5">Order Summary</h3>
+
+              <ul class="contact-info__list list-style--none position-relative z-index-101">
+                  <li class="mb-4 pl-4">
+                   <span *ngIf="packages[0]"> Pooja name: {{packages[0].serviceName}}</span>
+                  </li>
+                  <li class="mb-4 pl-4">
+                    <span *ngIf="packages[0]">City:  {{packages[0].cityName}}</span>
+
+                  </li>
+                  <li class="mb-4 pl-4">
+                  Package: {{packagename}}
+
+
+
+                  </li>
+
+                  <li class="pull-right mb-4 pl-4 font-weight-bold">
+                  <span *ngIf="total">Total: {{total}}</span>
+
+                  </li>
+
+                <li class="pull-right pl-4 font-weight-bold" style="margin-top: 50px;">
+
+                    <button  class="btn btn-primary"  routerLinkActive="active" (click)="Continue()">Continue</button>
+
+                </li>
+              </ul>
+
+
+          </div>
+
+          <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
+            <div class="row">
+              <div class="col-md-12"  *ngFor="let item of packages; let index = index">
+                  <div class="card border-primary mb-3 w-100">
+
+
+                      <div class="card-body w-100" style="height: 100%; background-color: azure;">
+
+                          <div class="conatiner-fluid">
+                              <div class="row">
+
+                                  <div class="col-md-12">
+
+                                          <div class="container">
+                                              <div class="row">
+                                                  <div class="col-md-5">
+                                                    <h5>{{item.packageName}}</h5>
+                                                    <h6>Procedures involved:</h6>
+                                                    <ul *ngFor="let p of item.lstProcedures;">
+                                                      <li>{{p}}</li>
+
+                                                  </ul>
+                                                  </div>
+                                                     <div class="col-md-5">
+                                                      <h6>Inclusions</h6>
+                                                      <div *ngFor="let m of item.lstItems; let i = index">
+                                                     <input type="checkbox" [checked]="m.checked" (change)="isCheckMaterial(item,m,$event,index)"/>
+                                                     <label class="ml-2">{{m.itemName}}</label>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                      {{item.price}}
+                                                      <button type="submit"  class="btn btn-primary"  [style.background]="selected==index?'blue':'grey'" (click)="selectPackage(index,item.packageName)">Select</button>
+                                                    </div>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                              </div>
+                          </div>
+
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+          </div>
+          <!-- End Contact Form Wrapper -->
+
+
+
+
+        </div>
+  </div>
+
+</div>
+
+

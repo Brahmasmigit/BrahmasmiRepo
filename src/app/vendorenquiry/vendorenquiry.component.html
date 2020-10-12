@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
+  <a class="navbar-brand" href="#">Brahmasmi</a>
+  <span style="width: 500px;"></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Help</a>
+      </li>
+
+    </ul>
+
+
+
+  </div>
+</nav>
+<div class="container-fluid jumbotron" style="background-color: linen;">
+
+  <div class="container card border-primary mb-3 maindiv" >
+        <div class="card-body" style="height: auto">
+
+                <div class="form-group row">
+                  <div class="col-12">
+                      <h3 class="text-white">Share your details and we'll reach out with next steps</h3>
+                  </div>
+            </div>
+            <form (ngSubmit)="saveVendor()">
+            <div class="form-group row">
+                  <div class="col-3">
+                   <input type="text" class="form-control" placeholder="Name" id="name" name="name"  [(ngModel)]="vendorModel.name">
+                  </div>
+                   <div class="col-4 ">
+                      <div class="form-group row">
+                      <div class="col-4 ">
+                                <!-- <span class="flag-icon flag-icon-in" ></span> -->
+                   <input type="text"  class="form-control" value="+91" readonly="true">
+                   </div>
+                   <div class="col-8 ">
+                   <input type="text" class="form-control pos" [(ngModel)]="vendorModel.mobileNumber" id="mobileNumber" name="mobileNumber"  placeholder="Mobile Number">
+                   </div>
+                   </div>
+
+                  </div>
+                   <div class="col-4">
+                      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="vendorModel.emailID"  placeholder="Email">
+                   </div>
+                   <div class="col-3">
+                       <input type="text" class="form-control" id="description" name="description" [(ngModel)]="vendorModel.description"  placeholder="What do you do?">
+                   </div>
+                   <div class="col-2">
+                          <button type="submit" class="btn btn-primary">Get in touch</button>
+                    </div>
+            </div>
+          </form>
+      </div>
+  </div>
+
+
+</div>
+

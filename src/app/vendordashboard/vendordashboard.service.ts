@@ -15,8 +15,11 @@ export class VendorDashboardService {
 
     }
 
-    getOngoing(userid): Observable<any> {
-        return this.http.get<any>(this.API_URL + "VendorDashboard/GetOngoing/" + userid)
+    getOngoing(vendorId,calendarType): Observable<any> {
+      let params = new HttpParams()
+      .set('vendorId', vendorId)
+      .set('calendarType', calendarType)
+        return this.http.get<any>(this.API_URL + "VendorDashboard/GetBookedDetails", {params})
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)

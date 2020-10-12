@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import {UserDashboardService} from './userdashboard.service';
 import {EventModel} from '../shared/models/eventmodel';
 import {EventListenerService} from '../shared/services/eventlistener.service';
@@ -14,9 +14,12 @@ export class UserdashboardComponent implements OnInit {
   errorMessage:any;
   serviceSubscription:any;
   test:any;
+  userid:any;
+  userInfo:any={}
   constructor(private activatedRoute: ActivatedRoute,
     private userDashboardService:UserDashboardService,
-    private eventListenerService:EventListenerService) 
+    private router:Router,
+    private eventListenerService:EventListenerService)
     {
       /*this.serviceSubscription = this.eventListenerService.on("Accept", ((res) => {
         console.log(res);
@@ -25,9 +28,18 @@ export class UserdashboardComponent implements OnInit {
     }
 
   ngOnInit(): void {
-   
-    var userid=1;
-    this.getOngoing(userid);
+
+    if(sessionStorage.getItem("userInfo")!=null)
+    {
+      this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
+      this.userid=this.userInfo.userId;
+      this.getOngoing(this.userid);
+    }
+    else
+    {
+      this.router.navigate(['/login']);
+    }
+
   }
   getOngoing(userid)
   {
@@ -39,14 +51,14 @@ export class UserdashboardComponent implements OnInit {
 
       },
       (error) => {
-          this.errorMessage = error;     
+          this.errorMessage = error;
       },
       () => {
-       
+
       });
   }
   ngOnDestroy() {
   }
-  
+
 
 }
