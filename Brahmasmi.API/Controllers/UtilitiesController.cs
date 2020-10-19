@@ -119,6 +119,21 @@ namespace Brahmasmi.API.Controllers
             }
         }
         [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<City>> GetAllCities()
+        {
+            try
+            {
+                var result = await Task.FromResult(utilitiesRepository.AllCities());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
         [HttpPost]
         public async Task<ActionResult<Patient>> SavePatient(Patient patient)
         {

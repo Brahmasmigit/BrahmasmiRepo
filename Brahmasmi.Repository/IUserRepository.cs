@@ -10,5 +10,7 @@ namespace Brahmasmi.Repository
        
         User Login(UserLogin userLogin);
         int UpdateUser(User user);
+
+        User GetUser(int userid);
     }
 }

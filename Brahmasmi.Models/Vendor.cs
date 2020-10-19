@@ -9,6 +9,7 @@ namespace Brahmasmi.Models
         public int VendorID { get; set; }
         public int UserTypeID { get; set; }
         public int TitleID { get; set; }
+        public int CityID { get; set; }
         public string Vendor_FirstName { get; set; }
         public string Vendor_MiddleName { get; set; }
         public string Vendor_LastName { get; set; }
@@ -52,28 +53,32 @@ namespace Brahmasmi.Models
     }
     public class VendorCertification
     {
+        public int VendorCertificationID { get; set; }
         public int VendorID { get; set; }
         public int CertificationID { get; set; }
         public bool IsChecked { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        //public DateTime ModifiedDate { get; set; }
     }
     public class VendorRelationShip
     {
-
-        public string RelationShipName { get; set; }
+        public int RelationShipID { get; set; }
         public int VendorID { get; set; }
+        public string RelationShipName { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
     }
     public class VendorSocialNetwork
     {
+
+        public int VendorSocialNetworkID { get; set; }
         public int VendorID { get; set; }
-        public string SocialNetworkName { get; set; }
+        //public string SocialNetworkName { get; set; }
         public int SocialNetworkID { get; set; }
         public string SocialNetworkURL { get; set; }
     }
     public class VendorSpecialization
     {
+        public int SpecializationID { get; set; }
         public int VendorID { get; set; }
         public string SpecializationName { get; set; }
     }

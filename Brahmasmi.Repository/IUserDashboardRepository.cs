@@ -6,6 +6,7 @@ namespace Brahmasmi.Repository
 {
     public interface IUserDashboardRepository
     {
-        List<UserDashboard> GetOngoing(int userid);
+        List<UserDashboard> GetOngoing(int userid, string calendarType);
+        int UserRatings(Ratings ratings);
     }
 }

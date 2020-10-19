@@ -27,6 +27,19 @@ namespace Brahmasmi.Repository
             return result;
 
         }
+        //public Tuple<List<State>, List<City>> Cities(int StateID)
+        //{
+        //    var dbParam = new DynamicParameters();
+        //    //dbParam.Add("StateID", StateID, DbType.Int32);
+        //    //var result = dapper.GetAll<City>("[dbo].[SP_Get_Cities]"
+        //    //     , dbParam,
+        //    //     commandType: CommandType.StoredProcedure);
+        //    var result = dapper.GetMultipleResult<State, City>("[dbo].[sp_testdata]"
+        //         , dbParam,
+        //         commandType: CommandType.StoredProcedure);
+        //    return result;
+
+        //}
         public List<Certifications> GetCertifications()
         {
             var dbParam = new DynamicParameters();
@@ -58,6 +71,16 @@ namespace Brahmasmi.Repository
         {
             var dbParam = new DynamicParameters();
             var result = dapper.GetAll<Title>("[dbo].[SP_Get_Title]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
+
+        public List<City> AllCities()
+        {
+            var dbParam = new DynamicParameters();
+            var result = dapper.GetAll<City>("[dbo].[SP_Get_AllCities]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);
             return result;

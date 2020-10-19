@@ -33,6 +33,10 @@ namespace Brahmasmi.Models
 
         public string PinCode { get; set; }
 
+        public string BillingAddress { get; set; }
+
+        public string ModeOfPayment { get; set; }
+
         public int Total { get; set; }
     }
 }

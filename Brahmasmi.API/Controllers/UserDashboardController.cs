@@ -28,12 +28,27 @@ namespace Brahmasmi.API.Controllers
 
 
         [EnableCors("CorsPolicy")]
-        [HttpGet("{userid}")]
-        public async Task<ActionResult<UserDashboard>> GetOngoing(int userid)
+        [HttpGet]
+        public async Task<ActionResult<UserDashboard>> GetOngoing(int userid, string calendarType)
         {
             try
             {
-                var result = await Task.FromResult(userDashboardRepository.GetOngoing(userid));
+                var result = await Task.FromResult(userDashboardRepository.GetOngoing(userid, calendarType));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpPost]
+        public async Task<ActionResult<Ratings>> UserRatings(Ratings ratings)
+        {
+            try
+            {
+                var result = await Task.FromResult(userDashboardRepository.UserRatings(ratings));
                 return Ok(result);
             }
             catch (Exception ex)

@@ -8,6 +8,8 @@ namespace Brahmasmi.Repository
     public interface IUtilitiesRepository
     {
         List<City> Cities(int StateID);
+
+        //Tuple<List<State>, List<City>> Cities(int StateID);
         List<SocialNetwork> GetSocialNetwork();
 
         List<State> GetState();
@@ -15,6 +17,8 @@ namespace Brahmasmi.Repository
         List<Title> GetTitle();
 
         List<Certifications> GetCertifications();
+
+        List<City> AllCities();
 
         int SavePatient(Patient patient);
 

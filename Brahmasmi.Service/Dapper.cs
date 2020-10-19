@@ -47,7 +47,32 @@ namespace Brahmasmi.Service
                 return db.Query<T>(sp, parms, commandType: commandType).ToList();
             };
         }
+        //public Tuple<List<T1>, List<T2>> GetMultipleResult<T1,T2>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
+        //{
+        //    using (IDbConnection db = new SqlConnection(_config.GetConnectionString(Connectionstring)))
+        //    {
+        //        var reader = db.QueryMultiple(sp, parms, commandType: commandType);
+        //        var list1 = reader.Read<T1>().ToList();
+        //        var list2 = reader.Read<T2>().ToList();
+        //        return Tuple.Create(list1, list2);
+        //    };
+        
+        //}
+        public Tuple<T, List<T1>, List<T2>, List<T3>, List<T4>> GetMultipleResult<T, T1, T2, T3, T4>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
+        {
+            using (IDbConnection db = new SqlConnection(_config.GetConnectionString(Connectionstring)))
+            {
+                var reader = db.QueryMultiple(sp, parms, commandType: commandType);
+                var data = db.Query<T>(sp, parms, commandType: commandType).FirstOrDefault();
+                var list1 = reader.Read<T1>().ToList();
+                var list2 = reader.Read<T2>().ToList();
+                var list3 = reader.Read<T3>().ToList();
+                var list4 = reader.Read<T4>().ToList();
 
+                return Tuple.Create(data, list1, list2, list3, list4);
+            };
+
+        }
         public int Execute(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
         {
             int returnValue;

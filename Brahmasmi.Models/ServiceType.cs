@@ -4,8 +4,12 @@ namespace Brahmasmi.Models
 {
     public class ServiceType
     {
-        public int ServicetypeId { get; set; }
-        public string ServiceName { get; set; }
+        public int ServiceTypeID { get; set; }
+        public string ServiceTypeName { get; set; }
+        public int CityID { get; set; }
+        public string CityName { get; set; }
+        public byte[] ServiceTypeImage { get; set; }
+        public string Action { get; set; }
 
     }
 }

@@ -40,7 +40,7 @@ namespace Brahmasmi.Repository
             dbParam.Add("CountryID", user.CountryID, DbType.Int32);
             dbParam.Add("StateID", user.StateID, DbType.Int32);
             dbParam.Add("CityID", user.CityID, DbType.Int32);
-            //dbParam.Add("User_Name", user.User_Name, DbType.String);
+            dbParam.Add("User_Name", user.User_Name, DbType.String);
             dbParam.Add("User_EmailID", user.User_EmailID, DbType.String);
             dbParam.Add("user_Address1", user.user_Address1, DbType.String);
             dbParam.Add("User_PinCode", user.User_PinCode, DbType.String);
@@ -53,6 +53,16 @@ namespace Brahmasmi.Repository
                  commandType: CommandType.StoredProcedure);
            
             return result ;
+        }
+        public User GetUser(int userid)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("UserID", Convert.ToInt32(userid), DbType.Int32);
+            var result = dapper.Get<User>("[dbo].[SP_Get_UserDetails]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
         }
 
     }
