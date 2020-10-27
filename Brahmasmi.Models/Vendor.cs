@@ -8,7 +8,7 @@ namespace Brahmasmi.Models
     {
         public int VendorID { get; set; }
         public int UserTypeID { get; set; }
-        public int TitleID { get; set; }
+        public int? TitleID { get; set; }
         public int CityID { get; set; }
         public string Vendor_FirstName { get; set; }
         public string Vendor_MiddleName { get; set; }
@@ -18,10 +18,10 @@ namespace Brahmasmi.Models
         public string Vendor_FatherName { get; set; }
         public string Vendor_Gender { get; set; }
         public string Vendor_Occupation { get; set; }
-        public int Vendor_Height { get; set; }
-        public int Vendor_Weight { get; set; }
+        public int? Vendor_Height { get; set; }
+        public int? Vendor_Weight { get; set; }
         public string Vendor_DOB { get; set; }
-        public int Vendor_Age { get; set; }
+        public int? Vendor_Age { get; set; }
         public string Vendor_PlaceofBirth { get; set; }
         public string Vendor_Address1 { get; set; }
         public string Vendor_PinCode1 { get; set; }

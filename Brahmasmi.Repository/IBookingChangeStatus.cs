@@ -7,5 +7,7 @@ namespace Brahmasmi.Repository
     public interface IBookingChangeStatusRepository
     {
         int BookingChangeStatus(BookingChangeStatus booking);
+
+        int UpdateVendor(VendorBooking booking);
     }
 }

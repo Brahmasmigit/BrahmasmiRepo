@@ -9,7 +9,8 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Cors;
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace Brahmasmi.API.Controllers
 {
@@ -20,25 +21,37 @@ namespace Brahmasmi.API.Controllers
     {
         private readonly IUserBookingRepository userBookingRepository;
         private readonly ILogger<LoginController> logger;
-        public UserBookingController(IUserBookingRepository _userBookingRepository, ILogger<LoginController> _logger)
+        private readonly ILogger<Email> emaillogger;
+        private readonly IConfiguration configuration;
+        public UserBookingController(IUserBookingRepository _userBookingRepository, ILogger<LoginController> _logger, ILogger<Email> _emaillogger, IConfiguration _configuration)
         {
             userBookingRepository = _userBookingRepository;
             logger = _logger;
+            emaillogger = _emaillogger;
+            configuration = _configuration;
         }
-
         [EnableCors("CorsPolicy")]
         [HttpPost]
         public async Task<ActionResult<Orders>> UserSlotBooking(List<UserBooking> userBooking)
         {
             try
             {
-                var result = await Task.FromResult(userBookingRepository.UserBooking(userBooking));
+                List<Orders> result  = await Task.FromResult(userBookingRepository.UserBooking(userBooking));
+                if (result.Count > 0)
+                {
+                    if (result[0].Result == 1)
+                    {
+                        Email mail = new Email(emaillogger, configuration);
+                        string body = " Your order has been successfully placed. We will manually check your Payment and update the status.";
+                        var response = mail.SendEmail(userBooking[0].EmailId, userBooking[0].UserName, "Order is Successful", body);
+                    }
+                }
                 return Ok(result);
             }
             catch (Exception ex)
             {
                 logger.LogError($"Exception at Login Method: {ex}");
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, ex);
             }
         }
         [EnableCors("CorsPolicy")]
@@ -56,5 +69,6 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
     }
 }

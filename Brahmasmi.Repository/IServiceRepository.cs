@@ -8,7 +8,7 @@ namespace Brahmasmi.Repository
     public interface IServiceRepository
     {
         List<Services> GetServices(int servicetypeid, int cityid);
-        List<Services> SearchServices(string search);
+        List<Services> SearchServices(string search, int cityId);
         int AddService(IFormFile imageFile, ServiceModel service);
         List<ServiceModel> GetAllServices();
         List<City> GetServiceTypeCity(int ServiceTypeID);

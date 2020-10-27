@@ -74,5 +74,9 @@ C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\Serilog.Formatt
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\Serilog.Sinks.Async.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\Serilog.Sinks.File.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\Serilog.Sinks.RollingFile.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\brahmasmidevapi - Web Deploy\profile.arm.json
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\SendGrid.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\StarkbankEcdsa.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\Razorpay.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Debug\netcoreapp3.1\Brahmasmi.API.csproj.CoreCompileInputs.cache
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Debug\netcoreapp3.1\Brahmasmi.API.MvcApplicationPartsAssemblyInfo.cache

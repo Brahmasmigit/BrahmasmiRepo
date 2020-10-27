@@ -30,10 +30,11 @@ namespace Brahmasmi.Repository
             return result;
 
         }
-        public List<Services> SearchServices(string search)
+        public List<Services> SearchServices(string search, int cityId)
         {
             var dbParam = new DynamicParameters();
             dbParam.Add("search", search, DbType.String);
+            dbParam.Add("@CITYID", cityId, DbType.Int32);
             var result = dapper.GetAll<Services>("[dbo].[SP_SEARCHSERVICE]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);

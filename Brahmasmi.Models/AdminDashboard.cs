@@ -19,6 +19,16 @@ namespace Brahmasmi.Models
         public string BookingAmount { get; set; }
         public string PaymentMode { get; set; }
 
+        public int CityId { get; set; }
+
+        public string CityName { get; set; }
+
 
     }
-}
+    public class VendorBooking
+    {
+        public int VendorId { get; set; }
+        public int BookingId { get; set; }
+    }
+
+ }

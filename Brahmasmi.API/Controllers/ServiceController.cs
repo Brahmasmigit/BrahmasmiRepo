@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Cors;
 
 
+
 namespace Brahmasmi.API.Controllers
 {
     [EnableCors("CorsPolicy")]
@@ -19,11 +20,13 @@ namespace Brahmasmi.API.Controllers
     public class ServiceController : ControllerBase
     {
         private readonly IServiceRepository serviceRepository;
-        private readonly ILogger<LoginController> logger;
-        public ServiceController(IServiceRepository _serviceRepository, ILogger<LoginController> _logger)
+        private readonly ILogger<ServiceController> logger;
+
+        public ServiceController(IServiceRepository _serviceRepository, ILogger<ServiceController> _logger)
         {
             serviceRepository = _serviceRepository;
             logger = _logger;
+            
         }
 
 
@@ -43,18 +46,18 @@ namespace Brahmasmi.API.Controllers
             }
         }
         [EnableCors("CorsPolicy")]
-        [HttpGet("{search}")]
-        public async Task<ActionResult<Services>> SearchService(string search)
+        [HttpGet()]
+        public async Task<ActionResult<Services>> SearchService(string search, int cityId)
         {
             try
             {
-                var result = await Task.FromResult(serviceRepository.SearchServices(search));
+                var result = await Task.FromResult(serviceRepository.SearchServices(search, cityId));
                 return Ok(result);
             }
             catch (Exception ex)
             {
                 logger.LogError($"Exception at Login Method: {ex}");
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, ex.ToString());
             }
         }
         [EnableCors("CorsPolicy")]

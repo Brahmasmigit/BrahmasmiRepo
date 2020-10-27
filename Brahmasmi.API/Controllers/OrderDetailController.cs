@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Cors;
-
+using Microsoft.Extensions.Configuration;
 
 namespace Brahmasmi.API.Controllers
 {
@@ -20,10 +20,14 @@ namespace Brahmasmi.API.Controllers
     {
         private readonly IOrderDetailRepository orderDetailRepository;
         private readonly ILogger<LoginController> logger;
-        public OrderDetailController(IOrderDetailRepository _orderDetailRepository, ILogger<LoginController> _logger)
+        private readonly ILogger<Email> emaillogger;
+        private readonly IConfiguration configuration;
+        public OrderDetailController(IOrderDetailRepository _orderDetailRepository, ILogger<LoginController> _logger, ILogger<Email> _emaillogger, IConfiguration _configuration)
         {
             orderDetailRepository = _orderDetailRepository;
             logger = _logger;
+            emaillogger = _emaillogger;
+            configuration = _configuration;
         }
 
 
@@ -34,6 +38,12 @@ namespace Brahmasmi.API.Controllers
             try
             {
                 var result = await Task.FromResult(orderDetailRepository.GetOrderDetails(invoiceno));
+                //if (result.Count > 0)
+                //{
+                //    Email mail = new Email(emaillogger, configuration);
+                //    string body = " Your order has been successfully placed. We will manually check your Payment and update the status.";
+                //    var response = mail.SendEmail(result[0].EmailId, result[0].ServiceName, "Order is Successful", body);
+                //}
                 return Ok(result);
             }
             catch (Exception ex)

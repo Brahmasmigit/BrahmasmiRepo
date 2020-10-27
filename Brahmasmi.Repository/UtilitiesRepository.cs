@@ -97,6 +97,16 @@ namespace Brahmasmi.Repository
                  commandType: CommandType.StoredProcedure);
             return result;
         }
+        public List<AdminVendor> GetVendor(int cityId)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("cityId", cityId, DbType.Int32);
+            var result = dapper.GetAll<AdminVendor>("[dbo].[SP_GETVENDORS]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
         public List<Patient> GetPatientData()
         {
             var dbParam = new DynamicParameters();

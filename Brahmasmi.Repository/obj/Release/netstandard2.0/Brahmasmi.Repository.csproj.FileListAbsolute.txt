@@ -1,0 +1,14 @@
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\bin\Release\netstandard2.0\Brahmasmi.Repository.deps.json
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\bin\Release\netstandard2.0\Brahmasmi.Repository.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\bin\Release\netstandard2.0\Brahmasmi.Repository.pdb
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\bin\Release\netstandard2.0\Brahmasmi.Models.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\bin\Release\netstandard2.0\Brahmasmi.Service.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\bin\Release\netstandard2.0\Brahmasmi.Models.pdb
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\bin\Release\netstandard2.0\Brahmasmi.Service.pdb
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\obj\Release\netstandard2.0\Brahmasmi.Repository.csprojAssemblyReference.cache
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\obj\Release\netstandard2.0\Brahmasmi.Repository.AssemblyInfoInputs.cache
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\obj\Release\netstandard2.0\Brahmasmi.Repository.AssemblyInfo.cs
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\obj\Release\netstandard2.0\Brahmasmi.Repository.csproj.CoreCompileInputs.cache
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\obj\Release\netstandard2.0\Brahmasmi.Repository.csproj.CopyComplete
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\obj\Release\netstandard2.0\Brahmasmi.Repository.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\obj\Release\netstandard2.0\Brahmasmi.Repository.pdb

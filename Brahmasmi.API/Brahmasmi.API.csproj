@@ -2,14 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Nullable>annotations</Nullable>
+     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+     <UserSecretsId>9faecf26-2dde-497e-8c45-d88e46e71635</UserSecretsId>  
   </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Razorpay" Version="3.0.0" />
+    <PackageReference Include="SendGrid" Version="9.21.0" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

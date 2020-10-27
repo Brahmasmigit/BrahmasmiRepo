@@ -20,8 +20,8 @@ namespace Brahmasmi.API.Controllers
     {
         private readonly IAdminDashboardRepository adminDashboardRepository;
         private readonly IBookingChangeStatusRepository bookingChangeStatusRepository;
-        private readonly ILogger<LoginController> logger;
-        public AdminDashboardController(IAdminDashboardRepository _adminDashboardRepository, ILogger<LoginController> _logger, IBookingChangeStatusRepository _bookingChangeStatusRepository)
+        private readonly ILogger<AdminDashboardController> logger;
+        public AdminDashboardController(IAdminDashboardRepository _adminDashboardRepository, ILogger<AdminDashboardController> _logger, IBookingChangeStatusRepository _bookingChangeStatusRepository)
         {
             adminDashboardRepository = _adminDashboardRepository;
             logger = _logger;
@@ -58,6 +58,22 @@ namespace Brahmasmi.API.Controllers
             {
                 logger.LogError($"Exception at Login Method: {ex}");
                 return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [EnableCors("CorsPolicy")]
+        [HttpPost]
+        public async Task<ActionResult<VendorBooking>> UpdateVendor(VendorBooking booking)
+        {
+            try
+            {
+                var result = await Task.FromResult(bookingChangeStatusRepository.UpdateVendor(booking));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, ex);
             }
         }
     }

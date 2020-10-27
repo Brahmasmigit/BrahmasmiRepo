@@ -43,4 +43,14 @@ namespace Brahmasmi.Models
         public string PatientIllness { get; set; }
 
     }
+    public class AdminVendor
+    {
+        public int VendorId { get; set; }
+        public string VendorName { get; set; }
+        public string MobileNumber { get; set; }
+        public string EmailId { get; set; }
+        public string VendorAddress { get; set; }
+
+        public string CityName { get; set; }
+    }
 }

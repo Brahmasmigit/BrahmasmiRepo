@@ -17,6 +17,7 @@ using Brahmasmi.Service;
 using Brahmasmi.API.Extensions;
 using Serilog.Core;
 
+
 namespace Brahmasmi.API
 {
     public class Startup
@@ -58,6 +59,7 @@ namespace Brahmasmi.API
             services.AddScoped<IUtilitiesRepository, UtilitiesRepository>();
             services.AddScoped<IVendorEnquiryRepository,VendorEnquiryRepository>();
             services.AddScoped<IVendorRepository, VendorRepository>();
+            services.AddScoped<IAdminLoginRepository, AdminLoginRepository>();
             services.AddScoped<IDapper, Dapperr>();
         }
 

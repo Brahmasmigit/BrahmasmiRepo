@@ -23,5 +23,7 @@ namespace Brahmasmi.Repository
         int SavePatient(Patient patient);
 
         List<Patient> GetPatientData();
+
+        List<AdminVendor> GetVendor(int cityId);
     }
 }
