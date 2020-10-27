@@ -21,7 +21,10 @@ export class VendorEnquiryComponent implements OnInit {
 
   ngOnInit(): void {
   //  this.cityId= this.activatedRoute.snapshot.params['cityId'];
-  this.cityId=1; //get city from city selection form
+  if(sessionStorage.getItem("CityID")!=null)
+  {
+    this.cityId=sessionStorage.getItem("CityID")
+  }
   }
   saveVendor()
   {

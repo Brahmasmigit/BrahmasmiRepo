@@ -1,0 +1,69 @@
+
+<!-- <div class="container" *ngFor="let vendor of vendors; let i=index">-->
+    <div class="row "  >
+        <div class="col-md-8 border container">
+
+          <div class="card" *ngFor="let vendor of VendorsList; let i=index" style="width: 22rem; display:inline-block;">
+                <div class="card-img text-center" >
+                  <div *ngIf="vendor.photo">
+                        <img src="data:image/png;base64,{{vendor.photo}}" width="80px" height="60px" />
+                      </div>
+                        <div *ngIf="!vendor.photo">
+                          <img src="../../assets/profileicon.png" style="height: 50px;width:50px;"/>
+
+                        </div>
+                      </div>
+            <div class="card-body">
+            <div class="form-group row">
+                <div class="col-6">
+                <label>Name :</label>
+                </div>
+                <div class="col-6">
+                  {{vendor.vendor_FirstName}}
+                 </div>
+            </div>
+            <div class="form-group row">
+                    <div class="col-6">
+                    <label>Mobile Number :</label>
+                    </div>
+                    <div class="col-6">
+                      {{vendor.vendor_MobileNumber}}
+                     </div>
+                </div>
+                <div class="form-group row">
+                        <div class="col-6">
+                        <label>Address :</label>
+                        </div>
+                        <div class="col-6">
+                          {{vendor.vendor_Address1}}
+                         </div>
+                 </div>
+                 <div class="card-footer">
+                    <button (click)="BookVendor(vendor.vendorID,vendor.vendor_FirstName,vendor.vendor_Address1)" class="btn btn-primary">Book Vendor</button>
+                 </div>
+
+               </div>
+             </div>
+             </div>
+
+
+<div  class="col-md-4 border container">
+   <br/>
+    <label>Select Distance :</label>
+        <select placeholder="Select Distance" name="distance" class="selectkm" (change)="changeKm($event)">
+            <option>5Km</option>
+            <option>10Km</option>
+            <option>15Km</option>
+            <option>More Than 15Km</option>
+        </select>
+
+
+        <hr/>
+        <br/>
+
+
+<div>Latitude: {{latitude}}</div>
+<div>Longitude: {{longitude}}</div>
+</div>
+
+<footer></footer>

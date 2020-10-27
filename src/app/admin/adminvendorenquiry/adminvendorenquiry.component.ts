@@ -10,6 +10,7 @@ import {Router } from '@angular/router';
 export class AdminvendorenquiryComponent implements OnInit {
   errorMessage:any;
   vendorDetails:any=[];
+  selectedIndex:any;
   constructor(private vendorEnquiryService : VendorEnquiryService,
     private route: Router) { }
 
@@ -17,8 +18,8 @@ export class AdminvendorenquiryComponent implements OnInit {
     this.getVendorInfo();
   }
 
-  selectVendor(index: any){
-    alert(index.name)
+  selectVendor(vendor){
+    sessionStorage.setItem("vendorenquiry",JSON.stringify(vendor));
       }
       getVendorInfo()
       {

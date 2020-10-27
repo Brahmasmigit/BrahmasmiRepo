@@ -18,6 +18,11 @@ import {VendorRegistrationComponent} from './vendorregistration/vendorregistrati
 import {UserprofileComponent} from './userprofile/userprofile.component';
 import {AdminvendorenquiryComponent} from './admin/adminvendorenquiry/adminvendorenquiry.component';
 import {VendorEnquiryComponent} from './vendorenquiry/vendorenquiry.component';
+import { VendorlocationComponent } from './vendorlocation/vendorlocation.component';
+import { VendorcityComponent } from './vendorcity/vendorcity.component';
+import { AdminservicetypeComponent } from './adminservicetype/adminservicetype.component';
+import { AdminservicedetailsComponent } from './adminservicedetails/adminservicedetails.component';
+import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,6 +43,11 @@ const routes: Routes = [
   {path:'userprofile', component: UserprofileComponent},
   {path:'adminvendorenquiry', component: AdminvendorenquiryComponent},
   {path:'vendorenquiry', component: VendorEnquiryComponent},
+  {path:'vendorlocation', component: VendorlocationComponent},
+  {path:'vendorcity', component: VendorcityComponent},
+  {path:'adminservicetype', component: AdminservicetypeComponent},
+  {path:'adminservicedetails', component: AdminservicedetailsComponent},
+  {path:'adminlogin', component: AdminloginComponent},
 
 ];
 

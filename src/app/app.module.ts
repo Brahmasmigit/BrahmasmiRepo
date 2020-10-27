@@ -42,8 +42,23 @@ import {UtilitiesService} from './shared/services/utilities.service';
 import {AdminvendorenquiryComponent} from './admin/adminvendorenquiry/adminvendorenquiry.component';
 import {VendorEnquiryComponent} from './vendorenquiry/vendorenquiry.component';
 import {VendorEnquiryService} from './vendorenquiry/vendorenquiry.service';
-
-
+import { VendorlocationComponent } from './vendorlocation/vendorlocation.component';
+import {VendorLocationService} from './vendorlocation/vendorlocation.service';
+//import {AgmMap,MapsAPILoader  } from '@agm/core';
+//import {AgmCoreModule} from '@agm/core';
+import { CartComponent } from './cart/cart.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { VendorcityComponent } from './vendorcity/vendorcity.component';
+import { VendorCityService } from './vendorcity/vendorcity.service';
+import { AdminservicetypeComponent } from './adminservicetype/adminservicetype.component';
+import { AdminservicedetailsComponent } from './adminservicedetails/adminservicedetails.component';
+import {AdminServiceTypeService} from './adminservicetype/adminservicetype.service';
+import {AdminServiceDetailsService} from './adminservicedetails/adminservicedetails.service';
+import {QuillModule} from 'ngx-quill';
+import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
+import {AdminLoginService} from './admin/adminlogin/adminlogin.service';
+import {WindowRefService} from './shared/services/windowref.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +80,15 @@ import {VendorEnquiryService} from './vendorenquiry/vendorenquiry.service';
     VendorRegistrationComponent,
     UserprofileComponent,
     AdminvendorenquiryComponent,
-    VendorEnquiryComponent
+    VendorEnquiryComponent,
+    VendorlocationComponent,
+    CartComponent,
+    HeaderComponent,
+    FooterComponent,
+    VendorcityComponent,
+    AdminservicetypeComponent,
+    AdminservicedetailsComponent,
+    AdminloginComponent
 
   ],
   imports: [
@@ -75,13 +98,19 @@ import {VendorEnquiryService} from './vendorenquiry/vendorenquiry.service';
     FormsModule,
     AppRoutingModule,
     NgbModule,
-    NgOtpInputModule
+    NgOtpInputModule,
+    /*AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCeA6ad2qsS-zSHDjdQX6qnuEbLQzsfDC0',
+      libraries: ['geometry','places']
+    }),*/
+    QuillModule.forRoot()
 
   ],
   providers: [LoginService,HomeService,ServiceListService,ServiceDetailsService,UserSlotBookingService
   ,UserDashboardService,VendorDashboardService,EventListenerService,AdminDashboardService,PackageService,
   ToastService,UserBillingService,OrderDetailsService,VendorRegistrationService,UserProfileService,UtilitiesService,
-  VendorEnquiryService],
+  VendorEnquiryService,VendorLocationService,VendorCityService,AdminServiceTypeService,AdminServiceDetailsService,
+  AdminLoginService,WindowRefService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

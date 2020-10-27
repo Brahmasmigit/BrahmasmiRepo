@@ -1,0 +1,190 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
+  <a class="navbar-brand" href="#">Brahmasmi | Admin</a>
+  <span style="width: 500px;"></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/admindashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/adminservicetype" routerLinkActive="active">Manage Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/adminservicedetails" routerLinkActive="active">Manage Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/adminvendorenquiry" routerLinkActive="active">Register a Vendor</a>
+      </li>
+    </ul>
+
+
+
+  </div>
+</nav>
+<form #serviceForm="ngForm" (ngSubmit)="serviceForm.form.valid && AddService()" >
+        <!-- (ngSubmit)="AddService()" -->
+    <div class="row">
+        <div class="container card border-primary  p-4">
+            <h4>Add Service :</h4>
+            <hr />
+            <div class="form-group row">
+                <div class="col-6 ">
+                    <div class="form-group row">
+                        <div class="col-5">
+                            <label>Select ServiceType </label>
+                        </div>
+                        <div class="col-7">
+                            <select name="serviceTypeID" (change)="selectServiceType($event.target.value)"
+                                [(ngModel)]="serviceModel.serviceTypeID" class="form-control"
+                                #serviceTypeID="ngModel" required >
+                                <option *ngFor="let serviceTypes of ServiceTypes"
+
+                                 [value]="serviceTypes.serviceTypeID">
+                                    {{serviceTypes.serviceTypeName}}
+                                </option>
+                            </select>
+                            <span class="text-danger"
+                            *ngIf="(serviceTypeID.touched || serviceForm.submitted) && serviceTypeID.errors?.required">
+                            serviceType is required
+                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                            <div class="col-5">
+                                <label>City </label>
+                            </div>
+                            <div class="col-7">
+                                <select name="cityID"  [(ngModel)]="serviceModel.cityID" class="form-control" #cityID="ngModel" required >
+                                    <option *ngFor="let city of Cities" [value]="city.cityID">
+                                        {{city.cityName}}
+                                    </option>
+                                </select>
+                                <span class="text-danger"
+                                *ngIf="(cityID.touched || serviceForm.submitted) && cityID.errors?.required">
+                                City is required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-5">
+                            <label>Service Name :</label>
+                        </div>
+                        <div class="col-7">
+                            <input type="text" class="form-control" id="serviceName" name="serviceName"
+                                [(ngModel)]="serviceModel.serviceName" #serviceName="ngModel" required>
+                                <span class="text-danger"
+                                *ngIf="(serviceName.touched || serviceForm.submitted) && serviceName.errors?.required">
+                                Service Name is required
+                            </span>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                            <div class="col-5">
+                                <label>Service Image</label>
+                            </div>
+                            <div class="col-7">
+                                <input type="file" accept="image/*"  #file (change)="upload($event)"
+                                 name="serviceImage"
+                                  required/>
+
+                            </div>
+
+                    </div>
+                </div>
+                     <div class="col-4 ">
+                            <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+                                <img [src]="imageURL"  name="imgPreview" width="200px" height="200px" >
+                            </div>
+                     </div>
+
+                     <div class="col-12">
+                            <div class="form-group">
+                            <label>Short Description :</label>
+                            </div>
+
+                     </div>
+                     <div class="col-12">
+                            <div class="form-group">
+                            <quill-editor [styles]="{height: '200px'}" name="service_Short_Description"
+                            [(ngModel)]="serviceModel.service_Short_Description" trackChanges="all" #service_Short_Description="ngModel"
+                            [modules]="modules" required>
+                        </quill-editor>
+                        <span class="text-danger"
+                            *ngIf="(service_Short_Description.touched || serviceForm.submitted) && service_Short_Description.errors?.required">
+                            service Short Description is required
+                        </span>
+
+                     </div>
+                     </div>
+
+                     <div class="col-12">
+                            <div class="form-group">
+                            <label>Long Description :</label>
+                            </div>
+                     </div>
+                     <div class="col-12">
+                            <div class="form-group">
+                            <quill-editor [styles]="{height: '200px'}" name="service_Long_Description"
+                            [(ngModel)]="serviceModel.service_Long_Description" trackChanges="all" #service_Long_Description="ngModel"
+                            [modules]="modules" required>
+                        </quill-editor>
+                        <span class="text-danger"
+                            *ngIf="(service_Long_Description.touched || serviceForm.submitted) && service_Long_Description.errors?.required">
+                            service Long Description is required
+                        </span>
+                        </div>
+                     </div>
+
+                     <div class="col-12">
+                            <div class="form-group">
+                            <div class="col-3">
+                                    <button   class="btn btn-primary col-12">{{btntext}}</button>
+                                </div>
+                                </div>
+                     </div>
+                    </div>
+            <hr />
+            <div class="container p-2 tabledata">
+                <h4 class="text-info">Service Details</h4><br>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th class="columnDisable"> ServiceID</th>
+                        <th class="columnDisable"> ServiceTypeID</th>
+                        <th class="columnDisable"> CityID</th>
+                        <th>Service Image</th>
+                        <th>City</th>
+                        <th>ServiceType Name</th>
+                        <th>Service Name</th>
+                        <th>Short Description</th>
+                        <th>Long Description</th>
+                        <th class="columnWidth">Action</th>
+                    </tr>
+                    <tr *ngFor="let service of serviceDetails; let i=index"
+                        [ngClass]="{'active': selectedIndex == i}">
+                        <td class="columnDisable"> {{service.serviceTypeID}}</td>
+                        <td class="columnDisable"> {{service.serviceID}}</td>
+                        <td class="columnDisable"> {{service.cityID}}</td>
+                        <td><img  src="data:image/png;base64,{{service.serviceImage}}" width="40px" height="40px" /></td>
+                        <td> {{service.cityName}}</td>
+                        <td> {{service.serviceTypeName}}</td>
+                        <td> {{service.serviceName}}</td>
+                        <td ><span style="font-size: 13px" [innerHTML]="service.servcie_Short_Description"></span>
+                            </td>
+                        <td ><span style="font-size: 13px" [innerHTML]="service.service_Long_Description"></span>  </td>
+                        <td  class="columnWidth">
+                            <button class="btn btn-secondary"  (click)="onEdit(service)">Edit</button>
+                            <button class="btn btn-danger" (click)="onDelete(service)">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</form>
+<footer></footer>

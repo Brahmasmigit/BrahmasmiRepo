@@ -8,33 +8,20 @@
   <div class="collapse navbar-collapse" id="navbarColor03">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/vendordashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/admindashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Manage Requests</a>
+        <a class="nav-link" routerLink="/adminservicetype" routerLinkActive="active">Manage Categories</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Manage Payments</a>
+        <a class="nav-link" routerLink="/adminservicedetails" routerLinkActive="active">Manage Services</a>
       </li>
-
-    </ul>
-
-   <ul class="navbar-nav ml-auto nav-flex-icons">
-
-      <li class="nav-item avatar dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <img src="../../assets/profileicon.png" style="height: 30px;width:30px;" class="rounded-circle z-depth-0"
-            alt="avatar image">
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
-          aria-labelledby="navbarDropdownMenuLink-55">
-          <a class="dropdown-item" routerLink="/vendorprofile" routerLinkActive="active">My Profile</a>
-          <a class="dropdown-item" href="#">My Earnings</a>
-          <a class="dropdown-item" href="#">Logout</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/adminvendorenquiry" routerLinkActive="active">Register a Vendor</a>
       </li>
     </ul>
+
+
 
   </div>
 </nav>
@@ -42,6 +29,7 @@
 <h4 class="text-info">Vendor Basic Details</h4><br>
 <table class="table table-striped table-bordered">
     <tr>
+
         <th>Name</th>
         <th>Mobile Number</th>
         <th>EmailID</th>
@@ -49,14 +37,16 @@
         <th>Description</th>
         <th></th>
     </tr>
-    <tr *ngFor="let vendor of vendorDetails; let i=index" (click)="selectVendor(vendor)"
+    <tr *ngFor="let vendor of vendorDetails; let i=index"
     [ngClass]="{'active': selectedIndex == i}">
+        <td class="IdDispaly" style="display: none;"> {{vendor.enquiryID}}</td>
+        <td class="IdDispaly" style="display: none;"> {{vendor.cityID}}</td>
         <td> {{vendor.name}}</td>
         <td> {{vendor.mobileNumber}}</td>
         <td> {{vendor.emailID}}</td>
         <td> {{vendor.cityName}}</td>
         <td> {{vendor.description}}</td>
-        <td><button class="btn btn-info" routerLink="/vendorregistration" routerLinkActive="active">Add More Info</button></td>
+        <td><button class="btn btn-info" routerLink="/vendorregistration" (click)="selectVendor(vendor)" routerLinkActive="active">Add More Info</button></td>
     </tr>
 </table>
 </div>

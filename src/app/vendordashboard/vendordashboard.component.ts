@@ -3,6 +3,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import {VendorDashboardService} from './vendordashboard.service';
 import {EventModel} from '../shared/models/eventmodel';
 import {EventListenerService} from '../shared/services/eventlistener.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-vendordashboard',
@@ -16,10 +17,12 @@ export class VendordashboardComponent implements OnInit {
   errorMessage:any;
   booking:any={};
   vendorId:any;
-  userInfo:any={}
+  userInfo:any={};
+  closeResult: string;
   constructor(private activatedRoute: ActivatedRoute,
     private vendorDashboardService:VendorDashboardService,
     private router:Router,
+    private  modalService: NgbModal,
     private eventListenerService:EventListenerService) { }
 
   ngOnInit(): void {
@@ -77,7 +80,27 @@ export class VendordashboardComponent implements OnInit {
       () => {
 
       });
-  //this.eventListenerService.addToEventBus("Accept",true);
+  }
+  CalendarTab(CalendarTab)
+  {
+    this.getOngoing(this.vendorId,CalendarTab);
+  }
+  placeOrder(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', windowClass : "xlModal"}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
   ngOnDestroy() {
   }

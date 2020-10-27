@@ -1,38 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
-    <a class="navbar-brand" href="#">Brahmasmi</a>
-    <span style="width: 500px;"></span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarColor03">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/vendordashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Register As A Professional</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Help</a>
-        </li>
-       
-      </ul>
-     
-    
-
-    </div>
-  </nav>
+<app-header></app-header>
   <div class="container-fluid jumbotron" style="background-color: linen;" >
-    
 
-         
-       
+
+
+
             <div class="card ">
-                
-    
+
+
                 <div class="pt-1">
-                    
+
 
                     <div class="content">
                         <div class="container">
@@ -44,22 +20,22 @@
                                                 <h4 class="header-title m-b-30">Select Service to Perform</h4>
                                             </div>
                                         </div>
-                    
+
                                         <div class="row">
                                             <div class="col-md-3" *ngFor="let item of services">
                                                 <div class="file-man-box">
                                                     <div class="file-img-box"><img src="../../assets/Aksharabhyasam.jpg" alt="icon"></div>
                                                     <div class="file-man-title">
                                                         <h5 class="mb-0"><a [routerLink]="['/servicedetails',item.serviceId]" routerLinkActive="active" style="color: black;">{{item.serviceName}}</a></h5>
-                                                       
+
                                                     </div>
                                                 </div>
                                             </div>
-                                          
-                                    
+
+
                                         </div>
-                                       
-                                       
+
+
                                     </div>
                                 </div>
                                 <!-- end col -->
@@ -69,15 +45,16 @@
                         <!-- container -->
                     </div>
                 </div>
-    
-    
-             
-    
-            </div> 
-   
-    
-       
-  
-    
+
+
+
+
+            </div>
+
+
+
+
+
 </div>
 
+<app-footer></app-footer>

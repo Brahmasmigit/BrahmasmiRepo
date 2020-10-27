@@ -15,8 +15,19 @@ export class UserDashboardService {
 
     }
 
-    getOngoing(userid): Observable<any> {
-        return this.http.get<any>(this.API_URL + "UserDashboard/GetOngoing/" + userid)
+    getOngoing(userid,calendarType): Observable<any> {
+      let params = new HttpParams()
+      .set('userid', userid)
+      .set('calendarType', calendarType)
+        return this.http.get<any>(this.API_URL + "UserDashboard/GetOngoing",  {params})
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+    }
+    UserRatings(feedback): Observable<any>
+    {
+        return this.http.post(this.API_URL + 'UserDashboard/UserRatings',feedback)
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)

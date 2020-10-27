@@ -1,6 +1,6 @@
 <style type="text/css">
     body{
-    background:#f3f3f3; 
+    background:#f3f3f3;
     color: #616f80;
 }
 
@@ -16,37 +16,24 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse" id="navbarColor03">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/vendordashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/admindashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Manage Requests</a>
+          <a class="nav-link" routerLink="/adminservicetype" routerLinkActive="active">Manage Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Manage Payments</a>
+          <a class="nav-link" routerLink="/adminservicedetails" routerLinkActive="active">Manage Services</a>
         </li>
-       
-      </ul>
-     
-     <ul class="navbar-nav ml-auto nav-flex-icons">
-        
-        <li class="nav-item avatar dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <img src="../../assets/profileicon.png" style="height: 30px;width:30px;" class="rounded-circle z-depth-0"
-              alt="avatar image">
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
-            aria-labelledby="navbarDropdownMenuLink-55">
-            <a class="dropdown-item" routerLink="/vendorprofile" routerLinkActive="active">My Profile</a>
-            <a class="dropdown-item" href="#">My Earnings</a>
-            <a class="dropdown-item" href="#">Logout</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/adminvendorenquiry" routerLinkActive="active">Register a Vendor</a>
         </li>
       </ul>
+
+
 
     </div>
   </nav>
@@ -58,8 +45,8 @@
                     <div class="float-right">
                         <i class="fa fa-archive text-primary h4 ml-3"></i>
                     </div>
-                    <h5 class="font-size-20 mt-0 pt-1">24</h5>
-                    <p class="text-muted mb-0">Total Projects</p>
+                    <h5 class="font-size-20 mt-0 pt-1">{{totalRequests}}</h5>
+                    <p class="text-muted mb-0">Total Requests</p>
                 </div>
             </div>
         </div>
@@ -69,8 +56,8 @@
                     <div class="float-right">
                         <i class="fa fa-th text-primary h4 ml-3"></i>
                     </div>
-                    <h5 class="font-size-20 mt-0 pt-1">18</h5>
-                    <p class="text-muted mb-0">Completed Projects</p>
+                    <h5 class="font-size-20 mt-0 pt-1">{{completedRequests}}</h5>
+                    <p class="text-muted mb-0">Completed Requests</p>
                 </div>
             </div>
         </div>
@@ -80,8 +67,8 @@
                     <div class="float-right">
                         <i class="fa fa-file text-primary h4 ml-3"></i>
                     </div>
-                    <h5 class="font-size-20 mt-0 pt-1">06</h5>
-                    <p class="text-muted mb-0">Pending Projects</p>
+                    <h5 class="font-size-20 mt-0 pt-1">{{pendingRequests}}</h5>
+                    <p class="text-muted mb-0">Pending Requests</p>
                 </div>
             </div>
         </div>
@@ -115,17 +102,21 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Services</th>
-                                    <th scope="col">Date</th>
+                                    <th scope="col">Booking Date</th>
                                     <th scope="col">Time</th>
                                     <th scope="col">Vendor</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Amount Paid</th>
+                                    <th scope="col">Payment Mode</th>
+                                    <th scope="col">City</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Update Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of adminDasboard; let i=index">
                                     <th scope="row">{{i+1}}</th>
-                                    <td>{{item.serviceName}}</td>
+                                    <td><a href="">{{item.serviceName}}</a></td>
                                     <td>{{item.bookingDate}}</td>
                                     <td>
                                         {{item.bookingTime}}
@@ -134,19 +125,32 @@
                                         {{item.vendorname}}
                                     </td>
                                     <td>
-                                        <span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> {{item.bookingStatus}}</span> 
+                                      {{item.username}}
+                                  </td>
+                                  <td>
+                                    {{item.bookingAmount}}
+                                </td>
+                                <td>
+                                  {{item.paymentMode}}
+                              </td>
+                              <td>
+                                {{item.cityName}}
+                            </td>
+                                    <td>
+                                        <span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> {{item.bookingStatus}}</span>
                                     </td>
 
                                     <td>
                                         <div class="action">
                                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                                <button type="button" class="btn btn-primary" >Update Status</button>
+                                                <button type="button" class="btn btn-primary" >Update</button>
                                                 <div class="btn-group" role="group">
                                                   <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                                   <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-
-                                                    <a class="dropdown-item" (click)="ChangeStatus(item.bookingId,5)">Approve</a>
-                                                    <a class="dropdown-item" (click)="ChangeStatus(item.bookingId,4)">Cancel</a>
+                                                    <a class="dropdown-item pointer" (click)="AssignVendor(item.bookingId)">Assign Vendor</a>
+                                                    <a *ngIf="item.bookingStatusID=='7'" class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,1,item.vendorname)">Approve</a>
+                                                    <a *ngIf="item.bookingStatusID!='7'" class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,5,item.vendorname)">Approve</a>
+                                                    <a class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,4)">Cancel</a>
                                                   </div>
                                                 </div>
                                               </div>
@@ -154,9 +158,9 @@
                                             <a  class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>-->
                                         </div>
                                     </td>
-                                </tr>
+                                </tr> <!--end of gor loop-->
 
-                          
+
                             </tbody>
                         </table>
                     </div>
@@ -167,8 +171,8 @@
                             <li class="page-item disabled">
                                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item">
                                 <a class="page-link" href="#">Next</a>
@@ -181,3 +185,60 @@
     </div>
     <!-- end row -->
 </div>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><span>Assign Vendor</span></h4>
+    <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body w-100">
+    <div class="contained-fluid w-100">
+      <div class="row p-2">
+        <div class="col-md-12">
+          <select style="width: 200px;margin-right: 20px;" name="cityID" placeholder="Title" class="form-control"
+          (change)="selectCity($event)"  [(ngModel)]="cityId"  >
+                 <option *ngFor="let city of City"
+                 [value]="city.cityID"
+                 [selected]="cityId==city.cityID">
+
+                  {{city.cityName}}
+             </option>
+          </select>
+        </div>
+      </div>
+      <div class="row p-2">
+        <div class="col-md-12">
+          <table class="table table-bordered w-100" >
+            <thead class="thead-light">
+                <tr>
+                  <th></th>
+                    <th>Vendor Name</th>
+                    <th>City</th>
+                    <th>Mobile Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of vendorlist;let i=index"  [class.selected]="i == HighlightRow"  >
+                  <td><a  class="text-danger pointer"  (click)="SelectVendor(item.vendorId,i)"> Select</a></td>
+                    <td>{{item.vendorName}}</td>
+                    <td>{{item.cityName}}</td>
+                    <td>{{item.mobileNumber}}</td>
+
+                </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="SubmitVendor()">Submit</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template>

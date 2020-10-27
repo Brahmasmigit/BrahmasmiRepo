@@ -1,44 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
-    <a class="navbar-brand" href="#">Brahmasmi</a>
-    <span style="width: 500px;"></span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor03">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">My Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Help</a>
-        </li>
-
-      </ul>
-
-     <ul class="navbar-nav ml-auto nav-flex-icons">
-
-        <li class="nav-item avatar dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <img src="../../assets/profileicon.png" style="height: 30px;width:30px;" class="rounded-circle z-depth-0"
-              alt="avatar image">
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
-            aria-labelledby="navbarDropdownMenuLink-55">
-            <a class="dropdown-item" routerLink="/userprofile" routerLinkActive="active">My Profile</a>
-            <a class="dropdown-item" href="#">My Earnings</a>
-            <a class="dropdown-item" href="#">Logout</a>
-          </div>
-        </li>
-      </ul>
-
-    </div>
-  </nav>
-  <div class="jumbotron" style="background-color: linen;" >
+<app-header></app-header>
+  <div class="container-fluid jumbotron h-100" style="background-color: linen;" >
 <table align="center">
     <tbody>
         <tr><td style="text-align: center;"><h4>My Bookings</h4></td></tr>
@@ -46,10 +7,10 @@
 <tr><td>
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
         <label class="btn btn-primary">
-          <input type="radio" name="options" id="option1" autocomplete="off" checked="true"> ONGOING
+          <input (click)="CalendarTab('current')" type="radio" name="options" id="option1" autocomplete="off" checked="true"> ONGOING
         </label>
         <label class="btn btn-primary">
-          <input type="radio" name="options" id="option2" autocomplete="off"> HISTORY
+          <input (click)="CalendarTab('history')" type="radio" name="options" id="option2" autocomplete="off"> HISTORY
         </label>
 
       </div>
@@ -58,47 +19,194 @@
     </tbody>
 </table>
 
-<div class="container">
-    <div class="row">
+<div class="container" style="text-align: center;">
+    <div class="row" *ngIf="ongoing.length>0">
         <div class="col-md-4" *ngFor="let item of ongoing">
-            <div class="card border-primary mb-3 w-100">
-                <div class="card-header">{{item.serviceName}}  <div class="pull-right">{{item.bookingStatus}}</div></div>
+            <div class="card border-primary mb-3 w-100 h-100">
+                <div class="card-header">{{item.serviceName}}  <div class="pull-right">
+                  <span *ngIf="item.bookingStatusId =='1' || item.bookingStatusId =='2' || item.bookingStatusId =='3'  || item.bookingStatusId =='5'" class="badge badge-success badge-pill">
+                    {{item.bookingStatus}}
+                  </span>
+                  <span *ngIf="item.bookingStatusId =='7'" class="badge badge-warning badge-pill">
+                      Request Pending
+                  </span>
+                  <span *ngIf="item.bookingStatusId =='6'" class="badge badge-warning badge-pill"> {{item.bookingStatus}}</span>
+                  <span *ngIf="item.bookingStatusId =='4'" class="badge badge-danger badge-pill"> {{item.bookingStatus}}</span>
+                </div></div>
 
-                <div class="card-body" style="height: 150px;">
+                <div class="card-body h-100 w-100">
 
                     <div class="conatiner-fluid">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <img src="../../assets/profileicon.png"/>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-md-12">Vendor Name: {{item.vendorname}}</div>
+                                            <div class="col-md-12">Professional Name: {{item.vendorname}}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-12">Location: {{item.bookingLocation}}</div>
+                                            <div class="col-md-12">Booking Location: {{item.bookingLocation}}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-12">Date: {{item.bookingDate}}</div>
+                                            <div class="col-md-12">Booking Date: {{item.bookingDate}}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-12">Timings: {{item.bookingTime}}</div>
+                                            <div class="col-md-12">Booking Timings: {{item.bookingTime}}</div>
                                         </div>
+                                        <div class="row text-left" *ngIf="item.timeIn">
+                                          <div class="col-md-12">Time In: {{item.timeIn}}</div>
+                                      </div>
+                                      <div class="row text-left" *ngIf="item.timeOut">
+                                        <div class="col-md-12">Time Out: {{item.timeOut}} </div>
+                                    </div>
                                     </div>
                                 </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="card-footer" style="background-color:#dfefef;color: white;text-align: center;font-weight: bold;">
+                <div class="card-footer w-100" style="background-color:#dfefef;color: white;text-align: center;font-weight: bold;">
 
-                    <button type="button" class="btn btn-primary" >View Booking</button>
-                    <button type="button" class="btn btn-primary" style="margin-left: 10px;">Cancel</button>
+                    <button type="button" class="btn btn-primary" (click)="OpenModalPopup('booking')" >View Booking</button>
+
+                    <button type="button" class="btn btn-primary" (click)="OpenModalPopup('rating')" style="margin-left: 5px;">Give Rating</button>
                 </div>
             </div>
-        </div>
+            <ng-template #mymodal let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">
+
+                  <span *ngIf="!isRating"> Booking Details</span>
+                  <span *ngIf="isRating">Rate your Experience</span>
+                </h4>
+                <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div *ngIf="isRating" class="modal-body w-100">
+                <div class="contained-fluid w-100 text-left">
+                  <div class="row p-2">
+                    <div class="col-md-4 mt-2">
+                      Rate a Professional:
+                    </div>
+                    <div class="col-md-8" style="vertical-align: top;">
+
+
+
+
+                        <button (click)="GiveRating($event,'1',stars.star1)" [ngClass]="stars.star1==true ? 'starorange' : 'starblack'" [value]="stars.star1" type="button" class="btnrating btn btn-default btn-lg" data-attr="1" id="star1" name="star1">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </button>
+                        <button (click)="GiveRating($event,'2',stars.star2)" [ngClass]="stars.star2==true ? 'starorange' : 'starblack'" [value]="stars.star2" type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="star2" name="star2">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </button>
+                        <button (click)="GiveRating($event,'3',stars.star3)" [ngClass]="stars.star3==true ? 'starorange' : 'starblack'" [value]="stars.star3"  type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="star3" name="star3">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </button>
+                        <button (click)="GiveRating($event,'4',stars.star4)" [ngClass]="stars.star4==true ? 'starorange' : 'starblack'" [value]="stars.star4"  type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="star4" name="star4">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </button>
+                        <button (click)="GiveRating($event,'5',stars.star5)" [ngClass]="stars.star5==true ? 'starorange' : 'starblack'" [value]="stars.star5" type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="star5" name="star5">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </button>
+
+
+                    </div>
+                  </div>
+                  <div class="row p-2">
+                    <div class="col-md-4 mt-2">
+                      Feedback/ Review:
+                    </div>
+                    <div class="col-md-8" style="vertical-align: top;">
+                      <textarea class="form-control" [(ngModel)]="feedback.ReviewComments" id="txtFeedback" rows="3"></textarea>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+              <div *ngIf="!isRating" class="modal-body w-100">
+                <div class="contained-fluid w-100 text-left legend">
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Professional Mobile No:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.mobileNumber}}
+                    </div>
+                  </div>
+
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Professional EmailId:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.emailId}}
+                    </div>
+                  </div>
+
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      City:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.cityName}}
+                    </div>
+                  </div>
+
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Amount Paid:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.total}}
+                    </div>
+                  </div>
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Payment Mode:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.modeOfPayment}}
+                    </div>
+                  </div>
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Package:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.packageName}}
+                    </div>
+                  </div>
+
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Review Comments:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.reviewComments}}
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+              <div class="modal-footer text-center">
+
+                <button *ngIf="isRating" type="button" class="btn btn-primary" style="margin-left: 1px;" (click)="SubmitFeedback(item.bookingId)">Submit Feedback</button>
+                <button *ngIf="!isRating" type="button" class="btn btn-primary" style="margin-left: 1px;" (click)="CancelBooking(item.bookingId,4)">Cancel Booking</button>
+                <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Close</button>
+              </div>
+            </ng-template>
+
+
+        </div> <!--End of For loop-->
+
     </div>
+    <div class="row text-center" *ngIf="ongoing.length==0">
+      <div class="col-md-12 text-center" >
+        <button type="button" class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="active">Book a Service</button>
+      </div>
+      </div>
 </div>
 </div>
-<div class="fixed-bottom">Copyright © 2020 All rights reserved</div>
+<app-footer></app-footer>

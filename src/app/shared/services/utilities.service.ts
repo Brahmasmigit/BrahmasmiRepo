@@ -51,6 +51,13 @@ export class UtilitiesService {
             catchError(this.handleError)
         );
       }
+      getAllCities(): Observable<any> {
+        return this.http.get<any>(this.API_URL + "Utilities/GetAllCities/")
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+      }
       SavePatient(patient): Observable<any>
       {
           return this.http.post(this.API_URL + 'Utilities/SavePatient',patient)
@@ -61,6 +68,13 @@ export class UtilitiesService {
       }
       getpatientdata(): Observable<any> {
         return this.http.get<any>(this.API_URL + "Utilities/GetPatientData" )
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+      }
+      getVendor(cityId): Observable<any> {
+        return this.http.get<any>(this.API_URL + "Utilities/GetVendor/" + cityId)
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)

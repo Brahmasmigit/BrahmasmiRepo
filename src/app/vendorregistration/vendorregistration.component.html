@@ -1,459 +1,596 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
-  <a class="navbar-brand" href="#">Brahmasmi</a>
-  <span style="width: 500px;"></span>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<app-header></app-header>
 
-  <div class="collapse navbar-collapse" id="navbarColor03">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item" *ngIf="isVendor">
-        <a class="nav-link" href="/vendordashboard">My Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Help</a>
-      </li>
+<form #registerVendorForm="ngForm" (ngSubmit)="registerVendorForm.form.valid && openPaymentPopup()">
+  <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
+<div class="container card border-primary mb-3" style="max-width: 80rem;">
+    <div class="card-header text-center bold text-info"><h3><b>Register as a Professional</b></h3></div>
+    <div class="card-body" style="height: auto">
 
-    </ul>
+          <div class="form-group row">
+                <div class="col-2">
 
-   <ul class="navbar-nav ml-auto nav-flex-icons">
+                        <select name="title" placeholder="Title" [(ngModel)]="vendor.titleID" class="form-control"  >
+                            <!-- <option value=""></option>
+                            <option value="Mr">Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Miss">Miss</option>
+                            <option value="Ms">Ms</option> -->
+                            <option *ngFor="let title of Title"
+                            [value]="title.titleID"
+                            [attr.selected]="vendor.titleID==title.titleID ? true : null" >
+                             {{title.titleName}}
+                        </option>
+                        </select>
+                </div>
+                <div class="col-4 ">
 
-      <li class="nav-item avatar dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <img src="../../assets/profileicon.png" style="height: 30px;width:30px;" class="rounded-circle z-depth-0"
-            alt="avatar image">
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
-          aria-labelledby="navbarDropdownMenuLink-55">
-          <a class="dropdown-item" routerLink="/vendorregistration" routerLinkActive="active">My Profile</a>
-          <a class="dropdown-item" href="#">My Earnings</a>
-          <a class="dropdown-item" href="#">Logout</a>
-        </div>
-      </li>
-    </ul>
+                    <input type="textbox" name="vendor_FirstName" id="vendor_FirstName"
+                    [(ngModel)]="vendor.vendor_FirstName" placeholder="Enter First Name"
+                     class="form-control" #vendor_FirstName="ngModel" required >
+                     <span class="text-danger"
+                     *ngIf="(vendor_FirstName.touched || registerVendorForm.submitted) && vendor_FirstName.errors?.required">
+                     FirstName is required
+                 </span>
+                </div>
+                <div class="col-3 ">
 
-  </div>
-</nav>
+                  <input type="textbox" name="vendor_MiddleName" id="vendor_MiddleName"  [(ngModel)]="vendor.vendor_MiddleName" placeholder="Enter Middle Name" class="form-control">
+                 </div>
+                <div class="col-3 ">
 
-<form (ngSubmit)="saveVendor()">
-          <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
-        <div class="container card border-primary mb-3" style="max-width: 80rem;">
-            <div class="card-header text-center bold text-info"><h3><b>Register as a Professional</b></h3></div>
-            <div class="card-body" style="height: auto">
-
-                  <div class="form-group row">
-                        <div class="col-2">
-
-                                <select name="title" placeholder="Title" [(ngModel)]="vendor.titleID" class="form-control"  >
-                                    <!-- <option value=""></option>
-                                    <option value="Mr">Mr</option>
-                                    <option value="Mrs">Mrs</option>
-                                    <option value="Miss">Miss</option>
-                                    <option value="Ms">Ms</option> -->
-                                    <option *ngFor="let title of Title"
-                                    [value]="title.titleID"
-                                    [attr.selected]="vendor.titleID==title.titleID ? true : null" >
-                                     {{title.titleName}}
-                                </option>
-                                </select>
-                        </div>
-                        <div class="col-4 ">
-
-                            <input type="textbox" name="vendor_FirstName" id="vendor_FirstName"  [(ngModel)]="vendor.vendor_FirstName" placeholder="Enter First Name" class="form-control">
-                        </div>
-                        <div class="col-3 ">
-
-                          <input type="textbox" name="vendor_MiddleName" id="vendor_MiddleName"  [(ngModel)]="vendor.vendor_MiddleName" placeholder="Enter Middle Name" class="form-control">
-                         </div>
-                        <div class="col-3 ">
-
-                          <input type="textbox" name="vendor_LastName" id="vendor_LastName"  [(ngModel)]="vendor.vendor_LastName" placeholder="Enter Last Name" class="form-control">
-                        </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">NICK NAME :</label>
-                            </div>
-                            <div class="col-3 ">
-                                <input type="textbox" name="vendor_NickName" id="vendor_NickName"  [(ngModel)]="vendor.vendor_NickName" placeholder="Enter Nick Name" class="form-control">
-                            </div>
-                            <div class="col-3 ">
-                                    <label class="form-label">GOTHRAM :</label>
-                            </div>
-                            <div class="col-3 ">
-                              <input type="textbox" name="vendor_Gothram" id="vendor_Gothram"  [(ngModel)]="vendor.vendor_Gothram"  placeholder="Enter Gothram" class="form-control">
-                            </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">S/O :</label>
-                            </div>
-                            <div class="col-3 ">
-                                <input type="textbox" name="vendor_FatherName" id="vendor_FatherName"  [(ngModel)]="vendor.vendor_FatherName" placeholder="Enter S/O" class="form-control">
-                            </div>
-                            <div class="col-3">
-                                    <label class="form-label">GENDER :</label>
-                                </div>
-                                <div class="col-3 ">
-                                        <input id="male" type="radio" value="male" name="gender" [(ngModel)]="vendor.vendor_Gender">
-                                        <label for="male">Male</label>
-                                        <input id="female" type="radio" value="female" name="gender" [(ngModel)]="vendor.vendor_Gender">
-                                         <label for="female">Female</label>
-                                    </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">OCCUPATION :</label>
-                            </div>
-                            <div class="col-3 ">
-                                <input type="textbox" name="vendor_Occupation" id="vendor_Occupation"  [(ngModel)]="vendor.vendor_Occupation" placeholder="Enter your Occupation" class="form-control">
-                            </div>
-                            <div class="col-3">
-                                    <label class="form-label">HEIGHT :</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="textbox" name="vendor_Height" id="vendor_Height"  [(ngModel)]="vendor.vendor_Height" placeholder="Enter your Height" class="form-control">
-                                </div>
-
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">WEIGHT :</label>
-                            </div>
-                            <div class="col-3">
-                                <input type="textbox" name="vendor_Weight" id="vendor_Weight"  [(ngModel)]="vendor.vendor_Weight" placeholder="Enter your Weight" class="form-control">
-                            </div>
-                        <div class="col-3">
-                                <label class="form-label">DATE OF BIRTH :</label>
-                            </div>
-                            <div class="col-3">
-                                <input type="textbox"  name="vendor_DOB" id="vendor_DOB"  [(ngModel)]="vendor.vendor_DOB"  class="form-control">
-                            </div>
-
-
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3 ">
-                                <label class="form-label">AGE :</label>
-                        </div>
-                        <div class="col-3">
-                          <input type="textbox" name="vendor_Age" id="vendor_Age"  [(ngModel)]="vendor.vendor_Age"   class="form-control">
-                        </div>
-                        <div class="col-3">
-                                <label class="form-label">PLACE OF BIRTH :</label>
-                        </div>
-                        <div class="col-3">
-                          <input type="textbox" name="vendor_PlaceofBirth" id="vendor_PlaceofBirth"  [(ngModel)]="vendor.vendor_PlaceofBirth"  class="form-control">
-                        </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">PRESENT ADDRESS :</label>
-                        </div>
-                        <div class="col-3">
-                          <textarea type="text" name="vendor_Address1" id="vendor_Address1"  [(ngModel)]="vendor.vendor_Address1"   class="form-control"></textarea>
-                        </div>
-                        <div class="col-3">
-                                <label class="form-label">PINCODE :</label>
-                        </div>
-                        <div class="col-3">
-                          <input type="textbox" name="vendor_PinCode1" id="vendor_PinCode1"  [(ngModel)]="vendor.vendor_PinCode1"   class="form-control">
-                        </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">PERMANENT ADDRESS :</label>
-                        </div>
-                        <div class="col-3">
-                          <textarea type="text" name="vendor_Address2" id="vendor_Address2"  [(ngModel)]="vendor.vendor_Address2"   class="form-control"></textarea>
-                        </div>
-                        <div class="col-3">
-                                <label class="form-label">PINCODE :</label>
-                        </div>
-                        <div class="col-3">
-                          <input type="textbox" name="vendor_PinCode2" id="vendor_PinCode2"  [(ngModel)]="vendor.vendor_PinCode2"  class="form-control">
-                        </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                         <label class="form-label">VEDA:</label>
-                        </div>
-                        <div class="col-2">
-                         <input id="certified" type="radio" value="certified" name="veda" >
-                          CERTIFIED
-                          </div>
-                          <div class="col-2">
-                                <input id="nonCertified" type="radio" value="nonCertified" name="veda" >
-                                NON-CERTIFIED
-
-                        </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                         <label class="form-label">IF YES: <input type="checkbox"> </label>
-                        </div>
-                        <div class="col-9">
-                                <span *ngFor="let cert of Certification">
-                                        <input type="checkbox"
-                                           name="{{cert.certificationName}}"
-                                           value="{{cert.certificationID}}"
-                                           [(ngModel)]="cert.isChecked"
-                                           (change)="change($event, cert)">
-                                             {{cert.certificationName}}
-
-                                    </span>
-                          <!-- <input name="certification" [(ngModel)]="certificationName"  type="checkbox"> RIG-VEDA    </div>
-                          <div class="col-2">
-                          <input name="certification" [(ngModel)]="certificationName" type="checkbox"> SAMA-VEDA
-                          </div>
-                          <div class="col-2">
-                          <input name="certification" [(ngModel)]="certificationName" type="checkbox"> YAJUR-VEDA
-                          </div>
-                          <div class="col-2">
-                          <input name="certification" [(ngModel)]="certificationName" type="checkbox"> ATHARVA-VEDA
-                          -->
-                        </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">MOBILE NUMBER :</label>
-                            </div>
-                            <div class="col-3">
-                                <input type="text" name="vendor_MobileNumber" id="vendor_MobileNumber"  [(ngModel)]="vendor.vendor_MobileNumber"   class="form-control">
-                            </div>
-                            <div class="col-3 ">
-                                <label class="form-label">ALTERNATE NUMBER :</label>
-                            </div>
-                            <div class="col-3">
-                              <input type="textbox"   name="vendor_AlternateNumber" id="vendor_AlternateNumber"  [(ngModel)]="vendor.vendor_AlternateNumber"  class="form-control">
-                            </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">EMAIL ADDRESS:</label>
-                            </div>
-                            <div class="col-3">
-                                <input type="text"  name="vendor_EmailID" id="vendor_EmailID"  [(ngModel)]="vendor.vendor_EmailID"  class="form-control">
-                            </div>
-                            <div class="col-3 ">
-                                <label class="form-label">PAN NUMBER :</label>
-                            </div>
-                            <div class="col-3">
-                              <input type="textbox"  name="vendor_PANNumber" id="vendor_PANNumber"  [(ngModel)]="vendor.vendor_PANNumber"   class="form-control">
-                            </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">AADHAR NUMBER:</label>
-                            </div>
-                            <div class="col-3">
-                                <input type="text"  name="vendor_AadharNumber" id="vendor_AadharNumber"  [(ngModel)]="vendor.vendor_AadharNumber"  class="form-control">
-                            </div>
-
-                  </div>
-                  <div class="form-group row">
-                      <div class="col-3 bold">
-                            <b>
-                                    SOCIAL NETWORKING ID
-                            </b>
-                      </div>
-                  </div>
-
-                      <div class="form-group row">
-                            <table class="table table-striped table-bordered">
-                                    <thead>
-                                        <th>SOCIALNETWORKS</th>
-                                        <th>SOCIALNETWORK URL</th>
-
-                                    </thead>
-                                    <tbody>
-                                            <tr  *ngFor="let cert of SocialNetwork">
-
-                                                     <td>
-                                                            <label  name="{{cert.socialNetworkName}}" value="{{cert.socialNetworkID}}"> {{cert.socialNetworkName}}</label>
-                                                     </td>
-                                                    <td>
-                                                            <input type="text" [(ngModel)]="cert.socialNetworkURL"  name="socialNetworkURL"  class="form-control" >
-                                                    </td>
-
-                                            </tr>
-                                    </tbody>
-                        </table>
-                      </div>
-
-
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">IDENTIFICATION MARK 1 :</label>
-                            </div>
-                            <div class="col-9">
-                                <input type="text" name="vendor_IdentificationMark1" id="vendor_IdentificationMark1"  [(ngModel)]="vendor.vendor_IdentificationMark1" class="form-control">
-                            </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3">
-                                <label class="form-label">IDENTIFICATION MARK 2 :</label>
-                            </div>
-                            <div class="col-9">
-                                <input type="text" name="vendor_IdentificationMark2" id="vendor_IdentificationMark2"  [(ngModel)]="vendor.vendor_IdentificationMark2"  class="form-control">
-                            </div>
-                  </div>
-                  <div class="form-group row">
-                        <div class="col-3 bold">
-                              <b>
-                                     FAMILY DETAILS :
-                              </b>
-                        </div>
+                  <input type="textbox" name="vendor_LastName" id="vendor_LastName"  [(ngModel)]="vendor.vendor_LastName" placeholder="Enter Last Name" class="form-control">
+                </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">NICK NAME :</label>
                     </div>
-                    <div class="form-group row">
-                        <table class="table table-striped table-bordered">
+                    <div class="col-3 ">
+                        <input type="textbox" name="vendor_NickName" id="vendor_NickName"  [(ngModel)]="vendor.vendor_NickName" placeholder="Enter Nick Name" class="form-control">
+                    </div>
+                    <div class="col-3 ">
+                            <label class="form-label">GOTHRAM :</label>
+                    </div>
+                    <div class="col-3 ">
+                      <input type="textbox" name="vendor_Gothram" id="vendor_Gothram"  [(ngModel)]="vendor.vendor_Gothram"  placeholder="Enter Gothram" class="form-control">
+                    </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">S/O :</label>
+                    </div>
+                    <div class="col-3 ">
+                        <input type="textbox" name="vendor_FatherName" id="vendor_FatherName"  [(ngModel)]="vendor.vendor_FatherName" placeholder="Enter S/O" class="form-control">
+                    </div>
+                    <div class="col-3">
+                            <label class="form-label">GENDER :</label>
+                        </div>
+                        <div class="col-3 ">
+                                <input id="male" type="radio" value="male" checked="true" name="gender" [(ngModel)]="vendor.vendor_Gender">
+                                <label for="male">Male</label>
+                                <input id="female" type="radio" value="female" name="gender" [(ngModel)]="vendor.vendor_Gender">
+                                 <label for="female">Female</label>
+                            </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">OCCUPATION :</label>
+                    </div>
+                    <div class="col-3 ">
+                        <input type="textbox" name="vendor_Occupation" id="vendor_Occupation"  [(ngModel)]="vendor.vendor_Occupation" placeholder="Enter your Occupation" class="form-control">
+                    </div>
+                    <div class="col-3">
+                            <label class="form-label">HEIGHT :</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="textbox" name="vendor_Height" id="vendor_Height"  [(ngModel)]="vendor.vendor_Height" placeholder="Enter your Height" class="form-control">
+                        </div>
+
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">WEIGHT :</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="textbox" name="vendor_Weight" id="vendor_Weight"  [(ngModel)]="vendor.vendor_Weight" placeholder="Enter your Weight" class="form-control">
+                    </div>
+                <div class="col-3">
+                        <label class="form-label">DATE OF BIRTH :</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="textbox"  name="vendor_DOB" id="vendor_DOB"  [(ngModel)]="vendor.vendor_DOB"  class="form-control">
+                    </div>
+
+
+          </div>
+          <div class="form-group row">
+                <div class="col-3 ">
+                        <label class="form-label">AGE :</label>
+                </div>
+                <div class="col-3">
+                  <input type="textbox" name="vendor_Age" id="vendor_Age"  [(ngModel)]="vendor.vendor_Age"   class="form-control">
+                </div>
+                <div class="col-3">
+                        <label class="form-label">PLACE OF BIRTH :</label>
+                </div>
+                <div class="col-3">
+                  <input type="textbox" name="vendor_PlaceofBirth" id="vendor_PlaceofBirth"  [(ngModel)]="vendor.vendor_PlaceofBirth"  class="form-control">
+                </div>
+          </div>
+          <div class="form-group row">
+              <div class="col-3">Select City :</div>
+              <div class="col-3">
+                <select name="cityID"  class="form-control" [(ngModel)]="vendor.cityID"  >
+                       <option *ngFor="let city of City"
+                       [value]="city.cityID"
+                       [attr.selected]="vendor.cityID==city.cityID ? true : null">
+
+                        {{city.cityName}}
+                   </option>
+                </select>
+              </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">PRESENT ADDRESS :</label>
+                </div>
+                <div class="col-3">
+                  <textarea type="text" name="vendor_Address1" id="vendor_Address1"  [(ngModel)]="vendor.vendor_Address1"   class="form-control"></textarea>
+                </div>
+                <div class="col-3">
+                        <label class="form-label">PINCODE :</label>
+                </div>
+                <div class="col-3">
+                  <input type="textbox" name="vendor_PinCode1" id="vendor_PinCode1"  [(ngModel)]="vendor.vendor_PinCode1"   class="form-control">
+                </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">PERMANENT ADDRESS :</label>
+                </div>
+                <div class="col-3">
+                  <textarea type="text" name="vendor_Address2" id="vendor_Address2"  [(ngModel)]="vendor.vendor_Address2"   class="form-control"></textarea>
+                </div>
+                <div class="col-3">
+                        <label class="form-label">PINCODE :</label>
+                </div>
+                <div class="col-3">
+                  <input type="textbox" name="vendor_PinCode2" id="vendor_PinCode2"  [(ngModel)]="vendor.vendor_PinCode2"  class="form-control">
+                </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                 <label class="form-label">VEDA:</label>
+                </div>
+                <div class="col-2">
+                 <input id="certified" type="radio" value="certified" [(ngModel)]="certified"  name="veda" (change)="onCertChange($event.target.value)" >
+                  CERTIFIED
+                  </div>
+                  <div class="col-2">
+                        <input id="nonCertified" type="radio" value="nonCertified" [(ngModel)]="nonCertified"  name="veda" (change)="onCertChange($event.target.value)" >
+                        NON-CERTIFIED
+
+                </div>
+          </div>
+          <div class="form-group row" *ngIf="show" >
+                <!-- <div class="col-3">
+                 <label class="form-label">IF YES: <input type="checkbox"> </label>
+                </div> -->
+                <div class="col-9 offset-3">
+                        <span *ngFor="let cert of Certification">
+                                <input type="checkbox"
+                                   name="{{cert.certificationName}}"
+                                   value="{{cert.certificationID}}"
+                                   [(ngModel)]="cert.isChecked"
+                                   (change)="change($event, cert)">
+                                     {{cert.certificationName}}
+
+                            </span>
+                  <!-- <input name="certification" [(ngModel)]="certificationName"  type="checkbox"> RIG-VEDA    </div>
+                  <div class="col-2">
+                  <input name="certification" [(ngModel)]="certificationName" type="checkbox"> SAMA-VEDA
+                  </div>
+                  <div class="col-2">
+                  <input name="certification" [(ngModel)]="certificationName" type="checkbox"> YAJUR-VEDA
+                  </div>
+                  <div class="col-2">
+                  <input name="certification" [(ngModel)]="certificationName" type="checkbox"> ATHARVA-VEDA
+                  -->
+                </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">MOBILE NUMBER :</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="text" name="vendor_MobileNumber" id="vendor_MobileNumber"  [(ngModel)]="vendor.vendor_MobileNumber"
+                         class="form-control" #vendor_MobileNumber="ngModel" required >
+                         <span class="text-danger"
+                        *ngIf="(vendor_MobileNumber.touched || registerVendorForm.submitted) && vendor_MobileNumber.errors?.required">
+                        MobileNumber is required
+                    </span>
+                    </div>
+                    <div class="col-3 ">
+                        <label class="form-label">ALTERNATE NUMBER :</label>
+                    </div>
+                    <div class="col-3">
+                      <input type="textbox"   name="vendor_AlternateNumber" id="vendor_AlternateNumber"  [(ngModel)]="vendor.vendor_AlternateNumber"  class="form-control">
+                    </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">EMAIL ADDRESS:</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="text"  name="vendor_EmailID" id="vendor_EmailID"  [(ngModel)]="vendor.vendor_EmailID"
+                        class="form-control" #vendor_EmailID="ngModel" required>
+                        <span class="text-danger"
+                        *ngIf="(vendor_EmailID.touched || registerVendorForm.submitted) && vendor_EmailID.errors?.required">
+                        EmailID is required
+                    </span>
+                    </div>
+                    <div class="col-3 ">
+                        <label class="form-label">PAN NUMBER :</label>
+                    </div>
+                    <div class="col-3">
+                      <input type="textbox"  name="vendor_PANNumber" id="vendor_PANNumber"  [(ngModel)]="vendor.vendor_PANNumber"   class="form-control">
+                    </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">AADHAR NUMBER:</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="text"  name="vendor_AadharNumber" id="vendor_AadharNumber"  [(ngModel)]="vendor.vendor_AadharNumber"  class="form-control">
+                    </div>
+
+          </div>
+          <div class="form-group row">
+              <div class="col-3 bold">
+                    <b>
+                            SOCIAL NETWORKING ID
+                    </b>
+              </div>
+          </div>
+
+              <div class="form-group row">
+                    <table class="table table-striped table-bordered">
+                            <thead>
+                                <th>SOCIALNETWORKS</th>
+                                <th>SOCIALNETWORK URL</th>
+
+                            </thead>
+                            <tbody>
+                                    <tr  *ngFor="let cert of SocialNetwork">
+
+                                             <td>
+                                                    <label> {{cert.socialNetworkName}}</label>
+                                             </td>
+                                            <td>
+                                                    <input type="text" [(ngModel)]="cert.socialNetworkURL"  name="socialNetworkURL"  class="form-control" >
+                                            </td>
+
+                                    </tr>
+                            </tbody>
+                </table>
+              </div>
+
+
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">IDENTIFICATION MARK 1 :</label>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" name="vendor_IdentificationMark1" id="vendor_IdentificationMark1"  [(ngModel)]="vendor.vendor_IdentificationMark1" class="form-control">
+                    </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3">
+                        <label class="form-label">IDENTIFICATION MARK 2 :</label>
+                    </div>
+                    <div class="col-9">
+                        <input type="text" name="vendor_IdentificationMark2" id="vendor_IdentificationMark2"  [(ngModel)]="vendor.vendor_IdentificationMark2"  class="form-control">
+                    </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-3 bold">
+                      <b>
+                             FAMILY DETAILS :
+                      </b>
+                </div>
+            </div>
+            <div class="form-group row">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <th>ACTION</th>
+
+                        <th>NAME</th>
+                        <th>Gender</th>
+                        <th>RELATION</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let dynamic of RelationArray; let i = index;">
+                             <td (click)="deleteRelation(i)">
+                               <i class="fa fa-trash fa-2x"></i>
+                             </td>
+
+                               <td>
+                                 <input [(ngModel)]="dynamic.Name" name="name[-{{i}}]"  id="name" class="form-control" type="text" />
+                               </td>
+                               <td>
+                                 <input [(ngModel)]="dynamic.Gender" name="gender[-{{i}}]" id="gender"  class="form-control" type="text" />
+                               </td>
+                               <td>
+                                 <input [(ngModel)]="dynamic.Relation" name="relation[-{{i}}]"  id="relation"  class="form-control" type="text"/>
+                               </td>
+                               <td (click)="addRelation(i)">
+                                    <i class="fa fa-plus fa-2x"></i>
+                                  </td>
+                           </tr>
+
+                           </tbody>
+                </table>
+            </div>
+            <div class="form-group row">
+                    <div class="col-3 bold">
+                          <b>
+                                 EMERGENCY CONTACT PERSON :
+                          </b>
+                    </div>
+            </div>
+            <div class="form-group row">
+                    <div class="col-3">
+                            <label class="form-label">NAME :</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="vendor_EmergencyContactPerson" id="vendor_EmergencyContactPerson"  [(ngModel)]="vendor.vendor_EmergencyContactPerson"  class="form-control">
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label">CONTACT NUMBER :</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="vendor_EmergencyContactNumber" id="vendor_EmergencyContactNumber"  [(ngModel)]="vendor.vendor_EmergencyContactNumber"  class="form-control">
+                        </div>
+              </div>
+              <div class="form-group row">
+                    <div class="col-3 bold">
+                          <b>
+                                 BANK DETAILS :
+                          </b>
+                    </div>
+            </div>
+            <div class="form-group row">
+                    <div class="col-3">
+                            <label class="form-label">NAME AS PER RECORDS :</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="vendor_NameOnPassBook" id="vendor_NameOnPassBook"  [(ngModel)]="vendor.vendor_NameOnPassBook"  class="form-control">
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label">NAME OF BANK :</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="vendor_BankName" id="vendor_BankName"  [(ngModel)]="vendor.vendor_BankName"   class="form-control">
+                        </div>
+              </div>
+              <div class="form-group row">
+                    <div class="col-3">
+                            <label class="form-label">ACCOUNT NUMBER  :</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="vendor_AccountNumber" id="vendor_AccountNumber"  [(ngModel)]="vendor.vendor_AccountNumber"  class="form-control">
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label">IFSC CODE  :</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="text"  name="vendor_IFSCCode" id="vendor_IFSCCode"  [(ngModel)]="vendor.vendor_IFSCCode"  class="form-control">
+                        </div>
+              </div>
+              <div class="form-group row">
+                    <div class="col-3">
+                            <label class="form-label">MICR CODE  :</label>
+                        </div>
+                        <div class="col-3">
+                            <input type="text"  name="vendor_MICRCode" id="vendor_MICRCode"  [(ngModel)]="vendor.vendor_MICRCode"    class="form-control">
+                        </div>
+
+              </div>
+              <div class="form-group row" >
+                    <div class="col-3">
+                            <label class="form-label">AREAS OF ACTIVITY :</label>
+                    </div>
+                    <div class="col-3">
+                      <textarea type="text" name="vendor_AreasOfActivity" id="vendor_AreasOfActivity"  [(ngModel)]="vendor.vendor_AreasOfActivity"  class="form-control"></textarea>
+                    </div>
+            </div>
+              <div class="form-group row">
+                    <div class="col-3 bold">
+                          <b>
+                                 SPECIALIZATION :
+                          </b>
+                    </div>
+            </div>
+            <div class="form-group row">
+                    <table class="table table-striped table-bordered">
                             <thead>
                                 <th>ACTION</th>
-
-                                <th>NAME</th>
-                                <th>Gender</th>
-                                <th>RELATION</th>
+                                <th>SPECIALIZATION</th>
                                 <th></th>
                             </thead>
                             <tbody>
-                                    <tr *ngFor="let dynamic of RelationArray; let i = index;">
-                                     <td (click)="deleteRelation(i)">
-                                       <i class="fa fa-trash fa-2x"></i>
-                                     </td>
-
-                                       <td>
-                                         <input [(ngModel)]="RelationArray[i].name" name="name[-{{i}}]"  id="name" class="form-control" type="text" />
-                                       </td>
-                                       <td>
-                                         <input [(ngModel)]="RelationArray[i].gender" name="gender[-{{i}}]" id="gender"  class="form-control" type="text" />
-                                       </td>
-                                       <td>
-                                         <input [(ngModel)]="RelationArray[i].relationShipName" name="relation[-{{i}}]"  id="relation"  class="form-control" type="text"/>
-                                       </td>
-                                       <td (click)="addRelation(i)">
-                                            <i class="fa fa-plus fa-2x"></i>
-                                          </td>
-                                   </tr>
-
-                                   </tbody>
-                        </table>
-                    </div>
-                    <div class="form-group row">
-                            <div class="col-3 bold">
-                                  <b>
-                                         EMERGENCY CONTACT PERSON :
-                                  </b>
-                            </div>
-                    </div>
-                    <div class="form-group row">
-                            <div class="col-3">
-                                    <label class="form-label">NAME :</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" name="vendor_EmergencyContactPerson" id="vendor_EmergencyContactPerson"  [(ngModel)]="vendor.vendor_EmergencyContactPerson"  class="form-control">
-                                </div>
-                                <div class="col-3">
-                                    <label class="form-label">CONTACT NUMBER :</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" name="vendor_EmergencyContactNumber" id="vendor_EmergencyContactNumber"  [(ngModel)]="vendor.vendor_EmergencyContactNumber"  class="form-control">
-                                </div>
-                      </div>
-                      <div class="form-group row">
-                            <div class="col-3 bold">
-                                  <b>
-                                         BANK DETAILS :
-                                  </b>
-                            </div>
-                    </div>
-                    <div class="form-group row">
-                            <div class="col-3">
-                                    <label class="form-label">NAME AS PER RECORDS :</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" name="vendor_NameOnPassBook" id="vendor_NameOnPassBook"  [(ngModel)]="vendor.vendor_NameOnPassBook"  class="form-control">
-                                </div>
-                                <div class="col-3">
-                                    <label class="form-label">NAME OF BANK :</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" name="vendor_BankName" id="vendor_BankName"  [(ngModel)]="vendor.vendor_BankName"   class="form-control">
-                                </div>
-                      </div>
-                      <div class="form-group row">
-                            <div class="col-3">
-                                    <label class="form-label">ACCOUNT NUMBER  :</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text" name="vendor_AccountNumber" id="vendor_AccountNumber"  [(ngModel)]="vendor.vendor_AccountNumber"  class="form-control">
-                                </div>
-                                <div class="col-3">
-                                    <label class="form-label">IFSC CODE  :</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text"  name="vendor_IFSCCode" id="vendor_IFSCCode"  [(ngModel)]="vendor.vendor_IFSCCode"  class="form-control">
-                                </div>
-                      </div>
-                      <div class="form-group row">
-                            <div class="col-3">
-                                    <label class="form-label">MICR CODE  :</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="text"  name="vendor_MICRCode" id="vendor_MICRCode"  [(ngModel)]="vendor.vendor_MICRCode"    class="form-control">
-                                </div>
-
-                      </div>
-                      <div class="form-group row" >
-                            <div class="col-3">
-                                    <label class="form-label">AREAS OF ACTIVITY :</label>
-                            </div>
-                            <div class="col-3">
-                              <textarea type="text" name="vendor_AreasOfActivity" id="vendor_AreasOfActivity"  [(ngModel)]="vendor.vendor_AreasOfActivity"  class="form-control"></textarea>
-                            </div>
-                    </div>
-                      <div class="form-group row">
-                            <div class="col-3 bold">
-                                  <b>
-                                         SPECIALIZATION :
-                                  </b>
-                            </div>
-                    </div>
-                    <div class="form-group row">
-                            <table class="table table-striped table-bordered">
-                                    <thead>
-                                        <th>ACTION</th>
-                                        <th>SPECIALIZATION</th>
-                                        <th></th>
-                                    </thead>
-                                    <tbody>
-                                            <tr *ngFor="let dynamic of SpecializationArray; let i = index;">
-                                                    <td (click)="deleteSpecialization(i)">
-                                                      <i class="fa fa-trash fa-2x"></i>
-                                                    </td>
-                                                    <td>
-                                                        <input  [(ngModel)]="SpecializationArray[i].SpecializationName" name="specializationName[-{{i}}]"   class="form-control" type="text" />
-                                                    </td>
-                                                    <td (click)="addSpecialization(i)">
-                                                            <i class="fa fa-plus fa-2x"></i>
-                                                    </td>
-                                            </tr>
-                                    </tbody>
-                        </table>
-                    </div>
-
-
-            <div class="form-group row" >
-             <button class="col-3 offset-4 btn btn-primary">Register</button>
+                                    <tr *ngFor="let dynamic of SpecializationArray; let i = index;">
+                                            <td (click)="deleteSpecialization(i)">
+                                              <i class="fa fa-trash fa-2x"></i>
+                                            </td>
+                                            <td>
+                                                <input  [(ngModel)]="dynamic.Specialization" name="specializationName[-{{i}}]"   class="form-control" type="text" />
+                                            </td>
+                                            <td (click)="addSpecialization(i)">
+                                                    <i class="fa fa-plus fa-2x"></i>
+                                            </td>
+                                    </tr>
+                            </tbody>
+                </table>
             </div>
 
-        </div>
+
+    <div class="form-group row" >
+     <button class="col-3 offset-4 btn btn-primary">Continue</button>
+    </div>
+
+</div>
 
 
+</div>
+</form>
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Vendor Payment</h4>
+    <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body w-100">
+    <div class="contained-fluid w-100">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-3">
+                      <div class="tile pt-inner" style="border: solid 1px;">
+                          <div class="pti-header bg-amber">
+                              <h2>RS 500</h2>
+                              <div class="ptih-title">Basic</div>
+                          </div>
+
+                          <div class="pti-body">
+                              <div class="ptib-item">
+                                <i class="fa fa-check"></i>  Limited access
+                              </div>
+                              <div class="ptib-item">
+                                <i class="fa fa-check"></i>  Family Insurance
+                              </div>
+                              <div class="ptib-item">
+                                <i class="fa fa-times"></i>  Extra Commission
+                              </div>
+                              <div class="ptib-item">
+                                <i class="fa fa-times"></i> Bonus
+                              </div>
+                              <div class="ptib-item">
+                                <i class="fa fa-times"></i> Foreign Tour
+                              </div>
+                          </div>
+
+                          <div>
+                            <button type="button" class="btn btn-warning" style="color: white;">Select Plan</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                      <div class="tile pt-inner" style="border: solid 1px;">
+                          <div class="pti-header bg-green">
+                              <h2>2000</h2>
+                              <div class="ptih-title">Deluxe</div>
+                          </div>
+
+                          <div class="pti-body">
+                            <div class="ptib-item">
+                              <i class="fa fa-check"></i>  Limited access
+                            </div>
+                            <div class="ptib-item">
+                              <i class="fa fa-check"></i>  Family Insurance
+                            </div>
+                            <div class="ptib-item">
+                              <i class="fa fa-check"></i>  Extra Commission
+                            </div>
+                            <div class="ptib-item">
+                              <i class="fa fa-times"></i> Bonus
+                            </div>
+                            <div class="ptib-item">
+                              <i class="fa fa-times"></i> Foreign Tour
+                            </div>
+                        </div>
+
+                          <div >
+                            <button type="button" class="btn btn-success">Select Plan</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                      <div class="tile pt-inner" style="border: solid 1px;">
+                          <div class="pti-header bg-cyan">
+                              <h2>5000</h2>
+                              <div class="ptih-title">Premium</div>
+                          </div>
+
+                          <div class="pti-body">
+                            <div class="ptib-item">
+                              <i class="fa fa-check"></i>  Un Limited access
+                            </div>
+                            <div class="ptib-item">
+                              <i class="fa fa-check"></i>  Family Insurance
+                            </div>
+                            <div class="ptib-item">
+                              <i class="fa fa-check"></i>  Extra Commission
+                            </div>
+                            <div class="ptib-item">
+                              <i class="fa fa-check"></i> Bonus
+                            </div>
+                            <div class="ptib-item">
+                              <i class="fa fa-times"></i> Foreign Tour
+                            </div>
+
+                        </div>
+
+                          <div>
+                            <button type="button" class="btn btn-info">Select Plan</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="tile pt-inner" style="border: solid 1px;">
+                        <div class="pti-header bg-gray">
+                            <h2>10000</h2>
+                            <div class="ptih-title">Ultimate</div>
+                        </div>
+
+                        <div class="pti-body">
+                          <div class="ptib-item">
+                            <i class="fa fa-check"></i>  Un Limited access
+                          </div>
+                          <div class="ptib-item">
+                            <i class="fa fa-check"></i>  Family Insurance
+                          </div>
+                          <div class="ptib-item">
+                            <i class="fa fa-check"></i>  Extra Commission
+                          </div>
+                          <div class="ptib-item">
+                            <i class="fa fa-check"></i> Bonus
+                          </div>
+                          <div class="ptib-item">
+                            <i class="fa fa-check"></i> Foreign Tour
+                          </div>
+                      </div>
+
+                      <div>
+                        <button type="button" class="btn btn-danger">Select Plan</button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
         </div>
-    </form>
-        <footer></footer>
+      </div>
+
+  </div>
+  </div>
+  <div class="modal-footer text-center" style="text-align: center;">
+    <button type="button" class="btn btn-primary" (click)="saveVendor()">{{btnText}}</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
+    <app-footer></app-footer>
         <!-- </div> -->

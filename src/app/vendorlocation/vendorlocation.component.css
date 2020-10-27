@@ -1,0 +1,24 @@
+
+
+agm-map {
+    height: 400px;
+    width:350px;
+}
+.selectkm{
+    width:200px;
+    height:30px;
+}
+.InfoWindow
+{
+    width: 200px;
+}
+.card-header
+{
+    background-color: lightgray;
+    text-align: center;
+}
+.card-footer
+{
+    background-color: lightgray;
+    text-align: center;
+}

@@ -1,0 +1,45 @@
+
+.pos
+{
+    position: absolute;
+    right:16px;
+
+}
+.maindiv
+{
+    max-width: 65rem;
+
+}
+.columnlist
+{
+    column-count: 4;
+}
+.columnlist1
+{
+    column-count: 2;
+}
+
+
+.cmn{
+    color: blue;
+    background: white;
+    font-size: 15px;
+    line-height: 50px;
+}
+.headclr
+{
+    color:darkviolet;
+}
+
+
+li{
+    list-style: none;
+}
+
+
+
+li::before{
+
+
+    content: "\00BB";
+}

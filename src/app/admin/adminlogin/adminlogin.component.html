@@ -1,0 +1,45 @@
+<app-header></app-header>
+  <div class="container-fluid jumbotron" style="background-color: linen;" >
+    <div class="col-md-5 mt-10 w-50" style="margin-left:30%">
+      <div class="card border-primary mb-3 w-100">
+          <div class="card-header font-weight-bold text-center">Login</div>
+          <div class="card-body" style="height: 100%">
+            <form #adminLoginForm="ngForm" (ngSubmit)="adminLoginForm.form.valid &&checkAdminExist()" class="contact-form form-validate"  novalidate="novalidate">
+              <div class="row">
+                  <div class="col-md-6  offset-3">
+                      <div class="form-group col-centered">
+
+                        <input type="text" class="form-control" required id="userName" name="userName"
+                         placeholder="Enter UserName" [(ngModel)]="loginModel.userName"
+                         #userName="ngModel" required>
+                         <span class="text-danger"
+                       *ngIf="(userName.touched || adminLoginForm.submitted) && userName.errors?.required">
+                       UserName is required
+                      </span>
+                      </div>
+                      <div class="form-group col-centered">
+
+                            <input type="password" class="form-control" required id="password" name="password"
+                             placeholder="Enter Password" [(ngModel)]="loginModel.password"
+                             #password="ngModel" required>
+                             <span class="text-danger"
+                             *ngIf="(password.touched || adminLoginForm.submitted) && password.errors?.required">
+                              Password is required
+                              </span>
+                          </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6  offset-4">
+                        <div class="form-group col-centered">
+                          <button type="submit" class="btn btn-primary col-8" >Login</button>
+                        </div>
+                    </div>
+                  </div>
+             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+<app-footer></app-footer>
+

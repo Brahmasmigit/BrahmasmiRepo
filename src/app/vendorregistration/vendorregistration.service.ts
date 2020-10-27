@@ -44,6 +44,14 @@ export class VendorRegistrationService {
             catchError(this.handleError)
         );
     }
+    UpdateVendor(vendor)
+    {
+        return this.http.post(this.API_URL + 'Vendor/UpdateVendor/',vendor)
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+    }
     private handleError(error: any) {
         console.error(error);
         return throwError(error);

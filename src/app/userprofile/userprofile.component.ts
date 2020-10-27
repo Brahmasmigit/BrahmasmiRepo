@@ -28,7 +28,9 @@ export class UserprofileComponent implements OnInit {
     {
      this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
      this.userId=this.userInfo.userId;
+     this.getUserInfo(this.userId);
     }
+
     this.countryID=1;
     this.loginModel.countryID=Number(this.countryID);
     this.getState();
@@ -40,15 +42,32 @@ export class UserprofileComponent implements OnInit {
   {
 
   }
+  getUserInfo(userid)
+  {
+   // alert(userid)
+    this.userprofileservice.getUserdata(userid).subscribe(
+      (data) => {
+          if (data) {
+              this.loginModel = data;
+              this.getCity(data.stateID);
+              this.loginModel.cityID=data.cityID;
+              console.log(this.loginModel)
+          }
+      },
+      (error) => {
+          this.errorMessage = error;
+      },
+      () => {
+      }
+  );
+  }
 getState()
 {
   this.utilitiesService.getStates().subscribe(
     (data) => {
         if (data) {
             this.State = data;
-
         }
-
     },
     (error) => {
         this.errorMessage = error;
@@ -77,6 +96,7 @@ getState()
 }
 EditProfile()
 {
+  this.loginModel.countryID=Number(this.countryID);
  this.loginModel.stateID=Number(this.loginModel.stateID);
  this.loginModel.cityID=Number(this.loginModel.cityID);
  this.loginModel.UserID=Number(this.userId);

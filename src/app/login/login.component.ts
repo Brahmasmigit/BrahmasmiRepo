@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
         if (data) {
           this.userInfo.userId=data.vendorID;
           this.userInfo.userTypeId=data.userTypeID;
+          sessionStorage.clear();
           sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
           this.route.navigate(['./vendordashboard']);
 
@@ -80,6 +81,7 @@ export class LoginComponent implements OnInit {
                 if (data) {
                   this.userInfo.userId=data.userID;
                   this.userInfo.userTypeId=data.userTypeID;
+                  sessionStorage.clear();
                   sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
                   this.route.navigate(['./userdashboard']);
                 }
@@ -90,6 +92,7 @@ export class LoginComponent implements OnInit {
                             if (data) {
                               this.userInfo.userId=data.userID;
                               this.userInfo.userTypeId=data.userTypeID;
+                              sessionStorage.clear();
                               sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
                                 this.route.navigate(['./userdashboard']);
                             }

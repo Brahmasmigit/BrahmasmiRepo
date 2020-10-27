@@ -1,43 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
-    <a class="navbar-brand" href="#">Brahmasmi</a>
-    <span style="width: 500px;"></span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor03">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">My Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Help</a>
-        </li>
-
-      </ul>
-
-     <ul class="navbar-nav ml-auto nav-flex-icons">
-
-        <li class="nav-item avatar dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <img src="../../assets/profileicon.png" style="height: 30px;width:30px;" class="rounded-circle z-depth-0"
-              alt="avatar image">
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
-            aria-labelledby="navbarDropdownMenuLink-55">
-            <a class="dropdown-item" routerLink="/vendorregistration" routerLinkActive="active">My Profile</a>
-            <a class="dropdown-item" href="#">My Earnings</a>
-            <a class="dropdown-item" href="#">Logout</a>
-          </div>
-        </li>
-      </ul>
-
-    </div>
-  </nav>
+<app-header></app-header>
+<div class="container-fluid jumbotron h-100" style="background-color: linen;margin-top: 25px;height:100%" >
   <div class="pull-right pr-4">
       <span style="margin-right:10px ;">{{isChecked ? 'Online':'Offline'}}</span>
     <label class="switch">
@@ -47,7 +9,7 @@
       </label>
     </div>
 
-  <div class="jumbotron" style="background-color: linen;" >
+
 <table align="center">
     <tbody>
 
@@ -55,53 +17,68 @@
 
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
         <label class="btn btn-primary">
-            <input type="radio" name="options" id="option1" autocomplete="off" checked=""> Current     <span class="badge badge-primary badge-pill" style="background-color:#886f87;">{{ongoing.length}}</span>
+            <input (click)="CalendarTab('current')" type="radio" name="options" id="option1" autocomplete="off" checked=""> Current
           </label>
         <label class="btn btn-primary">
-          <input type="radio" name="options" id="option1" autocomplete="off"> Tomorrow  <span class="badge  badge-pill" style="background-color:#886f87;"></span>
+          <input (click)="CalendarTab('tomorrow')"  type="radio" name="options" id="option1" autocomplete="off"> Tomorrow
         </label>
         <label class="btn btn-primary">
-          <input type="radio" name="options" id="option2" autocomplete="off"> Current Week  <span class="badge badge-primary badge-pill" style="background-color:#886f87;"></span>
+          <input (click)="CalendarTab('week')"  type="radio" name="options" id="option2" autocomplete="off"> Current Week
         </label>
         <label class="btn btn-primary">
-            <input type="radio" name="options" id="option2" autocomplete="off"> Upcoming  <span class="badge badge-primary badge-pill" style="background-color:#886f87;"></span>
+            <input (click)="CalendarTab('upcoming')"  type="radio" name="options" id="option2" autocomplete="off"> Upcoming
           </label>
           <label class="btn btn-primary">
-            <input type="radio" name="options" id="option2" autocomplete="off"> History  <span class="badge badge-primary badge-pill" style="background-color:#886f87;"></span>
+            <input (click)="CalendarTab('history')"  type="radio" name="options" id="option2" autocomplete="off"> History
           </label>
       </div>
 </td></tr>
-<tr><td style="height: 25px;"></td></tr>
+
     </tbody>
 </table>
 
-<div class="container">
+<div class="container h-100" style="margin-top: 25px;">
     <div class="row">
         <div class="col-md-4" *ngFor="let item of ongoing">
-            <div class="card border-primary mb-3 w-100">
-                <div class="card-header">{{item.serviceName}}  <div class="pull-right">{{item.bookingStatus}}</div></div>
+            <div class="card border-primary mb-3 w-100 h-100">
+                <div class="card-header">{{item.serviceName}}  <div class="pull-right">
+                  <span *ngIf="item.bookingStatusId =='1' || item.bookingStatusId =='2' || item.bookingStatusId =='3'  || item.bookingStatusId =='5'" class="badge badge-success badge-pill">
+                    {{item.bookingStatus}}
+                  </span>
+                  <span *ngIf="item.bookingStatusId =='6'" class="badge badge-warning badge-pill"> {{item.bookingStatus}}</span>
+                  <span *ngIf="item.bookingStatusId =='4'" class="badge badge-danger badge-pill"> {{item.bookingStatus}}</span>
+                </div></div>
 
-                <div class="card-body" style="height: 150px;">
+                <div class="card-body w-100 h-100">
 
                     <div class="conatiner-fluid">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <img src="../../assets/profileicon.png"/>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-md-12">User Name: {{item.username}}</div>
+                                            <div class="col-md-12">Customer Name: {{item.username}}</div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">Location: {{item.bookingLocation}}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-12">Date: {{item.bookingDate}}</div>
+                                            <div class="col-md-12">Booking Date: {{item.bookingDate}}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-12">Timings: {{item.bookingTime}}</div>
+                                            <div class="col-md-12">Booking Timings: {{item.bookingTime}}</div>
                                         </div>
+                                        <div class="row" *ngIf="item.ratingsId">
+                                          <div class="col-md-12">Ratings: {{item.ratingsId}}   <i class="fa fa-star starorange" aria-hidden="true" ></i></div>
+                                      </div>
+                                        <div class="row" *ngIf="item.timeIn">
+                                          <div class="col-md-12">Time In: {{item.timeIn}}</div>
+                                      </div>
+                                      <div class="row" *ngIf="item.timeOut">
+                                        <div class="col-md-12">Time Out: {{item.timeOut}} </div>
+                                    </div>
                                     </div>
                                 </div>
                         </div>
@@ -122,14 +99,108 @@
                       </div>
                     </div>
                   </div>
-                    <button type="button" class="btn btn-primary" style="margin-left: 10px;">View Booking</button>
+                    <button type="button" class="btn btn-primary" style="margin-left: 10px;" (click)="placeOrder(mymodal)">View Booking</button>
 
                 </div>
             </div>
-        </div>
+            <ng-template #mymodal let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Booking Details</h4>
+                <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body w-100">
+                <div class="contained-fluid w-100 text-left legend">
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Customer Mobile No:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.mobileNumber}}
+                    </div>
+                  </div>
+
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Customer EmailId:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.emailId}}
+                    </div>
+                  </div>
+
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      City:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.cityName}}
+                    </div>
+                  </div>
+
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Address:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.billingAddress}}
+                    </div>
+                  </div>
+
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Customer PinCode:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.pinCode}}
+                    </div>
+                  </div>
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Amount Paid:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.total}}
+                    </div>
+                  </div>
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Payment Mode:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.modeOfPayment}}
+                    </div>
+                  </div>
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Package:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.packageName}}
+                    </div>
+                  </div>
+
+                  <div class="row p-2">
+                    <div class="col-md-6">
+                      Review Comments:
+                    </div>
+                    <div class="col-md-6">
+                      {{item.reviewComments}}
+                    </div>
+                  </div>
+              </div>
+            </div>
+              <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Close</button>
+              </div>
+            </ng-template>
+        </div> <!--end of for loop-->
     </div>
 </div>
 
 
 </div>
-<div class="fixed-bottom">Copyright © 2020 All rights reserved</div>
+<app-footer></app-footer>
+

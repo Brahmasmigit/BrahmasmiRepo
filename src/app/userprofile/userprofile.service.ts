@@ -16,7 +16,13 @@ export class UserProfileService {
     constructor(private http: HttpClient) {
 
     }
-
+    getUserdata(userID): Observable<any> {
+      return this.http.get<any>(this.API_URL + 'User/GetUser/'+ userID)
+      .pipe(
+          tap(status => console.log("status: " + status)),
+          catchError(this.handleError)
+      );
+  }
     EditUserProfile(user)
     {
         return this.http.post(this.API_URL + 'User/UpdateUser',user)

@@ -18,6 +18,10 @@ export class HomeComponent implements OnInit {
   isLogin:boolean=false;
   isVendor:boolean=false;
   City:any=[];
+  services:any=[];
+  flag:any=true;
+  serviceName:any;
+  serviceId:any;
   ngOnInit(): void {
     if(sessionStorage.getItem("userInfo")!=null)
     {
@@ -72,6 +76,44 @@ export class HomeComponent implements OnInit {
   {
     this.cityId=event.target.value;
     this.getServiceTypes(this.cityId);
+  }
+  Search(search)
+  {
+    this.homeService.SearchService(search,this.cityId).subscribe(
+      (data) => {
+          if (data) {
+              this.services = data;
+          }
+
+      },
+      (error) => {
+          this.errorMessage = error;
+      },
+      () => {
+
+      });
+  }
+  searchService(serviceName): void {
+    this.flag = true;
+    this.Search(serviceName);
+  }
+  onselectItem(item)
+  {
+    if (item.serviceId != 0) {
+      this.serviceName = item.serviceName;
+      this.serviceId=item.serviceId;
+      this.flag = false;
+    }
+    else {
+      return false;
+    }
+  }
+  OnSearchClick()
+  {
+    if(this.serviceName!=undefined && this.serviceName!="" && this.serviceId!=0)
+    {
+
+    }
   }
   Logout()
   {

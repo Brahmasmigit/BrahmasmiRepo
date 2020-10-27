@@ -1,51 +1,5 @@
-<style type="text/css">
 
-::ng-deep .xlModal .modal-dialog {
-     max-width: 100%;
-     width: 60%;
-     text-align: center;
-}
-</style>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
-  <a class="navbar-brand" href="#">Brahmasmi</a>
-  <span style="width: 500px;"></span>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarColor03">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/vendordashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">My Services</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Help</a>
-      </li>
-
-    </ul>
-
-   <ul class="navbar-nav ml-auto nav-flex-icons">
-
-      <li class="nav-item avatar dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <img src="../../assets/profileicon.png" style="height: 30px;width:30px;" class="rounded-circle z-depth-0"
-            alt="avatar image">
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
-          aria-labelledby="navbarDropdownMenuLink-55">
-          <a class="dropdown-item" routerLink="/vendorprofile" routerLinkActive="active">My Profile</a>
-          <a class="dropdown-item" href="#">My Earnings</a>
-          <a class="dropdown-item" href="#">Logout</a>
-        </div>
-      </li>
-    </ul>
-
-  </div>
-</nav>
+<app-header></app-header>
 
 <div class="jumbotron" style="background-color: linen;" >
 <div class="container">
@@ -221,24 +175,25 @@
 
               <div class="form-group">
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="cod" checked="" [(ngModel)]="isPaymentchecked">
-                  <label class="custom-control-label" for="customRadio1">Cash after Service</label>
+                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="razor" checked="true"  [(ngModel)]="isPaymentchecked">
+                  <label class="custom-control-label" for="customRadio1">Pay with Card/ NetBanking/ Wallet</label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="upi" [(ngModel)]="isPaymentchecked">
-                  <label class="custom-control-label" for="customRadio2">Pay with UPI/  QR Code</label>
+                  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="cod" [(ngModel)]="isPaymentchecked">
+                  <label class="custom-control-label" for="customRadio2">Cash after Service</label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="paytm" [(ngModel)]="isPaymentchecked">
-                  <label class="custom-control-label" for="customRadio3">Pay with PayTM</label>
+                  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="upi" [(ngModel)]="isPaymentchecked">
+                  <label class="custom-control-label" for="customRadio3">Pay with UPI/  QR Code</label>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
           <div class="card-footer pull-right">
 
-            <button  class="btn btn-primary" (click)="placeOrder(mymodal)">Place Order</button>
+            <button  class="btn btn-primary" (click)="PlaceOrder()">Place Order</button>
 
             <ng-template #mymodal let-modal>
               <div class="modal-header">
@@ -294,3 +249,4 @@
   </div>
 </div>
 </div>
+<app-footer></app-footer>

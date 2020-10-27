@@ -31,7 +31,23 @@ export class UserBillingService {
           tap(status => console.log("status: " + status)),
           catchError(this.handleError)
       );
-  }
+     }
+     initializePayment(payment): Observable<any>
+     {
+         return this.http.post(this.API_URL + 'Payment/InitializePayment', payment)
+         .pipe(
+             tap(status => console.log("status: " + status)),
+             catchError(this.handleError)
+         );
+     }
+     confirmPayment(paymentResponse): Observable<any>
+     {
+       return this.http.post(this.API_URL + 'Payment/ConfirmPayment',paymentResponse)
+         .pipe(
+             tap(status => console.log("status: " + status)),
+             catchError(this.handleError)
+         );
+     }
     private handleError(error: any) {
         console.error(error);
         return throwError(error);

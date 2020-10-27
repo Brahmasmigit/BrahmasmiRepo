@@ -1,0 +1,41 @@
+<app-header></app-header>
+  <div class="border container maindiv" >
+        <div class="text-center">
+            <br>
+            <h4 class="text-dark"><b>Choose Your City</b></h4>
+            <hr>
+
+
+            <h5><span class="flag-icon flag-icon-in" ></span> India</h5>
+
+        </div>
+        <div class="col-12 row p-2">
+            <div class="border col-8">
+                <br>
+                <h5 class="text-center headclr">Andhra Pradesh</h5>
+                <hr>
+                    <ul  class="columnlist cmn">
+                            <li *ngFor="let ap of APCities; let i=index" (click)="selectAP(ap)"
+                            [ngClass]="{'active': selectedIndex == i}" >
+                        {{ap.cityName}}
+
+                        </li>
+                     </ul>
+            </div>
+            <div class="border col-4">
+                <br>
+                    <h5 class="text-center headclr">Telangana </h5>
+                    <hr>
+                        <ul  class="columnlist1 cmn">
+                            <li *ngFor="let ts of TSCities; let i=index" (click)="selectTS(ts)"
+                                [ngClass]="{'active': selectedIndex == i}" >
+                            {{ts.cityName}}
+                            </li>
+                         </ul>
+
+                </div>
+        </div>
+   </div>
+
+   <app-footer></app-footer>
+

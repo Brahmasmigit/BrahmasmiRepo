@@ -1,5 +1,7 @@
+
+<app-header></app-header>
 <style type="text/css">
-body{
+  body{
     margin-top:20px;
     background:#eee;
 }
@@ -48,31 +50,6 @@ body{
 }
 
 </style>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
-    <a class="navbar-brand" href="#">Brahmasmi</a>
-    <span style="width: 500px;"></span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor03">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/vendordashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Register As A Professional</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Help</a>
-        </li>
-
-      </ul>
-
-
-
-    </div>
-  </nav>
   <div class="container-fluid jumbotron" style="background-color: linen;" >
 
 
@@ -114,7 +91,7 @@ body{
                         <div class="col-sm-12 mb-3">
                             <div class="form-group">
                                 <label class="required-field" for="date">Select Date</label>
-                                <input type="date" class="form-control" id="date" name="date" [(ngModel)]="booking.BookingDate">
+                                <input type="date"  class="form-control" id="txtDate" name="txtDate" [(ngModel)]="booking.BookingDate">
                             </div>
                         </div>
 
@@ -124,19 +101,77 @@ body{
                                 <input type="time" width="100px" class="form-control" id="time" name="time" [(ngModel)]="booking.BookingTime">
                             </div>
                         </div>
-
                         <div class="col-sm-12 mb-3">
-                            <div class="form-group">
-                                <label class="required-field" for="comments">Requirements/ Comments</label>
-                                <textarea class="form-control" id="comments" name="comments" [(ngModel)]="booking.ReviewComments"></textarea>
-                            </div>
-                        </div>
+                          <div class="form-group">
+                        <fieldset class="form-group">
+                          <label for="selectprofessional">Select Professional</label>
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="radio"  (change)="selectVendor($event)" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="autovendor" [checked]="selectVendorOption">
+                              Auto Assist
+                            </label>
+                          </div>
+                          <div class="form-check">
+                          <label class="form-check-label">
+                              <input type="radio" (change)="selectVendor($event)"  class="form-check-input" name="optionsRadios" id="optionsRadios2" value="choosevendor" [checked]="!selectVendorOption">
+                              Select your Favorite Professional
+                            </label>
+                          </div>
 
-                        <div class="col-sm-12 mb-3">
-                            <div class="form-group pull-right">
-                                <button type="submit"  class="btn btn-primary">Proceed To Cart</button>
-                            </div>
+                        </fieldset>
                         </div>
+                        </div>
+                        <div class="col-md-12" *ngIf="!selectVendorOption && booking.vendorName">
+                          <div class="card border-primary mb-3 w-100">
+
+
+                              <div class="card-body" style="height: 100%">
+
+                                  <div class="conatiner-fluid">
+                                      <div class="row">
+                                          <div class="col-md-12">
+                                            <table class="table table-bordered w-100" >
+                                              <thead class="thead-light">
+                                                  <tr>
+
+                                                      <th>Vendor Name</th>
+                                                      <th>Address</th>
+
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr>
+                                                      <td>{{booking.vendorName}}</td>
+                                                      <td>{{booking.vendorAddress}}</td>
+
+
+                                                  </tr>
+
+                                              </tbody>
+                                            </table>
+                                          </div>
+
+                                      </div>
+                                  </div>
+
+                              </div>
+
+                          </div>
+                      </div>
+
+
+                      <div class="col-sm-12 mb-3" style="display: none;">
+                        <div class="form-group">
+                            <label class="required-field" for="comments">Requirements/ Comments</label>
+                            <textarea class="form-control" id="comments" name="comments" [(ngModel)]="booking.ReviewComments"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 mb-3">
+                        <div class="form-group pull-right">
+                            <button type="submit"  class="btn btn-primary">Proceed To Cart</button>
+                        </div>
+                    </div>
 
                     </div>
                 </form>
@@ -149,3 +184,24 @@ body{
     </div>
 
   </div>
+
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Vendor Locations</h4>
+      <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body w-100">
+      <div class="contained-fluid w-100">
+        <div class="row">
+          <div class="col-md-12">
+          <app-vendorlocation (eventBook)="getVendorDetails($event)"></app-vendorlocation>
+          </div>
+        </div>
+
+    </div>
+    </div>
+
+  </ng-template>
+  <app-footer></app-footer>

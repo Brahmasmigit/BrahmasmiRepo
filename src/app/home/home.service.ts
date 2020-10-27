@@ -23,6 +23,17 @@ export class HomeService {
             catchError(this.handleError)
         );
     }
+    SearchService(search,cityId)
+    {
+      let params = new HttpParams()
+      .set('search', search)
+      .set('cityId', cityId)
+        return this.http.get<any>(this.API_URL + "Service/SearchService", {params})
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+    }
     private handleError(error: any) {
         console.error(error);
         return throwError(error);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ToastService} from '../shared/services/toastservice'
 import {OrderDetailsService} from '../orderdetails/orderdetails.service';
@@ -14,8 +14,13 @@ export class OrderdetailsComponent implements OnInit {
   orders:any=[];
   errorMessage:any;
   invoiceno:any;
+  ngZone:NgZone;
+  isReload:boolean=false;
   constructor(private toastService: ToastService,private activatedRoute: ActivatedRoute,
-    private orderDetailsService:OrderDetailsService) { }
+    private router:Router,
+    private orderDetailsService:OrderDetailsService) {
+
+    }
 
   ngOnInit(): void {
 
@@ -32,6 +37,7 @@ export class OrderdetailsComponent implements OnInit {
           if (data) {
               this.orderdetails = data;
               sessionStorage.removeItem("orders");
+
           }
 
       },

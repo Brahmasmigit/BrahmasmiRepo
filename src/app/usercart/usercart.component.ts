@@ -15,7 +15,7 @@ export class UsercartComponent implements OnInit {
   total:number=0;
   serviceId:any;
   serviceTypeId:any;
-  constructor(private toastService: ToastService,private activatedRoute: ActivatedRoute) { }
+  constructor(private toastService: ToastService,private router: Router ,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -49,6 +49,9 @@ export class UsercartComponent implements OnInit {
     sessionStorage.setItem("orderdetails", JSON.stringify(this.cartitems));
     this.loadCart();
   }
-
+  BookAnotherService()
+  {
+    this.router.navigate(['/home']);
+  }
 
 }
