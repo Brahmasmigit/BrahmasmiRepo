@@ -6,6 +6,6 @@ namespace Brahmasmi.Repository
 {
     public interface IOrderDetailRepository
     {
-        List<OrderDetail> GetOrderDetails(string invoiceno);
+        List<OrderDetail> GetOrderDetails(string invoiceno, string cartType);
     }
 }

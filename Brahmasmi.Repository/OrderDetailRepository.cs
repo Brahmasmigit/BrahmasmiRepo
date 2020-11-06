@@ -17,13 +17,14 @@ namespace Brahmasmi.Repository
         {
             dapper = _dapper;
         }
-        public List<OrderDetail> GetOrderDetails(string invoiceno)
+        public List<OrderDetail> GetOrderDetails(string invoiceno,string cartType)
         {
             var dbParam = new DynamicParameters();
             dbParam.Add("userid", null, DbType.Int32);
             dbParam.Add("bookingid", null, DbType.Int32);
             dbParam.Add("orderno", null, DbType.String);
             dbParam.Add("invoiceno", invoiceno, DbType.String);
+            dbParam.Add("cartType", cartType, DbType.String);
             var result = dapper.GetAll<OrderDetail>("[dbo].[SP_GETORDERDETAILS]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);

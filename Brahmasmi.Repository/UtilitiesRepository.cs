@@ -116,5 +116,26 @@ namespace Brahmasmi.Repository
             return result;
 
         }
+        public int ScheduleMeeting(Meeting meeting)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("MeetingId", meeting.MeetingId, DbType.String);
+            dbParam.Add("MeetingPassword", meeting.MeetingPassword, DbType.String);
+            dbParam.Add("MEETINGSIGNATURE", meeting.Signature, DbType.String);
+            dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
+            var result = dapper.Execute("[dbo].[SP_SCHEDULEMEETING]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
+        public Meeting GetMeetingDetails()
+        {
+            var dbParam = new DynamicParameters();
+            var result = dapper.Get<Meeting>("[dbo].[SP_GETMEETINGDETAILS]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+        }
     }
 }

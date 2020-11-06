@@ -25,5 +25,9 @@ namespace Brahmasmi.Repository
         List<Patient> GetPatientData();
 
         List<AdminVendor> GetVendor(int cityId);
+
+        int ScheduleMeeting(Meeting meeting);
+
+        Meeting GetMeetingDetails();
     }
 }

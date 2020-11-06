@@ -53,4 +53,10 @@ namespace Brahmasmi.Models
 
         public string CityName { get; set; }
     }
+    public class Meeting
+    {
+        public string MeetingId { get; set; }
+        public string MeetingPassword { get; set; }
+        public string Signature { get; set; }
+    }
 }

@@ -20,10 +20,10 @@ namespace Brahmasmi.API.Controllers
     public class UserBookingController : ControllerBase
     {
         private readonly IUserBookingRepository userBookingRepository;
-        private readonly ILogger<LoginController> logger;
+        private readonly ILogger<UserBookingController> logger;
         private readonly ILogger<Email> emaillogger;
         private readonly IConfiguration configuration;
-        public UserBookingController(IUserBookingRepository _userBookingRepository, ILogger<LoginController> _logger, ILogger<Email> _emaillogger, IConfiguration _configuration)
+        public UserBookingController(IUserBookingRepository _userBookingRepository, ILogger<UserBookingController> _logger, ILogger<Email> _emaillogger, IConfiguration _configuration)
         {
             userBookingRepository = _userBookingRepository;
             logger = _logger;

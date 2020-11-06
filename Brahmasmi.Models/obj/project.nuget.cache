@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "AtZLB2EXN/AoWS+EET1Ncc5yB8qfF7HXrxvi6CCejw0fw4IzXoLTMk3lHo7SxjQ10ZaXGZbJGX+GFVoLAydkVA==",
+  "dgSpecHash": "B4smWl3EK+7qma9Ar6jjjkPs54CDGaDEbN4P24oKiG18fSOcaCh+y3JBSSHNOGFLMRwW7lj/h361HTIHix3roQ==",
   "success": true,
   "projectFilePath": "C:\\Brahmasmi\\Brahmasmi.API\\Brahmasmi.Models\\Brahmasmi.Models.csproj",
   "expectedPackageFiles": [
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\farooqmohammed\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\farooqmohammed\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],

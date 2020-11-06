@@ -33,11 +33,11 @@ namespace Brahmasmi.API.Controllers
 
         [EnableCors("CorsPolicy")]
         [HttpGet]
-        public async Task<ActionResult<OrderDetail>> GetOrderDetails(string invoiceno)
+        public async Task<ActionResult<OrderDetail>> GetOrderDetails(string invoiceno,string cartType)
         {
             try
             {
-                var result = await Task.FromResult(orderDetailRepository.GetOrderDetails(invoiceno));
+                var result = await Task.FromResult(orderDetailRepository.GetOrderDetails(invoiceno, cartType));
                 //if (result.Count > 0)
                 //{
                 //    Email mail = new Email(emaillogger, configuration);
