@@ -15,9 +15,10 @@ export class OrderDetailsService {
 
     }
 
-    getOrderDetails(invoiceno): Observable<any> {
+    getOrderDetails(invoiceno,cartType): Observable<any> {
         let params = new HttpParams()
-        .set('invoiceno',invoiceno );
+        .set('invoiceno',invoiceno )
+        .set('cartType',cartType );
         return this.http.get<any>(this.API_URL + "OrderDetail/GetOrderDetails", {params})
         .pipe(
             tap(status => console.log("status: " + status)),

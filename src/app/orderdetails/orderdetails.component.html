@@ -22,7 +22,9 @@
                               <thead class="thead-light">
                                   <tr>
                                       <th>Order No</th>
-                                      <th>Service Name</th>
+                                      <th *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual'">Service Name</th>
+                                      <th *ngIf="cartType=='ecart'">Product Name</th>
+                                      <th>Service Type</th>
                                       <th>Date</th>
                                       <th>Email Id</th>
                                       <th>Total</th>
@@ -33,6 +35,12 @@
                                   <tr *ngFor="let item of orderdetails;let i=index">
                                       <td>{{item.orderNo}}</td>
                                       <td>{{item.serviceName}}</td>
+                                      <td>
+                                        <span *ngIf="cartType=='service'">Pooja</span>
+                                        <span *ngIf="cartType=='astrology'">Astrology</span>
+                                        <span *ngIf="cartType=='virtual'">Virtual Online</span>
+                                        <span *ngIf="cartType=='ecart'">Product</span>
+                                      </td>
                                       <td>{{item.paymentDate}}</td>
                                       <td>{{item.emailId}}</td>
                                       <td>{{item.total}}</td>

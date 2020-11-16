@@ -1,0 +1,205 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron" style="background-color: linen;margin-top: 30px;" >
+<form #slotBookingForm="ngForm" (ngSubmit)="slotBookingForm.form.valid && slotBooking()">
+  <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
+<div class="container card border-primary mb-3" style="max-width: 35rem;">
+  <div class="card-header text-center bold text-info"><h3 class="w-100"><b>Book an Astrologer</b></h3></div>
+  <div class="card-body" style="height: auto">
+
+      <div class="form-group row">
+          <!-- <div class="col-4">
+                  <label class="form-label">STORE NAME :</label>
+              </div> -->
+              <div class="col-12 ">
+                  <input type="textbox" name="name" id="name"  [(ngModel)]="slot.name"
+                   placeholder="Enter Your Name" class="form-control" #name="ngModel" required>
+                   <span class="text-danger"
+                   *ngIf="(name.touched || slotBookingForm.submitted) && name.errors?.required">
+                    Name is required
+               </span>
+              </div>
+      </div>
+      <div class="form-group row">
+              <div class="col-12 ">
+                <input type="textbox" name="email" id="email"  [(ngModel)]="slot.emailID"
+                 placeholder="Enter Your Email" class="form-control" #email="ngModel" required>
+                 <span class="text-danger"
+                 *ngIf="(email.touched || slotBookingForm.submitted) && email.errors?.required">
+                 Owner Name is required
+             </span>
+              </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-12">
+            <input type="textbox" name="mobileNumber" id="mobileNumber"  [(ngModel)]="slot.mobileNumber"
+             placeholder="Enter Your MobileNumber" class="form-control" #mobileNumber="ngModel" required>
+             <span class="text-danger"
+             *ngIf="(mobileNumber.touched || slotBookingForm.submitted) && mobileNumber.errors?.required">
+             Owner Name is required
+         </span>
+          </div>
+     </div>
+      <div class="form-group row">
+          <div class="col-12 ">
+                <select name="cityID"  class="form-control"
+                [(ngModel)]="selectedCity"  #cityID="ngModel" required  >
+                <option [value]="undefined" disabled hidden>Select Your City </option>
+                       <option *ngFor="let item of City"
+                       [ngValue]="item"
+                      >
+                        {{item.cityName}}
+                   </option>
+                </select>
+
+              <span class="text-danger"
+              *ngIf="(cityID.touched || slotBookingForm.submitted) && cityID.errors?.required">
+              City is required
+          </span>
+          </div>
+      </div>
+          <div class="form-group row">
+              <div class="col-12 ">
+              <select name="astrologyID"  class="form-control"  (change)="onAstrologyChange(selectedCategory)"
+              [(ngModel)]="selectedCategory"  #astrologyID="ngModel" required  >
+              <option [value]="undefined" disabled hidden>Select Category </option>
+                     <option *ngFor="let category of Categories"
+                     [ngValue]="category" >
+                      {{category.astrologyName}}
+                 </option>
+              </select>
+            <span class="text-danger"
+            *ngIf="(astrologyID.touched || slotBookingForm.submitted) && astrologyID.errors?.required">
+            Category is required
+        </span>
+        </div>
+        </div>
+      <div class="form-group row">
+          <div class="col-12 ">
+          <select name="gender"  class="form-control"
+          [(ngModel)]="slot.gender"  #gender="ngModel" required  >
+          <option [value]="undefined" disabled hidden>Select Gender </option>
+                 <option >Male</option>
+                 <option >Female</option>
+      </select>
+        <span class="text-danger"
+        *ngIf="(gender.touched || slotBookingForm.submitted) && gender.errors?.required">
+        Gender is required
+    </span>
+    </div>
+    </div>
+      <div class="form-group row">
+              <div class="col-12">
+                <input type="text" name="dateOfBirth" id="dateOfBirth"  [(ngModel)]="slot.dateOfBirth"
+                 placeholder="Enter Your Date Of Birth" onfocus="(this.type='date')" class="form-control" #dateOfBirth="ngModel" required>
+                 <span class="text-danger"
+                 *ngIf="(dateOfBirth.touched || slotBookingForm.submitted) && dateOfBirth.errors?.required">
+                 Date Of Birth is required
+             </span>
+              </div>
+      </div>
+      <div class="form-group row">
+              <div class="col-12">
+                <input type="text" name="timeOfBirth" id="timeOfBirth"  [(ngModel)]="slot.timeOfBirth"
+                 placeholder="Enter Your Time Of Birth" onfocus="(this.type='time')" class="form-control"  #timeOfBirth="ngModel" required>
+                 <span class="text-danger"
+                 *ngIf="(timeOfBirth.touched || slotBookingForm.submitted) && timeOfBirth.errors?.required">
+                 Time Of Birth is required
+             </span>
+              </div>
+      </div>
+      <div class="form-group row">
+              <div class="col-12">
+                <input type="textbox" name="placeOfBirth" id="placeOfBirth"  [(ngModel)]="slot.placeOfBirth"
+                 placeholder="Enter Place Of Birth" class="form-control"  #placeOfBirth="ngModel" required>
+                 <span class="text-danger"
+                 *ngIf="(placeOfBirth.touched || slotBookingForm.submitted) && placeOfBirth.errors?.required">
+                 Place Of Birth is required
+             </span>
+              </div>
+      </div>
+      <div class="form-group row">
+              <div class="col-12">
+                <textarea type="textbox" name="description" id="description"  [(ngModel)]="slot.description"
+                 placeholder="Write your Questions here.." class="form-control"  ></textarea>
+
+              </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-12">
+            <input type="text" name="slotDate" id="slotDate"  [(ngModel)]="slot.slotDate"
+             placeholder="Select Date Of Call" onfocus="this.type='date'" class="form-control" #slotDate="ngModel" required>
+             <span class="text-danger"
+             *ngIf="(slotDate.touched || slotBookingForm.submitted) && slotDate.errors?.required">
+             Slot Date is required
+         </span>
+          </div>
+
+  </div>
+  <div class="form-group row">
+          <div class="col-12">
+
+            <!-- <select name="slotTime"  class="form-control"
+          [(ngModel)]="slot.slotTime"  #slotTime="ngModel" required  >
+          <option [value]="undefined" disabled hidden>Select Time Of Call </option>
+
+                 <option>Any time</option>
+                 <option >9am-12pm</option>
+                 <option >12pm-3pm</option>
+                 <option >3pm-6pm</option>
+      </select>
+             <span class="text-danger"
+             *ngIf="(slotTime.touched || slotBookingForm.submitted) && slotTime.errors?.required">
+             Slot Time is required
+         </span>-->
+
+
+         <input type="text" name="slotTime" id="timeOfBirth"  [(ngModel)]="slot.slotTime"
+         placeholder="Select Time Of Call" onfocus="(this.type='time')" class="form-control"  #slotTime="ngModel" required>
+         <span class="text-danger"
+         *ngIf="(slotTime.touched || slotBookingForm.submitted) && slotTime.errors?.required">
+         Slot Time is required
+           </span>
+
+
+          </div>
+  </div>
+      <div class="form-group row">
+          <div class="col-12">
+          <select name="languageID"  class="form-control"
+          [(ngModel)]="slot.languageID"  #languageID="ngModel" required  >
+          <option [value]="undefined" disabled hidden>Select Language </option>
+                 <option *ngFor="let lang of Languages"
+                 [value]="lang.languageID" >
+                  {{lang.languageName}}
+             </option>
+          </select>
+
+        <span class="text-danger"
+        *ngIf="(languageID.touched || slotBookingForm.submitted) && languageID.errors?.required">
+        Language is required
+    </span>
+    </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-12">
+        <input type="textbox" name="amount" id="amount"  [(ngModel)]="slot.amount" disabled="false"
+         placeholder="Amount" class="form-control">
+      </div>
+  </div>
+    <div class="form-group row">
+          <div class="col-1 ">
+      <input type="checkbox"  (change)="onCheckboxChange($event)" />
+          </div>
+          <div class="col-11 ">
+       <p> I Agree to the <a href="#">Terms and Conditions</a> and <a href="#">Disclaimer</a> of service.</p>
+       </div>
+    </div>
+      <div class="form-group row" >
+              <button class="col-6 offset-3 btn btn-primary">Book An Astrologer</button>
+      </div>
+
+  </div>
+</div>
+</form>
+</div>
+<app-footer></app-footer>

@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="jumbotron" style="background-color: linen;" >
-<div class="container">
+<div class="container" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual'">
   <div class="row">
       <div class="col-md-8">
           <div class="card border-primary mb-3 w-100">
@@ -55,7 +55,75 @@
           </ul>
           <div class="card-body pull-right">
 
-            <button  class="btn btn-primary" [routerLink]="['/userbilling',this.serviceId,this.serviceTypeId]" routerLinkActive="active"  >Proceed To Checkout</button>
+            <button  class="btn btn-primary" (click)="CheckOut()" >Proceed To Checkout</button>
+          </div>
+
+        </div>
+
+
+      </div>
+  </div>
+</div>
+<div class="container" *ngIf="cartType=='ecart'">
+  <div class="row">
+      <div class="col-md-8">
+          <div class="card border-primary mb-3 w-100">
+              <div class="card-header font-weight-bold">Cart Items</div>
+
+              <div class="card-body" style="height: 100%">
+
+                  <div class="conatiner-fluid">
+                      <div class="row">
+                          <div class="col-md-12">
+                            <table class="table table-bordered w-100" >
+                              <thead class="thead-light">
+                                  <tr>
+                                      <th>Slno</th>
+                                      <th>Item Name</th>
+                                      <th>Unit Price</th>
+                                      <th>Quantity</th>
+                                      <th>Cost</th>
+                                      <th>Delete</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let item of productitems;let i=index">
+                                      <td>{{i + 1}}</td>
+                                      <td>{{item.ProductName}}</td>
+                                      <td>{{item.ProductPrice}}</td>
+                                      <td class="text-center"> <input type="number" style="width: 40px;"  required id="quantity" name="quantity" (input)="QuantityChange($event.target.value,item,i)" [(ngModel)]="item.Quantity"></td>
+                                      <td>{{item.ProductCost}}</td>
+                                      <td><a  class="text-danger" (click)="Delete(item.ProductId,i)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a></td>
+                                  </tr>
+
+                              </tbody>
+                            </table>
+                          </div>
+
+                      </div>
+                  </div>
+
+              </div>
+              <div class="card-footer">
+
+                <button type="button" (click)="BookAnotherService()"  class="btn btn-primary" >Book another Pooja Kit</button>
+
+            </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <h4 class="card-header">Cart Total</h4>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Sub Total: <span style="margin-left: 20px;">{{subtotal}}</span></li>
+            <li class="list-group-item">Discount: <span style="margin-left: 25px;">{{discount}}</span></li>
+            <li class="list-group-item">Total: <span style="margin-left: 53px;">{{total}}</span></li>
+          </ul>
+          <div class="card-body pull-right">
+
+            <button  class="btn btn-primary" (click)="CheckOut()" >Proceed To Checkout</button>
           </div>
 
         </div>

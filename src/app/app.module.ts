@@ -59,6 +59,29 @@ import {QuillModule} from 'ngx-quill';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import {AdminLoginService} from './admin/adminlogin/adminlogin.service';
 import {WindowRefService} from './shared/services/windowref.service';
+import { ZoomuserComponent } from './zoomuser/zoomuser.component';
+import { AdminmeetingComponent } from './admin/adminmeeting/adminmeeting.component';
+import {AdminMeetingService} from './admin/adminmeeting/adminmeeting.service';
+import { ProductsComponent } from './products/products.component';
+import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import {ProductDetailsService} from './productdetails/productdetails.service';
+import{ProductService} from './products/products.service';
+import { StoreregistrationComponent } from './storeregistration/storeregistration.component';
+import {StoreRegistrationService} from './storeregistration/storeregistration.service';
+import { AstrologySlotbookingComponent } from './astrologyslotbooking/astrologyslotbooking.component';
+import {AstrologySlotBookingService} from './astrologyslotbooking/astrologyslotbooking.service';
+import { StoredashboardComponent } from './storedashboard/storedashboard.component';
+import { StockentryComponent } from './stockentry/stockentry.component';
+import {StockEntryService} from './stockentry/stockentry.service';
+import {StoreDashboardService} from './storedashboard/storedashboard.service';
+import { UserproductorderdetailsComponent } from './userproductorderdetails/userproductorderdetails.component';
+import{UserProductOrderDetailsService} from './userproductorderdetails/userproductorderdetails.service';
+import { AdminproductdashboardComponent } from './admin/adminproductdashboard/adminproductdashboard.component';
+import {AdminProductDashboardService} from './admin/adminproductdashboard/adminproductdashboard.service';
+import { AdminheaderComponent } from './shared/components/adminheader/adminheader.component';
+import { StoreheaderComponent } from './shared/components/storeheader/storeheader.component';
+import { VirtualvideoslotbookingComponent } from './virtualvideoslotbooking/virtualvideoslotbooking.component';
+import {VirtualVideoSlotBookingService} from './virtualvideoslotbooking/virtualvideoslotbooking.service';
 
 @NgModule({
   declarations: [
@@ -88,7 +111,20 @@ import {WindowRefService} from './shared/services/windowref.service';
     VendorcityComponent,
     AdminservicetypeComponent,
     AdminservicedetailsComponent,
-    AdminloginComponent
+    AdminloginComponent,
+    ZoomuserComponent,
+    AdminmeetingComponent,
+    ProductsComponent,
+    ProductdetailsComponent,
+    StoreregistrationComponent,
+    AstrologySlotbookingComponent,
+    StoredashboardComponent,
+    StockentryComponent,
+    UserproductorderdetailsComponent,
+    AdminproductdashboardComponent,
+    AdminheaderComponent,
+    StoreheaderComponent,
+    VirtualvideoslotbookingComponent
 
   ],
   imports: [
@@ -110,7 +146,9 @@ import {WindowRefService} from './shared/services/windowref.service';
   ,UserDashboardService,VendorDashboardService,EventListenerService,AdminDashboardService,PackageService,
   ToastService,UserBillingService,OrderDetailsService,VendorRegistrationService,UserProfileService,UtilitiesService,
   VendorEnquiryService,VendorLocationService,VendorCityService,AdminServiceTypeService,AdminServiceDetailsService,
-  AdminLoginService,WindowRefService],
+  AdminLoginService,WindowRefService,AdminMeetingService,ProductService,ProductDetailsService,StoreRegistrationService,
+  AstrologySlotBookingService,StockEntryService,StoreDashboardService,UserProductOrderDetailsService,AdminProductDashboardService,
+  VirtualVideoSlotBookingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

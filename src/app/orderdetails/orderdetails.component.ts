@@ -16,6 +16,7 @@ export class OrderdetailsComponent implements OnInit {
   invoiceno:any;
   ngZone:NgZone;
   isReload:boolean=false;
+  cartType:any;
   constructor(private toastService: ToastService,private activatedRoute: ActivatedRoute,
     private router:Router,
     private orderDetailsService:OrderDetailsService) {
@@ -30,9 +31,13 @@ export class OrderdetailsComponent implements OnInit {
   {
   if(sessionStorage.getItem("orders")!=null)
     {
+      if(sessionStorage.getItem("cartType")!=null)
+      {
+        this.cartType=sessionStorage.getItem("cartType");
+      }
     this.orders=JSON.parse(sessionStorage.getItem("orders"));
     this.invoiceno=this.orders[0].invoiceNo;
-    this.orderDetailsService.getOrderDetails(this.orders[0].invoiceNo).subscribe(
+    this.orderDetailsService.getOrderDetails(this.orders[0].invoiceNo,this.cartType).subscribe(
       (data) => {
           if (data) {
               this.orderdetails = data;

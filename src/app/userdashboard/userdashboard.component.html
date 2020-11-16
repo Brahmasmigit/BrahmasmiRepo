@@ -21,9 +21,9 @@
 
 <div class="container" style="text-align: center;">
     <div class="row" *ngIf="ongoing.length>0">
-        <div class="col-md-4" *ngFor="let item of ongoing">
+        <div class="col-md-4 w-100" *ngFor="let item of ongoing">
             <div class="card border-primary mb-3 w-100 h-100">
-                <div class="card-header">{{item.serviceName}}  <div class="pull-right">
+                <div class="card-header pull-left w-100">{{item.serviceName}}  <div class="pull-right">
                   <span *ngIf="item.bookingStatusId =='1' || item.bookingStatusId =='2' || item.bookingStatusId =='3'  || item.bookingStatusId =='5'" class="badge badge-success badge-pill">
                     {{item.bookingStatus}}
                   </span>
@@ -61,6 +61,10 @@
                                       <div class="row text-left" *ngIf="item.timeOut">
                                         <div class="col-md-12">Time Out: {{item.timeOut}} </div>
                                     </div>
+                                    <div class="row text-left" *ngIf="item.bookingType=='virtualPooja' || item.bookingType=='virtualAstrology'">
+                                      <div class="col-md-12" >
+                                         <a class="pointer" [class.disabled]="item.bookingStatusId =='7' || item.bookingStatusId =='5' || item.bookingStatusId =='4'? true : false "  (click)="Meeting(item.bookingId)">Virtual Online Pooja</a></div>
+                                  </div>
                                     </div>
                                 </div>
                         </div>

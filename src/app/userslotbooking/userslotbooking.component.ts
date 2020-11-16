@@ -79,6 +79,7 @@ export class UserslotbookingComponent implements OnInit {
       }
     });
     sessionStorage.setItem("orderdetails", JSON.stringify(this.orderdetails));
+    sessionStorage.setItem("cartType","service");
     this.router.navigate(['/usercart'], { queryParams: { serviceId: this.serviceId,serviceTypeId:this.serviceTypeId} });
   }
   selectVendor(event)

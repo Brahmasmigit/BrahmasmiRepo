@@ -1,0 +1,142 @@
+<app-header></app-header>
+
+<div class="container-fluid jumbotron h-100" style="background-color: linen;margin-top: 25px;height:100%" >
+
+  <table align="center">
+    <tbody>
+
+<tr><td>
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-primary">
+            <input (click)="CalendarTab('current')" type="radio" name="options" id="option1" autocomplete="off" checked=""> Current Orders
+          </label>
+
+          <label class="btn btn-primary">
+            <input (click)="CalendarTab('history')"  type="radio" name="options" id="option2" autocomplete="off"> History
+          </label>
+      </div>
+</td></tr>
+
+    </tbody>
+  </table>
+
+
+
+
+            <!--<span *ngFor="let item of counts;let i = index">
+
+              <span class="circle-desc" [class.circle-desc-active]="orderStatus == item">{{ item }} </span>
+              <br>
+              <span>{{ item }}</span>
+              <span class="circles" [class.active]="orderStatus == item"></span>
+              <span class="bar" *ngIf="(i != counts.length-1)"></span>
+            </span>-->
+
+          <div class="container h-100 mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card border-primary mb-3 w-100">
+                        <div class="card-header font-weight-bold">Order Details
+
+                        </div>
+
+                        <div class="card-body w-100 h-100">
+
+                            <div class="conatiner-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                      <table class="table table-bordered w-100" >
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Order No</th>
+
+                                                <th>Product Name</th>
+
+                                                <th>Date</th>
+                                                <th>Store Name</th>
+
+                                                <th>Quantity</th>
+                                                <th>Total</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of orderdetails;let i=index">
+                                                <td><a href="">{{item.orderNo}}</a></td>
+                                                <td>{{item.productName}}</td>
+
+                                                <td>{{item.bookingDate}}</td>
+                                                <td>{{item.storeName}}</td>
+                                                <td>{{item.quantity}}</td>
+                                                <td>{{item.total}}</td>
+                                                <td>{{item.bookingStatus}}</td>
+                                                <td>
+                                                 <!-- <button class="btn btn-primary"  (click)="ViewDetails(item)">View Details</button>-->
+                                                  <button class="btn btn-primary"   (click)="OpenModalPopup(item)">Track Order</button>
+                                                </td>
+
+                                                <ng-template #mymodal let-modal>
+                                                  <div class="modal-header">
+                                                    <h4 class="modal-title" id="modal-basic-title">
+
+
+                                                      <span>Track Order</span>
+                                                    </h4>
+                                                    <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                                      <span aria-hidden="true">×</span>
+                                                    </button>
+                                                  </div>
+                                                  <div  class="modal-body w-100">
+                                                    <div class="contained-fluid w-100 text-left">
+
+                                                      <div class="row p-2">
+                                                        <div class="col-md-12 mt-2">
+
+                                                              <ol  class="progtrckr" data-progtrckr-steps="5">
+                                                                <li   [ngClass]="orderli.li1==true ? 'progtrckr-done' : 'progtrckr-todo'" [value]="orderli.li1"  id="li1" name="li1">Order Recieved </li>
+                                                                <li [ngClass]="orderli.li2==true ? 'progtrckr-done' : 'progtrckr-todo'" [value]="orderli.li2"   id="li2" name="li2">Order Pickedup</li>
+                                                                <li  [ngClass]="orderli.li3==true ? 'progtrckr-done' : 'progtrckr-todo'" [value]="orderli.li3"  id="li3" name="li3">On the way</li>
+                                                                <li [ngClass]="orderli.li4==true ? 'progtrckr-done' : 'progtrckr-todo'" [value]="orderli.li4" id="li4" name="li4">Order Delivered</li>
+                                                                <li [ngClass]="orderli.li5==true ? 'progtrckr-done' : 'progtrckr-todo'" [value]="orderli.li5"  id="li5" name="li5">Order Completed</li>
+
+                                                                </ol>
+                                                        </div>
+
+                                                        </div>
+                                                      </div>
+                                                  </div>
+
+                                                  <div class="modal-footer text-center">
+
+                                                    <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Close</button>
+                                                  </div>
+                                                </ng-template>
+
+                                            </tr>
+
+                                        </tbody>
+                                      </table>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+
+
+
+                      </div>
+                    </div>
+                </div>
+                </div>
+
+        </div>
+
+
+
+
+  </div>
+<app-footer></app-footer>

@@ -86,28 +86,40 @@ export class LoginComponent implements OnInit {
                   this.route.navigate(['./userdashboard']);
                 }
                 else{
-                    this.userModel.User_MobileNumber=this.loginModel.mobileNumber;
-                      this.loginservice.SaveUserData(this.userModel).subscribe(
-                        (data) => {
-                            if (data) {
-                              this.userInfo.userId=data.userID;
-                              this.userInfo.userTypeId=data.userTypeID;
-                              sessionStorage.clear();
-                              sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
-                                this.route.navigate(['./userdashboard']);
-                            }
-                            else{
+                  this.loginservice.getStoreData(this.loginModel.mobileNumber).subscribe(
+                    (data) => {
+                        if (data) {
+                          this.userInfo.userId=data.storeID;
+                          this.userInfo.userTypeId=data.userTypeID;
+                          sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
+                          this.route.navigate(['./storedashboard']);
+                          }
+                          else
+                          {
+                            this.userModel.User_MobileNumber=this.loginModel.mobileNumber;
+                            this.loginservice.SaveUserData(this.userModel).subscribe(
+                              (data) => {
+                                  if (data) {
+                                    this.userInfo.userId=data.userID;
+                                    this.userInfo.userTypeId=data.userTypeID;
+                                    sessionStorage.clear();
+                                    sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
+                                      this.route.navigate(['./userdashboard']);
+                                  }
+                                  else{
 
-                            }
+                                  }
 
-                        },
-                        (error) => {
-                            this.errorMessage = error;
-                        },
-                        () => {
+                              }
+                            );
+                          }
+
                         }
-                      );
-                }
+
+
+                    );
+
+                }//end of else
             },
             (error) => {
                 this.errorMessage = error;

@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron" style="background-color: linen;margin-top: 30px;" >
+    <div class="main-body">
+
+
+
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="../../../assets/Ganeshpoojakit.jpg" alt="Admin"  width="250" height="210">
+                    <h6>{{product.productName}}</h6>
+                    <h6 class="mb-0"><i class="fa fa-inr" aria-hidden="true"></i>
+                        {{product.productPrice}}</h6>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="col-md-8"  >
+
+              <div class="card  p-2" >
+                <h6 class="header-title" >{{product.productShortDescription}}</h6>
+               <p style="height: 8px;border-bottom: 1px solid;"></p>
+
+                <div class="pt-1">
+                    <h6 class="text-uppercase mt-0">Items :</h6>
+                    <div>
+                        <ul class="columnlist" *ngFor="let item of productDetails; let index = index">
+                            <li>{{item.itemName}}</li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end card-box-->
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#reviews">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab"  href="#faq">FAQ</a>
+                    </li> -->
+
+                  </ul>
+                  <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active show" id="description">
+                      <p>{{product.productLongDescription}}</p>
+                    </div>
+                    <!-- <div class="tab-pane fade" id="reviews">
+
+                    </div>
+                    <div class="tab-pane fade" id="faq">
+
+                    </div> -->
+
+                  </div>
+            </div>
+          </div>
+        <div class="mt-2 pull-right">
+            <button type="button" class="btn btn-primary" (click)="Continue()">Continue</button>
+            <!-- [routerLink]="['/package',serviceDetails.serviceId,serviceDetails.serviceTypeId,serviceDetails.vendorId]" routerLinkActive="active" -->
+        </div>
+        </div>
+
+    </div>
+    <app-footer></app-footer>

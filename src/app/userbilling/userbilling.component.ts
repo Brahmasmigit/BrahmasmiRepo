@@ -32,10 +32,12 @@ export class UserbillingComponent implements OnInit {
   userInfo:any={};
   cityId:any;
   City:any=[];
-
-
+  cartType:any;
+  productitems:any=[];
+  astrologyuser:any={};
   private razorKey : any= environment.RazorKey;
   @ViewChild('mymodal') mymodal: ElementRef;
+  virtualuser:any={};
   constructor(private toastService: ToastService,
     private activatedRoute: ActivatedRoute,
     private router:Router,
@@ -44,15 +46,17 @@ export class UserbillingComponent implements OnInit {
     private  modalService: NgbModal,
     private windowRefService: WindowRefService,
     private ngZone: NgZone
+
     ) { }
 
   ngOnInit(): void {
-    this.serviceId= this.activatedRoute.snapshot.params['serviceId'];
-    this.serviceTypeId =this.activatedRoute.snapshot.params['serviceTypeId'];
+    //this.serviceId= this.activatedRoute.snapshot.params['serviceId'];
+   // this.serviceTypeId =this.activatedRoute.snapshot.params['serviceTypeId'];
     this.userdetails.cityId=1;
     this.userdetails.billingcityId=1;
     this.getCity();
     this.loadCart();
+
     if(sessionStorage.getItem("userInfo")!=null)
       {
         this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
@@ -62,6 +66,22 @@ export class UserbillingComponent implements OnInit {
       else
       {
         this.userid=0;
+        if(sessionStorage.getItem("astrologyuserdetails")!=null)
+        {
+          this.astrologyuser=JSON.parse(sessionStorage.getItem("astrologyuserdetails"));
+          this.userdetails.userName= this.astrologyuser.name;
+          this.userdetails.mobileNumber= this.astrologyuser.mobileNumber;
+          this.userdetails.emailId= this.astrologyuser.emailId;
+          this.userdetails.cityId= this.astrologyuser.cityId;
+        }
+        if(sessionStorage.getItem("virtualuserdetails")!=null)
+        {
+          this.virtualuser=JSON.parse(sessionStorage.getItem("virtualuserdetails"));
+          this.userdetails.userName= this.virtualuser.name;
+          this.userdetails.mobileNumber= this.virtualuser.mobileNumber;
+          this.userdetails.emailId= this.virtualuser.emailId;
+          this.userdetails.cityId= this.virtualuser.cityId;
+        }
       }
 
   }
@@ -85,6 +105,31 @@ export class UserbillingComponent implements OnInit {
   }
   loadCart()
   {
+    if(sessionStorage.getItem("cartType")!=null)
+    {
+      this.cartType=sessionStorage.getItem("cartType");
+    if(sessionStorage.getItem("cartType")=="ecart")
+    {
+      if(sessionStorage.getItem("productdetails")!=null)
+      {
+        this.productitems=JSON.parse(sessionStorage.getItem("productdetails"));
+        this.productitems.forEach((element,i) => {
+          this.productitems[i].ProductPrice=element.ProductPrice;
+          this.productitems[i].Quantity=element.Quantity;
+          this.productitems[i].ProductCost=  Number(this.productitems[i].ProductPrice) * Number(this.productitems[i].Quantity);
+          this.subtotal +=  this.productitems[i].ProductCost;
+        });
+        this.total=this.subtotal;
+        }
+        else
+        {
+          this.subtotal=0;
+          this.total=0;
+        }
+      }
+
+    else if(sessionStorage.getItem("cartType")=="service" || sessionStorage.getItem("cartType")=="astrology" || sessionStorage.getItem("cartType")=="virtual")
+    {
     if(sessionStorage.getItem("orderdetails")!=null)
     {
       this.cartitems=JSON.parse(sessionStorage.getItem("orderdetails"));
@@ -98,7 +143,9 @@ export class UserbillingComponent implements OnInit {
       this.subtotal=0;
       this.total=0;
     }
+   }
   }
+}
   getUserdetails(userid)
   {
     this.userBillingService.getUserDetails(userid).subscribe(
@@ -144,8 +191,7 @@ export class UserbillingComponent implements OnInit {
   }
   PlaceOrder()
   {
-    if(this.cartitems.length>0)
-    {
+
 
       if(this.userdetails.userName == undefined || this.userdetails.userName=="")
       {
@@ -218,7 +264,7 @@ export class UserbillingComponent implements OnInit {
       {
         this.modalplaceOrder(this.mymodal);
       }
-    }//end of If
+
 
   }
   razorPayResponseHandler(response)
@@ -232,7 +278,14 @@ export class UserbillingComponent implements OnInit {
       (data) => {
         if(data.isPaymentSuccess)
         {
+          if(this.cartType=="service" || this.cartType=="astrology" || this.cartType=="virtual")
+          {
           this.Confirm();
+          }
+          else if(this.cartType=="ecart")
+          {
+            this.ProductConfirm();
+          }
         }
         else
         {
@@ -293,7 +346,14 @@ export class UserbillingComponent implements OnInit {
       for(var i=0;i<this.cartitems.length;i++)
       {
         this.cartitems[i].BookingLocation=this.userdetails.address;
-        this.cartitems[i].BookingType="User Booking";
+        if(this.cartType=="virtual")
+        {
+        this.cartitems[i].BookingType=this.cartType + this.cartitems[i].serviceType;
+        }
+        else
+        {
+          this.cartitems[i].BookingType=this.cartType;
+        }
         this.cartitems[i].BookingStatusId=bookingstatusid;
         this.cartitems[i].PinCode=this.userdetails.pinCode;
         this.cartitems[i].MobileNumber=this.userdetails.mobileNumber;
@@ -319,6 +379,89 @@ export class UserbillingComponent implements OnInit {
               if(checkresult==null || checkresult==undefined)
               {
                 sessionStorage.removeItem("orderdetails");
+                sessionStorage.setItem("orders",JSON.stringify(arrOrders));
+                this.ngZone.run(()=> {
+                  this.router.navigate(['/orderdetails']);
+                });
+              }
+              else
+              {
+                this.showError("Booking is failed, We will manually check and refund your Amount");
+              }
+
+            }
+
+        },
+        (error) => {
+            this.modalService.dismissAll("done");
+            this.errorMessage = error;
+            this.showError("Booking is failed, We will manually check and refund your Amount");
+        },
+        () => {
+
+        }
+      );//end of service
+    }
+
+  }
+
+  ProductConfirm()
+  {
+    if(this.productitems.length>0)
+    {
+      let bookingstatusid;
+      let paymentstatus;
+      let paymentMode;
+      if(this.isPaymentchecked=='cod')
+      {
+        paymentMode=7;//cod
+        bookingstatusid=7;//onhold
+        paymentstatus=4;//onhold
+      }
+      else if( this.isPaymentchecked=='upi')
+      {
+        paymentMode=4;//upi
+        bookingstatusid=7;//onhold
+        paymentstatus=4;//onhold
+      }
+      else if( this.isPaymentchecked=='razor')
+      {
+        paymentMode=1;//card
+        bookingstatusid=7;//onhold
+        paymentstatus=4;//onhold
+      }
+
+      for(var i=0;i<this.productitems.length;i++)
+      {
+        this.productitems[i].StoreId=0;
+        this.productitems[i].ReviewComments="";
+        this.productitems[i].BookingLocation=this.userdetails.address;
+        this.productitems[i].BookingType="ecart";
+        this.productitems[i].BookingStatusId=bookingstatusid;
+        this.productitems[i].PinCode=this.userdetails.pinCode;
+        this.productitems[i].MobileNumber=this.userdetails.mobileNumber;
+        this.productitems[i].EmailId=this.userdetails.emailId;
+        this.productitems[i].NewAddress=this.userdetails.billingAddress == undefined ? '' : this.userdetails.billingAddress;
+        this.productitems[i].NewPinCode=this.userdetails.billingPincode == undefined ? '' : this.userdetails.billingPincode;
+        this.productitems[i].UserName=this.userdetails.userName;
+        this.productitems[i].CityId=Number(this.userdetails.cityId);
+        this.productitems[i].NewCityId=this.userdetails.billingcityId == undefined ? 0 : this.userdetails.billingcityId;
+        this.productitems[i].PaymentStatus=paymentstatus;
+        this.productitems[i].PaymentMode=paymentMode;
+        this.productitems[i].IsDifferentLocation= this.ischecked ? 'Y' : 'N';
+        this.productitems[i].OrderNo='';
+        this.productitems[i].InvoiceNo='';
+      }
+      this.userBillingService.ProductBooking(this.productitems).subscribe(
+        (data) => {
+            if (data) {
+              this.modalService.dismissAll("done");
+              let arrOrders:any=[];
+              arrOrders=data;
+              let checkresult = arrOrders.find(x=> x.result==0);
+              if(checkresult==null || checkresult==undefined)
+              {
+                sessionStorage.removeItem("productdetails");
                 sessionStorage.setItem("orders",JSON.stringify(arrOrders));
                 this.ngZone.run(()=> {
                   this.router.navigate(['/orderdetails']);

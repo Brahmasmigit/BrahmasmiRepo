@@ -1,0 +1,135 @@
+
+<app-storeheader></app-storeheader>
+<div class="container-fluid jumbotron h-100" style="background-color: linen;margin-top: 25px;height:100%" >
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-primary mb-3 w-100">
+                <div class="card-header font-weight-bold">Manage Stock</div>
+
+                <div class="card-body" style="height: 100%">
+
+                    <div class="conatiner-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                              <table class="table table-bordered w-100" >
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Slno</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of stockDetails;let i=index">
+                                        <td>{{i + 1}}</td>
+                                        <td>{{item.productName}}</td>
+                                        <td>{{item.productPrice}}</td>
+                                        <td>{{item.productQuantity}}</td>
+
+                                    </tr>
+
+                                </tbody>
+                              </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer pull-right">
+
+                  <button type="button"   class="btn btn-primary" (click)="OpenStockForm()">Add Stock</button>
+
+              </div>
+            </div>
+        </div>
+
+    </div>
+  </div>
+
+</div>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"><span>Add Stock</span></h4>
+    <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body w-100">
+    <div class="contained-fluid w-100">
+      <div class="row p-2">
+        <div class="col-md-12">
+          <form #stockEntryForm="ngForm" (ngSubmit)="stockEntryForm.form.valid">
+            <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
+          <div class="container card  mb-3" style="max-width: 40rem;">
+
+              <div class="card-body" style="height: auto">
+                    <div class="form-group row">
+
+                            <div class="col-4">Select Product :</div>
+                            <div class="col-8">
+                              <select name="productID"  class="form-control"
+                              [(ngModel)]="stock.productID" (change)="onProductChange($event.target.value)"
+                              #productID="ngModel" required>
+                                     <option *ngFor="let product of products"
+                                     [value]="product.productID">
+
+                                      {{product.productName}}
+                                 </option>
+                              </select>
+                              <span class="text-danger"
+                              *ngIf="(productID.touched || stockEntryForm.submitted) && productID.errors?.required">
+                              Product Name is required
+                          </span>
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                     <div class="col-4">
+                        <label>Quantity :</label>
+                     </div>
+                     <div class="col-8">
+                        <input type="number"  name="productQuantity" id="productQuantity"
+                        [(ngModel)]="stock.productQuantity"   class="form-control"
+                        #productQuantity="ngModel" required>
+                        <span class="text-danger"
+                        *ngIf="(productQuantity.touched || stockEntryForm.submitted) && productQuantity.errors?.required">
+                        Quantity is required
+                    </span>
+                     </div>
+                    </div>
+
+                <hr/>
+                <div >
+
+                    <ul class="columnlist" *ngFor="let item of productDetails; let index = index">
+                        <li>{{item.itemName}}</li>
+
+
+                    </ul>
+
+                </div>
+                </div>
+            </div>
+        </form>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button  class="col-2 offset-1 btn btn-primary" (click)="AddStock(stockEntryForm)" >Save</button>
+    <!-- (click)="AddStock()" -->
+    <button style="margin-left: 6px;"  class="col-2 btn btn-secondary" (click)="onView()" [disabled]="click">View Details</button>
+  </div>
+  </ng-template>
+
+
+<app-footer></app-footer>
+

@@ -45,6 +45,9 @@ export class UserdashboardComponent implements OnInit {
 
     this.stars.star1=false;
     this.stars.star2=false;
+    this.stars.star3=false;
+    this.stars.star4=false;
+    this.stars.star5=false;
     if(sessionStorage.getItem("userInfo")!=null)
     {
       this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
@@ -106,6 +109,11 @@ export class UserdashboardComponent implements OnInit {
 
       });
     }
+  }
+  Meeting(bookingId)
+  {
+    sessionStorage.setItem("BookingId",bookingId);
+    this.router.navigate(['/zoomuser']);
   }
   OpenModalPopup(popup)
   {

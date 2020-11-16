@@ -1,30 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
-  <a class="navbar-brand" href="#">Brahmasmi | Admin</a>
-  <span style="width: 500px;"></span>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarColor03">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/admindashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/adminservicetype" routerLinkActive="active">Manage Categories</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/adminservicedetails" routerLinkActive="active">Manage Services</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/adminvendorenquiry" routerLinkActive="active">Register a Vendor</a>
-      </li>
-    </ul>
-
-
-
-  </div>
-</nav>
+<app-adminheader></app-adminheader>
 <form #serviceForm="ngForm" (ngSubmit)="serviceForm.form.valid && AddService()" >
         <!-- (ngSubmit)="AddService()" -->
     <div class="row">

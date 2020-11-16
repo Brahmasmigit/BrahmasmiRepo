@@ -1,43 +1,8 @@
-<style type="text/css">
-    body{
-    background:#f3f3f3;
-    color: #616f80;
-}
 
+<app-adminheader></app-adminheader>
 
-.avatar-xs {
-    height: 2.3rem;
-    width: 2.3rem;
-}
-</style>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
-    <a class="navbar-brand" href="#">Brahmasmi | Admin</a>
-    <span style="width: 500px;"></span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor03">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/admindashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/adminservicetype" routerLinkActive="active">Manage Categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/adminservicedetails" routerLinkActive="active">Manage Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/adminvendorenquiry" routerLinkActive="active">Register a Vendor</a>
-        </li>
-      </ul>
-
-
-
-    </div>
-  </nav>
 <div class="container-fluid w-100" style="margin-top: 20px;" >
+  <div class="text-center"> <h4>Manage Services</h4></div>
     <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card bg-pattern">
@@ -148,8 +113,9 @@
                                                   <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                                   <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                     <a class="dropdown-item pointer" (click)="AssignVendor(item.bookingId)">Assign Vendor</a>
-                                                    <a *ngIf="item.bookingStatusID=='7'" class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,1,item.vendorname)">Approve</a>
-                                                    <a *ngIf="item.bookingStatusID!='7'" class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,5,item.vendorname)">Approve</a>
+                                                    <a *ngIf="item.bookingType=='virtualPooja' || item.bookingType=='virtualAstrology'" class="dropdown-item pointer" (click)="AddMeeting(item.bookingId,item.bookingStatusID,item.vendorname)">Add Meeting</a>
+                                                    <a *ngIf="item.bookingStatusID=='7'" class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,1,item.vendorname,item.bookingType)">Approve</a>
+                                                    <a *ngIf="item.bookingStatusID!='7'" class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,5,item.vendorname,item.bookingType)">Approve</a>
                                                     <a class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,4)">Cancel</a>
                                                   </div>
                                                 </div>
@@ -188,13 +154,16 @@
 
 <ng-template #mymodal let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title"><span>Assign Vendor</span></h4>
+    <h4 class="modal-title" id="modal-basic-title">
+      <span *ngIf="isAssignVendor">Assign Vendor</span>
+      <span *ngIf="isMeeting">Schedule Meeting</span>
+    </h4>
     <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">×</span>
     </button>
   </div>
   <div class="modal-body w-100">
-    <div class="contained-fluid w-100">
+    <div class="contained-fluid w-100" *ngIf="isAssignVendor">
       <div class="row p-2">
         <div class="col-md-12">
           <select style="width: 200px;margin-right: 20px;" name="cityID" placeholder="Title" class="form-control"
@@ -217,6 +186,8 @@
                     <th>Vendor Name</th>
                     <th>City</th>
                     <th>Mobile Number</th>
+                    <th>Email Id</th>
+                    <th>Address</th>
                 </tr>
             </thead>
             <tbody>
@@ -225,6 +196,8 @@
                     <td>{{item.vendorName}}</td>
                     <td>{{item.cityName}}</td>
                     <td>{{item.mobileNumber}}</td>
+                    <td>{{item.emailId}}</td>
+                    <td>{{item.vendorAddress}}</td>
 
                 </tr>
 
@@ -235,9 +208,55 @@
 
 
     </div>
+    <div class="contained-fluid w-100" *ngIf="isMeeting">
+      <div class="col-md-7 mt-10 w-50" style="margin-left:30%">
+        <div class="card border-primary mb-3 w-100">
+            <div class="card-header font-weight-bold text-center">Schedule Meeting</div>
 
+            <div class="card-body" style="height: 100%">
+
+              <form (ngSubmit)="CreateMeeting()" class="contact-form form-validate"  novalidate="novalidate">
+                <div class="row">
+                    <div class="col-md-8  offset-3">
+                        <div class="form-group col-centered">
+                          <input type="meetingid" class="form-control" required id="meetingid" name="meetingid"  placeholder="Enter Meeting Id" [(ngModel)]="loginModel.MeetingId">
+                        </div>
+                    </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8  offset-3">
+                          <div class="form-group col-centered">
+                            <input type="pwd" class="form-control" required id="password" name="password"  placeholder="Enter Meeting Password" [(ngModel)]="loginModel.MeetingPassword">
+                          </div>
+                      </div>
+
+
+                      </div>
+                    <div class="row mt-10 text-center" style="margin-top:40px ;">
+                      <div class="col-md-8  offset-2">
+                          <div class="form-group col-centered">
+                            <button type="submit"  class="btn btn-primary col-8" >Schedule Meeting</button>
+
+                          </div>
+                      </div>
+
+
+
+                      </div>
+                      </form>
+
+
+
+            </div>
+
+
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer" *ngIf="isAssignVendor">
     <button type="button" class="btn btn-primary" (click)="SubmitVendor()">Submit</button>
     <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cancel</button>
   </div>

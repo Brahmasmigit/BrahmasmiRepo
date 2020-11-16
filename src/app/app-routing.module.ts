@@ -23,6 +23,17 @@ import { VendorcityComponent } from './vendorcity/vendorcity.component';
 import { AdminservicetypeComponent } from './adminservicetype/adminservicetype.component';
 import { AdminservicedetailsComponent } from './adminservicedetails/adminservicedetails.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
+import { ZoomuserComponent } from './zoomuser/zoomuser.component';
+import { AdminmeetingComponent } from './admin/adminmeeting/adminmeeting.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import { StoreregistrationComponent } from './storeregistration/storeregistration.component';
+import { AstrologySlotbookingComponent } from './astrologyslotbooking/astrologyslotbooking.component';
+import { StockentryComponent } from './stockentry/stockentry.component';
+import { StoredashboardComponent } from './storedashboard/storedashboard.component';
+import { UserproductorderdetailsComponent } from './userproductorderdetails/userproductorderdetails.component';
+import { AdminproductdashboardComponent } from './admin/adminproductdashboard/adminproductdashboard.component';
+import { VirtualvideoslotbookingComponent } from './virtualvideoslotbooking/virtualvideoslotbooking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -36,7 +47,7 @@ const routes: Routes = [
   { path: 'userdashboard', component: UserdashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admindashboard', component: AdmindashboardComponent },
-  { path: 'userbilling/:serviceId/:serviceTypeId', component: UserbillingComponent },
+  { path: 'userbilling', component: UserbillingComponent },
   {path:'usercart', component: UsercartComponent},
   {path:'orderdetails', component: OrderdetailsComponent},
   {path:'vendorregistration', component: VendorRegistrationComponent},
@@ -44,11 +55,21 @@ const routes: Routes = [
   {path:'adminvendorenquiry', component: AdminvendorenquiryComponent},
   {path:'vendorenquiry', component: VendorEnquiryComponent},
   {path:'vendorlocation', component: VendorlocationComponent},
-  {path:'vendorcity', component: VendorcityComponent},
+  {path:'vendorcity', component: VendorcityComponent },
   {path:'adminservicetype', component: AdminservicetypeComponent},
   {path:'adminservicedetails', component: AdminservicedetailsComponent},
   {path:'adminlogin', component: AdminloginComponent},
-
+  {path:'zoomuser', component: ZoomuserComponent},
+  {path:'adminmeeting',component: AdminmeetingComponent},
+  {path:'products', component: ProductsComponent},
+  {path:'productdetails/:productID',component: ProductdetailsComponent},
+  {path:'storeregistration',component: StoreregistrationComponent},
+  {path:'astrologyslotbooking',component: AstrologySlotbookingComponent},
+  {path:'stockentry',component: StockentryComponent},
+  {path:'storedashboard',component: StoredashboardComponent},
+  {path:'userproductorders',component: UserproductorderdetailsComponent},
+  {path:'adminproductdashboard',component: AdminproductdashboardComponent},
+  {path:'virtualslotbooking',component: VirtualvideoslotbookingComponent}
 ];
 
 @NgModule({

@@ -46,6 +46,13 @@ export class LoginService {
           catchError(this.handleError)
       );
   }
+  getStoreData(mobileNumber): Observable<any> {
+    return this.http.get<any>(this.API_URL + "Login/StoreExist/" + mobileNumber)
+    .pipe(
+        tap(Storestatus => console.log("Storestatus: " + Storestatus)),
+        catchError(this.handleError)
+    );
+  }
     private handleError(error: any) {
         console.error(error);
         return throwError(error);

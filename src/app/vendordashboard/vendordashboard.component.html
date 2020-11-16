@@ -79,6 +79,10 @@
                                       <div class="row" *ngIf="item.timeOut">
                                         <div class="col-md-12">Time Out: {{item.timeOut}} </div>
                                     </div>
+                                    <div class="row text-left" *ngIf="item.bookingType=='virtualPooja' || item.bookingType=='virtualAstrology'">
+                                      <div class="col-md-12" [attr.disabled]="item.bookingStatusId =='7' || item.bookingStatusId =='5' || item.bookingStatusId =='4'? true : false ">
+                                         <a class="pointer" (click)="Meeting(item.bookingId)">Virtual Online Pooja</a></div>
+                                  </div>
                                     </div>
                                 </div>
                         </div>

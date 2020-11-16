@@ -1,0 +1,112 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron" style="background-color: linen;margin-top: 30px;" >
+<form #registerStoreForm="ngForm" (ngSubmit)="registerStoreForm.form.valid && registerStore()">
+    <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
+  <div class="container card border-primary mb-3" style="max-width: 35rem;">
+    <div class="card-header text-center bold text-info"><h3><b>Store Registration</b></h3></div>
+    <div class="card-body" style="height: auto">
+
+        <div class="form-group row">
+            <div class="col-4">
+                    <label class="form-label">STORE NAME :</label>
+                </div>
+                <div class="col-8 ">
+                    <input type="textbox" name="storeName" id="storeName"  [(ngModel)]="store.storeName"
+                     placeholder="Enter Store Name" class="form-control" #storeName="ngModel" required>
+                     <span class="text-danger"
+                     *ngIf="(storeName.touched || registerStoreForm.submitted) && storeName.errors?.required">
+                     Store Name is required
+                 </span>
+                </div>
+        </div>
+        <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">OWNER NAME :</label>
+                </div>
+                <div class="col-8 ">
+                  <input type="textbox" name="ownerName" id="ownerName"  [(ngModel)]="store.ownerName"
+                   placeholder="Enter Owner Name" class="form-control" #ownerName="ngModel" required>
+                   <span class="text-danger"
+                   *ngIf="(ownerName.touched || registerStoreForm.submitted) && ownerName.errors?.required">
+                   Owner Name is required
+               </span>
+                </div>
+        </div>
+        <div class="form-group row">
+                <div class="col-4">SELECT CITY :</div>
+                <div class="col-8">
+                  <select name="cityID"  class="form-control"
+                  [(ngModel)]="store.cityID"   >
+                         <option *ngFor="let city of City"
+                         [value]="city.cityID">
+
+                          {{city.cityName}}
+                     </option>
+                  </select>
+                </div>
+                <!-- <span class="text-danger"
+                *ngIf="(cityID.touched || registerStoreForm.submitted) && cityID.errors?.required">
+                City is required
+            </span> -->
+            </div>
+        <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">MOBILE NUMBER  :</label>
+                </div>
+                <div class="col-8">
+                  <input type="textbox" name="mobileNumber" id="mobileNumber"  [(ngModel)]="store.mobileNumber"
+                   placeholder="Enter mobileNumber" class="form-control" #mobileNumber="ngModel" required>
+                   <span class="text-danger"
+                   *ngIf="(mobileNumber.touched || registerStoreForm.submitted) && mobileNumber.errors?.required">
+                   Mobile Number is required
+               </span>
+                </div>
+        </div>
+        <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">EMAILID  :</label>
+                </div>
+                <div class="col-8">
+                  <input type="textbox" name="emailID" id="emailID"  [(ngModel)]="store.emailID"
+                   placeholder="Enter EmailID" class="form-control"  #emailID="ngModel" required>
+                   <span class="text-danger"
+                   *ngIf="(emailID.touched || registerStoreForm.submitted) && emailID.errors?.required">
+                   EmailID is required
+               </span>
+                </div>
+        </div>
+        <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">ADDRESS  :</label>
+                </div>
+                <div class="col-8 ">
+                  <input type="textbox" name="address" id="address"  [(ngModel)]="store.address"
+                   placeholder="Enter Address" class="form-control"  #address="ngModel" required>
+                   <span class="text-danger"
+                   *ngIf="(address.touched || registerStoreForm.submitted) && address.errors?.required">
+                   Address is required
+               </span>
+                </div>
+        </div>
+        <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">PINCODE  :</label>
+                </div>
+                <div class="col-8">
+                  <input type="textbox" name="pinCode" id="pinCode"  [(ngModel)]="store.pinCode"
+                   placeholder="Enter PinCode" class="form-control"  #pinCode="ngModel" required>
+                   <span class="text-danger"
+                   *ngIf="(pinCode.touched || registerStoreForm.submitted) && pinCode.errors?.required">
+                   PinCode is required
+               </span>
+                </div>
+        </div>
+        <div class="form-group row" >
+                <button class="col-6 offset-4 btn btn-primary">{{btnText}}</button>
+        </div>
+
+    </div>
+</div>
+</form>
+</div>
+<app-footer></app-footer>

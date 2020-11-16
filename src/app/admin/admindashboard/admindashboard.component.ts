@@ -4,6 +4,7 @@ import {AdminDashboardService} from './admindashboard.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {UtilitiesService} from '../../shared/services/utilities.service';
 import {ToastService} from '../../shared/services/toastservice';
+import {AdminMeetingService} from '../adminmeeting/adminmeeting.service';
 
 @Component({
   selector: 'app-admindashboard',
@@ -26,8 +27,12 @@ export class AdmindashboardComponent implements OnInit {
   vendorId:any="";
   bookingId:any;
   vendorupdate:any={};
+  loginModel:any={};
+  isMeeting:any=false;
+  isAssignVendor:any=false;
   @ViewChild('mymodal') mymodal: ElementRef;
   constructor(private activatedRoute: ActivatedRoute,
+    private adminMeetingService:AdminMeetingService,
     private toastService:ToastService,
     private  modalService: NgbModal,
     private utilitiesService :UtilitiesService,
@@ -104,13 +109,18 @@ export class AdmindashboardComponent implements OnInit {
       });
   }
 
-  ChangeStatus(bookingid,statusid,vendorname)
+  ChangeStatus(bookingid,statusid,vendorname,bookingType)
   {
     if(vendorname==undefined || vendorname=="" && statusid!=4)
     {
       this.showError("Please Assign Vendor before Approve");
       return;
     }
+   // if(bookingType=="virtualPooja" || bookingType=="virtualAstrology")
+  //  {
+    //  this.showError("Please Add Meeting before Approve");
+    //  return;
+  //  }
     this.booking.BookingId=Number(bookingid);
     this.booking.BookingStatusId=Number(statusid);
 
@@ -142,12 +152,63 @@ export class AdmindashboardComponent implements OnInit {
     this.HighlightRow =-1;
     this.cityId=1;
     this.getVendors(1);
+    this.isAssignVendor=true;
+    this.isMeeting=false;
     this.modalplaceOrder(this.mymodal);
   }
   SelectVendor(vendorid,index)
   {
     this.HighlightRow = index;
     this.vendorId= vendorid;
+  }
+  AddMeeting(bookingid,statusid,vendorname)
+  {
+    if(vendorname==undefined || vendorname=="")
+    {
+      this.showError("Please Assign Vendor before Adding Meeting");
+      return;
+    }
+    this.isAssignVendor=false;
+    this.isMeeting=true;
+    this.bookingId=bookingid;
+    this.modalplaceOrder(this.mymodal);
+  }
+  CreateMeeting()
+  {
+    if(this.loginModel.MeetingId==undefined || this.loginModel.MeetingId=="")
+    {
+      this.showError("Please Enter Meeting Id");
+      return;
+    }
+    if(this.loginModel.MeetingPassword==undefined || this.loginModel.MeetingPassword=="")
+    {
+      this.showError("Please Enter Meeting Password");
+      return;
+    }
+
+    this.loginModel.Signature="";
+    this.loginModel.BookingId= Number(this.bookingId);
+    this.adminMeetingService.ScheduleMeeting(this.loginModel).subscribe(
+      (data) => {
+          if (data) {
+            this.modalService.dismissAll("done");
+              if(data=="1")
+              {
+                this.showError("Meeting Scheduled Successfully.");
+              }
+              else
+              {
+                this.errorMessage ="Record not updated, please try after some time."
+              }
+          }
+
+      },
+      (error) => {
+          this.errorMessage = error;
+      },
+      () => {
+
+      });
   }
   SubmitVendor()
   {

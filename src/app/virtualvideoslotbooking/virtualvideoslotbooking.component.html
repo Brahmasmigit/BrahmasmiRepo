@@ -1,0 +1,217 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron" style="background-color: linen;margin-top: 30px;" >
+<form #virtualSlotBookingForm="ngForm" (ngSubmit)="virtualSlotBookingForm.form.valid && BookVirtualSlot()">
+    <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
+  <div class="container card border-primary mb-3" style="max-width: 35rem;">
+    <div class="card-header text-center bold text-info"><h3><b>Book for Virtual Pooja</b></h3></div>
+    <div class="card-body" style="height: auto">
+
+        <div class="form-group row">
+            <!-- <div class="col-4">
+                    <label class="form-label">STORE NAME :</label>
+                </div> -->
+                <div class="col-12 ">
+                    <input type="textbox" name="name" id="name"  [(ngModel)]="slot.name"
+                     placeholder="Enter Your Name" class="form-control" #name="ngModel" required>
+                     <span class="text-danger"
+                     *ngIf="(name.touched || virtualSlotBookingForm.submitted) && name.errors?.required">
+                      Name is required
+                 </span>
+                </div>
+        </div>
+        <div class="form-group row">
+                <div class="col-12 ">
+                  <input type="textbox" name="emailID" id="emailID"  [(ngModel)]="slot.emailID"
+                   placeholder="Enter Your EmailID" class="form-control" #emailID="ngModel" required>
+                   <span class="text-danger"
+                   *ngIf="(emailID.touched || virtualSlotBookingForm.submitted) && emailID.errors?.required">
+                   Email is required
+               </span>
+                </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-12">
+              <input type="textbox" name="mobileNumber" id="mobileNumber"  [(ngModel)]="slot.mobileNumber"
+               placeholder="Enter Your MobileNumber" class="form-control" #mobileNumber="ngModel" required>
+               <span class="text-danger"
+               *ngIf="(mobileNumber.touched || virtualSlotBookingForm.submitted) && mobileNumber.errors?.required">
+               MobileNumber is required
+           </span>
+            </div>
+       </div>
+        <div class="form-group row">
+            <div class="col-12 ">
+                  <select name="cityID"  class="form-control"
+                  [(ngModel)]="selectedCity"  #cityID="ngModel" required  >
+                  <option [value]="undefined" disabled hidden>Select Your City </option>
+                         <option *ngFor="let item of City"
+                         [ngValue]="item">
+                          {{item.cityName}}
+                     </option>
+                  </select>
+
+                <span class="text-danger"
+                *ngIf="(cityID.touched || virtualSlotBookingForm.submitted) && cityID.errors?.required">
+                City is required
+            </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-12">
+
+               <select name="serviceType"  class="form-control" (change)="onServiceTypeChange($event.target.value)"
+            [(ngModel)]="slot.serviceType"  #serviceType="ngModel" required  >
+            <option [value]="undefined" disabled hidden>Select Service Type </option>
+            <!-- <option  [disabled]="true" selected>Select Slot Time</option> -->
+                   <option>Pooja Services</option>
+                   <option >Astrology Services</option>
+        </select>
+               <span class="text-danger"
+               *ngIf="(serviceType.touched || virtualSlotBookingForm.submitted) && serviceType.errors?.required">
+               Service Type is required
+           </span>
+            </div>
+    </div>
+
+    <div class="form-group row" *ngIf="showAstrology" >
+        <div class="col-12 ">
+        <select name="astrologyID"  class="form-control"  (change)="onAstrologyChange(selectedCategory)"
+        [(ngModel)]="selectedCategory"  #astrologyID="ngModel" required  >
+        <option [value]="undefined" disabled hidden>Select Astrology Services </option>
+               <option *ngFor="let category of AstroCategories"
+               [ngValue]="category"  >
+                {{category.astrologyName}}
+           </option>
+        </select>
+      <span class="text-danger"
+      *ngIf="(astrologyID.touched || virtualSlotBookingForm.submitted) && astrologyID.errors?.required">
+     Astrology Category is required
+  </span>
+  </div>
+  </div>
+
+
+     <div class="form-group row" *ngIf="showPooja">
+                <div class="col-12 ">
+                <select name="serviceID"  class="form-control"  (change)="onPoojaChange(selectedCategory)"
+                [(ngModel)]="selectedCategory"  #serviceID="ngModel" required  >
+                <option [value]="undefined" disabled hidden>Select Pooja Services </option>
+                       <option *ngFor="let pooja of PoojaServices"
+                       [ngValue]="pooja" >
+                        {{pooja.serviceName}}
+                   </option>
+                </select>
+              <span class="text-danger"
+              *ngIf="(serviceID.touched || virtualSlotBookingForm.submitted) && serviceID.errors?.required">
+              Pooja Service is required
+          </span>
+          </div>
+          </div>
+          <div class="form-group row" *ngIf="showPackage">
+            <div class="col-12 ">
+            <select name="packageName"  class="form-control"  (change)="onPackageChange(selectedPackage)"
+            [(ngModel)]="selectedPackage"  #packageId="ngModel" required  >
+            <option [value]="undefined" disabled hidden>Select Service Package </option>
+                   <option *ngFor="let pkg of ServicePackages"
+                   [ngValue]="pkg" >
+                    {{pkg.packageName}}
+               </option>
+            </select>
+          <span class="text-danger"
+          *ngIf="(packageId.touched || virtualSlotBookingForm.submitted) && packageId.errors?.required">
+          Category is required
+      </span>
+      </div>
+      </div>
+
+          <div class="form-group row">
+            <div class="col-12">
+              <input type="textbox" name="amount" id="amount"  [(ngModel)]="slot.amount" disabled="false"
+               placeholder="Amount" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-12">
+            <select name="virtualVideoCategoryID"  class="form-control"
+            [(ngModel)]="slot.virtualVideoCategoryID"  #virtualVideoCategoryID="ngModel" required  >
+            <option [value]="undefined" disabled hidden>Select video Type </option>
+                   <option *ngFor="let type of virtualVideoCategories"
+                   [value]="type.virtualVideoCategoryID" >
+                    {{type.videoType}}
+               </option>
+            </select>
+
+          <span class="text-danger"
+          *ngIf="(virtualVideoCategoryID.touched || virtualSlotBookingForm.submitted) && virtualVideoCategoryID.errors?.required">
+          Video Type is required
+      </span>
+      </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-12">
+          <input type="text" name="slotDate" id="slotDate"  [(ngModel)]="slot.slotDate"
+           placeholder="Select Booking Date" onfocus="this.type='date'" class="form-control" #slotDate="ngModel" required>
+           <span class="text-danger"
+           *ngIf="(slotDate.touched || virtualSlotBookingForm.submitted) && slotDate.errors?.required">
+           Slot Date is required
+       </span>
+        </div>
+
+        </div>
+        <div class="form-group row">
+          <div class="col-12">
+
+         <input type="text" name="slotTime" id="timeOfBirth"  [(ngModel)]="slot.slotTime"
+         placeholder="Select Booking Time" onfocus="(this.type='time')" class="form-control"  #slotTime="ngModel" required>
+         <span class="text-danger"
+         *ngIf="(slotTime.touched || virtualSlotBookingForm.submitted) && slotTime.errors?.required">
+         Slot Time is required
+           </span>
+
+
+          </div>
+      </div>
+        <div class="form-group row">
+            <div class="col-12">
+            <select name="languageID"  class="form-control"
+            [(ngModel)]="slot.languageID"  #languageID="ngModel" required  >
+            <option [value]="undefined" disabled hidden>Select Language </option>
+                   <option *ngFor="let lang of Languages"
+                   [value]="lang.languageID" >
+                    {{lang.languageName}}
+               </option>
+            </select>
+
+          <span class="text-danger"
+          *ngIf="(languageID.touched || virtualSlotBookingForm.submitted) && languageID.errors?.required">
+          Language is required
+      </span>
+      </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-12">
+          <textarea type="textbox" name="description" id="description"  [(ngModel)]="slot.description"
+           placeholder="Write your Questions here.." class="form-control"  ></textarea>
+
+        </div>
+</div>
+
+      <div class="form-group row">
+            <div class="col-1 ">
+        <input type="checkbox"  (change)="onCheckboxChange($event)" />
+            </div>
+            <div class="col-11 ">
+         <p> I Agree to the <a href="#">Terms and Conditions</a> and <a href="#">Disclaimer</a> of service.</p>
+         </div>
+      </div>
+        <div class="form-group row" >
+                <button class="col-6 offset-3 btn btn-primary">Book for Virtual pooja</button>
+        </div>
+
+    </div>
+</div>
+</form>
+</div>
+<app-footer></app-footer>
+

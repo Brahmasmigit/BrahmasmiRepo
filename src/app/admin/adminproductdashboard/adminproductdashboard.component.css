@@ -1,0 +1,17 @@
+body{
+  background:#f3f3f3;
+  color: #616f80;
+}
+
+
+.avatar-xs {
+  height: 2.3rem;
+  width: 2.3rem;
+}
+.selected{background-color:#B0BED9}
+
+::ng-deep .xlModal .modal-dialog {
+  max-width: 100%;
+  width: 90%;
+  text-align: center;
+}

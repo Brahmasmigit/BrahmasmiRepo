@@ -23,7 +23,14 @@ export class UserBillingService {
             catchError(this.handleError)
         );
     }
-
+    ProductBooking(booking)
+    {
+        return this.http.post(this.API_URL + 'ProductBooking/ProductItemBooking',booking)
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+    }
     getUserDetails(userid): Observable<any> {
 
       return this.http.get<any>(this.API_URL + "UserBooking/GetUserDetails/" + userid)

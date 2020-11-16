@@ -80,7 +80,27 @@ export class UtilitiesService {
             catchError(this.handleError)
         );
       }
-
+      GetMeetingDetails(bookingid): Observable<any> {
+        return this.http.get<any>(this.API_URL + "Meeting/GetMeetingDetails/" + bookingid )
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+      }
+      getlanguages(): Observable<any> {
+        return this.http.get<any>(this.API_URL + "Utilities/GetAllLanguages" )
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+      }
+      getStores(cityId): Observable<any> {
+        return this.http.get<any>(this.API_URL + "Utilities/GetStores/" + cityId)
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+      }
     private handleError(error: any) {
         console.error(error);
         return throwError(error);

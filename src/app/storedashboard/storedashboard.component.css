@@ -1,0 +1,154 @@
+body{
+  font-size:1em;
+   height: 100%;
+}
+
+h3 {
+  font-family: Lato;
+  text-align: center;
+  color:	#0080ff;
+}
+
+.circles{
+  height: 0.938em;
+  width: 0.938em;
+  border: 0.188em solid #000;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.active{
+    background-color:#ffa500;
+}
+
+.circle-desc-active{
+font-weight: bold;
+}
+
+.bar{
+  width: 16%;
+  height: 0.063em;
+  margin-bottom:0.469em;
+  border: 0.031em solid #000;
+  color:#000;
+  background-color:#000;
+  display: inline-block;
+  text-align:center;
+  margin:"0 auto";
+}
+
+.container{
+  min-width:320px;
+  margin: "0px auto";
+  text-align: center;
+}
+
+.circle-desc{
+ position: absolute;
+ top:5.000em;
+ font-size: 1.125em;
+ width: auto;
+ max-width:9.375em;
+ margin-left:-0.750em;
+}
+
+@media only screen and (max-width: 320px){
+   body {
+     font-size:20%
+  }
+}
+
+/*extra small devices*/
+@media only screen and (max-width: 600px){
+   body {
+     font-size:40%
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+   body {
+     font-size:60%
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  body {
+     font-size:80%
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  body {
+     font-size:100%
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+   body {
+     font-size:120%
+  }
+}
+
+
+ol.progtrckr {
+  margin: 0;
+  padding: 0;
+
+}
+
+ol.progtrckr li {
+  display: inline-block;
+  text-align: center;
+  line-height: 3.5em;
+}
+
+ol.progtrckr[data-progtrckr-steps="2"] li { width: 49%; }
+ol.progtrckr[data-progtrckr-steps="3"] li { width: 33%; }
+ol.progtrckr[data-progtrckr-steps="4"] li { width: 24%; }
+ol.progtrckr[data-progtrckr-steps="5"] li { width: 19%; }
+ol.progtrckr[data-progtrckr-steps="6"] li { width: 16%; }
+ol.progtrckr[data-progtrckr-steps="7"] li { width: 14%; }
+ol.progtrckr[data-progtrckr-steps="8"] li { width: 12%; }
+ol.progtrckr[data-progtrckr-steps="9"] li { width: 11%; }
+
+ol.progtrckr li.progtrckr-done {
+  color: black;
+  border-bottom: 4px solid yellowgreen;
+}
+ol.progtrckr li.progtrckr-todo {
+  color: silver;
+  border-bottom: 4px solid silver;
+}
+
+ol.progtrckr li:after {
+  content: "\00a0\00a0";
+}
+ol.progtrckr li:before {
+  position: relative;
+  bottom: -2.5em;
+  float: left;
+  left: 50%;
+  line-height: 1em;
+}
+ol.progtrckr li.progtrckr-done:before {
+  content: "\2713";
+  color: white;
+  background-color: yellowgreen;
+  height: 2.2em;
+  width: 2.2em;
+  line-height: 2.2em;
+  border: none;
+  border-radius: 2.2em;
+}
+ol.progtrckr li.progtrckr-todo:before {
+  content: "\039F";
+  color: silver;
+  background-color: white;
+  font-size: 2.2em;
+  bottom: -1.2em;
+}
+

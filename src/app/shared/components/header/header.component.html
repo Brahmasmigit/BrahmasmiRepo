@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top w-100" style="background-color: snow;">
   <a class="navbar-brand" href="#">Brahmasmi</a>
-  <span style="width: 500px;"></span>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,11 +22,28 @@
       <li class="nav-item" *ngIf="isLogin && !isVendor">
         <a class="nav-link"  routerLink="/userdashboard" routerLinkActive="active">My Dashboard</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/adminlogin" routerLinkActive="active">Admin</a>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="!isLogin" routerLink="/adminlogin" routerLinkActive="active">Admin</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Help</a>
+        <a class="nav-link" routerLink="/astrologyslotbooking" routerLinkActive="active">Astrology</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/storeregistration" routerLinkActive="active"  href="#">Register As A Store</a>
+      </li>
+      <li class="nav-item dropdown show">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Shop</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/products" routerLinkActive="active">Shop Pooja Kits</a>
+          <a class="dropdown-item" routerLink="/" routerLinkActive="active">Shop Pooja Items</a>
+
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja</a>
+      </li>
+      <li class="nav-item" *ngIf="isLogin && !isVendor">
+        <a class="nav-link" routerLink="/userproductorders" routerLinkActive="active">My Orders</a>
       </li>
 
     </ul>

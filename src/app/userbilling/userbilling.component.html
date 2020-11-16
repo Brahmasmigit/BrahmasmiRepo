@@ -64,8 +64,11 @@
                     <div class="row">
                       <div class="col-md-6">
                           <div class="form-group">
-                            <input type="checkbox" #checklocation (change)="isdifferentlocation($event)" /> <label class="ml-2">Perform Pooja in different Location?</label>
+                            <input type="checkbox" #checklocation (change)="isdifferentlocation($event)" />
+                            <label class="ml-2" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual'">Perform Service in different Location?</label>
+                            <label class="ml-2" *ngIf="cartType=='ecart'">Different Biiling Address?</label>
                           </div>
+
 
                       </div>
 
@@ -115,7 +118,7 @@
           <h5 class="card-header">Your Order</h5>
 
           <div class="conatiner-fluid">
-            <div class="row">
+            <div class="row" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual'">
                 <div class="col-md-12">
                   <table class="table table-bordered w-100" >
                     <thead>
@@ -138,7 +141,7 @@
                                  City:  {{item.CityName}}
 
                                 </li>
-                                <li class="mb-2 pl-2">
+                                <li class="mb-2 pl-2" *ngIf="item.PackageName">
                                 Package: {{item.PackageName}}
 
                                 </li>
@@ -166,6 +169,49 @@
                 </div>
 
             </div>
+            <div class="row" *ngIf="cartType=='ecart'">
+              <div class="col-md-12">
+                <table class="table table-bordered w-100" >
+                  <thead>
+                      <tr>
+
+                          <th>Product Name</th>
+                          <th>Price</th>
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of productitems;let i=index">
+
+                          <td>
+                            <ul class="list-style--none ">
+                              <li class="mb-2 pl-2">
+                               Product Name: {{item.ProductName}}
+                              </li>
+                              <li class="mb-2 pl-2">
+                               Quantity:  {{item.Quantity}}
+
+                              </li>
+                              <li class="mb-2 pl-2">
+                              Unit Price: {{item.ProductPrice}}
+
+                              </li>
+
+
+                          </ul>
+                          </td>
+
+                            <td>{{item.ProductCost}}</td>
+                      </tr>
+                        <tr>
+                          <td class="font-weight-bold">Total:</td>
+                          <td>{{total}}</td>
+                        </tr>
+                  </tbody>
+                </table>
+              </div>
+
+          </div>
         </div>
         <div class="card-body">
 
@@ -235,7 +281,8 @@
                   </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="Confirm()">Confirm</button>
+                <button type="button" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual'" class="btn btn-primary" (click)="Confirm()">Confirm</button>
+                <button type="button" *ngIf="cartType=='ecart'" class="btn btn-primary" (click)="ProductConfirm()">Confirm</button>
                 <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cancel</button>
               </div>
             </ng-template>

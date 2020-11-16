@@ -1,0 +1,61 @@
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
+  <a class="navbar-brand" href="#">Brahmasmi</a>
+  <span style="width: 500px;"></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Help</a>
+      </li>
+
+    </ul>
+
+
+  </div>
+</nav>
+<div class="container-fluid jumbotron" style="background-color: linen;" >
+  <div class="col-md-5 mt-10 w-50" style="margin-left:30%">
+    <div class="card border-primary mb-3 w-100">
+        <div class="card-header font-weight-bold text-center">Virtual Pooja</div>
+
+        <div class="card-body" style="height: 100%">
+
+          <form (ngSubmit)="GetMeetingDetails()" class="contact-form form-validate"  novalidate="novalidate">
+            <div class="row">
+                <div class="col-md-6  offset-3">
+                    <div class="form-group col-centered">
+                      <input type="username" class="form-control" required id="username" name="username"  placeholder="Enter your Name" [(ngModel)]="loginModel.username">
+                    </div>
+                </div>
+
+
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6  offset-4">
+                      <div class="form-group col-centered">
+                        <button type="submit"  class="btn btn-primary col-8" >Join Meeting</button>
+                      </div>
+                  </div>
+
+
+
+                  </div>
+                  </form>
+
+
+
+        </div>
+
+    </div>
+  </div>
+  </div>
+

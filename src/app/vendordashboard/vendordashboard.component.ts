@@ -81,6 +81,11 @@ export class VendordashboardComponent implements OnInit {
 
       });
   }
+  Meeting(bookingId)
+  {
+    sessionStorage.setItem("BookingId",bookingId);
+    this.router.navigate(['/zoomuser']);
+  }
   CalendarTab(CalendarTab)
   {
     this.getOngoing(this.vendorId,CalendarTab);
