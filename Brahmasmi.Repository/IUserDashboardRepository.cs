@@ -8,5 +8,7 @@ namespace Brahmasmi.Repository
     {
         List<UserDashboard> GetOngoing(int userid, string calendarType);
         int UserRatings(Ratings ratings);
+
+        List<StoreDashboard> GetUserProductDetails(int userid, string usertype, string calendarType);
     }
 }

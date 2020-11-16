@@ -41,5 +41,17 @@ namespace Brahmasmi.Repository
             return result;
 
         }
+        public List<StoreDashboard> GetUserProductDetails(int userid, string usertype, string calendarType)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("userid", userid, DbType.Int32);
+            dbParam.Add("usertype", usertype, DbType.String);
+            dbParam.Add("calendartype", calendarType, DbType.String);
+            var result = dapper.GetAll<StoreDashboard>("[dbo].[SP_USERPRODUCTORDERDETAILS]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
     }
 }

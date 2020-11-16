@@ -179,5 +179,35 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, ex);
             }
         }
+        [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<Language>> GetAllLanguages()
+        {
+            try
+            {
+                var result = await Task.FromResult(utilitiesRepository.GetLanguages());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet("{cityId}")]
+        public async Task<ActionResult<StoreVendor>> GetStores(int cityId)
+        {
+            try
+            {
+                var result = await Task.FromResult(utilitiesRepository.GetStores(cityId));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, ex);
+            }
+        }
     }
 }

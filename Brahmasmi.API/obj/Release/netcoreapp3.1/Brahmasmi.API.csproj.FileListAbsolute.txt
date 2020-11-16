@@ -2,6 +2,8 @@ C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\web.config
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\appsettings.Development.json
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\appsettings.json
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Properties\launchSettings.json
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\brahmasmidevapi - Web Deploy\profile.arm.json
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\brahmasmisitapi - Web Deploy\profile.arm.json
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Brahmasmi.API.exe
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Brahmasmi.API.deps.json
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Brahmasmi.API.runtimeconfig.json
@@ -34,6 +36,8 @@ C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Microsoft.Ide
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Razorpay.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\SendGrid.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Serilog.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Serilog.Extensions.Logging.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Serilog.Extensions.Logging.File.dll
@@ -41,6 +45,7 @@ C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Serilog.Forma
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Serilog.Sinks.Async.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Serilog.Sinks.File.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Serilog.Sinks.RollingFile.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\StarkbankEcdsa.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\System.Data.SqlClient.dll
@@ -67,6 +72,8 @@ C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Brahmasmi.Ser
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.csprojAssemblyReference.cache
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.AssemblyInfoInputs.cache
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.AssemblyInfo.cs
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.csproj.CoreCompileInputs.cache
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.RazorTargetAssemblyInfo.cache
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.csproj.CopyComplete
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\staticwebassets\Brahmasmi.API.StaticWebAssets.Manifest.cache
@@ -74,10 +81,3 @@ C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\staticwebasse
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.pdb
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.genruntimeconfig.cache
-C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\brahmasmidevapi - Web Deploy\profile.arm.json
-C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.csproj.CoreCompileInputs.cache
-C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Release\netcoreapp3.1\Brahmasmi.API.MvcApplicationPartsAssemblyInfo.cache
-C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Razorpay.dll
-C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\SendGrid.dll
-C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\StarkbankEcdsa.dll
-C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\brahmasmisitapi - Web Deploy\profile.arm.json

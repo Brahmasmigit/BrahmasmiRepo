@@ -57,5 +57,20 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<StoreDashboard>> GetUserProductOrderdetails(int userid, string usertype, string calendartype)
+        {
+            try
+            {
+                var result = await Task.FromResult(userDashboardRepository.GetUserProductDetails(userid, usertype, calendartype));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, ex);
+            }
+        }
     }
 }

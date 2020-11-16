@@ -66,6 +66,24 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        [EnableCors("CorsPolicy")]
+        [HttpGet("{MobileNumber}")]
+        public async Task<ActionResult<Store>> StoreExist(string mobileNumber)
+        {
+            try
+            {
+                logger.LogInformation(mobileNumber);
+                var result = await Task.FromResult(loginRepository.StoreExist(mobileNumber));
+                logger.LogInformation("end");
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
         [HttpPost]
         public async Task<ActionResult<OTPVerification>> SendOTP(OTPVerification otpVerify)
         {

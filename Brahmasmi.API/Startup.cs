@@ -64,6 +64,13 @@ namespace Brahmasmi.API
             services.AddScoped<IProductDetailsRepository, ProductDetailsRepository>();
             services.AddScoped<IProductBookingRepository, ProductBookingRepository>();
             services.AddScoped<IStoreRepository, StoreRepository>();
+            services.AddScoped<IAstrologyCategoriesRepository, AstrologyCategoriesRepository>();
+            services.AddScoped<IAstrologySlotBookingRepository, AstrologySlotBookingRepository>();
+            services.AddScoped<IStoreStockRepository, StoreStockRepository>();
+            services.AddScoped<IStoreDashboardRepository, StoreDashboardRepository>();
+            services.AddScoped<IAdminProductRepository, AdminProductRepository>();
+            services.AddScoped<IVirtualSlotBookingRepository,VirtualSlotBookingRepository>();
+            services.AddScoped<IVirtualVideoCategoryRepository, VirtualVideoCategoryRepository>();
             services.AddScoped<IDapper, Dapperr>();
         }
 

@@ -58,5 +58,30 @@ namespace Brahmasmi.Models
         public string MeetingId { get; set; }
         public string MeetingPassword { get; set; }
         public string Signature { get; set; }
+        public string APIKey { get; set; }
+
+        public int BookingId { get; set; }
+        
+    }
+    public class MeetingCredentials
+    {
+        public string APIKey { get; set; }
+        public string APISecret { get; set; }
+    }
+    public class Language
+    {
+        public int LanguageID { get; set; }
+        public string LanguageName { get; set; }
+       
+    }
+    public class StoreVendor
+    {
+        public int StoreId { get; set; }
+        public string StoreName { get; set; }
+        public string MobileNumber { get; set; }
+        public string EmailId { get; set; }
+        public string Address { get; set; }
+
+        public string CityName { get; set; }
     }
 }

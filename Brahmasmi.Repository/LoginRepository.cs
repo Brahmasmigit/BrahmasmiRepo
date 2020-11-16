@@ -37,5 +37,15 @@ namespace Brahmasmi.Repository
             return result;
 
         }
+        public Store StoreExist(string mobilenumber)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("MobileNumber", mobilenumber, DbType.String);
+            var result = dapper.Get<Store>("[dbo].[SP_Get_Store]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
     }
 }

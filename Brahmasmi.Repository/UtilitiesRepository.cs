@@ -122,6 +122,7 @@ namespace Brahmasmi.Repository
             dbParam.Add("MeetingId", meeting.MeetingId, DbType.String);
             dbParam.Add("MeetingPassword", meeting.MeetingPassword, DbType.String);
             dbParam.Add("MEETINGSIGNATURE", meeting.Signature, DbType.String);
+            dbParam.Add("BookingId", meeting.BookingId, DbType.String);
             dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
             var result = dapper.Execute("[dbo].[SP_SCHEDULEMEETING]"
                  , dbParam,
@@ -129,13 +130,42 @@ namespace Brahmasmi.Repository
             return result;
 
         }
-        public Meeting GetMeetingDetails()
+        public Meeting GetMeetingDetails(int bookingid)
         {
             var dbParam = new DynamicParameters();
+            dbParam.Add("bookingid", bookingid, DbType.Int32);
             var result = dapper.Get<Meeting>("[dbo].[SP_GETMEETINGDETAILS]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);
             return result;
+        }
+        public List<Language> GetLanguages()
+        {
+            var dbParam = new DynamicParameters();
+            var result = dapper.GetAll<Language>("[dbo].[SP_Get_Languages]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
+        public List<StoreVendor> GetStores(int cityId)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("cityId", cityId, DbType.Int32);
+            var result = dapper.GetAll<StoreVendor>("[dbo].[SP_GETSTORES]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
+        public MeetingCredentials GetMeetingCredentials()
+        {
+            var dbParam = new DynamicParameters();
+            var result = dapper.Get<MeetingCredentials>("[dbo].[SP_GETMEETINGCREDENTIALS]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
         }
     }
 }

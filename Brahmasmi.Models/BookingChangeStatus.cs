@@ -8,7 +8,6 @@ namespace Brahmasmi.Models
         public int BookingStatusId { get; set; }
 
 
-
     }
 }
 

@@ -9,5 +9,8 @@ namespace Brahmasmi.Repository
         int BookingChangeStatus(BookingChangeStatus booking);
 
         int UpdateVendor(VendorBooking booking);
+        int ProductBookingChangeStatus(BookingChangeStatus booking);
+
+        int UpdateStore(StoreBooking booking);
     }
 }

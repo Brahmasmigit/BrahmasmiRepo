@@ -29,6 +29,18 @@ namespace Brahmasmi.Repository
                  commandType: CommandType.StoredProcedure);
             return result;
         }
+        public int ProductBookingChangeStatus(BookingChangeStatus booking)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("BookingId", booking.BookingId, DbType.Int32);
+            dbParam.Add("BookingStatusId", booking.BookingStatusId, DbType.Int32);
+
+            dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
+            int result = dapper.Execute("[dbo].[SP_ProductCHANGEBOOKINGSTATUS]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+        }
         public int UpdateVendor(VendorBooking booking)
         {
             var dbParam = new DynamicParameters();
@@ -37,6 +49,18 @@ namespace Brahmasmi.Repository
 
             dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
             int result = dapper.Execute("[dbo].[SP_ADMINUPDATEVENDOR]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+        }
+        public int UpdateStore(StoreBooking booking)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("BookingId", booking.BookingId, DbType.Int32);
+            dbParam.Add("StoreId", booking.StoreId, DbType.Int32);
+
+            dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
+            int result = dapper.Execute("[dbo].[SP_ADMINUPDATESTORE]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);
             return result;

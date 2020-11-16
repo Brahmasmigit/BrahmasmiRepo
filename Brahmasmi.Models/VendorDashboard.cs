@@ -7,6 +7,8 @@ namespace Brahmasmi.Models
         public int ServiceId { get; set; }
         public string ServiceName { get; set; }
         public string BookingId { get; set; }
+
+        public string BookingType { get; set; }
         public string BookingDate { get; set; }
         public string BookingLocation { get; set; }
         public string BookingTime { get; set; }

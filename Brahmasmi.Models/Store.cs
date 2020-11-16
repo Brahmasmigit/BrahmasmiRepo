@@ -17,5 +17,7 @@ namespace Brahmasmi.Models
         public string Status { get; set; }
         public string CreatedBy { get; set; }
         public string IsDelete { get; set; }
+
+        public string UserTypeID { get; set; }
     }
 }

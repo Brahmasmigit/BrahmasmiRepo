@@ -28,6 +28,12 @@ namespace Brahmasmi.Repository
 
         int ScheduleMeeting(Meeting meeting);
 
-        Meeting GetMeetingDetails();
+        Meeting GetMeetingDetails(int bookingid);
+
+        List<Language> GetLanguages();
+
+        List<StoreVendor> GetStores(int cityId);
+
+        MeetingCredentials GetMeetingCredentials();
     }
 }

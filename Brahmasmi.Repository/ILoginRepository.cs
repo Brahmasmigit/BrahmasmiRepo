@@ -7,5 +7,7 @@ namespace Brahmasmi.Repository
     {
         User UserLogin(string mobilenumber);
         Vendor VendorLogin(string mobilenumber);
+
+        Store StoreExist(string mobilenumber);
     }
 }

@@ -9,5 +9,6 @@ namespace Brahmasmi.Repository
     {
         List<Product> GetAllProducts(int cityID);
         Product GetProduct(int ProductID);
+
     }
 }

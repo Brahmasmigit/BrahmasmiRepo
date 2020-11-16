@@ -58,5 +58,26 @@ namespace Brahmasmi.Repository
             return result;
 
         }
+        public List<Package> GetUserPackageList(int ServiceID)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("ServiceID", ServiceID, DbType.Int32);
+            var result = dapper.GetAll<Package>("[dbo].[SP_Get_ServicePackages]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
+        public Package GetPackagePrice(ServicePackage service)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("PackageID", service.PackageID, DbType.Int32);
+            dbParam.Add("ServiceID", service.ServiceID, DbType.Int32);
+            var result = dapper.Get<Package>("[dbo].[SP_Get_ServicePrice]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
     }
 }

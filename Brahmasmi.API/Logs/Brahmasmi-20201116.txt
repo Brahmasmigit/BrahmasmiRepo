@@ -1,0 +1,77 @@
+2020-11-16T07:07:07.8942879+05:30  [INF] Now listening on: "http://127.0.0.1:38380" (d826f4b8)
+2020-11-16T07:07:07.9185386+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-11-16T07:07:07.9193695+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-11-16T07:07:07.9194136+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-11-16T07:57:23.3175231+05:30 0HM49Q0GNPO1G:00000003 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'SP_SCHEDULEMEETING' expects parameter '@BookingId', which was not supplied.
+   at Brahmasmi.Service.Dapperr.Execute(String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 100
+   at Brahmasmi.Repository.UtilitiesRepository.ScheduleMeeting(Meeting meeting) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\UtilitiesRepository.cs:line 126
+   at Brahmasmi.API.Controllers.MeetingController.ScheduleMeeting(Meeting meeting) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\MeetingController.cs:line 46
+   at lambda_method(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:7990e7a6-3d89-4148-8ed2-8378e7397567
+Error Number:201,State:4,Class:16
+2020-11-16T07:58:49.9529576+05:30 0HM49Q0GNPO1H:00000002 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'SP_SCHEDULEMEETING' expects parameter '@BookingId', which was not supplied.
+   at Brahmasmi.Service.Dapperr.Execute(String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 100
+   at Brahmasmi.Repository.UtilitiesRepository.ScheduleMeeting(Meeting meeting) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\UtilitiesRepository.cs:line 126
+   at Brahmasmi.API.Controllers.MeetingController.ScheduleMeeting(Meeting meeting) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\MeetingController.cs:line 46
+   at lambda_method(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:7990e7a6-3d89-4148-8ed2-8378e7397567
+Error Number:201,State:4,Class:16
+2020-11-16T08:00:24.3096521+05:30  [INF] Now listening on: "http://127.0.0.1:43425" (d826f4b8)
+2020-11-16T08:00:24.3401306+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-11-16T08:00:24.3425339+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-11-16T08:00:24.3452798+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-11-16T08:03:52.0916409+05:30 0HM49QU99OQ2H:00000005 [INF] 333333333 (929aa6ab)
+2020-11-16T08:03:52.1167533+05:30 0HM49QU99OQ2H:00000005 [INF] end (b0c485d7)
+2020-11-16T08:08:01.5844571+05:30 0HM49QU99OQ2J:00000006 [INF] 900000 (e95fb692)
+2020-11-16T08:08:01.5940977+05:30 0HM49QU99OQ2J:00000006 [INF] end (b0c485d7)
+2020-11-16T08:08:01.6186964+05:30 0HM49QU99OQ2I:00000009 [INF] 900000 (e95fb692)
+2020-11-16T08:08:01.6273054+05:30 0HM49QU99OQ2I:00000009 [INF] end (b0c485d7)
+2020-11-16T08:12:19.1562135+05:30  [INF] Now listening on: "http://127.0.0.1:39283" (d826f4b8)
+2020-11-16T08:12:19.1723593+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-11-16T08:12:19.1725123+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-11-16T08:12:19.1725536+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-11-16T08:14:05.8370105+05:30 0HM49R4UBRL03:00000006 [INF] 828282 (f15684ef)
+2020-11-16T08:14:05.8447148+05:30 0HM49R4UBRL03:00000006 [INF] end (b0c485d7)
+2020-11-16T08:14:05.8602891+05:30 0HM49R4UBRL01:00000007 [INF] 828282 (f15684ef)
+2020-11-16T08:14:05.8643570+05:30 0HM49R4UBRL01:00000007 [INF] end (b0c485d7)
+2020-11-16T08:20:13.0702162+05:30 0HM49R4UBRL09:00000008 [INF] 77780 (4a73e774)
+2020-11-16T08:20:13.0842323+05:30 0HM49R4UBRL09:00000008 [INF] end (b0c485d7)
+2020-11-16T08:35:50.9195680+05:30 0HM49R4UBRL0D:00000006 [INF] 838485 (6d0bd8b8)
+2020-11-16T08:35:50.9248923+05:30 0HM49R4UBRL0D:00000006 [INF] end (b0c485d7)
+2020-11-16T08:35:50.9337258+05:30 0HM49R4UBRL0C:00000008 [INF] 838485 (6d0bd8b8)
+2020-11-16T08:35:50.9366202+05:30 0HM49R4UBRL0C:00000008 [INF] end (b0c485d7)
+2020-11-16T08:37:51.0220416+05:30 0HM49R4UBRL0C:00000014 [INF] 656565 (5ae43efc)
+2020-11-16T08:37:51.0276660+05:30 0HM49R4UBRL0C:00000014 [INF] end (b0c485d7)
+2020-11-16T08:37:51.0384338+05:30 0HM49R4UBRL0D:00000013 [INF] 656565 (5ae43efc)
+2020-11-16T08:37:51.0411868+05:30 0HM49R4UBRL0D:00000013 [INF] end (b0c485d7)
+2020-11-16T08:37:51.0556498+05:30 0HM49R4UBRL0C:00000015 [INF] 656565 (5ae43efc)
+2020-11-16T08:37:51.0698208+05:30 0HM49R4UBRL0C:00000015 [INF] end (b0c485d7)
+2020-11-16T08:41:24.6009130+05:30 0HM49R4UBRL0E:00000006 [INF] end (b0c485d7)
+2020-11-16T08:41:56.5978900+05:30 0HM49R4UBRL0D:00000029 [INF] 31212121 (e7555a5a)
+2020-11-16T08:41:56.6050312+05:30 0HM49R4UBRL0D:00000029 [INF] end (b0c485d7)
