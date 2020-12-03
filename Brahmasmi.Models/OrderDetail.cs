@@ -11,6 +11,8 @@ namespace Brahmasmi.Models
         public string ModeofPayment { get; set; }
         public string ServiceName { get; set; }
 
+        public string BookingType { get; set; }
+
 
     }
 }

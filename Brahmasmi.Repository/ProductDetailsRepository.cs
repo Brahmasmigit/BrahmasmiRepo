@@ -27,5 +27,15 @@ namespace Brahmasmi.Repository
             return result;
 
         }
+        public List<ProductKeyInsights> GetProductKeyInsights(int ProductID)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("ProductID", ProductID, DbType.Int32);
+            var result = dapper.GetAll<ProductKeyInsights>("[dbo].[SP_Get_ProductKeyInsights]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
     }
 }

@@ -27,11 +27,27 @@ namespace Brahmasmi.API.Controllers
 
         [EnableCors("CorsPolicy")]
         [HttpGet("{CityID}")]
-        public async Task<ActionResult<Product>> GetAllProducts(int cityID)
+        public async Task<ActionResult<Product>> GetAllProductsByCity(int cityID)
         {
             try
             {
                 var result = await Task.FromResult(productRepository.GetAllProducts(cityID));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [EnableCors("CorsPolicy")]
+        [HttpPost]
+        public async Task<ActionResult<Product>> GetAllProducts(ProductParamsModel productParamsModel)
+        {
+            try
+            {
+                var result = await Task.FromResult(productRepository.GetAllProducts(productParamsModel));
                 return Ok(result);
             }
             catch (Exception ex)

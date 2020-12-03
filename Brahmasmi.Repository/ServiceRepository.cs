@@ -57,7 +57,7 @@ namespace Brahmasmi.Repository
             dbParam.Add("CityID", serviceModel.CityID, DbType.Int32);
             dbParam.Add("ServiceName", serviceModel.ServiceName, DbType.String);
             dbParam.Add("ServiceImageFile", serviceModel.ServiceImageFile, DbType.String);
-            dbParam.Add("Servcie_Short_Description", serviceModel.Servcie_Short_Description, DbType.String);
+            dbParam.Add("Servcie_Short_Description", serviceModel.Service_Short_Description, DbType.String);
             dbParam.Add("Service_Long_Description", serviceModel.Service_Long_Description, DbType.String);
             dbParam.Add("ServiceImage", bytes, DbType.Binary);
             dbParam.Add("Action", serviceModel.Action, DbType.String);

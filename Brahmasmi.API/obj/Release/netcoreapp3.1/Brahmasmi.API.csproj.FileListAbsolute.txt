@@ -2,8 +2,7 @@ C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\web.config
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\appsettings.Development.json
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\appsettings.json
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Properties\launchSettings.json
-C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\brahmasmidevapi - Web Deploy\profile.arm.json
-C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\brahmasmisitapi - Web Deploy\profile.arm.json
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Properties\ServiceDependencies\brahmasmiapi - Web Deploy\profile.arm.json
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Brahmasmi.API.exe
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Brahmasmi.API.deps.json
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Release\netcoreapp3.1\Brahmasmi.API.runtimeconfig.json

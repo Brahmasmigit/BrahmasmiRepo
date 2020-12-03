@@ -95,7 +95,7 @@ namespace Brahmasmi.API.Controllers
                 serviceModel.ServiceTypeID = serviceTypeID;
                 serviceModel.CityID = cityID;
                 serviceModel.ServiceName = serviceName;
-                serviceModel.Servcie_Short_Description = serviceShortDescription;
+                serviceModel.Service_Short_Description = serviceShortDescription;
                 serviceModel.Service_Long_Description = serviceLongDescription;
                 serviceModel.Action = action;
                 serviceModel.ServiceImageFile = imageFileName;

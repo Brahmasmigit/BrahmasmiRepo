@@ -8,5 +8,6 @@ namespace Brahmasmi.Repository
     public interface IProductDetailsRepository
     {
         List<ProductDetails> GetProductDetails(int ProductID);
+        List<ProductKeyInsights> GetProductKeyInsights(int ProductID);
     }
 }

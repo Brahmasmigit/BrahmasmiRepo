@@ -21,7 +21,7 @@ namespace Brahmasmi.Repository
         {
             var dbParam = new DynamicParameters();
             dbParam.Add("cityID", cityID, DbType.Int32);
-            var result = dapper.GetAll<Product>("[dbo].[SP_Get_AllProducts]"
+            var result = dapper.GetAll<Product>("[dbo].[SP_Get_AllProductsByCity]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);
             return result;
@@ -32,6 +32,17 @@ namespace Brahmasmi.Repository
             var dbParam = new DynamicParameters();
             dbParam.Add("ProductID", productID, DbType.Int32);
             var result = dapper.Get<Product>("[dbo].[SP_Get_Product]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
+        public List<Product> GetAllProducts(ProductParamsModel productParamsModel)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("cityID", productParamsModel.CityID, DbType.Int32);
+            dbParam.Add("ProductcategoryID", productParamsModel.ProductCategoryID, DbType.Int32);
+            var result = dapper.GetAll<Product>("[dbo].[SP_Get_AllProducts]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);
             return result;

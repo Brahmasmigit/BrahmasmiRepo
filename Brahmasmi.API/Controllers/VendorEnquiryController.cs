@@ -29,16 +29,13 @@ namespace Brahmasmi.API.Controllers
         {
             try
             {
-
                 var result = await Task.FromResult(vendorEnquiryRepository.VendorEnquiry(vendorEnquiry));
-                //throw new Exception("Exception while fetching...");
-                logger.LogInformation("end");
                 return Ok(result);
             }
             catch (Exception ex)
             {
                 logger.LogError($"Exception at Login Method: {ex}");
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, ex);
             }
         }
         [EnableCors("CorsPolicy")]
@@ -47,17 +44,13 @@ namespace Brahmasmi.API.Controllers
         {
             try
             {
-                //logger.LogInformation(stateid.ToString());
                 var result = await Task.FromResult(vendorEnquiryRepository.GetVendor());
-                //throw new Exception("Exception while fetching...");
-                // logger.LogInformation("end");
-
                 return Ok(result);
             }
             catch (Exception ex)
             {
                 logger.LogError($"Exception at Login Method: {ex}");
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, ex);
             }
         }
     }
