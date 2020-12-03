@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup ,FormsModule} from "@angular/forms";
 import 'quill-emoji/dist/quill-emoji.js';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
-
+import {ToastService} from '../shared/services/toastservice';
 @Component({
   selector: 'app-adminservicedetails',
   templateUrl: './adminservicedetails.component.html',
@@ -27,7 +27,7 @@ export class AdminservicedetailsComponent implements OnInit {
  serviceForm:FormGroup;
  selectedIndex:any;
  constructor(private adminServiceDetailsService: AdminServiceDetailsService, private route: Router,
-  private domSanitizer:DomSanitizer,private formBuilder:FormBuilder) {
+  private domSanitizer:DomSanitizer,private formBuilder:FormBuilder,private toastService:ToastService) {
   this.addModules();
 }
 
@@ -57,7 +57,7 @@ onEdit(index: any)
 {
   console.log(index);
    var ArrayBuffer=index.serviceImage;
-     console.log(ArrayBuffer.length);
+    // console.log(ArrayBuffer.length);
    this.imageURL = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,' + ArrayBuffer);
    //this.UploadedFile.name=index.
    this.serviceModel.serviceTypeID=index.serviceTypeID;
@@ -69,7 +69,7 @@ onEdit(index: any)
   this.serviceModel.cityID=index.cityID;
   //console.log(this.serviceModel.cityID);
   this.serviceModel.serviceID=index.serviceID;
-  this.serviceModel.service_Short_Description=index.servcie_Short_Description;
+  this.serviceModel.service_Short_Description=index.service_Short_Description;
   this.serviceModel.service_Long_Description=index.service_Long_Description;
   this.btntext="Update";
 }
@@ -83,8 +83,11 @@ onDelete(index:any)
     (data) => {
         if (data) {
             var c= data;
-            alert('Service Type Deleted Successfully...')
-            this.ngOnInit();
+            this.showError('Service Deleted Successfully...')
+            //this.ngOnInit();
+            this.getServices();
+            this.serviceModel={};
+            this.imageURL="";
         }
     },
     (error) => {
@@ -97,7 +100,7 @@ onDelete(index:any)
 
   AddService()  {
     if (this.UploadedFile == null || this.UploadedFile == undefined) {
-      alert("Please upload a file");
+      this.showError("Please upload a file");
       return;
     }
       console.log(this.serviceModel);
@@ -139,15 +142,18 @@ onDelete(index:any)
           var c = data;
           if(this.btntext=="Save")
           {
-            alert('Service Saved Successfully...')
+            this.showError('Service Saved Successfully...')
           }
           if(this.btntext=="Update")
           {
-            alert('Service Updated Successfully...')
+            this.showError('Service Updated Successfully...')
           }
           this.btntext="Save";
-          this.ngOnInit();
-         //this.serviceForm.reset();
+          //this.ngOnInit();
+          this.getServices();
+          this.serviceModel={};
+          this.UploadedFile =null;
+          this.imageURL="";
         }
       },
       (error) => {
@@ -239,5 +245,13 @@ onDelete(index:any)
 
       ]
     }
+  }
+  showError(msg) {
+    this.toastService.show(msg, {
+      classname: 'bg-info text-light',
+      delay: 4000 ,
+      autohide: true,
+      headertext: 'Service Details!'
+    });
   }
 }

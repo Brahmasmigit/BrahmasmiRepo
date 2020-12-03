@@ -1,0 +1,98 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #307c06;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+
+  width: 100%;
+
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  opacity: 0.6;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+  color: #d51313;
+  font-weight: bold;
+}
+input[type=tel], input[type=date] {
+  width: 33%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  opacity: 0.6;
+}
+
+input[type=tel]:focus, input[type=date]:focus {
+  background-color: #ddd;
+  outline: none;
+  color: #d51313;
+  font-weight: bold;
+}
+.form{
+  background-image: url('/assets/background_bg.png');
+  padding: 20px;
+
+}
+
+input[type=checkbox]{
+    padding-left: 20px;
+}
+.pandit{
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  opacity: 0.6;
+}
+.city{
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  opacity: 0.6;
+}
+.state{
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  opacity: 0.6;
+}
+.country{
+  width: 50%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  opacity: 0.6;
+}
+label{
+margin-left: 40px;
+}

@@ -16,12 +16,35 @@ export class ProductdetailsComponent implements OnInit {
   errorMessage:any;
   productDetails:any={};
   product:any;
+  productCategoryID:any;
   productID:any;
+  paramsModel:any={};
+  productKeyInsights:any;
+  ShowKeyInsights:boolean=false;
+  ShowItems:boolean=false;
+
   constructor(private productDetailsService:ProductDetailsService,private route: Router,private toastService:ToastService,
     private domSanitizer:DomSanitizer ,private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.productID= this.activatedRoute.snapshot.params['productID'];
-    this.getProductDetails( this.productID);
+    this.productCategoryID=Number(sessionStorage.getItem("productCategoryID"));
+ 
+    console.log("categoryID")
+    console.log(this.productCategoryID)
+    this.paramsModel.productID=Number(this.productID);
+    this.paramsModel.productCategoryID=Number(this.productCategoryID);
+    if( this.paramsModel.productCategoryID==3)
+    {
+      this.getProductDetails( this.productID);
+      this.ShowKeyInsights=false;
+      this.ShowItems=true;
+    }
+    else{
+      this.getKeyInsights( this.productID);
+      this.ShowKeyInsights=true;
+      this.ShowItems=false;
+    }
+  
     this.getProduct( this.productID);
   }
   getProduct(productID)
@@ -42,12 +65,30 @@ export class ProductdetailsComponent implements OnInit {
       });
   }
 
-  getProductDetails(productID)
+  getKeyInsights(productID)
   {
-    this.productDetailsService.getProductDetails(productID).subscribe(
+    this.productDetailsService.getProductKeyInsights(productID).subscribe(
+      (data) => {
+          if (data) {
+              this.productKeyInsights = data;
+              console.log(data)
+          }
+
+      },
+      (error) => {
+          this.errorMessage = error;
+      },
+      () => {
+
+      });
+  }
+  getProductDetails(productid)
+  {
+    this.productDetailsService.getProductDetails(productid).subscribe(
       (data) => {
           if (data) {
               this.productDetails = data;
+              console.log(data)
           }
 
       },

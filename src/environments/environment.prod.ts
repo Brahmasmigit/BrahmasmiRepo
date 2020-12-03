@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  API_URL: 'https://brahmasmisitapi.azurewebsites.net/api/',
-  RazorKey:'rzp_test_1tnYvYEJ6NeFQB'
+  API_URL: 'https://brahmasmiapi.azurewebsites.net/api/',
+  RazorKey:'rzp_live_Ju4oDK1n85idRm'
 };

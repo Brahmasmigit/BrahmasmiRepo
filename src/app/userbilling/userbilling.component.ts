@@ -38,6 +38,7 @@ export class UserbillingComponent implements OnInit {
   private razorKey : any= environment.RazorKey;
   @ViewChild('mymodal') mymodal: ElementRef;
   virtualuser:any={};
+  gst:number=8;
   constructor(private toastService: ToastService,
     private activatedRoute: ActivatedRoute,
     private router:Router,
@@ -120,15 +121,19 @@ export class UserbillingComponent implements OnInit {
           this.subtotal +=  this.productitems[i].ProductCost;
         });
         this.total=this.subtotal;
+        this.total = (this.total * this.gst/100) + this.total;
+        this.total=Number(this.total.toFixed());
         }
         else
         {
           this.subtotal=0;
           this.total=0;
+          this.gst=0;
         }
       }
 
-    else if(sessionStorage.getItem("cartType")=="service" || sessionStorage.getItem("cartType")=="astrology" || sessionStorage.getItem("cartType")=="virtual")
+    else if(sessionStorage.getItem("cartType")=="service" || sessionStorage.getItem("cartType")=="astrology" || sessionStorage.getItem("cartType")=="virtual"
+    || sessionStorage.getItem("cartType")=="pandit")
     {
     if(sessionStorage.getItem("orderdetails")!=null)
     {
@@ -137,11 +142,14 @@ export class UserbillingComponent implements OnInit {
         this.subtotal += element.Total;
       });
       this.total=this.subtotal;
+      this.total = (this.total * this.gst/100) + this.total;
+      this.total=Number(this.total.toFixed());
     }
     else
     {
       this.subtotal=0;
       this.total=0;
+      this.gst=0;
     }
    }
   }
@@ -278,7 +286,7 @@ export class UserbillingComponent implements OnInit {
       (data) => {
         if(data.isPaymentSuccess)
         {
-          if(this.cartType=="service" || this.cartType=="astrology" || this.cartType=="virtual")
+          if(this.cartType=="service" || this.cartType=="astrology" || this.cartType=="virtual" || this.cartType=="pandit")
           {
           this.Confirm();
           }
@@ -305,7 +313,7 @@ export class UserbillingComponent implements OnInit {
     "key": this.razorKey,
     "amount": 0, // amount should be in paise format to display Rs 1255 without decimal point
     "currency": 'INR',
-    "image": '../../assets/Astrology.jpeg',
+    "image": '../../assets/Logoicon.png',
     "name": '', // company name or product name
     "description": 'Brahmasmi',  // product description
     "order_id": '', // order_id created by you in backend
@@ -346,7 +354,7 @@ export class UserbillingComponent implements OnInit {
       for(var i=0;i<this.cartitems.length;i++)
       {
         this.cartitems[i].BookingLocation=this.userdetails.address;
-        if(this.cartType=="virtual")
+        if(this.cartType=="virtual" || this.cartType=="pandit")
         {
         this.cartitems[i].BookingType=this.cartType + this.cartitems[i].serviceType;
         }
@@ -368,6 +376,7 @@ export class UserbillingComponent implements OnInit {
         this.cartitems[i].IsDifferentLocation= this.ischecked ? 'Y' : 'N';
         this.cartitems[i].OrderNo='';
         this.cartitems[i].InvoiceNo='';
+        this.cartitems[i].total=this.total;
       }
       this.userBillingService.UserBooking(this.cartitems).subscribe(
         (data) => {
@@ -451,6 +460,7 @@ export class UserbillingComponent implements OnInit {
         this.productitems[i].IsDifferentLocation= this.ischecked ? 'Y' : 'N';
         this.productitems[i].OrderNo='';
         this.productitems[i].InvoiceNo='';
+        this.productitems[i].Total=this.total;
       }
       this.userBillingService.ProductBooking(this.productitems).subscribe(
         (data) => {

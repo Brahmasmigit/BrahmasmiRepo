@@ -1,0 +1,52 @@
+/* .temple-body {
+    margin-top: 80px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border: 1px solid black;
+} */
+
+
+.pos
+{
+    position: absolute;
+    right:16px;
+
+}
+.maindiv
+{
+    max-width: 85rem;
+
+}
+.columnlist
+{
+    column-count: 4;
+}
+.columnlist1
+{
+    column-count: 0;
+}
+
+
+.cmn{
+    color: blue;
+    background: white;
+    font-size: 15px;
+    line-height: 50px;
+    overflow: auto;
+    height: 500px;
+}
+.headclr
+{
+    color:darkviolet;
+}
+
+
+li{
+    list-style: none;
+}
+
+
+
+li::before{
+    content: "\00BB";
+}

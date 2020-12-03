@@ -1,20 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top w-100" style="background-color: snow;">
   <a class="navbar-brand" href="#">Brahmasmi</a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+
 
   <div class="collapse navbar-collapse w-100" id="navbarColor03">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item" *ngIf="!isLogin">
-        <a class="nav-link"  routerLink="/vendorregistration" routerLinkActive="active">Register As A Professional</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/vendorsearch" routerLinkActive="active">Book Pandit</a>
       </li>
       <li class="nav-item" *ngIf="!isLogin">
-        <a class="nav-link"  routerLink="/vendorcity" routerLinkActive="active">Professional Enquiry</a>
+        <a class="nav-link"  routerLink="/vendorregistration" routerLinkActive="active">Professional Registration</a>
+      </li>
+      <li class="nav-item" *ngIf="!isLogin">
+        <a class="nav-link"  routerLink="/vendorcity" routerLinkActive="active">Enquiry</a>
       </li>
       <li class="nav-item" *ngIf="isLogin && isVendor">
         <a class="nav-link"  routerLink="/vendordashboard" routerLinkActive="active">My Dashboard</a>
@@ -29,18 +30,16 @@
         <a class="nav-link" routerLink="/astrologyslotbooking" routerLinkActive="active">Astrology</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/storeregistration" routerLinkActive="active"  href="#">Register As A Store</a>
+        <a class="nav-link" routerLink="/storeregistration" routerLinkActive="active"  href="#">Store Registration</a>
       </li>
-      <li class="nav-item dropdown show">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Shop</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" routerLink="/products" routerLinkActive="active">Shop Pooja Kits</a>
-          <a class="dropdown-item" routerLink="/" routerLinkActive="active">Shop Pooja Items</a>
-
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/productcategories" routerLinkActive="active">Shop</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/templeservices" routerLinkActive="active">Temple Services</a>
       </li>
       <li class="nav-item" *ngIf="isLogin && !isVendor">
         <a class="nav-link" routerLink="/userproductorders" routerLinkActive="active">My Orders</a>

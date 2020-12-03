@@ -22,7 +22,7 @@
                               <thead class="thead-light">
                                   <tr>
                                       <th>Order No</th>
-                                      <th *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual'">Service Name</th>
+                                      <th *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">Service Name</th>
                                       <th *ngIf="cartType=='ecart'">Product Name</th>
                                       <th>Service Type</th>
                                       <th>Date</th>
@@ -39,6 +39,10 @@
                                         <span *ngIf="cartType=='service'">Pooja</span>
                                         <span *ngIf="cartType=='astrology'">Astrology</span>
                                         <span *ngIf="cartType=='virtual'">Virtual Online</span>
+                                        <span *ngIf="cartType=='pandit'">
+                                          <span *ngIf="item.bookingType=='panditPooja'">Pooja</span>
+                                          <span *ngIf="item.bookingType=='panditAstrology'">Astrology</span>
+                                        </span>
                                         <span *ngIf="cartType=='ecart'">Product</span>
                                       </td>
                                       <td>{{item.paymentDate}}</td>

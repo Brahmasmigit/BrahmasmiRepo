@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   API_URL: 'http://localhost/Brahmasmi.API/api/',
-  RazorKey:'rzp_test_1tnYvYEJ6NeFQB'
+  RazorKey:'rzp_live_Ju4oDK1n85idRm'//'rzp_live_Ju4oDK1n85idRm'
 };
 
 /*

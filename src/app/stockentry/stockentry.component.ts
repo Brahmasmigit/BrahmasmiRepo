@@ -100,7 +100,7 @@ export class StockentryComponent implements OnInit {
 
     getProducts(cityId)
     {
-      this.productService.getAllProducts(cityId).subscribe(
+      this.productService.getAllProductsByCity(cityId).subscribe(
         (data) => {
             if (data) {
                 this.products = data;

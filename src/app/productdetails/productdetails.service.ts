@@ -24,6 +24,13 @@ export class ProductDetailsService {
             catchError(this.handleError)
         );
     }
+    getProductKeyInsights(productID): Observable<any> {
+        return this.http.get<any>(this.API_URL + "ProductDetails/GetProductKeyInsights/"+productID)
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+    }
     getProduct(productID): Observable<any> {
         return this.http.get<any>(this.API_URL + "Product/GetProduct/"+productID)
         .pipe(

@@ -1,0 +1,64 @@
+<app-header></app-header>
+<div class="border container maindiv">
+    <div class="text-center">
+        <h5><span class="flag-icon flag-icon-in"></span> Temples</h5>
+    </div>
+    <div class="col-12 row p-2">
+        <div class="border col-6">
+            <br>
+            <h5 class="text-center headclr">Endowment Temples</h5>
+            <hr>
+            <ul class="columnlist1 cmn">
+                <div class="col-12" style="display: flex;">
+                    <div class="col-4">
+                        <label>State </label>
+                    </div>
+                    <div class="col-8">
+                        <select name="stateID" [(ngModel)]="etStateId" class="form-control" (change)="onEtStateChange()"
+                            #stateID="ngModel" required>
+                            <option [value]="0" selected="selected">Select State</option>
+                            <option *ngFor="let state of States" [value]="state.stateID">
+                                {{state.stateName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <li *ngFor="let etemple of etTemple; let i=index" (click)="showTempleDetails(etemple.templeId)"
+                    style="cursor: pointer;" [ngClass]="{'active': selectedIndex == i}">
+                    <span [innerHTML]='etemple.templeCity'></span>
+
+                </li>
+            </ul>
+        </div>
+        <div class="border col-6">
+            <br>
+            <h5 class="text-center headclr">Non Endowment Temples</h5>
+            <hr>
+            <ul class="columnlist1 cmn">
+                <div class="col-12" style="display: flex;">
+                    <div class="col-4">
+                        <label>State </label>
+                    </div>
+                    <div class="col-8">
+                        <select name="stateID" [(ngModel)]="netStateId" class="form-control"
+                            (change)="onNetStateChange()" #stateID="ngModel" required>
+                            <option [value]="0" selected="selected">Select State</option>
+                            <option *ngFor="let state of States" [value]="state.stateID">
+                                {{state.stateName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <li *ngFor="let ntemple of netTemple; let i=index" (click)="showTempleDetails(ntemple.templeId)"
+                    style="cursor: pointer;" [ngClass]="{'active': selectedIndex == i}">
+                    <span [innerHTML]='ntemple.templeCity'></span>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,4 +1,4 @@
 {
     "appService.deploySubpath": "dist\\BrhamasmiUI",
-    "appService.defaultWebAppToDeploy": "/subscriptions/93544e16-c7c0-4708-84c9-a6c153ddcdbb/resourceGroups/webresource/providers/Microsoft.Web/sites/brahmasmisit"
+    "appService.defaultWebAppToDeploy": "None"
 }

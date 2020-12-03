@@ -62,10 +62,10 @@
 
                     </div>
                     <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-12">
                           <div class="form-group">
                             <input type="checkbox" #checklocation (change)="isdifferentlocation($event)" />
-                            <label class="ml-2" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual'">Perform Service in different Location?</label>
+                            <label class="ml-2" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">Perform Service in different Location?</label>
                             <label class="ml-2" *ngIf="cartType=='ecart'">Different Biiling Address?</label>
                           </div>
 
@@ -118,7 +118,7 @@
           <h5 class="card-header">Your Order</h5>
 
           <div class="conatiner-fluid">
-            <div class="row" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual'">
+            <div class="row" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">
                 <div class="col-md-12">
                   <table class="table table-bordered w-100" >
                     <thead>
@@ -159,6 +159,10 @@
                             </td>
 
                               <td>{{item.Total}}</td>
+                        </tr>
+                        <tr>
+                          <td class="font-weight-bold">GST:</td>
+                          <td>{{gst}}%</td>
                         </tr>
                           <tr>
                             <td class="font-weight-bold">Total:</td>
@@ -202,6 +206,10 @@
                           </td>
 
                             <td>{{item.ProductCost}}</td>
+                      </tr>
+                      <tr>
+                        <td class="font-weight-bold">GST:</td>
+                        <td>{{gst}}%</td>
                       </tr>
                         <tr>
                           <td class="font-weight-bold">Total:</td>
@@ -281,7 +289,7 @@
                   </div>
               </div>
               <div class="modal-footer">
-                <button type="button" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual'" class="btn btn-primary" (click)="Confirm()">Confirm</button>
+                <button type="button" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'" class="btn btn-primary" (click)="Confirm()">Confirm</button>
                 <button type="button" *ngIf="cartType=='ecart'" class="btn btn-primary" (click)="ProductConfirm()">Confirm</button>
                 <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cancel</button>
               </div>

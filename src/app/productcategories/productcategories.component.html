@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron h-100" style="background-color: linen;" >
+    <div class="card ">
+        <div class="pt-1">
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <div class="row">
+                                    <div class="col-lg-6 col-xl-6">
+                                          <h3><b>Product Categories :</b></h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" *ngFor="let product of productcategories;let index = index">
+                                        <div class="file-man-box">
+                                            <div class="file-img-box">
+                                              <img *ngIf="index==0" src="../../../assets/Rudraksha.jpg" alt="icon">
+                                              <img *ngIf="index==1" src="../../../assets/BlueSapphire.jpg" alt="icon">
+                                              <img *ngIf="index==2" src="../../../assets/Ganeshpoojakit.jpg" alt="icon">
+                                            </div>
+                                            <div class="file-man-title">
+
+                                                <h6 class="mb-0"><a [routerLink]="['/products',product.productCategoryID]" routerLinkActive="active" style="color: black;">{{product.productCategoryName}}</a></h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- container -->
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <app-footer></app-footer>

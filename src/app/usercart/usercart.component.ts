@@ -53,7 +53,8 @@ export class UsercartComponent implements OnInit {
         }
       }
 
-    else if(sessionStorage.getItem("cartType")=="service" || sessionStorage.getItem("cartType")=="astrology" || sessionStorage.getItem("cartType")=="virtual")
+    else if(sessionStorage.getItem("cartType")=="service" || sessionStorage.getItem("cartType")=="astrology" || sessionStorage.getItem("cartType")=="virtual"
+     || sessionStorage.getItem("cartType")=="pandit")
     {
     if(sessionStorage.getItem("orderdetails")!=null)
     {
@@ -136,7 +137,10 @@ export class UsercartComponent implements OnInit {
     {
       this.router.navigate(['/virtualslotbooking']);
     }
-
+    else if(sessionStorage.getItem("cartType")=="pandit")
+    {
+      this.router.navigate(['/vendorsearch']);
+    }
   }
   CheckOut()
   {

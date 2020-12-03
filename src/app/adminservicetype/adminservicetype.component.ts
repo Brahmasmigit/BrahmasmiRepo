@@ -4,6 +4,7 @@ import {Router } from '@angular/router';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import { elementAt } from 'rxjs/internal/operators/elementAt';
+import {ToastService} from '../shared/services/toastservice';
 
 @Component({
   selector: 'app-adminservicetype',
@@ -29,7 +30,7 @@ export class AdminservicetypeComponent implements OnInit {
  selectedIndex:any;
  constructor(
   private adminServiceTypeService : AdminServiceTypeService,private route: Router,
-  private domSanitizer:DomSanitizer
+  private domSanitizer:DomSanitizer,private toastService:ToastService
 ) { }
 
   ngOnInit(): void {
@@ -61,8 +62,11 @@ export class AdminservicetypeComponent implements OnInit {
       (data) => {
           if (data) {
               var c= data;
-              alert('Service Type Deleted Successfully...');
-              this.ngOnInit();
+              this.showError('Service Type Deleted Successfully...');
+             // this.ngOnInit();
+             this.imageURL="";
+             this.getServicetype();
+             this.serviceTypeModel={};
           }
       },
       (error) => {
@@ -100,7 +104,7 @@ showPreview(event) {
   AddServiceType()
   {
     if (this.UploadedFile == null || this.UploadedFile == undefined) {
-      alert("Please upload a file");
+      this.showError("Please upload a file");
       return;
     }
     const formData=new FormData();
@@ -133,25 +137,16 @@ showPreview(event) {
               var c= data;
               if(this.btntext=="Save")
               {
-                alert('Service Type Saved Successfully...')
+                this.showError('Service Type Saved Successfully...')
               }
               if(this.btntext=="Update")
               {
-                alert('Service Type Updated Successfully...')
+                this.showError('Service Type Updated Successfully...')
               }
               this.btntext="Save";
-              //this.serviceTypeForm.reset();
-             // formData=null
-              this.ngOnInit();
-              // this.serviceTypeModel.serviceTypeName='';
-              // this.serviceTypeModel.cityID='';
-              // this.serviceTypeModel.serviceTypeImage='';
-              // this.imageURL ='';
-              // formData.append('ServiceTypeID','');
-              // formData.append('serviceTypeImage', '');
-              // formData.append('ServiceTypeName','');
-              // formData.append('CityID','');
-              // this.getServicetype();
+              this.imageURL="";
+              this.getServicetype();
+              this.serviceTypeModel={};
           }
       },
       (error) => {
@@ -198,5 +193,12 @@ getServicetype()
 
 );
 }
-
+showError(msg) {
+  this.toastService.show(msg, {
+    classname: 'bg-info text-light',
+    delay: 4000 ,
+    autohide: true,
+    headertext: 'Service Details!'
+  });
+}
 }

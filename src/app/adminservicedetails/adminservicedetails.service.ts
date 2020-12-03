@@ -25,7 +25,7 @@ export class AdminServiceDetailsService {
         );
     }
     getServiceTypes(): Observable<any> {
-        return this.http.get<any>(this.API_URL + "ServiceType/GetServiceTypes/")
+        return this.http.get<any>(this.API_URL + "ServiceType/GetAllServiceTypes/")
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)

@@ -1,0 +1,208 @@
+<app-adminheader></app-adminheader>
+
+<form #templeForm="ngForm" (ngSubmit)="templeForm.form.valid && AddTemple(templeForm)" novalidate>
+    <div class="row">
+        <div class="container card border-primary  p-4">
+            <h4>Add Temples :</h4>
+            <hr />
+            <div class="form-group row">
+
+                <div class="col-12">
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label>Temple Type :</label>
+                        </div>
+                        <div class="col-4" *ngFor="let type of templeType">
+                            <input id="type.templeTypeId" type="radio" [value]="type.templeTypeId" name="templeType"
+                                [(ngModel)]="templeModel.TempleTypeId" required> &nbsp;
+                            <label>{{type.templeTypeName}}</label>
+                        </div>
+                        <div class="text-danger col-10" style="text-align: center;" *ngIf="templeForm.invalid">
+                            <p>Please select Temple Type</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-7">
+                    <div class="form-group row">
+                        <div class="col-5">
+                            <label>Temple Name :</label>
+                        </div>
+                        <div class="col-7">
+                            <input type="text" class="form-control" id="templeName" name="templeName"
+                                [(ngModel)]="templeModel.TempleName" #templeName="ngModel" required autocomplete="off">
+                            <span class="text-danger"
+                                *ngIf="(templeName.touched || templeForm.submitted) && templeName.errors?.required">
+                                Temple Name is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Temple Description :</label>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <quill-editor [styles]="{height: '200px'}" name="temple_Description"
+                            [(ngModel)]="templeModel.TempleDescription" trackChanges="all" #temple_Description="ngModel"
+                            [modules]="modules" required>
+                        </quill-editor>
+                        <span class="text-danger"
+                            *ngIf="(temple_Description.touched || templeForm.submitted) && temple_Description.errors?.required">
+                            Temple Description is required
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-7">
+                    <div class="form-group row">
+                        <div class="col-5">
+                            <label>State </label>
+                        </div>
+                        <div class="col-7">
+                            <select name="stateID" [(ngModel)]="templeModel.StateId" class="form-control"
+                                (change)="onStateChange()" #stateID="ngModel" required>
+                                <option *ngFor="let state of States" [value]="state.stateID">
+                                    {{state.stateName}}
+                                </option>
+                            </select>
+                            <span class="text-danger"
+                                *ngIf="(stateID.touched || templeForm.submitted) && stateID.errors?.required">
+                                State is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-7">
+                    <div class="form-group row">
+                        <div class="col-5">
+                            <label>City </label>
+                        </div>
+                        <div class="col-7">
+                            <select name="cityID" [(ngModel)]="templeModel.CityId" class="form-control"
+                                #cityID="ngModel" required>
+                                <option *ngFor="let city of Cities" [value]="city.cityID">
+                                    {{city.cityName}}
+                                </option>
+                            </select>
+                            <span class="text-danger"
+                                *ngIf="(cityID.touched || templeForm.submitted) && cityID.errors?.required">
+                                City is required
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group row">
+                        <div class="col-3 bold">
+                            <b>
+                                Services/Puja with Timings :
+                            </b>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <th>ACTION</th>
+                                <th>Service/Puja</th>
+                                <th>Timings</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let service of serviceTimings; let i = index;">
+                                    <td (click)="deleteService(i)">
+                                        <i class="fa fa-trash fa-2x"></i>
+                                    </td>
+
+                                    <td>
+                                        <input [(ngModel)]="service.serviceName" name="serviceName[-{{i}}]"
+                                            id="serviceName" class="form-control" type="text" autocomplete="off" />
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="service.serviceTimings" name="timings[-{{i}}]" id="timings"
+                                            class="form-control" type="text" autocomplete="off" />
+                                    </td>
+                                    <td (click)="addService(i)">
+                                        <i class="fa fa-plus fa-2x"></i>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Customer Comments or Reviews :</label>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <quill-editor [styles]="{height: '200px'}" name="customerComments"
+                            [(ngModel)]="templeModel.CustomerReviews" trackChanges="all" #customerComments="ngModel"
+                            [modules]="modules" required>
+                        </quill-editor>
+                        <span class="text-danger"
+                            *ngIf="(customerComments.touched || templeForm.submitted) && customerComments.errors?.required">
+                            Comments is required
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-primary col-12">{{btntext}}</button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="container p-2 tabledata" style="overflow: auto;">
+                    <h4 class="text-info">Service Details</h4><br>
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>Temple Type</th>
+                            <th>Temple Name</th>
+                            <th>Temple Description</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Service and Timings</th>
+                            <th>Customer Reviews</th>
+                            <th class="columnWidth">Action</th>
+                        </tr>
+                        <tr *ngFor="let temple of templeDetails; let i=index"
+                            [ngClass]="{'active': selectedIndex == i}">
+                            <td>{{temple.templeType}}</td>
+                            <td>{{temple.templeName}}</td>
+                            <td><span style="font-size: 13px" [innerHTML]="temple.templeDescription"></span></td>
+                            <td>{{temple.stateName}}</td>
+                            <td>{{temple.cityName}}</td>
+                            <td>
+                                <pre><span style="font-size: 13px" [innerHTML]="temple.servTimings"></span></pre>
+                            </td>
+                            <td><span style="font-size: 13px" [innerHTML]="temple.customerReviews"></span>
+                            </td>
+                            <td class="columnWidth">
+                                <button type="button" class="btn btn-secondary" (click)="onEdit(temple)">Edit</button>
+                                <button type="button" class="btn btn-danger" (click)="onDelete(temple)">Delete</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<footer></footer>

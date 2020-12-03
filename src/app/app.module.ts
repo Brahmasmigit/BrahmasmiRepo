@@ -82,6 +82,24 @@ import { AdminheaderComponent } from './shared/components/adminheader/adminheade
 import { StoreheaderComponent } from './shared/components/storeheader/storeheader.component';
 import { VirtualvideoslotbookingComponent } from './virtualvideoslotbooking/virtualvideoslotbooking.component';
 import {VirtualVideoSlotBookingService} from './virtualvideoslotbooking/virtualvideoslotbooking.service';
+import { EnquiryheaderComponent } from './shared/components/enquiryheader/enquiryheader.component';
+import { ConstructionComponent } from './construction/construction.component';
+import { AdmintempleservicesComponent } from './admin/admintempleservices/admintempleservices.component';
+import { TempleService } from './admin/admintempleservices/templeService.services';
+import { VendorsearchComponent } from './vendorsearch/vendorsearch.component';
+import {VendorSearchService} from './vendorsearch/vendorsearch.service';
+import { VendorbookingComponent } from './vendorbooking/vendorbooking.component';
+import {VendorBookingService} from './vendorbooking/vendorbooking.service';
+import { ProductcategoriesComponent } from './productcategories/productcategories.component';
+import {ProductCategoriesService} from './productcategories/productcategories.service';
+import { TempleservicesComponent } from './templeservices/templeservices.component';
+import { TempleDetailsComponent } from './templeservices/temple-details/temple-details.component';
+import {TempleservicesService} from './templeservices/templeservices.service';
+import { AdmincouponComponent } from './admin/admincoupon/admincoupon.component';
+import {AdminCouponService} from './admin/admincoupon/admincoupon.service';
+import { AdminloyaltypointsComponent } from './admin/adminloyaltypoints/adminloyaltypoints.component';
+import {AdminLoyaltyPointsService} from './admin/adminloyaltypoints/adminloyaltypoints.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -124,7 +142,18 @@ import {VirtualVideoSlotBookingService} from './virtualvideoslotbooking/virtualv
     AdminproductdashboardComponent,
     AdminheaderComponent,
     StoreheaderComponent,
-    VirtualvideoslotbookingComponent
+    VirtualvideoslotbookingComponent,
+    EnquiryheaderComponent,
+    ConstructionComponent,
+    AdmintempleservicesComponent,
+    VendorsearchComponent,
+    VendorbookingComponent,
+    ProductcategoriesComponent,
+    TempleservicesComponent,
+    TempleDetailsComponent,
+    AdmincouponComponent,
+    AdminloyaltypointsComponent
+
 
   ],
   imports: [
@@ -148,7 +177,8 @@ import {VirtualVideoSlotBookingService} from './virtualvideoslotbooking/virtualv
   VendorEnquiryService,VendorLocationService,VendorCityService,AdminServiceTypeService,AdminServiceDetailsService,
   AdminLoginService,WindowRefService,AdminMeetingService,ProductService,ProductDetailsService,StoreRegistrationService,
   AstrologySlotBookingService,StockEntryService,StoreDashboardService,UserProductOrderDetailsService,AdminProductDashboardService,
-  VirtualVideoSlotBookingService],
+  VirtualVideoSlotBookingService,TempleService,VendorSearchService,VendorBookingService,ProductCategoriesService,TempleservicesService,
+  AdminCouponService,AdminLoyaltyPointsService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

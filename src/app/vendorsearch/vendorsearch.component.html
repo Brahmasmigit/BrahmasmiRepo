@@ -1,0 +1,85 @@
+<app-header></app-header>
+<div class="container-fluid  h-100" style="margin-top: 25px;height:100%" >
+
+<div class="row" style="margin-top: 80px;">
+<div class="col-md-12 text-center font-weight-bold">
+<h5>Book Pandit</h5>
+</div>
+</div>
+
+	<div class="row align-items-center justify-content-center">
+    <div class="col-md-3 pt-3">
+         <div class="form-group ">
+
+          <select name="cityID" id="cityID"  class="form-control"
+          [(ngModel)]="cityID"  >
+          <option *ngFor="let city of City"
+          [value]="city.cityID"
+          [attr.selected]="cityID==city.cityID ? true : null">
+
+           {{city.cityName}}
+      </option>
+          </select>
+         </div>
+      </div>
+  <div class="col-md-3 pt-3">
+         <div class="form-group">
+          <input type="textbox" name="region" id="region"  [(ngModel)]="region"
+          placeholder="Search by Region/ Place" class="form-control" >
+         </div>
+      </div>
+
+      <div class="col-md-2">
+       <button type="button" class="btn btn-primary btn-block" (click)="SearchVendor()">Search</button>
+    </div>
+</div>
+
+
+<div class="container h-100" style="margin-top: 25px;">
+  <div class="row">
+      <div class="col-md-4 mt-3" *ngFor="let item of vendor">
+          <div class="card border-primary mb-3 w-100 h-100">
+              <div class="card-header font-weight-bold">{{item.vendorName}}  </div>
+
+              <div class="card-body w-100 h-100">
+
+                  <div class="conatiner-fluid">
+                    <div class="row">
+                      <div class="col-md-12 d-flex flex-wrap justify-content-center">
+                        <img src="../../assets/profileicon.png"/>
+                    </div>
+                    </div>
+                      <div class="row pt-2 text-center">
+
+                          <div class="col-md-12">
+                                  <div class="container">
+                                      <div class="row">
+                                          <div class="col-md-12">City: {{item.cityName}}</div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-md-12">Address: {{item.vendorAddress}}</div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-md-12">Specialization: {{item.specializationName}}</div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-md-12">Languages: {{item.languages}}</div>
+                                    </div>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+
+              </div>
+              <div class="card-footer" style="background-color:#dfefef;color: white;text-align: center;font-weight: bold;">
+
+                  <button type="button" class="btn btn-primary" style="margin-left: 10px;" (click)="Book(item.vendorId)">Book Pandit</button>
+
+              </div>
+          </div>
+
+      </div> <!--end of for loop-->
+  </div>
+</div>
+<app-footer></app-footer>
+

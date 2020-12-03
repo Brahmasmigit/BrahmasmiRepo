@@ -17,13 +17,20 @@ export class ProductService {
     constructor(private http: HttpClient) {
 
     }
-    getAllProducts(cityID): Observable<any> {
-        return this.http.get<any>(this.API_URL + "Product/GetAllProducts/" + cityID)
+    getAllProducts(params): Observable<any> {
+        return this.http.post<any>(this.API_URL + "Product/GetAllProducts/" , params)
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)
         );
     }
+    getAllProductsByCity(cityid): Observable<any> {
+      return this.http.get<any>(this.API_URL + "Product/GetAllProductsByCity/" + cityid)
+      .pipe(
+          tap(status => console.log("status: " + status)),
+          catchError(this.handleError)
+      );
+  }
     private handleError(error: any) {
         console.error(error);
         return throwError(error);
