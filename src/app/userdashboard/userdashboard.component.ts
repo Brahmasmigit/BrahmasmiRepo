@@ -51,8 +51,15 @@ export class UserdashboardComponent implements OnInit {
     if(sessionStorage.getItem("userInfo")!=null)
     {
       this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
+      if(this.userInfo.userTypeId=="1")
+      {
       this.userid=this.userInfo.userId;
       this.getOngoing(this.userid,"current");
+      }
+      else
+      {
+        this.router.navigate(['/login']);
+      }
     }
     else
     {

@@ -6,8 +6,9 @@
   <div class="collapse navbar-collapse w-100" id="navbarColor03">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home<span class="sr-only">(current)</span></a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" routerLink="/vendorsearch" routerLinkActive="active">Book Pandit</a>
       </li>
@@ -15,7 +16,7 @@
         <a class="nav-link"  routerLink="/vendorregistration" routerLinkActive="active">Professional Registration</a>
       </li>
       <li class="nav-item" *ngIf="!isLogin">
-        <a class="nav-link"  routerLink="/vendorcity" routerLinkActive="active">Enquiry</a>
+        <a class="nav-link"  routerLink="/vendorenquiry" routerLinkActive="active">Enquiry</a>
       </li>
       <li class="nav-item" *ngIf="isLogin && isVendor">
         <a class="nav-link"  routerLink="/vendordashboard" routerLinkActive="active">My Dashboard</a>

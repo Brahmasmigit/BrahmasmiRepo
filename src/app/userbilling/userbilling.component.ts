@@ -7,7 +7,10 @@ import {UtilitiesService} from '../shared/services/utilities.service';
 import {WindowRefService } from '../shared/services/windowref.service';
 import { environment } from '../../environments/environment'
 
+
+
 declare var RazorPay:any;
+
 
 @Component({
   selector: 'app-userbilling',
@@ -39,6 +42,7 @@ export class UserbillingComponent implements OnInit {
   @ViewChild('mymodal') mymodal: ElementRef;
   virtualuser:any={};
   gst:number=8;
+
   constructor(private toastService: ToastService,
     private activatedRoute: ActivatedRoute,
     private router:Router,
@@ -256,7 +260,7 @@ export class UserbillingComponent implements OnInit {
             this.razorpayOptions.amount=Number(this.total) * 100;
             this.razorpayOptions.name=this.userdetails.userName;
             const rzp = new this.windowRefService.nativeWindow.Razorpay(this.razorpayOptions);
-             rzp.open();
+            rzp.open();
             }
 
           },

@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone,Output,EventEmitter    } from '@angular/core'
 import {VendorLocationService} from '../vendorlocation/vendorlocation.service';
 import { Binary } from 'selenium-webdriver/firefox';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MapsAPILoader } from '@agm/core';
 
 interface marker {
 	vendor_Latitude: number;
@@ -18,6 +19,8 @@ interface vendorsdetails {
   vendor_MobileNumber:string;
   vendor_Address1:string;
   photo:Binary;
+  specializationName:string;
+  languages:string;
 }
 
 @Component({
@@ -48,15 +51,28 @@ interface vendorsdetails {
     @Output()
     eventBook:EventEmitter<any> = new EventEmitter<any>();
   constructor(   private vendorLocationService:VendorLocationService,
-
+    private mapsAPILoader: MapsAPILoader,
     private router:Router,
     private ngZone: NgZone) { }
 
   ngOnInit(): void {
 
+   // this.mapsAPILoader.load().then(() => {
+      this.getVendorInfo();
+      this.setCurrentLocation();
 
-    this.getVendorInfo();
 
+  //  });
+
+
+  }
+  showDefault()
+  {
+    this.radius=5000;
+    this.zoom=11;
+    this.VendorsList=[];
+    this.showHideMarkers();
+    return false;
   }
   changeKm(event: any) {
     this.selectedDist=event.target.value;
@@ -64,7 +80,8 @@ interface vendorsdetails {
     if(this.selectedDist=='5Km')
     {
       this.radius=5000;
-
+      this.zoom=11;
+      this.VendorsList=[];
       this.showHideMarkers();
       return false;
     }
@@ -109,7 +126,7 @@ interface vendorsdetails {
         this.longitude = position.coords.longitude;
         this.radiusLat = this.latitude;
         this.radiusLong = this.longitude;
-          this.zoom = 12;
+          this.zoom = 14;
       });
     }
   }
@@ -132,7 +149,7 @@ interface vendorsdetails {
   }
 
   showHideMarkers(){
- console.log(this.vendors.length)
+
    for(var i=0;i<this.vendors.length;i++)
    {
 
@@ -145,10 +162,12 @@ interface vendorsdetails {
           vendor_FirstName:this.vendors[i].vendor_FirstName,
           vendor_MobileNumber:this.vendors[i].vendor_MobileNumber,
           vendor_Address1:this.vendors[i].vendor_Address1,
-          photo:this.vendors[i].photo
+          photo:this.vendors[i].photo,
+          specializationName:this.vendors[i].specializationName,
+          languages:this.vendors[i].languages
         }
        )
-   console.log(this.VendorsList)
+
     }
 
    }
@@ -156,7 +175,11 @@ interface vendorsdetails {
 
 
   }
-
+  Book(vendorid)
+  {
+    sessionStorage.setItem("bookingvendorid",JSON.stringify(vendorid));
+    this.router.navigate(['/vendorbooking']);
+  }
   getDistanceBetween(lat1,lng1,lat2,lng2){
 
     var from = new google.maps.LatLng(lat1,lng1);
@@ -178,7 +201,7 @@ interface vendorsdetails {
       (data) => {
           if (data) {
               this.vendors = data;
-              console.log(data)
+              this.showDefault();
 
           }
 
@@ -202,6 +225,7 @@ onMouseOver(infoWindow, $event: MouseEvent) {
 onClick(infoWindow, $event: MouseEvent) {
   infoWindow.open();
 }
+
 BookVendor(vendorid,vendorname,vendoraddress)
 {
 

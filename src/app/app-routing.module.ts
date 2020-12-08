@@ -43,6 +43,8 @@ import { TempleservicesComponent } from './templeservices/templeservices.compone
 import { TempleDetailsComponent } from './templeservices/temple-details/temple-details.component';
 import { AdmincouponComponent } from './admin/admincoupon/admincoupon.component';
 import { AdminloyaltypointsComponent } from './admin/adminloyaltypoints/adminloyaltypoints.component';
+import { VendormapComponent } from './vendormap/vendormap.component';
+import { VendorpaymentComponent } from './vendorpayment/vendorpayment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/construction', pathMatch: 'full' },
@@ -87,7 +89,9 @@ const routes: Routes = [
   {path: 'templeservices', component: TempleservicesComponent },
   {path: 'temple-details', component: TempleDetailsComponent },
   {path: 'admincoupon', component: AdmincouponComponent },
-  {path: 'adminloyaltypoints', component: AdminloyaltypointsComponent }
+  {path: 'adminloyaltypoints', component: AdminloyaltypointsComponent },
+  {path: 'vendormap', component: VendormapComponent },
+  {path: 'vendorpayment', component: VendorpaymentComponent },
 ];
 
 @NgModule({

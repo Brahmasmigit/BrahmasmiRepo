@@ -44,8 +44,8 @@ import {VendorEnquiryComponent} from './vendorenquiry/vendorenquiry.component';
 import {VendorEnquiryService} from './vendorenquiry/vendorenquiry.service';
 import { VendorlocationComponent } from './vendorlocation/vendorlocation.component';
 import {VendorLocationService} from './vendorlocation/vendorlocation.service';
-//import {AgmMap,MapsAPILoader  } from '@agm/core';
-//import {AgmCoreModule} from '@agm/core';
+import {AgmMap,MapsAPILoader  } from '@agm/core';
+import { AgmCoreModule } from '@agm/core';
 import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
@@ -100,6 +100,8 @@ import {AdminCouponService} from './admin/admincoupon/admincoupon.service';
 import { AdminloyaltypointsComponent } from './admin/adminloyaltypoints/adminloyaltypoints.component';
 import {AdminLoyaltyPointsService} from './admin/adminloyaltypoints/adminloyaltypoints.service';
 import { DatePipe } from '@angular/common';
+import { VendormapComponent } from './vendormap/vendormap.component';
+import { VendorpaymentComponent } from './vendorpayment/vendorpayment.component';
 
 @NgModule({
   declarations: [
@@ -152,7 +154,9 @@ import { DatePipe } from '@angular/common';
     TempleservicesComponent,
     TempleDetailsComponent,
     AdmincouponComponent,
-    AdminloyaltypointsComponent
+    AdminloyaltypointsComponent,
+    VendormapComponent,
+    VendorpaymentComponent
 
 
   ],
@@ -164,10 +168,10 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     NgbModule,
     NgOtpInputModule,
-    /*AgmCoreModule.forRoot({
+    AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCeA6ad2qsS-zSHDjdQX6qnuEbLQzsfDC0',
       libraries: ['geometry','places']
-    }),*/
+    }),
     QuillModule.forRoot()
 
   ],

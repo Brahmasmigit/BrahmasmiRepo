@@ -5,26 +5,30 @@
       <div class="col-md-12">
           <div class="card border-primary mb-3 w-100">
               <div class="card-header w-100 font-weight-bold">Enquiry Details
-
+               <div class="pull-right"> <button class="btn btn-info" routerLink="/vendorregistration" (click)="AddVendor()"  routerLinkActive="active">Add Pandit</button></div>
               </div>
 
               <div class="card-body w-100 h-100">
 
                   <div class="conatiner-fluid">
                       <div class="row">
+
                           <div class="table-responsive w-100">
                             <table class="table table-bordered w-100" >
                               <thead class="thead-light">
                                   <tr>
+                                    <th style="display: none;">UserTypeID</th>
                                       <th>User Type</th>
 
                                       <th>Full Name</th>
 
                                       <th>Address 1</th>
                                       <th>Address 2</th>
-
+                                      <th style="display: none;">CityID</th>
                                       <th>City</th>
+                                      <th style="display: none;">StateID</th>
                                       <th>State</th>
+                                      <th style="display: none;">CountryID</th>
                                       <th>Country</th>
                                       <th>PinCode</th>
                                       <th>Mobile</th>
@@ -35,18 +39,23 @@
                                       <th>Rishipravara</th>
                                       <th>Vedashaka</th>
                                       <th>Languages</th>
-
+                                      <th></th>
                                   </tr>
                               </thead>
                               <tbody >
                                   <tr *ngFor="let item of vendorDetails;let i=index">
+                                    <td><button class="btn btn-info" routerLink="/vendorregistration" (click)="selectVendor(item)" routerLinkActive="active">Register</button></td>
+                                    <td>{{item.userType}}</td>
                                       <td>{{item.userTypeName}}</td>
                                       <td>{{item.name}}</td>
 
                                       <td>{{item.address1}}</td>
                                       <td>{{item.address2}}</td>
+                                      <td style="display: none;">{{item.cityID}}</td>
                                       <td>{{item.cityName}}</td>
+                                      <td style="display: none;">{{item.stateId}}</td>
                                       <td>{{item.stateName}}</td>
+                                      <td style="display: none;">{{item.countryId}}</td>
                                       <td>{{item.countryName}}</td>
 
                                       <td>{{item.pinCode}}</td>
@@ -61,7 +70,7 @@
                                       <td>{{item.language}}</td>
 
 
-                                     <!-- <td><button class="btn btn-info" routerLink="/vendorregistration" (click)="selectVendor(item)" routerLinkActive="active">Add More Info</button></td>-->
+
                                   </tr>
 
                               </tbody>

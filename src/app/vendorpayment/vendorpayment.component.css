@@ -1,0 +1,6 @@
+
+::ng-deep .xlModal .modal-dialog {
+  max-width: 100%;
+  width: 60%;
+  text-align: center;
+}

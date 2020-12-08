@@ -1,0 +1,8 @@
+::ng-deep .xlModalvendor .modal-dialog {
+  max-width: 100%;
+  max-height: 100%;
+  width: 95%;
+  height: 60%;
+  text-align: left;
+}
+

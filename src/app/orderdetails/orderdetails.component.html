@@ -1,8 +1,12 @@
-<app-header></app-header>
+<div *ngIf="!isAdmin" ><app-header></app-header></div>
+<div *ngIf="isAdmin" ><app-adminheader></app-adminheader></div>
 <div class="container-fluid jumbotron" style="background-color: linen; height:100%" >
 <div class="alert alert-dismissible alert-info">
-  <strong>Great !!</strong> Your order has been successfully placed. We will manually check your Payment and update the status.
-  Please check your Email inbox for further details.
+ <span><strong>Great !!</strong> Your order has been successfully placed. We will manually check your Payment and update the status.
+  Please check your Email inbox for further details.</span>
+  <!--<span *ngIf="isVendor"><strong>Great !!</strong> Your order has been successfully placed. We will manually check your Payment and activate your Membership.
+    Please check your Email inbox for further details.</span>
+    <span *ngIf="isAdmin"><strong>Great !!</strong> Your order has been successfully placed.</span>-->
 </div>
 
 <div class="container">
@@ -24,18 +28,23 @@
                                       <th>Order No</th>
                                       <th *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">Service Name</th>
                                       <th *ngIf="cartType=='ecart'">Product Name</th>
-                                      <th>Service Type</th>
+                                      <th *ngIf="cartType=='vendorpayment'">Name</th>
+                                      <th *ngIf="cartType!='vendorpayment'">Service Type</th>
                                       <th>Date</th>
                                       <th>Email Id</th>
                                       <th>Total</th>
                                       <th>Payment Method</th>
+                                      <th *ngIf="cartType=='vendorpayment'">Membership</th>
                                   </tr>
                               </thead>
                               <tbody>
                                   <tr *ngFor="let item of orderdetails;let i=index">
                                       <td>{{item.orderNo}}</td>
-                                      <td>{{item.serviceName}}</td>
                                       <td>
+                                        <span *ngIf="cartType!='vendorpayment'">{{item.serviceName}}</span>
+                                        <span *ngIf="cartType=='vendorpayment'">{{item.name}}</span>
+                                      </td>
+                                      <td *ngIf="cartType!='vendorpayment'">
                                         <span *ngIf="cartType=='service'">Pooja</span>
                                         <span *ngIf="cartType=='astrology'">Astrology</span>
                                         <span *ngIf="cartType=='virtual'">Virtual Online</span>
@@ -49,6 +58,7 @@
                                       <td>{{item.emailId}}</td>
                                       <td>{{item.total}}</td>
                                       <td>{{item.modeofPayment}}</td>
+                                      <td *ngIf="cartType=='vendorpayment'">{{item.membership}}</td>
                                   </tr>
 
                               </tbody>
@@ -60,9 +70,9 @@
 
               </div>
               <div class="card-footer">
+                <button type="button" *ngIf="!isAdmin" class="btn btn-primary" [routerLink]="['/userdashboard']" routerLinkActive="active">Track your Order</button>
 
-                <button type="button" class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="active">Back to Home</button>
-
+                <button type="button"  *ngIf="isAdmin" class="btn btn-primary" [routerLink]="['/admindashboard']" routerLinkActive="active">Verify Payment and Approve Pandit</button>
             </div>
           </div>
       </div>

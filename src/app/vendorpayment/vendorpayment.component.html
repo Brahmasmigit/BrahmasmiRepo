@@ -1,0 +1,205 @@
+<div class="card border-primary mb-3 w-100">
+<div class="card-header font-weight-bold">Yearly Membership Plan</div>
+<div class="card-body w-100">
+  <div class="contained-fluid w-100">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2 ">
+              <div class="tile pt-inner" style="border: solid 1px;height: 200px;">
+                <div class="pti-header bg-amber pt-1">
+                  <h2>2/-</h2>
+                  <div class="ptih-title">Basic Plan</div>
+                </div>
+
+                <div class="pti-body pt-3">
+                  <div class="ptib-item">
+                    <i class="fa fa-check"></i> Loyalties
+                  </div>
+                  <div class="ptib-item">
+
+                  </div>
+                </div>
+
+                <div class="pti-footer mt-5">
+                  <button type="button" class="btn btn-warning" style="color: white;" (click)="SelectPlan(1,2)">Select Plan</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="tile pt-inner" style="border: solid 1px; height: 200px;">
+                <div class="pti-header bg-green pt-1">
+                  <h2>1016/-</h2>
+                  <div class="ptih-title">Advanced Plan</div>
+                </div>
+
+                <div class="pti-body pt-3">
+                  <div class="ptib-item">
+                    <i class="fa fa-check"></i> Base Plan
+                  </div>
+                  <div class="ptib-item">
+                    <i class="fa fa-check"></i> Accidental Death Benefit
+                  </div>
+
+                </div>
+
+                <div class="pti-footer">
+                  <button type="button" class="btn btn-success" (click)="SelectPlan(2,1016)">Select Plan</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="tile pt-inner" style="border: solid 1px; height: 200px;">
+                <div class="pti-header bg-cyan pt-1">
+                  <h2>2516/-</h2>
+                  <div class="ptih-title">Premium Plan</div>
+                </div>
+
+                <div class="pti-body pt-3">
+                  <div class="ptib-item">
+                    <i class="fa fa-check"></i> Advance Plan
+                  </div>
+                  <div class="ptib-item">
+                    <i class="fa fa-check"></i> Family Medical Insurance
+                  </div>
+
+
+                </div>
+
+                <div>
+                  <button class="pti-footer pt-1" type="button" class="btn btn-info" (click)="SelectPlan(3,2516)">Select Plan</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="tile pt-inner" style="border: solid 1px; height: 200px;">
+                <div class="pti-header bg-gray pt-1">
+                  <h2>5016/-</h2>
+                  <div class="ptih-title">Exclusive Plan</div>
+                </div>
+
+                <div class="pti-body pt-3">
+                  <div class="ptib-item">
+                    <i class="fa fa-check"></i> Premium Plan
+                  </div>
+                  <div class="ptib-item">
+                    <i class="fa fa-check"></i> Kids Education Allowance
+                  </div>
+
+                </div>
+
+                <div>
+                  <button class="pti-footer pt-1" type="button" class="btn btn-danger" (click)="SelectPlan(4,5016)">Select Plan</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="tile pt-inner" style="border: solid 1px; height: 200px;">
+                <div class="pti-header bg-gray pt-1">
+                  <h2>10016/-</h2>
+                  <div class="ptih-title">Privilege Plan</div>
+                </div>
+
+                <div class="pti-body pt-3">
+                  <div class="ptib-item">
+                    <i class="fa fa-check"></i> Exclusive Plan
+                  </div>
+                  <div class="ptib-item">
+                    <i class="fa fa-check"></i> Single Daughter Marriage Allowance
+                  </div>
+
+                </div>
+
+                <div>
+                  <button class="pti-footer pt-1" type="button" class="btn btn-secondary" (click)="SelectPlan(5,10016)">Select Plan</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="card-body mt-10">
+
+  <div class="card border-primary mb-3">
+    <div class="card-header font-weight-bold">Choose Payment Method</div>
+    <div class="card-body">
+
+      <div class="form-group">
+        <div class="custom-control custom-radio">
+          <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="razor" checked="true"  [(ngModel)]="isPaymentchecked">
+          <label class="custom-control-label" for="customRadio1">Pay with Card/ NetBanking/ Wallet</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="cod" [(ngModel)]="isPaymentchecked">
+          <label class="custom-control-label" for="customRadio2">Cash Payment</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="upi" [(ngModel)]="isPaymentchecked">
+          <label class="custom-control-label" for="customRadio3">Pay with UPI/  QR Code</label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="card-footer text-center">
+
+    <button  class="btn btn-primary" (click)="PlaceOrder()">Place Order</button>
+
+
+
+  </div>
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"><span *ngIf="isPaymentchecked=='upi'">Scan QR Code</span><span *ngIf="isPaymentchecked=='cod'">Cash Payment </span></h4>
+      <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body w-100">
+      <div class="contained-fluid w-100" *ngIf="isPaymentchecked=='upi'">
+        <div class="row">
+          <div class="col-md-12 font-weight-bold">
+            UPI ID: 9243242434@BRAHMASMI
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <img src="../../assets/QRCode.png" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 font-weight-bold">
+           Amount to be Paid: {{total}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 p-3">
+            <p>Scan the QR Code with any UPI apps like BHIM, Paytm, Google Pay, PhonePe or any Banking UPI app to make payment for this membership.
+            Click Confirm, only after the amount deducted from your account. We will manually verify your transaction.</p>
+          </div>
+        </div>
+      </div>
+      <div class="contained-fluid w-100" *ngIf="isPaymentchecked=='cod'">
+        <div class="row">
+          <div class="col-md-12 font-weight-bold">
+            <p>Are you sure you want to do the payment after Membership?</p>
+          </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+
+      <button type="button"  class="btn btn-primary" (click)="Confirm()">Confirm</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+  </ng-template>
+</div>

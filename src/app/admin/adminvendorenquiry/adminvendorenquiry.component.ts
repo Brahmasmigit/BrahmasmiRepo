@@ -21,6 +21,7 @@ export class AdminvendorenquiryComponent implements OnInit {
   selectVendor(vendor){
     sessionStorage.setItem("vendorenquiry",JSON.stringify(vendor));
       }
+
       getVendorInfo()
       {
         this.vendorEnquiryService.getVendor().subscribe(
@@ -38,6 +39,10 @@ export class AdminvendorenquiryComponent implements OnInit {
           }
 
       );
+      }
+      AddVendor()
+      {
+        sessionStorage.setItem("vendorenquiry",null);
       }
 
 }

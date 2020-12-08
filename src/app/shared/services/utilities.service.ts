@@ -22,7 +22,20 @@ export class UtilitiesService {
           catchError(this.handleError)
       );
     }
-
+    getAllState(CountryID): Observable<any> {
+      return this.http.get<any>(this.API_URL + "Utilities/GetAllState/" +CountryID)
+      .pipe(
+          tap(status => console.log("status: " + status)),
+          catchError(this.handleError)
+      );
+    }
+    getCountries(): Observable<any> {
+      return this.http.get<any>(this.API_URL + "Utilities/GetCountry" )
+      .pipe(
+          tap(status => console.log("status: " + status)),
+          catchError(this.handleError)
+      );
+    }
     getCities(StateID): Observable<any> {
       return this.http.get<any>(this.API_URL + "Utilities/GetCity/" + StateID)
       .pipe(
@@ -96,6 +109,27 @@ export class UtilitiesService {
       }
       getStores(cityId): Observable<any> {
         return this.http.get<any>(this.API_URL + "Utilities/GetStores/" + cityId)
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+      }
+      getEducation(): Observable<any> {
+        return this.http.get<any>(this.API_URL + "Utilities/GetAllEducations" )
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+      }
+      getIndustryTpes(): Observable<any> {
+        return this.http.get<any>(this.API_URL + "Utilities/GetIndustryTypes" )
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+      }
+      getVirtualPlatforms(): Observable<any> {
+        return this.http.get<any>(this.API_URL + "Utilities/GetVirtualPlatforms" )
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)

@@ -19,6 +19,9 @@ export class VendordashboardComponent implements OnInit {
   vendorId:any;
   userInfo:any={};
   closeResult: string;
+  latitude:number;
+  longitude:number;
+
   constructor(private activatedRoute: ActivatedRoute,
     private vendorDashboardService:VendorDashboardService,
     private router:Router,
@@ -29,15 +32,52 @@ export class VendordashboardComponent implements OnInit {
     if(sessionStorage.getItem("userInfo")!=null)
     {
       this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
-      this.vendorId=this.userInfo.userId;
-      this.getOngoing(this.vendorId,"current");
+      if(this.userInfo.userTypeId=="2")
+      {
+        this.vendorId=this.userInfo.userId;
+
+        this.getOngoing(this.vendorId,"current");
+        this.setCurrentLocation();
+      }
+      else
+      {
+        this.router.navigate(['/login']);
+      }
+
     }
     else
     {
       this.router.navigate(['/login']);
     }
   }
+   setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        let vendorgeo:any={};
+        vendorgeo.Latitude=this.latitude.toFixed(2);
+        vendorgeo.Longitude=this.longitude.toFixed(2);
+        vendorgeo.VendorId=this.vendorId
+        this.vendorDashboardService.VendorGeoUpdate(vendorgeo).subscribe(
+          (data) => {
+              if (data) {
+                console.log("Geo: " + data);
+              }
 
+          },
+          (error) => {
+              console.log(error);
+              this.errorMessage = error;
+          },
+          () => {
+
+          });
+      });
+    }
+
+
+  }
   getOngoing(vendorid,calendarType)
   {
     this.vendorDashboardService.getOngoing(vendorid,calendarType).subscribe(

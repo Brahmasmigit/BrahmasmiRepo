@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { Observable, BehaviorSubject, throwError  } from "rxjs"
 import { HttpClient, HttpHeaders,HttpParams,HttpResponse   } from "@angular/common/http"
 import { map, catchError, tap } from 'rxjs/operators';
-import { environment } from '../../environments/environment'
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
@@ -47,6 +47,14 @@ export class VendorRegistrationService {
     UpdateVendor(vendor)
     {
         return this.http.post(this.API_URL + 'Vendor/UpdateVendor/',vendor)
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+    }
+    VendorPayment(vendor)
+    {
+        return this.http.post(this.API_URL + 'Vendor/VendorPayment',vendor)
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)

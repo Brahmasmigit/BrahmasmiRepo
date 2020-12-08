@@ -17,6 +17,10 @@ export class OrderdetailsComponent implements OnInit {
   ngZone:NgZone;
   isReload:boolean=false;
   cartType:any;
+  isAdmin:boolean=false;
+  userInfo:any={};
+  isUser:boolean=false;
+  isVendor:boolean=false;
   constructor(private toastService: ToastService,private activatedRoute: ActivatedRoute,
     private router:Router,
     private orderDetailsService:OrderDetailsService) {
@@ -24,6 +28,14 @@ export class OrderdetailsComponent implements OnInit {
     }
 
   ngOnInit(): void {
+
+    if(sessionStorage.getItem("userInfo")!=null)
+    {
+     this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
+     this.isAdmin=  this.userInfo.userTypeId=="3" ? true : false;
+     this.isUser =this.userInfo.userTypeId=="1" ? true : false;
+     this.isVendor =this.userInfo.userTypeId=="2" ? true : false;
+    }
 
     this.getOrderdetails();
   }
@@ -42,7 +54,6 @@ export class OrderdetailsComponent implements OnInit {
           if (data) {
               this.orderdetails = data;
               sessionStorage.removeItem("orders");
-
           }
 
       },

@@ -33,6 +33,14 @@ export class VendorDashboardService {
             catchError(this.handleError)
         );
     }
+    VendorGeoUpdate(vendorgeo)
+    {
+        return this.http.post(this.API_URL + 'VendorDashboard/VendorGeoUpdate',vendorgeo)
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+    }
     private handleError(error: any) {
         console.error(error);
         return throwError(error);

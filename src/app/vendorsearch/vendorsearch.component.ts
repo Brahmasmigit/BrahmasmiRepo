@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild,  ElementRef } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import {VendorSearchService} from './vendorsearch.service';
 import {EventModel} from '../shared/models/eventmodel';
 import {EventListenerService} from '../shared/services/eventlistener.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {UtilitiesService} from '../shared/services/utilities.service';
+
 
 @Component({
   selector: 'app-vendorsearch',
@@ -23,6 +24,7 @@ export class VendorsearchComponent implements OnInit {
   selectedCity:any;
   region:any="";
   cityID:any;
+  @ViewChild('mymodal') mymodal: ElementRef;
   constructor(private activatedRoute: ActivatedRoute,
     private vendorSearchService:VendorSearchService,
     private router:Router,
@@ -74,6 +76,30 @@ export class VendorsearchComponent implements OnInit {
       () => {
       }
   );
+
+}
+OpenMap()
+{
+  this.router.navigate(['/vendorlocation']);
+//this.OpenMapPopup(this.mymodal);
+}
+OpenMapPopup(content) {
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', windowClass : "xlModalvendor"}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+private getDismissReason(reason: any): string {
+
+  if (reason === ModalDismissReasons.ESC) {
+    return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    return 'by clicking on a backdrop';
+  } else {
+    return  `with: ${reason}`;
+  }
 }
 
 }
