@@ -4,6 +4,6 @@ C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\obj\Debug\netstandard2.0\Brahmasmi.M
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\bin\Debug\netstandard2.0\Brahmasmi.Models.deps.json
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\bin\Debug\netstandard2.0\Brahmasmi.Models.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\bin\Debug\netstandard2.0\Brahmasmi.Models.pdb
-C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\obj\Debug\netstandard2.0\Brahmasmi.Models.csprojAssemblyReference.cache
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\obj\Debug\netstandard2.0\Brahmasmi.Models.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\obj\Debug\netstandard2.0\Brahmasmi.Models.pdb
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\obj\Debug\netstandard2.0\Brahmasmi.Models.csprojAssemblyReference.cache

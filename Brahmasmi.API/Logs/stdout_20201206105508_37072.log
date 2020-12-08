@@ -1,0 +1,63 @@
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://127.0.0.1:23631
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API
+info: Brahmasmi.API.Controllers.UtilitiesController[0]
+      end
+info: Brahmasmi.API.Controllers.UtilitiesController[0]
+      end
+info: Brahmasmi.API.Controllers.UtilitiesController[0]
+      end
+info: Brahmasmi.API.Controllers.UtilitiesController[0]
+      end
+fail: Brahmasmi.API.Controllers.VendorController[0]
+      Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'homam' to data type int.
+      The data for table-valued parameter "@VendorSpecializations" doesn't conform to the table type of the parameter. SQL Server error is: 245, state: 1
+      The statement has been terminated.
+         at Brahmasmi.Service.Dapperr.Execute(String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 100
+         at Brahmasmi.Repository.VendorRepository.RegisterVendor(Vendor vendor) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\VendorRepository.cs:line 163
+         at Brahmasmi.API.Controllers.VendorController.registerVendor(Vendor vendor) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\VendorController.cs:line 52
+      ClientConnectionId:1948be1a-18b4-4075-8845-4bd4275e9cae
+      Error Number:245,State:1,Class:16
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

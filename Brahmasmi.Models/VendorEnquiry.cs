@@ -18,6 +18,7 @@ namespace Brahmasmi.Models
         public string CityName { get; set; }
 
         public string StateName { get; set; }
+   
 
         public string CountryName { get; set; }
 

@@ -6,3 +6,4 @@ C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\obj\Release\netstandard2.0\Brahmasmi
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\obj\Release\netstandard2.0\Brahmasmi.Models.csproj.CoreCompileInputs.cache
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\obj\Release\netstandard2.0\Brahmasmi.Models.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\obj\Release\netstandard2.0\Brahmasmi.Models.pdb
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Models\obj\Release\netstandard2.0\Brahmasmi.Models.csprojAssemblyReference.cache

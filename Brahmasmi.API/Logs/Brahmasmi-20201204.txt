@@ -1,0 +1,4 @@
+2020-12-04T23:49:14.0657678+05:30  [INF] Now listening on: "http://127.0.0.1:13902" (d826f4b8)
+2020-12-04T23:49:14.1592449+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-04T23:49:14.1858433+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-04T23:49:14.1955980+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)

@@ -13,6 +13,8 @@ namespace Brahmasmi.Repository
         List<SocialNetwork> GetSocialNetwork();
 
         List<State> GetState();
+        List<Country> GetCountry();
+        List<State> GetStates(int CountryID);
 
         List<Title> GetTitle();
 
@@ -35,5 +37,8 @@ namespace Brahmasmi.Repository
         List<StoreVendor> GetStores(int cityId);
 
         MeetingCredentials GetMeetingCredentials();
+        List<Education> GetEducations();
+        List<IndustryTypes> GetIndustryTypes();
+        List<VirtualPlatform> GetVirtualPlatforms();
     }
 }

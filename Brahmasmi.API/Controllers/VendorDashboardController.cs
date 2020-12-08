@@ -60,5 +60,21 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        [EnableCors("CorsPolicy")]
+        [HttpPost]
+        public async Task<ActionResult<VendorGeo>> VendorGeoUpdate(VendorGeo vendor)
+        {
+            try
+            {
+
+                var result = await Task.FromResult(vendorDashboardRepository.VendorGeoUpdate(vendor));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at VendorPayment: {ex}");
+                return StatusCode(500, ex);
+            }
+        }
     }
 }

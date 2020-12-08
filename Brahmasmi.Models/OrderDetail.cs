@@ -12,7 +12,9 @@ namespace Brahmasmi.Models
         public string ServiceName { get; set; }
 
         public string BookingType { get; set; }
+        public string Membership { get; set; }
 
+        public string Name { get; set; }
 
     }
 }

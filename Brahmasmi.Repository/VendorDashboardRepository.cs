@@ -28,5 +28,21 @@ namespace Brahmasmi.Repository
             return result;
 
         }
+        public int VendorGeoUpdate(VendorGeo vendorGeo)
+        {
+
+            var dbParam = new DynamicParameters();
+            dbParam.Add("@latitude", vendorGeo.Latitude, DbType.String);
+            dbParam.Add("@longitude", vendorGeo.Longitude, DbType.String);
+            dbParam.Add("@vendorid", vendorGeo.VendorId, DbType.Int32);
+
+            dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
+            var result = dapper.Execute("[dbo].[sp_VendorGeoUpdate]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+
+            return result;
+
+        }
     }
 }

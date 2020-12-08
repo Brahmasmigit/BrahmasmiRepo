@@ -41,4 +41,12 @@ namespace Brahmasmi.Models
 
         public int Total { get; set; }
     }
+    public class VendorGeo
+    {
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+
+        public int VendorId { get; set; }
+
+    }
 }

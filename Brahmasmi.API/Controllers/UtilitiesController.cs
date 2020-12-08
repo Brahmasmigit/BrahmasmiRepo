@@ -82,12 +82,50 @@ namespace Brahmasmi.API.Controllers
         }
         [EnableCors("CorsPolicy")]
         [HttpGet]
+        public async Task<ActionResult<Country>> GetCountry()
+        {
+            try
+            {
+
+                var result = await Task.FromResult(utilitiesRepository.GetCountry());
+                //throw new Exception("Exception while fetching...");
+                logger.LogInformation("end");
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet]
         public async Task<ActionResult<State>> GetStates()
         {
             try
             {
 
                 var result = await Task.FromResult(utilitiesRepository.GetState());
+                //throw new Exception("Exception while fetching...");
+                logger.LogInformation("end");
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet("{CountryID}")]
+        public async Task<ActionResult<State>> GetAllState(int CountryID)
+        {
+            try
+            {
+
+                var result = await Task.FromResult(utilitiesRepository.GetStates(CountryID));
                 //throw new Exception("Exception while fetching...");
                 logger.LogInformation("end");
 
@@ -207,6 +245,51 @@ namespace Brahmasmi.API.Controllers
             {
                 logger.LogError($"Exception at Login Method: {ex}");
                 return StatusCode(500, ex);
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<Education>> GetAllEducations()
+        {
+            try
+            {
+                var result = await Task.FromResult(utilitiesRepository.GetEducations());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<IndustryTypes>> GetIndustryTypes()
+        {
+            try
+            {
+                var result = await Task.FromResult(utilitiesRepository.GetIndustryTypes());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<VirtualPlatform>> GetVirtualPlatforms()
+        {
+            try
+            {
+                var result = await Task.FromResult(utilitiesRepository.GetVirtualPlatforms());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
             }
         }
     }

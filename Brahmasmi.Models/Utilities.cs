@@ -84,4 +84,24 @@ namespace Brahmasmi.Models
 
         public string CityName { get; set; }
     }
+    public class Education
+    {
+        public int EducationID { get; set; }
+        public string EducationName { get; set; }
+    }
+    public class IndustryTypes
+    {
+        public int IndustryTypeID { get; set; }
+        public string IndustryType { get; set; }
+    }
+    public class VirtualPlatform
+    {
+        public int VirtualPlatformID { get; set; }
+        public string VirtualPlatformName { get; set; }
+    }
+    public class Country
+    {
+        public int CountryID { get; set; }
+        public string CountryName { get; set; }
+    }
 }

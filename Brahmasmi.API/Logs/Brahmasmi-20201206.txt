@@ -1,0 +1,154 @@
+2020-12-06T11:40:40.2445803+05:30  [INF] Now listening on: "http://127.0.0.1:11468" (d826f4b8)
+2020-12-06T11:40:40.2677790+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-06T11:40:40.2679955+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-06T11:40:40.2680348+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-12-06T11:41:01.8449199+05:30 0HM4PLMK32M7K:00000004 [INF] end (b0c485d7)
+2020-12-06T11:41:24.9187049+05:30 0HM4PLMK32M7L:00000004 [INF] end (b0c485d7)
+2020-12-06T11:42:18.1129843+05:30 0HM4PLMK32M7L:00000005 [INF] end (b0c485d7)
+2020-12-06T11:47:45.4986329+05:30 0HM4PLMK32M7N:00000004 [INF] end (b0c485d7)
+2020-12-06T12:11:37.1147603+05:30  [INF] Application is shutting down... (90f52c38)
+2020-12-06T12:28:56.0226350+05:30  [INF] Now listening on: "http://127.0.0.1:18579" (d826f4b8)
+2020-12-06T12:28:56.0473891+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-06T12:28:56.0475628+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-06T12:28:56.0475960+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-12-06T12:44:35.8784495+05:30 0HM4PMHJ4TG8Q:00000002 [INF] end (b0c485d7)
+2020-12-06T12:46:44.3435428+05:30 0HM4PMHJ4TG8S:00000002 [INF] end (b0c485d7)
+2020-12-06T12:48:31.5754688+05:30 0HM4PMHJ4TG8T:00000005 [INF] end (b0c485d7)
+2020-12-06T12:48:41.3456711+05:30 0HM4PMHJ4TG8S:00000006 [INF] end (b0c485d7)
+2020-12-06T13:06:53.9976857+05:30 0HM4PMHJ4TG94:00000002 [INF] end (b0c485d7)
+2020-12-06T13:07:55.5019069+05:30 0HM4PMHJ4TG94:00000004 [INF] end (b0c485d7)
+2020-12-06T13:08:41.6050159+05:30  [INF] Now listening on: "http://127.0.0.1:20332" (d826f4b8)
+2020-12-06T13:08:41.7868886+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-06T13:08:42.1724836+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-06T13:08:42.2292020+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-12-06T13:11:19.3005250+05:30 0HM4PN7Q1GQP3:00000002 [INF] end (b0c485d7)
+2020-12-06T13:11:27.7269668+05:30 0HM4PN7Q1GQP4:00000002 [INF] end (b0c485d7)
+2020-12-06T13:13:59.5109620+05:30 0HM4PN7Q1GQP5:00000001 [INF] end (b0c485d7)
+2020-12-06T13:15:00.9834121+05:30 0HM4PN7Q1GQP6:00000001 [INF] end (b0c485d7)
+2020-12-06T13:15:11.1315208+05:30 0HM4PN7Q1GQP6:00000002 [INF] end (b0c485d7)
+2020-12-06T13:17:23.5404756+05:30 0HM4PN7Q1GQP7:00000003 [INF] end (b0c485d7)
+2020-12-06T13:17:37.0909478+05:30 0HM4PN7Q1GQP8:00000003 [INF] end (b0c485d7)
+2020-12-06T13:19:59.5172758+05:30 0HM4PN7Q1GQPB:00000002 [INF] end (b0c485d7)
+2020-12-06T13:22:21.6368770+05:30 0HM4PN7Q1GQPC:00000001 [INF] end (b0c485d7)
+2020-12-06T13:24:57.8188159+05:30 0HM4PN7Q1GQPD:00000001 [INF] end (b0c485d7)
+2020-12-06T13:25:56.8485401+05:30 0HM4PN7Q1GQPD:00000002 [INF] end (b0c485d7)
+2020-12-06T13:27:19.3337187+05:30 0HM4PN7Q1GQPE:00000001 [INF] end (b0c485d7)
+2020-12-06T13:27:40.1321455+05:30 0HM4PN7Q1GQPE:00000002 [INF] end (b0c485d7)
+2020-12-06T13:29:39.3192083+05:30 0HM4PN7Q1GQPF:00000001 [INF] end (b0c485d7)
+2020-12-06T13:32:42.4741910+05:30 0HM4PN7Q1GQPG:00000001 [INF] end (b0c485d7)
+2020-12-06T13:40:11.0581438+05:30 0HM4PN7Q1GQPH:00000001 [INF] end (b0c485d7)
+2020-12-06T13:42:53.2410079+05:30 0HM4PN7Q1GQPI:00000003 [INF] end (b0c485d7)
+2020-12-06T13:44:20.5425167+05:30 0HM4PN7Q1GQPK:00000001 [INF] end (b0c485d7)
+2020-12-06T13:46:25.7659703+05:30 0HM4PN7Q1GQPL:00000001 [INF] end (b0c485d7)
+2020-12-06T13:48:04.4239215+05:30 0HM4PN7Q1GQPM:00000001 [INF] end (b0c485d7)
+2020-12-06T13:48:17.2129109+05:30 0HM4PN7Q1GQPM:00000002 [INF] end (b0c485d7)
+2020-12-06T13:48:21.6763025+05:30 0HM4PN7Q1GQPM:00000003 [INF] end (b0c485d7)
+2020-12-06T13:50:34.7504028+05:30 0HM4PN7Q1GQPN:00000001 [INF] end (b0c485d7)
+2020-12-06T13:52:28.2227352+05:30 0HM4PN7Q1GQPO:00000001 [INF] end (b0c485d7)
+2020-12-06T13:53:56.7670343+05:30 0HM4PN7Q1GQPP:00000001 [INF] end (b0c485d7)
+2020-12-06T13:54:42.3949622+05:30 0HM4PN7Q1GQPP:00000002 [INF] end (b0c485d7)
+2020-12-06T13:55:43.6809983+05:30 0HM4PN7Q1GQPQ:00000001 [INF] end (b0c485d7)
+2020-12-06T13:59:20.4367509+05:30 0HM4PN7Q1GQPR:00000005 [ERR] Exception at Sending Email: System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.
+ ---> System.IO.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host..
+ ---> System.Net.Sockets.SocketException (10054): An existing connection was forcibly closed by the remote host.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.FixedSizeReader.ReadPacketAsync(Stream transport, AsyncProtocolRequest request)
+   at System.Net.Security.SslStream.ThrowIfExceptional()
+   at System.Net.Security.SslStream.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslStream.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsClient(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsClientAsync>b__65_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Http.ConnectHelper.EstablishSslConnectionAsyncCore(Stream stream, SslClientAuthenticationOptions sslOptions, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.EstablishSslConnectionAsyncCore(Stream stream, SslClientAuthenticationOptions sslOptions, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean allowHttp2, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttpConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at SendGrid.Helpers.Reliability.RetryDelegatingHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at SendGrid.BaseClient.MakeRequest(HttpRequestMessage request, CancellationToken cancellationToken)
+   at SendGrid.BaseClient.RequestAsync(Method method, String requestBody, String queryParams, String urlPath, CancellationToken cancellationToken)
+   at SendGrid.BaseClient.SendEmailAsync(SendGridMessage msg, CancellationToken cancellationToken)
+   at Brahmasmi.API.Email.SendEmail(String to, String toName, String subject, String body) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Email.cs:line 36 (adb2cff2)
+2020-12-06T13:59:46.6748627+05:30 0HM4PN7Q1GQPS:00000008 [INF] end (b0c485d7)
+2020-12-06T14:00:40.9021271+05:30 0HM4PN7Q1GQPR:00000008 [INF] end (b0c485d7)
+2020-12-06T14:01:37.2293009+05:30 0HM4PN7Q1GQPR:00000009 [INF] end (b0c485d7)
+2020-12-06T14:04:27.2662756+05:30 0HM4PN7Q1GQPT:00000001 [INF] end (b0c485d7)
+2020-12-06T14:05:26.4897929+05:30 0HM4PN7Q1GQPT:00000002 [INF] end (b0c485d7)
+2020-12-06T14:06:32.2757005+05:30 0HM4PN7Q1GQPT:00000004 [INF] end (b0c485d7)
+2020-12-06T14:09:06.8658663+05:30 0HM4PN7Q1GQPV:00000001 [INF] end (b0c485d7)
+2020-12-06T14:09:44.0775077+05:30 0HM4PN7Q1GQPV:00000002 [INF] end (b0c485d7)
+2020-12-06T14:10:30.0800300+05:30 0HM4PN7Q1GQPV:00000003 [INF] end (b0c485d7)
+2020-12-06T14:10:52.0507547+05:30 0HM4PN7Q1GQPV:00000005 [INF] end (b0c485d7)
+2020-12-06T14:11:23.7615260+05:30 0HM4PN7Q1GQQ0:00000002 [INF] end (b0c485d7)
+2020-12-06T14:12:02.4578908+05:30 0HM4PN7Q1GQQ0:00000003 [INF] end (b0c485d7)
+2020-12-06T14:15:07.0051447+05:30 0HM4PN7Q1GQQ1:00000002 [INF] end (b0c485d7)
+2020-12-06T14:15:21.7431503+05:30 0HM4PN7Q1GQQ2:00000003 [INF] end (b0c485d7)
+2020-12-06T14:15:37.0137466+05:30 0HM4PN7Q1GQQ1:00000004 [INF] end (b0c485d7)
+2020-12-06T16:10:52.5979329+05:30  [INF] Now listening on: "http://127.0.0.1:31219" (d826f4b8)
+2020-12-06T16:10:52.6324262+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-06T16:10:52.6395586+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-06T16:10:52.6478411+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-12-06T16:25:12.5749626+05:30  [INF] Now listening on: "http://127.0.0.1:23631" (d826f4b8)
+2020-12-06T16:25:12.6190425+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-06T16:25:12.6191465+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-06T16:25:12.6191809+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-12-06T16:25:13.2954051+05:30 0HM4PQLK14UHB:00000001 [INF] end (b0c485d7)
+2020-12-06T16:33:16.7242719+05:30 0HM4PQLK14UHE:00000001 [INF] end (b0c485d7)
+2020-12-06T16:34:44.0179351+05:30 0HM4PQLK14UHK:00000001 [INF] end (b0c485d7)
+2020-12-06T16:35:12.3225539+05:30 0HM4PQLK14UHK:00000005 [INF] end (b0c485d7)
+2020-12-06T16:36:34.2305607+05:30 0HM4PQLK14UHM:00000002 [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'homam' to data type int.
+The data for table-valued parameter "@VendorSpecializations" doesn't conform to the table type of the parameter. SQL Server error is: 245, state: 1
+The statement has been terminated.
+   at Brahmasmi.Service.Dapperr.Execute(String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 100
+   at Brahmasmi.Repository.VendorRepository.RegisterVendor(Vendor vendor) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\VendorRepository.cs:line 163
+   at Brahmasmi.API.Controllers.VendorController.registerVendor(Vendor vendor) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\VendorController.cs:line 52
+ClientConnectionId:1948be1a-18b4-4075-8845-4bd4275e9cae
+Error Number:245,State:1,Class:16 (f8a286ad)
+2020-12-06T16:36:55.4951171+05:30  [INF] Now listening on: "http://127.0.0.1:32147" (d826f4b8)
+2020-12-06T16:36:55.5157836+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-06T16:36:55.5182409+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-06T16:36:55.5212910+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-12-06T16:37:57.0878562+05:30 0HM4PQS5I2IDR:00000002 [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'homam' to data type int.
+The data for table-valued parameter "@VendorSpecializations" doesn't conform to the table type of the parameter. SQL Server error is: 245, state: 1
+The statement has been terminated.
+   at Brahmasmi.Service.Dapperr.Execute(String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 100
+   at Brahmasmi.Repository.VendorRepository.RegisterVendor(Vendor vendor) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\VendorRepository.cs:line 163
+   at Brahmasmi.API.Controllers.VendorController.registerVendor(Vendor vendor) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\VendorController.cs:line 52
+ClientConnectionId:af34643d-f074-4b3b-a989-6343b19ba4b5
+Error Number:245,State:1,Class:16 (5976dcb2)
+2020-12-06T16:47:54.9955564+05:30 0HM4PQS5I2IDR:00000003 [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'homam' to data type int.
+The data for table-valued parameter "@VendorSpecializations" doesn't conform to the table type of the parameter. SQL Server error is: 245, state: 1
+The statement has been terminated.
+   at Brahmasmi.Service.Dapperr.Execute(String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 100
+   at Brahmasmi.Repository.VendorRepository.RegisterVendor(Vendor vendor) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\VendorRepository.cs:line 163
+   at Brahmasmi.API.Controllers.VendorController.registerVendor(Vendor vendor) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\VendorController.cs:line 52
+ClientConnectionId:af34643d-f074-4b3b-a989-6343b19ba4b5
+Error Number:245,State:1,Class:16 (5976dcb2)
+2020-12-06T16:48:25.6208108+05:30 0HM4PQS5I2IDR:00000005 [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'homam' to data type int.
+The data for table-valued parameter "@VendorSpecializations" doesn't conform to the table type of the parameter. SQL Server error is: 245, state: 1
+The statement has been terminated.
+   at Brahmasmi.Service.Dapperr.Execute(String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 100
+   at Brahmasmi.Repository.VendorRepository.RegisterVendor(Vendor vendor) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\VendorRepository.cs:line 163
+   at Brahmasmi.API.Controllers.VendorController.registerVendor(Vendor vendor) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\VendorController.cs:line 52
+ClientConnectionId:bc7fbfe6-5795-4489-b3a2-15990e2e0a0c
+Error Number:245,State:1,Class:16 (c4aa3c14)
+2020-12-06T16:50:00.6075081+05:30 0HM4PQS5I2IDT:00000002 [INF] end (b0c485d7)
+2020-12-06T17:10:29.1708633+05:30  [INF] Application is shutting down... (90f52c38)
+2020-12-06T18:31:15.2504963+05:30  [INF] Now listening on: "http://127.0.0.1:5573" (d826f4b8)
+2020-12-06T18:31:15.2807194+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-06T18:31:15.2809535+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-06T18:31:15.2809962+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-12-06T18:31:16.1533033+05:30 0HM4PSS1TDV9J:00000001 [INF] end (b0c485d7)
+2020-12-06T18:52:11.9254877+05:30  [INF] Application is shutting down... (90f52c38)
+2020-12-06T22:39:57.5401088+05:30  [INF] Now listening on: "http://127.0.0.1:26958" (d826f4b8)
+2020-12-06T22:39:57.5763846+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-06T22:39:57.5809126+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-06T22:39:57.6041537+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)

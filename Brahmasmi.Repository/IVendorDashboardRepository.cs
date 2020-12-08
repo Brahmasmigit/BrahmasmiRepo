@@ -7,5 +7,6 @@ namespace Brahmasmi.Repository
     public interface IVendorDashboardRepository
     {
         List<VendorDashboard> GetOngoing(int vendorid, string calendarType);
+        int VendorGeoUpdate(VendorGeo vendorGeo);
     }
 }

@@ -59,6 +59,23 @@ namespace Brahmasmi.Repository
             return result;
 
         }
+        public List<Country> GetCountry()
+        {
+            var dbParam = new DynamicParameters();
+            var result = dapper.GetAll<Country>("[dbo].[SP_Get_Countries]", dbParam
+                 , commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
+        public List<State> GetStates(int CountryID)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("CountryID", CountryID, DbType.Int32);
+            var result = dapper.GetAll<State>("[dbo].[SP_Get_AllStates]", dbParam
+                 , commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
         public List<State> GetState()
         {
             var dbParam = new DynamicParameters();
@@ -166,6 +183,31 @@ namespace Brahmasmi.Repository
                  commandType: CommandType.StoredProcedure);
             return result;
 
+        }
+        public List<Education> GetEducations()
+        {
+            var dbParam = new DynamicParameters();
+            var result = dapper.GetAll<Education>("[dbo].[SP_Get_AllEducations]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
+        public List<IndustryTypes> GetIndustryTypes()
+        {
+            var dbParam = new DynamicParameters();
+            var result = dapper.GetAll<IndustryTypes>("[dbo].[SP_Get_AllIndustryTypes]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+        }
+        public List<VirtualPlatform> GetVirtualPlatforms()
+        {
+            var dbParam = new DynamicParameters();
+            var result = dapper.GetAll<VirtualPlatform>("[dbo].[SP_Get_VirtualPlatforms]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
         }
     }
 }
