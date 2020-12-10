@@ -20,5 +20,7 @@ namespace Brahmasmi.Models
 
         public List<string> ListInsight { get; set; }
 
+        public byte[] ServiceImage { get; set; }
+
     }
 }
