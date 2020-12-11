@@ -77,6 +77,7 @@ namespace Brahmasmi.API
             services.AddScoped<ITempleServiceRepository, TempleServiceRepository>();
             services.AddScoped<ICouponRepository, CouponRepository>();
             services.AddScoped<ILoyaltyPointsRepository, LoyaltyPointsRepository>();
+            services.AddScoped<IContactUsRepository, ContactUsRepository>();
             services.AddScoped<IDapper, Dapperr>();
         }
 

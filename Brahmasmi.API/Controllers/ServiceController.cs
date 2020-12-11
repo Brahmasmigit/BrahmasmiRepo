@@ -66,6 +66,7 @@ namespace Brahmasmi.API.Controllers
         {
             try
             {
+
                 var imageFile = Request.Form.Files[0];
                 var imageFileName = imageFile.FileName;
                 var serviceTypeID = Convert.ToInt32(Request.Form["serviceTypeID"]);
