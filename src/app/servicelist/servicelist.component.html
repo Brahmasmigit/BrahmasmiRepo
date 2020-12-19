@@ -1,10 +1,11 @@
 <app-header></app-header>
-  <div class="container-fluid jumbotron" style="background-color: linen;" >
+
+  <div class="container-fluid jumbotron  w-100" >
 
 
 
 
-            <div class="card ">
+            <div class="card">
 
 
                 <div class="pt-1">
@@ -12,8 +13,8 @@
 
                     <div class="content">
                         <div class="container">
-                            <div class="row">
-                                <div class="col-12">
+                            <div class="row ">
+                                <div class="col-md-12">
                                     <div class="card-box">
                                         <div class="row">
                                             <div class="col-lg-6 col-xl-6">
@@ -24,7 +25,10 @@
                                         <div class="row">
                                             <div class="col-md-3" *ngFor="let item of services">
                                                 <div class="file-man-box">
-                                                    <div class="file-img-box"><img src="../../assets/Aksharabhyasam.jpg" alt="icon"></div>
+                                                    <div class="file-img-box">
+                                                      <!--<img height="300px" width="200px" src="data:image/png;base64,{{item.serviceImage}}"  alt="icon">-->
+                                                      <img src="../../assets/No-Image.png" class="imgservice"  alt="icon">
+                                                    </div>
                                                     <div class="file-man-title">
                                                         <h5 class="mb-0"><a [routerLink]="['/servicedetails',item.serviceId]" routerLinkActive="active" style="color: black;">{{item.serviceName}}</a></h5>
 

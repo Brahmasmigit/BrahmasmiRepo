@@ -99,10 +99,10 @@ onDelete(index:any)
 }
 
   AddService()  {
-    if (this.UploadedFile == null || this.UploadedFile == undefined) {
+    /*if (this.UploadedFile == null || this.UploadedFile == undefined) {
       this.showError("Please upload a file");
       return;
-    }
+    }*/
       console.log(this.serviceModel);
 
     console.log('rich data', this.serviceModel.service_Short_Description);

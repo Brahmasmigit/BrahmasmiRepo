@@ -1,12 +1,12 @@
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<body>
-<div class="pull-right"><a class="nav-link" routerLink="/adminlogin" routerLinkActive="active">
-  <img src="../../assets/tilak.jpg" width="20px;" height="20px;"/>
-</a></div>
-  <form  #enquiryForm="ngForm"  (ngSubmit)="saveVendor()">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>-->
+  <app-header></app-header>
 
-      <table class="form" align="center">
+
+  <form class="form"  #enquiryForm="ngForm"  (ngSubmit)="saveVendor()">
+
+      <table style="color: #307c06;" align="center">
         <tr >
           <td >
             <h1 style="margin-left:40px; margin-top:60px;">Registration Form</h1>
@@ -208,5 +208,4 @@
         </table>
       </form>
 
-
-    </body>
+<app-footer></app-footer>

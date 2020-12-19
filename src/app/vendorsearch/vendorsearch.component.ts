@@ -83,6 +83,11 @@ OpenMap()
   this.router.navigate(['/vendorlocation']);
 //this.OpenMapPopup(this.mymodal);
 }
+OpenMap1()
+{
+  this.router.navigate(['/testmap']);
+//this.OpenMapPopup(this.mymodal);
+}
 OpenMapPopup(content) {
   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', windowClass : "xlModalvendor"}).result.then((result) => {
     this.closeResult = `Closed with: ${result}`;

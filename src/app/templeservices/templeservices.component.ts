@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { State, Temple, TempleTypeData, TempleWithType } from '../admin/admintempleservices/templeservice.model';
-import { TempleService } from '../admin/admintempleservices/templeService.services';
+import { TempleAdminService } from '../admin/admintempleservices/templeAdminService.services';
 import { UtilitiesService } from '../shared/services/utilities.service';
-import { TempleservicesService } from './templeservices.service';
+import { TempleService } from './templeService.service';
 
 @Component({
   selector: 'app-templeservices',
@@ -11,21 +11,22 @@ import { TempleservicesService } from './templeservices.service';
   styleUrls: ['./templeservices.component.css']
 })
 export class TempleservicesComponent implements OnInit {
-  endowmentTemple: TempleWithType[] = [];
-  nonEndowmentTemple: TempleWithType[] = [];
-  etTemple: TempleWithType[] = [];
-  netTemple: TempleWithType[] = [];
+  endowmentTemple: TempleWithType[] = {} as TempleWithType[];
+  nonEndowmentTemple: TempleWithType[] = {} as TempleWithType[];
+  etTemple: TempleWithType[] = {} as TempleWithType[];
+  netTemple: TempleWithType[] = {} as TempleWithType[];
   States: State;
   errorMessage: any;
   etStateId: number;
   netStateId: number;
   templeDetails: Temple;
 
-  constructor(private templesService: TempleservicesService, private utilitiesService: UtilitiesService, private templeService: TempleService, private router: Router) { }
+  constructor(private templesService: TempleService, private utilitiesService: UtilitiesService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTemplesTypesList();
     this.getState();
+    sessionStorage.removeItem("templeServiceDetails");
   }
 
   getTemplesTypesList() {

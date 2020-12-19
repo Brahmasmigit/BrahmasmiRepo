@@ -35,19 +35,34 @@ import { UserproductorderdetailsComponent } from './userproductorderdetails/user
 import { AdminproductdashboardComponent } from './admin/adminproductdashboard/adminproductdashboard.component';
 import { VirtualvideoslotbookingComponent } from './virtualvideoslotbooking/virtualvideoslotbooking.component';
 import { ConstructionComponent } from './construction/construction.component';
-import { AdmintempleservicesComponent } from './admin/admintempleservices/admintempleservices.component';
 import { VendorsearchComponent } from './vendorsearch/vendorsearch.component';
 import { VendorbookingComponent } from './vendorbooking/vendorbooking.component';
 import { ProductcategoriesComponent } from './productcategories/productcategories.component';
-import { TempleservicesComponent } from './templeservices/templeservices.component';
-import { TempleDetailsComponent } from './templeservices/temple-details/temple-details.component';
 import { AdmincouponComponent } from './admin/admincoupon/admincoupon.component';
 import { AdminloyaltypointsComponent } from './admin/adminloyaltypoints/adminloyaltypoints.component';
 import { VendormapComponent } from './vendormap/vendormap.component';
 import { VendorpaymentComponent } from './vendorpayment/vendorpayment.component';
+import { TestmapComponent } from './testmap/testmap.component';
+import { MainComponent } from './main/main.component';
+import { AuspiciousdatesComponent } from './auspiciousdates/auspiciousdates.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { TermsandconditionsComponent } from './termsandconditions/termsandconditions.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { ProductmasterComponent } from './admin/productmaster/productmaster.component';
+import { HoroscopeComponent } from './horoscope/horoscope.component';
+import { HoroscopedetailsComponent } from './horoscopedetails/horoscopedetails.component';
+import { HoroscopemasterComponent } from './admin/horoscopemaster/horoscopemaster.component';
+import { AdmintempleservicesComponent } from './admin/admintempleservices/admintempleservices.component';
+import { TempleservicesComponent } from './templeservices/templeservices.component';
+import { TempleDetailsComponent } from './templeservices/temple-details/temple-details.component';
+import { ManagetempleservicerequestsComponent } from './admin/admintempleservices/managetempleservicerequests/managetempleservicerequests.component';
+import { TempleUserCartComponent } from './templeservices/templeusercart/templeusercart.component';
+import { TempleUserBillingComponent } from './templeservices/templeuserbilling/templeuserbilling.component';
+import { TempleOrderDetailsComponent } from './templeservices/templeorderdetails/templeorderdetails.component';
+import { TempleUserDashboardComponent } from './templeservices/templeuserdashboard/templeuserdashboard.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/construction', pathMatch: 'full' },
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'vendordashboard', component: VendordashboardComponent },
   { path: 'vendorprofile', component: VendorprofileComponent },
   { path: 'servicedetails/:serviceId', component: ServicedetailsComponent },
@@ -82,16 +97,31 @@ const routes: Routes = [
   {path:'adminproductdashboard',component: AdminproductdashboardComponent},
   {path:'virtualslotbooking',component: VirtualvideoslotbookingComponent},
   {path:'construction',component: ConstructionComponent},
-  {path: 'admintempleservices', component: AdmintempleservicesComponent },
   {path: 'vendorsearch', component: VendorsearchComponent },
   {path: 'vendorbooking', component: VendorbookingComponent },
   {path: 'productcategories', component: ProductcategoriesComponent },
-  {path: 'templeservices', component: TempleservicesComponent },
-  {path: 'temple-details', component: TempleDetailsComponent },
   {path: 'admincoupon', component: AdmincouponComponent },
   {path: 'adminloyaltypoints', component: AdminloyaltypointsComponent },
   {path: 'vendormap', component: VendormapComponent },
   {path: 'vendorpayment', component: VendorpaymentComponent },
+  {path: 'testmap', component: TestmapComponent },
+  {path: 'main', component: MainComponent },
+  {path: 'auspicious/:auspicious', component: AuspiciousdatesComponent },
+  {path: 'aboutus', component: AboutusComponent },
+  {path: 'terms', component: TermsandconditionsComponent },
+  {path: 'contactus', component: ContactusComponent },
+  {path: 'productmaster', component: ProductmasterComponent },
+  {path: 'horoscope', component: HoroscopeComponent },
+  {path: 'horoscopedetails/:horoscopeID', component: HoroscopedetailsComponent },
+  {path: 'horoscopemaster', component: HoroscopemasterComponent },
+  { path: 'admintempleservices', component: AdmintempleservicesComponent },
+  { path: 'templeservices', component: TempleservicesComponent },
+  { path: 'temple-details', component: TempleDetailsComponent },
+  { path: 'managetempleservicerequest', component: ManagetempleservicerequestsComponent },
+  { path: 'templeserviceusercart', component: TempleUserCartComponent },
+  { path: 'templeuserbilling', component: TempleUserBillingComponent },
+  { path: 'templeorderdetails', component: TempleOrderDetailsComponent },
+  { path: 'tempeuserdashboard', component: TempleUserDashboardComponent },
 ];
 
 @NgModule({

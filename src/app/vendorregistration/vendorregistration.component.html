@@ -1,9 +1,9 @@
 <app-header></app-header>
-
+<div class="container-fluid jumbotron">
 <form #registerVendorForm="ngForm" (ngSubmit)="registerVendorForm.form.valid && openPaymentPopup()">
   <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
   <div class="container card border-primary mb-3" style="max-width: 80rem;">
-    <div class="card-header text-center bold text-info">
+    <div class="card-header text-center bold text-info w-100">
       <h3><b>Register as a Professional</b></h3>
     </div>
     <div class="card-body" style="height: auto">
@@ -882,6 +882,6 @@
 
   </div>
 </form>
-
+</div>
 <app-footer></app-footer>
 <!-- </div> -->

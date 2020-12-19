@@ -152,3 +152,25 @@ h5 {
   cursor: pointer;
 }
 
+.card-header{
+  background-image: url("../src/assets/img/light.jpg");
+  /* opacity: 0.6; */
+  font-weight: bold;
+  text-align: center;
+   font-size: 22px;
+   color:#F7F9F9;
+
+}
+/* .container{
+  background-color: #ffffff;
+} */
+.btn {
+  background-color: #29BF12;
+  font-weight: bold;
+  color: #f7f9f9;
+}
+.jumbotron{
+  background-color:  #f1f1f1;
+  width: 100%;
+
+}

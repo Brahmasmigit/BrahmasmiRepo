@@ -1,0 +1,88 @@
+<app-header></app-header>
+
+<div class="jumbotron" style="background-color: linen;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card border-primary mb-3 w-100">
+                    <div class="card-header font-weight-bold">Cart Items</div>
+                    <div class="card-body" style="height: 100%">
+                        <div class="conatiner-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered w-100">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Slno</th>
+                                                <th>Service Name</th>
+                                                <th>Price</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of templeUserCartItems1.serviceDetails;let i=index">
+                                                <td>{{i + 1}}</td>
+                                                <td>{{item.ServiceName}}</td>
+                                                <td>{{item.ServicePrice}}</td>
+                                                <td style="text-align: center;"><a class="text-danger"
+                                                        (click)="DeleteItem(item.ServiceId,i)" data-toggle="tooltip"
+                                                        data-placement="top" title="" data-original-title="Close"> <i
+                                                            class="fa fa-remove h5 m-0"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{templeUserCartItems1.serviceDetails.length+1}}</td>
+                                                <td>Darshan</td>
+                                                <td>{{templeUserCartItems1.DarshanPrice}}</td>
+                                                <td aria-readonly="true"
+                                                    style="background-color: lightgray; text-align: center;"><a
+                                                        class="text-danger" data-toggle="tooltip" data-placement="top"
+                                                        title="" data-original-title="Close"> <i
+                                                            class="fa fa-remove h5 m-0"></i></a></td>
+                                            </tr>
+                                            <tr *ngIf="accommodation">
+                                                <td>{{templeUserCartItems1.serviceDetails.length+2}}</td>
+                                                <td>Accommodation: Room Type: {{templeUserCartItems1.RoomType}}</td>
+                                                <td>{{templeUserCartItems1.RoomPrice}}</td>
+                                                <td aria-readonly="true"
+                                                    style="background-color: lightgray; text-align: center;"><a
+                                                        class="text-danger" data-toggle="tooltip" data-placement="top"
+                                                        title="" data-original-title="Close"> <i
+                                                            class="fa fa-remove h5 m-0"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" (click)="BookAnotherTempleService()" class="btn btn-primary">Book another
+                            Service</button>
+                        <label><b>Note:</b> To modify date and time for a service, please delete the selected and click
+                            on Book Another Service</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <h4 class="card-header">Cart Total</h4>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Sub Total: <span style="margin-left: 20px;">{{subTotal}}</span></li>
+                        <li class="list-group-item">Discount: <span style="margin-left: 25px;">{{discount}}</span></li>
+                        <li class="list-group-item">Total: <span style="margin-left: 53px;">{{total}}</span></li>
+                    </ul>
+                    <div class="card-body pull-right">
+
+                        <button class="btn btn-primary" (click)="CheckOut()">Proceed To Checkout</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <app-footer></app-footer>

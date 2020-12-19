@@ -1,0 +1,401 @@
+body {
+    font-family: "open-sans", Arial, Helvetica, sans-serif;
+
+  }
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #c7a359;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #bc222e;
+    display: block;
+    transition: 0.3s;
+    font-weight: bold;
+  }
+
+  .sidenav a:hover {
+    color: #f70318;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+
+    font-size: 36px;
+
+  }
+
+  #main {
+    transition: margin-left .5s;
+  }
+  .login a{
+      text-decoration: none;
+  }
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .container{
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  .section{
+    zoom: 1;
+  }
+  .section{
+    clear: both;
+    padding: 0px;
+    margin: 0px;
+  }
+
+    .col{
+      margin: 0 0 0px 3%;
+    }
+    .col{
+      display: block;
+      float: left;
+    }
+    .span_1_of_4{
+      width: 20%;
+    }
+    .textwidget{
+      padding: 0 0 10px;
+      margin: 0;
+    }
+
+
+  .login{
+    float: right;
+    margin-right: 20px;;
+  }
+  /* carousel */
+.media-carousel
+{
+  margin-bottom: 0;
+  padding: 0 40px 30px 40px;
+  margin-top: 30px;
+}
+/* Previous button  */
+.media-carousel .carousel-control.left
+{
+  left: -12px;
+  background-image: none;
+  background: none repeat scroll 0 0 #222222;
+  border: 4px solid #FFFFFF;
+  border-radius: 23px 23px 23px 23px;
+  height: 40px;
+  width : 40px;
+  margin-top: 30px
+}
+/* Next button  */
+.media-carousel .carousel-control.right
+{
+  right: -12px !important;
+  background-image: none;
+  background: none repeat scroll 0 0 #222222;
+  border: 4px solid #FFFFFF;
+  border-radius: 23px 23px 23px 23px;
+  height: 40px;
+  width : 40px;
+  margin-top: 30px
+}
+/* Changes the position of the indicators */
+.media-carousel .carousel-indicators
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the colour of the indicators */
+.media-carousel .carousel-indicators li
+{
+  background: #c0c0c0;
+}
+.media-carousel .carousel-indicators .active
+{
+  background: #333333;
+}
+.media-carousel img
+{
+  width: 250px;
+  height: 100px
+}
+
+.dropdown{
+
+  position: relative;
+bottom: 200px;
+
+}
+
+#places{
+  width: 300px;
+  height: 50px;
+  border: none;
+  border-radius: 2px;
+
+}
+option{
+  color: #000000;
+  font-weight: bold;
+
+}
+#languages{
+  width: 300px;
+  height: 50px;
+  border: none;
+  border-radius: 2px;
+
+}
+.services-btn{
+  background-color: #63bc33;
+  color: #ffffff;
+  height: 50px;
+  border: none;
+  border-radius: 2px;
+  font-weight: bold;
+}
+.services-btn:hover{
+  background-color: #cf0b0c;
+  color: #ffc000;
+  height: 50px;
+  border: none;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  position: relative;
+
+}
+
+/* Slides */
+.textSlides {
+  display: none;
+  padding: 80px;
+  text-align: center;
+}
+
+/* Next & previous buttons */
+.previous, .forward {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -30px;
+  padding: 16px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+a.previous{
+  color: #ffffff;
+
+}
+/* Position the "next button" to the right */
+.forward {
+  position: absolute;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.previous:hover, .forward:hover {
+  background-color: #63bc33;
+  color: #ffffff;
+}
+
+/* The dot/bullet/indicator container */
+.dot-container {
+    text-align: center;
+    padding: 20px;
+    background: #ddd;
+}
+
+
+q {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+/* Add a blue color to the author */
+.author {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 25px;
+}
+.testimonials {
+  overflow: hidden;
+  position: relative;
+  max-height: 300px;
+}
+
+.one-slide,
+.testimonial,
+.message {
+  border: none !important;
+  outline: none !important;
+}
+
+.icon-overlay {
+  position: absolute;
+
+  top: 0;
+  height: auto;
+
+
+}
+
+.carousel-controls .control {
+  position: absolute;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  z-index: 1;
+}
+
+.prev {
+
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.next {
+  right: -2.25rem;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .testimonials {
+    max-height: 700px;
+  }
+  .icon-overlay {
+    height: 300px;
+    top: calc(50% - 150px);
+  }
+  .carousel-controls .control {
+    width: 25px;
+    height: 25px;
+    top: inherit;
+  }
+  .prev {
+    left: 0;
+  }
+  .next {
+    right: 0;
+  }
+  .control i {
+    font-size: .7rem;
+  }
+  .testimonials .message {
+    font-size: 1rem;
+  }
+  .testimonials h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Footer */
+
+ul li a{
+  color: #ffffff;
+  width: 100%;
+  text-align: left;
+  line-height: 0%;
+  font-size: 13px;
+}
+ul li a:hover{
+  color: #63bc33;
+
+}
+    a:hover {
+      border-radius: 50%;
+
+    }
+
+   ul li a img:hover{
+     color:#63bc33 ;
+   }
+/*social icons*/
+    a {
+      color:#fff;
+      text-decoration:none;
+      font-family:fontawesome;
+      position: relative;
+      display: inline-block;
+
+    }
+    a i{
+      color: #ffffff;
+      padding-top:20px;
+    }
+    a i:hover{
+      color: #63bc33;
+    }
+    .bk-btn {
+
+      margin-top: 150px;
+      margin-left: 60px;
+      background-color: #63bc33;
+      border: none;
+      color: #ffffff;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    /* pop-up text */
+
+    a span {
+
+      position:absolute;
+      font-family:sans-serif;
+      z-index:-1;
+      font-size:20px;
+      border-radius:2px;
+      background:#fff;
+      visibility:hidden;
+      -o-transition:all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      -webkit-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      -moz-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    /* social icons end */
+
+
+    .mySlides {display:none}
+
+    .checked {
+      color: orange;
+    }
+    .header {
+      padding: 10px 16px;
+      background: #555;
+      color: #f1f1f1;
+    }
+

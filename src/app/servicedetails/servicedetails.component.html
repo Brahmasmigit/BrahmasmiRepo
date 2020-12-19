@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="container-fluid jumbotron" style="background-color: linen;margin-top: 25px;">
+<div class="container-fluid jumbotron">
     <div class="main-body">
 
 
@@ -10,7 +10,8 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="../../assets/Annaprasana.jpg" alt="Admin"  width="250" height="210">
+                  <!-- <img src="data:image/png;base64,{{serviceDetails.serviceImage}}"  width="300" height="300">-->
+                  <img src="../../assets/No-Image.png" width="500px" height="364px">
 
                   </div>
                 </div>
@@ -21,16 +22,19 @@
             <div class="col-md-8">
 
               <div class="card  p-2">
-                <h6 class="header-title" >{{serviceDetails.shortDescription}}</h6>
+                <h6 class="header-title" >
+                 <!-- {{serviceDetails.shortDescription}}-->
+                  <p style="font-size: 13px" [innerHTML]="serviceDetails.shortDescription"></p>
+                </h6>
                <p style="height: 8px;border-bottom: 1px solid;"></p>
 
                 <div class="pt-1">
                     <h6 class="text-uppercase mt-0">Key Insights:</h6>
                     <div>
                         <ul *ngFor="let item of serviceDetails.listInsight; let index = index">
-                            <li>{{item}}</li>
+                               <!-- <li>{{item}}</li>-->
 
-
+                               <span style="font-size: 13px" [innerHTML]="item"></span>
                         </ul>
 
                     </div>
@@ -47,19 +51,22 @@
             <div class="col-md-12">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
+                      <a class="nav-link active btn btn-scondary" data-toggle="tab" href="#description">Description</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#reviews">Reviews</a>
+                      <a class="nav-link btn btn-scondary" data-toggle="tab" href="#reviews">Reviews</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab"  href="#faq">FAQ</a>
+                      <a class="nav-link btn btn-scondary" data-toggle="tab"  href="#faq">FAQ</a>
                     </li>
 
                   </ul>
                   <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade active show" id="description">
-                      <p>{{serviceDetails.longDescription}}</p>
+                      <!--{{serviceDetails.longDescription}}-->
+                      <p>
+                        <span style="font-size: 13px" [innerHTML]="serviceDetails.longDescription"></span>
+                      </p>
                     </div>
                     <div class="tab-pane fade" id="reviews">
 

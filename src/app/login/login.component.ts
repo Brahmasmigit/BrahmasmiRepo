@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   isOtp:boolean=false;
   userInfo:any={};
   userModel:any={};
+  userRegModel:any={};
   ngOnInit(): void {
     this.loginModel.mobileNumber="";
   }
@@ -48,7 +49,14 @@ export class LoginComponent implements OnInit {
     );
 
   }
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
 
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
   onOtpChange(value)
   {
     if(value.length==4)
@@ -65,7 +73,10 @@ export class LoginComponent implements OnInit {
  {
    if(this.isOtp)
    {
-  this.loginservice.getVendorData(this.loginModel.mobileNumber).subscribe(
+    this.userModel.User_MobileNumber=this.loginModel.mobileNumber;
+    this.userModel.User_Password="";
+  this.loginservice.getVendorData(this.userModel)
+  .subscribe(
     (data) => {
         if (data) {
           this.userInfo.userId=data.vendorID;
@@ -76,7 +87,8 @@ export class LoginComponent implements OnInit {
 
         }
         else{
-          this.loginservice.getUser(this.loginModel.mobileNumber).subscribe(
+
+          this.loginservice.getUser(this.userModel).subscribe(
             (data) => {
                 if (data) {
                   this.userInfo.userId=data.userID;
@@ -86,7 +98,7 @@ export class LoginComponent implements OnInit {
                   this.route.navigate(['./userdashboard']);
                 }
                 else{
-                  this.loginservice.getStoreData(this.loginModel.mobileNumber).subscribe(
+                  this.loginservice.getStoreData(this.userModel).subscribe(
                     (data) => {
                         if (data) {
                           this.userInfo.userId=data.storeID;
@@ -96,8 +108,11 @@ export class LoginComponent implements OnInit {
                           }
                           else
                           {
-                            this.userModel.User_MobileNumber=this.loginModel.mobileNumber;
-                            this.loginservice.SaveUserData(this.userModel).subscribe(
+
+                            this.userRegModel.User_MobileNumber=this.loginModel.mobileNumber;
+
+                            console.log(this.userRegModel)
+                            this.loginservice.SaveUserData(this.userRegModel).subscribe(
                               (data) => {
                                   if (data) {
                                     this.userInfo.userId=data.userID;
@@ -142,6 +157,62 @@ export class LoginComponent implements OnInit {
     this.showError("OTP is not valid");
   }
  }
+ LoginWithPassword()
+ {
+  this.userModel.User_MobileNumber=this.loginModel.mobileNumber;
+  this.userModel.User_Password=this.loginModel.password;
+
+  this.loginservice.getVendorData(this.userModel).subscribe(
+    (data) => {
+        if (data) {
+          this.userInfo.userId=data.vendorID;
+          this.userInfo.userTypeId=data.userTypeID;
+          sessionStorage.clear();
+          sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
+          this.route.navigate(['./vendordashboard']);
+
+        }
+        else{
+          this.loginservice.getUser(this.userModel).subscribe(
+            (data) => {
+                if (data) {
+                  this.userInfo.userId=data.userID;
+                  this.userInfo.userTypeId=data.userTypeID;
+                  sessionStorage.clear();
+                  sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
+                  this.route.navigate(['./userdashboard']);
+                }
+                else{
+                  this.loginservice.getStoreData(this.userModel).subscribe(
+                    (data) => {
+                        if (data) {
+                          this.userInfo.userId=data.storeID;
+                          this.userInfo.userTypeId=data.userTypeID;
+                          sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
+                          this.route.navigate(['./storedashboard']);
+                          }
+                          else
+                          {
+                            this.showError("Invalid Credentials");
+                          }
+
+
+                      }
+                    );
+                  }
+                });
+
+        }//end of else
+    },
+    (error) => {
+        this.errorMessage = error;
+    },
+    () => {
+    }
+);
+
+}
+
 
  showError(msg) {
   this.toastService.show(msg, {

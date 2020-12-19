@@ -1,0 +1,73 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron" style="background-color: linen;margin-top: 30px;" >
+<form #contactusForm="ngForm" (ngSubmit)="contactusForm.form.valid && contactus()">
+    <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
+        <div class="container card border-primary mb-3" style="max-width: 35rem;">
+            <div class="card-header text-center bold text-info"><h3><b>Contact Us</b></h3></div>
+            <div class="card-body" style="height: auto">
+
+                <div class="form-group row">
+                    <div class="col-4">
+                            <label class="form-label">FULL NAME :</label>
+                    </div>
+                        <div class="col-8 ">
+                            <input type="textbox" name="FullName" id="FullName"  [(ngModel)]="contact.fullName"
+                             placeholder="Enter Full Name" class="form-control" #FullName="ngModel" required>
+                             <span class="text-danger"
+                             *ngIf="(FullName.touched || contactusForm.submitted) && FullName.errors?.required">
+                             Full Name is required
+                         </span>
+                        </div>
+                </div> 
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label class="form-label">MOBILE NUMBER  :</label>
+                    </div>
+                    <div class="col-8">
+                      <input type="textbox" name="mobileNumber" id="mobileNumber"  [(ngModel)]="contact.mobileNumber"
+                       placeholder="Enter mobileNumber" class="form-control" #mobileNumber="ngModel" required>
+                       <span class="text-danger"
+                       *ngIf="(mobileNumber.touched || contactusForm.submitted) && mobileNumber.errors?.required">
+                       Mobile Number is required
+                       </span>
+                    </div> 
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label class="form-label">EMAILID  :</label>
+                    </div>
+                    <div class="col-8">
+                      <input type="textbox" name="emailID" id="emailID"  [(ngModel)]="contact.emailID"
+                       placeholder="Enter EmailID" class="form-control"  #emailID="ngModel" required>
+                       <span class="text-danger"
+                       *ngIf="(emailID.touched || contactusForm.submitted) && emailID.errors?.required">
+                       EmailID is required
+                   </span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label class="form-label">MESSAGE  :</label>
+                    </div>
+                    <div class="col-8">
+                        <textarea type="textbox" name="message" id="message"  [(ngModel)]="contact.message" maxlength="2000" 
+                         placeholder="Enter Message" class="form-control"  #message="ngModel" required></textarea>
+                         <span class="text-danger"
+                         *ngIf="(message.touched || contactusForm.submitted) && message.errors?.required">
+                         Message is required
+                     </span>
+                    </div>
+                </div> 
+                <div class="form-group row" >
+                    <button class="col-6 offset-4 btn btn-primary">{{btnText}}</button>
+                </div>                    
+        </div>
+</div>
+</form>
+</div>
+<app-footer></app-footer>      
+                          
+     
+                    
+
+                        

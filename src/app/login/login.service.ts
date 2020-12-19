@@ -24,20 +24,36 @@ export class LoginService {
             catchError(this.handleError)
         );
     }
-    getUser(mobileNumber): Observable<any> {
-      return this.http.get<any>(this.API_URL + "Login/UserExist/" + mobileNumber)
-      .pipe(
-          tap(Userstatus => console.log("Userstatus: " + Userstatus)),
-          catchError(this.handleError)
-      );
-  }
-  getVendorData(mobileNumber): Observable<any> {
-      return this.http.get<any>(this.API_URL + "Login/VendorExist/" + mobileNumber)
-      .pipe(
-          tap(Vendorstatus => console.log("Vendorstatus: " + Vendorstatus)),
-          catchError(this.handleError)
-      );
-  }
+//     getUser(userdata): Observable<any> {
+//       return this.http.post(this.API_URL + "Login/UserExist/" , userdata)
+//       .pipe(
+//           tap(Userstatus => console.log("Userstatus: " + Userstatus)),
+//           catchError(this.handleError)
+//       );
+//   }
+//   getVendorData(vendordata): Observable<any> {
+//       return this.http.post<any>(this.API_URL + "Login/VendorExist/" ,vendordata)
+//       .pipe(
+//           tap(Vendorstatus => console.log("Vendorstatus: " + Vendorstatus)),
+//           catchError(this.handleError)
+//       );
+//   }
+getUser(user): Observable<any>
+{
+    return this.http.post<any>(this.API_URL + 'Login/UserExist',user)
+    .pipe(
+        tap(status => console.log("status: " + status)),
+        catchError(this.handleError)
+    );
+}
+getVendorData(vendordata): Observable<any>
+{
+    return this.http.post<any>(this.API_URL + 'Login/VendorExist',vendordata)
+    .pipe(
+        tap(status => console.log("status: " + status)),
+        catchError(this.handleError)
+    );
+}
   SaveUserData(user): Observable<any>
   {
       return this.http.post<any>(this.API_URL + 'User/RegisterUser',user)
@@ -46,8 +62,8 @@ export class LoginService {
           catchError(this.handleError)
       );
   }
-  getStoreData(mobileNumber): Observable<any> {
-    return this.http.get<any>(this.API_URL + "Login/StoreExist/" + mobileNumber)
+  getStoreData(storedata): Observable<any> {
+    return this.http.post<any>(this.API_URL + "Login/StoreExist/" ,storedata)
     .pipe(
         tap(Storestatus => console.log("Storestatus: " + Storestatus)),
         catchError(this.handleError)

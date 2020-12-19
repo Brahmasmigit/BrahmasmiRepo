@@ -1,0 +1,10 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron  mt-5" style="padding: 100px;border-color: gray;text-align: center;">
+    <h3 style="color:#63bc33" ><b><u>{{HoroscopeDetails.horoscopeSign}}</u></b></h3>
+     <br><br>
+  <p>
+       <b><span style="color:orange">{{HoroscopeDetails.horoscopeDate | date: 'dd/MM/yyyy' }} :</span></b>
+       <span style="font-size: 13px;color:navy" [innerHTML]="HoroscopeDetails.horoscope"></span>
+   </p>
+</div>
+<app-footer></app-footer>

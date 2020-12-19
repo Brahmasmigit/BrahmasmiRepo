@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top w-100" style="background-color: snow;">
+<!--<nav class="navbar navbar-expand-lg navbar-light fixed-top w-100" style="background-color: snow;">
   <a class="navbar-brand" href="#">Brahmasmi</a>
   <span style="width: 200px;"></span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,4 +38,93 @@
 
 
   </div>
-</nav>
+</nav>-->
+<body style="overflow-x: hidden;background-color: #29384c; height: 480px;">
+
+  <div id="mySidenav" class="sidenav">
+
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <a routerLink="/main" routerLinkActive="active">Home</a>
+
+    <a  *ngIf="isLogin && isStore" routerLink="/storedashboard" routerLinkActive="active">My Dashboard</a>
+    <a *ngIf="isLogin && isStore"  routerLink="/stockentry" routerLinkActive="active">Manage Stock</a>
+
+
+  </div>
+
+  <div id="main">
+
+    <table class="head-table" style="width: 100%;background-image: url('img/head01.png');">
+      <tr>
+          <td >
+            <span style="font-size:35px;cursor:pointer;margin-top: 0px;color: #ffffff;" (click)="openNav()">&#9776;</span>
+              <a href="">
+                  <img src="../../../../assets/img/Brahmasmi_logo.png" style="height: 70px;"></a>
+          </td>
+          <td></td>
+          <td>
+           </td>
+           <td>
+            <div>
+
+              <app-cart></app-cart>
+
+          </div>
+           </td>
+              <td class="login">
+                  <br>
+
+                  <p style="color: #ffffff;float: left;padding-top: 0px;">
+                    <img src="../../../../assets/img/call-icon.png" style="width: 25px;height: 25px;float: left;">&nbsp;
+                    1800 891 6676</p>
+
+
+                      <a class="pointer" *ngIf="!isLogin" routerLink="/login" routerLinkActive="active" style="color: #ffffff;margin-left: 10px;"> <img src="../../../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;">
+                       Login/Sign Up</a>
+                       <a *ngIf="isLogin" class="pointer" (click)="Logout()" style="color: #ffffff;margin-left: 10px;"> <img src="../../../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;">
+                        Logout</a>
+                      <!-- <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="isLogin">
+
+                        <li class="nav-item avatar dropdown">
+                          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img src="../../assets/profileicon.png" style="height: 30px;width:30px;" class="rounded-circle z-depth-0"
+                              alt="avatar image">
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+                            aria-labelledby="navbarDropdownMenuLink-55">
+                            <a class="dropdown-item" *ngIf="isLogin && isVendor" routerLink="/vendorregistration" routerLinkActive="active">My Profile</a>
+                            <a class="dropdown-item" *ngIf="isLogin && !isVendor" routerLink="/userprofile" routerLinkActive="active">My Profile</a>
+                            <a class="dropdown-item" href="#" (click)="Logout()">Logout</a>
+                          </div>
+                        </li>
+                      </ul>-->
+              </td>
+      </tr>
+  </table>
+
+      <div class="w3-content w3-display-container">
+        <div class="w3-display-container mySlides">
+          <img src="../../../../assets/img/ganapathi_001.png" style="width: 100%;height: 400px;" >
+
+        </div>
+
+        <div class="w3-display-container mySlides">
+          <img src="../../../../assets/img/Temple-Services.png" style="width: 100%;height: 400px;" >
+
+        </div>
+
+        <div class="w3-display-container mySlides">
+          <img src="../../../../assets/img/E-Cart.png" style="width: 100%;height: 400px;">
+
+        </div>
+
+        <div class="w3-display-container mySlides">
+          <img src="../../../../assets/img/Buddha.png" style="width: 100%;height: 400px;">
+
+        </div>
+
+
+        </div>
+        </div>
+ </body>

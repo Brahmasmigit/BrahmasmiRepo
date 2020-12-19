@@ -1,0 +1,120 @@
+<app-header></app-header>
+<style>
+    .imgstyle
+    {
+
+        height:450px;
+        width:150px
+
+
+    }
+</style>
+<div class="container-fluid jumbotron h-100" style="background-color: linen;" >
+
+    <div class="card ">
+
+        <div class="pt-1">
+            <div class="content">
+                <div class="container">
+                    <br>
+                    <h3 style="text-align: center;color:#63bc33" ><b><u>HOROSCOPES</u> </b></h3>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <div class="row">
+                                    <div class="col-lg-6 col-xl-6">
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" *ngFor="let hs of Horoscope;let index = index">
+                                        <div class="file-man-box">
+                                            <div class="file-img-box" >
+                                              <img class="imgstyle" *ngIf="index==0" src="../../assets/Horoscope/aries.png" alt="icon" title="Aries" >
+                                              <img class="imgstyle"  *ngIf="index==1" src="../../assets/Horoscope/pisces.png" alt="icon" title="Pisces">
+                                              <img class="imgstyle" *ngIf="index==2" src="../../assets/Horoscope/capricon.png" alt="icon" title="Capricon">
+                                              <img class="imgstyle" *ngIf="index==3" src="../../assets/Horoscope/gemini.png" alt="icon" title="Gemini">
+                                              <img class="imgstyle" *ngIf="index==4" src="../../assets/Horoscope/leo.png" alt="icon" title="Leo">
+                                              <img class="imgstyle" *ngIf="index==5" src="../../assets/Horoscope/scorpio.png" alt="icon" title="scorpio">
+                                              <img class="imgstyle" *ngIf="index==6" src="../../assets/Horoscope/virgo.png" alt="icon" title="Vergo">
+                                              <img class="imgstyle" *ngIf="index==7" src="../../assets/Horoscope/libra.png" alt="icon" title="Libra">
+                                              <img class="imgstyle" *ngIf="index==8" src="../../assets/Horoscope/sagittarius.jpg" alt="icon" title="Sagittarius" >
+                                              <img class="imgstyle" *ngIf="index==9" src="../../assets/Horoscope/cancer.png" alt="icon" title="Cancer">
+                                              <img class="imgstyle" *ngIf="index==10" src="../../assets/Horoscope/taurus.png" alt="icon" title="Taurus">
+                                              <img class="imgstyle" *ngIf="index==11" src="../../assets/Horoscope/aquarius.png" alt="icon" title="Aquarius">
+                                            </div>
+                                            <div class="file-man-title">
+
+                                                <h6 class="mb-0"><a [routerLink]="['/horoscopedetails',hs.horoscopeID]" routerLinkActive="active" style="color: blueviolet;">{{hs.horoscopeSign}}</a></h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- container -->
+            </div>
+        </div>
+
+    </div>
+</div>
+    <br>
+    <div class="container-fluid jumbotron h-100" style="background-color: linen;" >
+        <div class="card ">
+            <div class="pt-1">
+                <div class="content">
+                    <div class="container">
+                        <br>
+                        <h3 style="text-align: center;" class="text-info"><b><u>DAILY HOROSCOPE</u> </b></h3>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card-box">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-xl-6">
+
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-md-4" *ngFor="let today of TodayHoroscope;let index = index">
+
+
+                                                <div class="file-man-title">
+
+                                                    <h6 class="mb-0" style="text-align: center;color:#80002a"><b><u>{{today.horoscopeSign}}</u></b></h6>
+
+                                                </div>
+                                                <div style="text-align: center;" class="file-man-box">
+                                                    <span style="font-size: 13px;color:rgb(11, 61, 77);" [innerHTML]="today.horoscope"></span>
+                                                </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- container -->
+                </div>
+            </div>
+
+        </div>
+   </div>
+    <app-footer></app-footer>
+

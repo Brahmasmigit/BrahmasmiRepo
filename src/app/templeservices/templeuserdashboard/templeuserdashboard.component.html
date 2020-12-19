@@ -1,0 +1,105 @@
+<app-header></app-header>
+
+<div class="container-fluid jumbotron h-100" style="background-color: linen;margin-top: 25px;height:100%">
+    <div class="container h-100 mt-5">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card border-primary mb-3 w-100">
+                    <div class="card-header font-weight-bold">Order Details</div>
+                    <div class="card-body w-100 h-100">
+                        <div class="conatiner-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered w-100">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>TempleName</th>
+                                                <th>Darshan</th>
+                                                <th>Darshan Price</th>
+
+                                                <th>Room</th>
+                                                <th>Room Price</th>
+
+                                                <th>Total</th>
+                                                <th>Payment Method</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tr *ngFor="let data of templeInvoiceData">
+                                                <td>{{data.templeName}}</td>
+                                                <td>{{data.darshanType}}</td>
+                                                <td>{{data.darshanPrice}}</td>
+
+                                                <td>{{data.roomType}}</td>
+                                                <td>{{data.roomPrice}}</td>
+
+                                                <td>{{data.totalAmount}}</td>
+                                                <td>{{data.modeOfPayment}}</td>
+                                                <td><input type="button"
+                                                        (click)="ShowServiceInfo(data.templeId, data.invoiceNo)"
+                                                        value="View Booking"></td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <ng-template #mymodal let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">
+
+                            <span *ngIf="!isRating"> Booking Details</span>
+                            <span *ngIf="isRating">Rate your Experience</span>
+                        </h4>
+                        <button type="button" style="border:0px;" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body w-100">
+                        <div class="contained-fluid w-100 text-left">
+                            <table class="table table-bordered w-100">
+                                <tr>
+                                    <th>Service Name</th>
+                                    <th>Service Date & Time</th>
+                                    <th>Order No</th>
+                                    <th>Amount</th>
+                                </tr>
+                                <tr *ngFor="let item of selectedTempleInvoiceData" class="legends">
+                                    <th>{{item.serviceName}}</th>
+                                    <th>{{item.bookingDateTime}}</th>                                    
+                                    <th>{{item.orderNo}}</th>
+                                    <th>{{item.bookingAmount}}</th>
+                                </tr>
+                            </table>
+
+                            <!-- <div class="row p-2">
+                                <div class="col-md-6">
+                                    Professional Mobile No:
+                                </div>
+                                <div class="col-md-6">
+                                    94853984754
+                                </div>
+                            </div>
+
+                            <div class="row p-2">
+                                <div class="col-md-6">
+                                    Professional Mobile No:
+                                </div>
+                                <div class="col-md-6">
+                                    3895734534959
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>

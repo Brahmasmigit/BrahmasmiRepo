@@ -12,6 +12,11 @@
     padding: 10px;
 }
 
+.userform {
+    border: 1px solid darkgoldenrod;
+    padding-top: 10px;
+}
+
 .page-title {
     text-align: left;
     font-size: 16px;
@@ -28,4 +33,9 @@
 
 .page-title span{
     font-weight: 400;
+}
+
+.serviceBookForm{
+    border: 1px solid greenyellow;
+    padding: 20px;
 }

@@ -1,5 +1,5 @@
 <app-header></app-header>
-  <div class="container-fluid jumbotron" style="background-color: linen;margin-top: 30px;" >
+  <div class="container-fluid jumbotron" style="background-color: linen;" >
 
 
             <div class="row justify-content-center">
@@ -73,9 +73,9 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-2"  *ngFor="let item of serviceTypes; let index = index">
+                                            <div class="col-md-3"  *ngFor="let item of serviceTypes; let index = index">
                                                 <div class="file-man-box">
-                                                    <div class="file-img-box"><img src="../../assets/Astrology.jpeg" alt="icon"></div>
+                                                    <div class="file-img-box"><img height="300px" width="200px" src="data:image/png;base64,{{item.serviceTypeImage}}" alt="icon"></div>
                                                     <div class="file-man-title">
                                                         <h5 class="mb-0"><a [routerLink]="['/servicelist',item.serviceTypeID,cityId]" routerLinkActive="active" style="color: black;">{{item.serviceTypeName}}</a></h5>
 

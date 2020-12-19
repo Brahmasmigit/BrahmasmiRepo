@@ -1,5 +1,5 @@
 <app-header></app-header>
-  <div class="container-fluid jumbotron h-100" style="background-color: linen;" >
+  <div class="container-fluid jumbotron"  >
 <table align="center">
     <tbody>
         <tr><td style="text-align: center;"><h4>My Bookings</h4></td></tr>
@@ -63,7 +63,10 @@
                                     </div>
                                     <div class="row text-left" *ngIf="item.bookingType=='virtualPooja' || item.bookingType=='virtualAstrology'">
                                       <div class="col-md-12" >
-                                         <a class="pointer" [class.disabled]="item.bookingStatusId =='7' || item.bookingStatusId =='5' || item.bookingStatusId =='4'? true : false "  (click)="Meeting(item.bookingId)">Virtual Online Pooja</a></div>
+
+                                      <a class="pointer"  (click)="Meeting(item.bookingId)">Virtual Online Pooja</a>
+                                         <!--<a class="pointer" [class.disabled]="item.bookingStatusId =='7' || item.bookingStatusId =='5' || item.bookingStatusId =='4'? true : false "  (click)="Meeting(item.bookingId)">Virtual Online Pooja</a>-->
+                                        </div>
                                   </div>
                                     </div>
                                 </div>

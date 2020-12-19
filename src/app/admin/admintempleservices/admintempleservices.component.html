@@ -58,43 +58,63 @@
                     </div>
                 </div>
 
-                <div class="col-7">
-                    <div class="form-group row">
-                        <div class="col-5">
-                            <label>State </label>
+                <div class="col-8">
+                    <div class="col-10">
+                        <div class="form-group row">
+                            <div class="col-5">
+                                <label>State </label>
+                            </div>
+                            <div class="col-7">
+                                <select name="stateID" [(ngModel)]="templeModel.StateId" class="form-control"
+                                    (change)="onStateChange()" #stateID="ngModel" required>
+                                    <option *ngFor="let state of States" [value]="state.stateID">
+                                        {{state.stateName}}
+                                    </option>
+                                </select>
+                                <span class="text-danger"
+                                    *ngIf="(stateID.touched || templeForm.submitted) && stateID.errors?.required">
+                                    State is required
+                                </span>
+                            </div>
                         </div>
-                        <div class="col-7">
-                            <select name="stateID" [(ngModel)]="templeModel.StateId" class="form-control"
-                                (change)="onStateChange()" #stateID="ngModel" required>
-                                <option *ngFor="let state of States" [value]="state.stateID">
-                                    {{state.stateName}}
-                                </option>
-                            </select>
-                            <span class="text-danger"
-                                *ngIf="(stateID.touched || templeForm.submitted) && stateID.errors?.required">
-                                State is required
-                            </span>
+                    </div>
+
+                    <div class="col-10">
+                        <div class="form-group row">
+                            <div class="col-5">
+                                <label>City </label>
+                            </div>
+                            <div class="col-7">
+                                <select name="cityID" [(ngModel)]="templeModel.CityId" class="form-control"
+                                    #cityID="ngModel" required>
+                                    <option *ngFor="let city of Cities" [value]="city.cityID">
+                                        {{city.cityName}}
+                                    </option>
+                                </select>
+                                <span class="text-danger"
+                                    *ngIf="(cityID.touched || templeForm.submitted) && cityID.errors?.required">
+                                    City is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-10">
+                        <div class="form-group row">
+                            <div class="col-5">
+                                <label>Temple Image</label>
+                            </div>
+                            <div class="col-7">
+                                <input type="file" accept="image/*" #file (change)="upload($event)" name="templeImage"
+                                    #inputFile required />
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-7">
-                    <div class="form-group row">
-                        <div class="col-5">
-                            <label>City </label>
-                        </div>
-                        <div class="col-7">
-                            <select name="cityID" [(ngModel)]="templeModel.CityId" class="form-control"
-                                #cityID="ngModel" required>
-                                <option *ngFor="let city of Cities" [value]="city.cityID">
-                                    {{city.cityName}}
-                                </option>
-                            </select>
-                            <span class="text-danger"
-                                *ngIf="(cityID.touched || templeForm.submitted) && cityID.errors?.required">
-                                City is required
-                            </span>
-                        </div>
+                <div class="col-4 ">
+                    <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+                        <img [src]="imageURL" name="imgPreview" width="200px" height="200px">
                     </div>
                 </div>
 
@@ -112,6 +132,7 @@
                                 <th>ACTION</th>
                                 <th>Service/Puja</th>
                                 <th>Timings</th>
+                                <th>Price</th>
                                 <th></th>
                             </thead>
                             <tbody>
@@ -125,8 +146,12 @@
                                             id="serviceName" class="form-control" type="text" autocomplete="off" />
                                     </td>
                                     <td>
-                                        <input [(ngModel)]="service.serviceTimings" name="timings[-{{i}}]" id="timings"
-                                            class="form-control" type="text" autocomplete="off" />
+                                        <input [(ngModel)]="service.serviceTimings" name="serviceTimings[-{{i}}]"
+                                            id="serviceTimings" class="form-control" type="text" autocomplete="off" />
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="service.servicePrice" name="servicePrice[-{{i}}]"
+                                            id="servicePrice" class="form-control" type="number" autocomplete="off" />
                                     </td>
                                     <td (click)="addService(i)">
                                         <i class="fa fa-plus fa-2x"></i>
@@ -167,21 +192,24 @@
 
                 <hr>
 
-                <div class="container p-2 tabledata" style="overflow: auto;">
+                <div class="container p-2 tabledata">
                     <h4 class="text-info">Service Details</h4><br>
                     <table class="table table-striped table-bordered">
                         <tr>
+                            <th>Temple Image</th>
                             <th>Temple Type</th>
                             <th>Temple Name</th>
                             <th>Temple Description</th>
                             <th>State</th>
                             <th>City</th>
-                            <th>Service and Timings</th>
+                            <th>Service - Timings - Price</th>
                             <th>Customer Reviews</th>
                             <th class="columnWidth">Action</th>
                         </tr>
                         <tr *ngFor="let temple of templeDetails; let i=index"
                             [ngClass]="{'active': selectedIndex == i}">
+                            <td><img src="data:image/png;base64,{{temple.templeImage}}" width="40px" height="40px" />
+                            </td>
                             <td>{{temple.templeType}}</td>
                             <td>{{temple.templeName}}</td>
                             <td><span style="font-size: 13px" [innerHTML]="temple.templeDescription"></span></td>

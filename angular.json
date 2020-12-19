@@ -30,14 +30,48 @@
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.bubble.css",
               "./node_modules/quill/dist/quill.snow.css",
-              "./node_modules/quill-emoji/dist/quill-emoji.css"
+              "./node_modules/quill-emoji/dist/quill-emoji.css",
+
+
+              "src/assets/css/style.css",
+
+              "src/assets/css/mainslides.css",
+              "src/assets/css/responsive-layered-slider.css"
+
+
+
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/quill/dist/quill.min.js",
-              "src/assets/checkout.js"
+              "src/assets/checkout.js",
+
+              "src/assets/js/slim.min.js",
+
+              "src/assets/js/jssor.slider.min.js",
+              "src/assets/js/jqueryimgslide.min.js",
+              "src/assets/js/jqueryimgslide.1.min.js",
+              "src/assets/js/responsive-layered-slider.js",
+              "src/assets/js/specialservices.min.js",
+
+              "src/assets/js/specialservicesslick.js",
+              "src/assets/js/jssoranimateslider.min.js",
+
+
+              "src/assets/js/upcoming.slick.min.js",
+
+
+              "src/assets/js/astrology.slick.js",
+
+               "src/assets/js/top-performers.slick.js",
+
+
+                "src/assets/js/aspicias.dates.slick.min.js"
+
+
+
 
             ],
             "allowedCommonJsDependencies": [

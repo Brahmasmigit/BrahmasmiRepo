@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
+<!--<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
   <a class="navbar-brand" href="#">Brahmasmi | Admin</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,4 +36,90 @@
 
 
   </div>
-</nav>
+</nav>-->
+
+<body style="overflow-x: hidden;background-color: #29384c; height: 70px;">
+
+  <div id="mySidenav" class="sidenav">
+
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+
+
+
+      <a  routerLink="/admindashboard" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+
+
+      <a  routerLink="/adminservicetype" routerLinkActive="active">Add Categories</a>
+
+      <a  routerLink="/adminservicedetails" routerLinkActive="active">Add Services</a>
+
+
+      <a  routerLink="/adminproductdashboard" routerLinkActive="active">Manage Products</a>
+
+      <a  routerLink="/productmaster" routerLinkActive="active">Add Products</a>
+
+
+      <a  routerLink="/adminvendorenquiry" routerLinkActive="active">Register a Vendor</a>
+
+
+      <a  routerLink="/admintempleservices" routerLinkActive="active">Add Temple</a>
+
+
+      <a routerLink="/admincoupon" routerLinkActive="active">Add Coupon</a>
+
+      <a  routerLink="/adminloyaltypoints" routerLinkActive="active">Add Loyalty Points</a>
+
+      <a  routerLink="/horoscopemaster" routerLinkActive="active">Horoscope</a>
+
+  </div>
+
+  <div id="main">
+
+    <table class="head-table" style="width: 100%;background-image: url('img/head01.png');">
+      <tr>
+          <td >
+            <span style="font-size:35px;cursor:pointer;margin-top: 0px;color: #ffffff;" (click)="openNav()">&#9776;</span>
+              <a href="">
+                  <img src="../../../../assets/img/Brahmasmi_logo.png" style="height: 70px;"></a>
+          </td>
+          <td></td>
+          <td>
+           </td>
+           <td>
+
+           </td>
+              <td class="login">
+                  <br>
+
+                  <p style="color: #ffffff;float: left;padding-top: 0px;">
+                    <img src="../../../../assets/img/call-icon.png" style="width: 25px;height: 25px;float: left;">&nbsp;
+                    1800 891 6676</p>
+
+
+                      <a *ngIf="!isLogin" routerLink="/login" class="pointer" routerLinkActive="active" style="color: #ffffff;margin-left: 10px;"> <img src="../../../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;">
+                       Login/Sign Up</a>
+                       <a *ngIf="isLogin" (click)="Logout()" class="pointer" style="color: #ffffff;margin-left: 10px;"> <img src="../../../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;">
+                        Logout</a>
+                      <!-- <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="isLogin">
+
+                        <li class="nav-item avatar dropdown">
+                          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img src="../../assets/profileicon.png" style="height: 30px;width:30px;" class="rounded-circle z-depth-0"
+                              alt="avatar image">
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+                            aria-labelledby="navbarDropdownMenuLink-55">
+                            <a class="dropdown-item" *ngIf="isLogin && isVendor" routerLink="/vendorregistration" routerLinkActive="active">My Profile</a>
+                            <a class="dropdown-item" *ngIf="isLogin && !isVendor" routerLink="/userprofile" routerLinkActive="active">My Profile</a>
+                            <a class="dropdown-item" href="#" (click)="Logout()">Logout</a>
+                          </div>
+                        </li>
+                      </ul>-->
+              </td>
+      </tr>
+  </table>
+
+
+        </div>
+ </body>

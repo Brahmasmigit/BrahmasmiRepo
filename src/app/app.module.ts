@@ -85,15 +85,12 @@ import {VirtualVideoSlotBookingService} from './virtualvideoslotbooking/virtualv
 import { EnquiryheaderComponent } from './shared/components/enquiryheader/enquiryheader.component';
 import { ConstructionComponent } from './construction/construction.component';
 import { AdmintempleservicesComponent } from './admin/admintempleservices/admintempleservices.component';
-import { TempleService } from './admin/admintempleservices/templeService.services';
 import { VendorsearchComponent } from './vendorsearch/vendorsearch.component';
 import {VendorSearchService} from './vendorsearch/vendorsearch.service';
 import { VendorbookingComponent } from './vendorbooking/vendorbooking.component';
 import {VendorBookingService} from './vendorbooking/vendorbooking.service';
 import { ProductcategoriesComponent } from './productcategories/productcategories.component';
 import {ProductCategoriesService} from './productcategories/productcategories.service';
-import { TempleservicesComponent } from './templeservices/templeservices.component';
-import { TempleDetailsComponent } from './templeservices/temple-details/temple-details.component';
 import {TempleservicesService} from './templeservices/templeservices.service';
 import { AdmincouponComponent } from './admin/admincoupon/admincoupon.component';
 import {AdminCouponService} from './admin/admincoupon/admincoupon.service';
@@ -102,6 +99,33 @@ import {AdminLoyaltyPointsService} from './admin/adminloyaltypoints/adminloyalty
 import { DatePipe } from '@angular/common';
 import { VendormapComponent } from './vendormap/vendormap.component';
 import { VendorpaymentComponent } from './vendorpayment/vendorpayment.component';
+import { TestmapComponent } from './testmap/testmap.component';
+import { MainComponent } from './main/main.component';
+import {SlickCarouselModule} from 'ngx-slick-carousel';
+import { AuspiciousdatesComponent } from './auspiciousdates/auspiciousdates.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { TermsandconditionsComponent } from './termsandconditions/termsandconditions.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import {ContactUsService} from './contactus/contactus.service';
+import { ProductmasterComponent } from './admin/productmaster/productmaster.component';
+import {ProductMasterService} from './admin/productmaster/productmaster.service';
+import { HoroscopeComponent } from './horoscope/horoscope.component';
+import { HoroscopedetailsComponent } from './horoscopedetails/horoscopedetails.component';
+import { HoroscopemasterComponent } from './admin/horoscopemaster/horoscopemaster.component';
+import { HoroscopeService } from './horoscope/horoscope.service';
+import { HoroscopeDetailsService } from './horoscopedetails/horoscopedetails.service';
+import { HoroscopeMasterService } from './admin/horoscopemaster/horoscopemaster.service';
+import { TempleAdminService } from './admin/admintempleservices/templeAdminService.services';
+import { TempleservicesComponent } from './templeservices/templeservices.component';
+import { TempleService } from './templeservices/templeService.service';
+import { TempleDetailsComponent } from './templeservices/temple-details/temple-details.component';
+import { ManagetempleservicerequestsComponent } from './admin/admintempleservices/managetempleservicerequests/managetempleservicerequests.component';
+import { TempleUserCartComponent } from './templeservices/templeusercart/templeusercart.component';
+import { TempleUserBillingComponent } from './templeservices/templeuserbilling/templeuserbilling.component';
+import { TempleUserBillingService } from './templeservices/templeuserbilling/templeuserbilling.service';
+import { TempleOrderDetailsComponent } from './templeservices/templeorderdetails/templeorderdetails.component';
+import { TempleOrderDetailsService } from './templeservices/templeorderdetails/templeorderdetails.service';
+import { TempleUserDashboardComponent } from './templeservices/templeuserdashboard/templeuserdashboard.component';
 
 @NgModule({
   declarations: [
@@ -156,7 +180,24 @@ import { VendorpaymentComponent } from './vendorpayment/vendorpayment.component'
     AdmincouponComponent,
     AdminloyaltypointsComponent,
     VendormapComponent,
-    VendorpaymentComponent
+    VendorpaymentComponent,
+    TestmapComponent,
+    MainComponent,
+    AuspiciousdatesComponent,
+    AboutusComponent,
+    TermsandconditionsComponent,
+    ContactusComponent,
+    ProductmasterComponent,
+    HoroscopeComponent,
+    HoroscopedetailsComponent,
+    HoroscopemasterComponent,
+    TempleservicesComponent,
+    TempleDetailsComponent,
+    ManagetempleservicerequestsComponent,
+    TempleUserCartComponent,
+    TempleUserBillingComponent,
+    TempleOrderDetailsComponent,
+    TempleUserDashboardComponent
 
 
   ],
@@ -172,7 +213,8 @@ import { VendorpaymentComponent } from './vendorpayment/vendorpayment.component'
       apiKey: 'AIzaSyCeA6ad2qsS-zSHDjdQX6qnuEbLQzsfDC0',
       libraries: ['geometry','places']
     }),
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    SlickCarouselModule
 
   ],
   providers: [LoginService,HomeService,ServiceListService,ServiceDetailsService,UserSlotBookingService
@@ -181,8 +223,9 @@ import { VendorpaymentComponent } from './vendorpayment/vendorpayment.component'
   VendorEnquiryService,VendorLocationService,VendorCityService,AdminServiceTypeService,AdminServiceDetailsService,
   AdminLoginService,WindowRefService,AdminMeetingService,ProductService,ProductDetailsService,StoreRegistrationService,
   AstrologySlotBookingService,StockEntryService,StoreDashboardService,UserProductOrderDetailsService,AdminProductDashboardService,
-  VirtualVideoSlotBookingService,TempleService,VendorSearchService,VendorBookingService,ProductCategoriesService,TempleservicesService,
-  AdminCouponService,AdminLoyaltyPointsService,DatePipe],
+  VirtualVideoSlotBookingService,VendorSearchService,VendorBookingService,ProductCategoriesService,TempleservicesService,
+  AdminCouponService,AdminLoyaltyPointsService,DatePipe,ContactUsService,ProductMasterService,HoroscopeService,HoroscopeDetailsService,
+  HoroscopeMasterService,TempleAdminService, TempleService, TempleUserBillingService,TempleOrderDetailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

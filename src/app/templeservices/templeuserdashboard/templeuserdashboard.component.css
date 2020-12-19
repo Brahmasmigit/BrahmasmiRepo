@@ -1,0 +1,23 @@
+::ng-deep .xlModal .modal-dialog {
+  max-width: 100%;
+  width: 50%;
+  text-align: center;
+}
+.legend .row:nth-of-type(odd) div {
+  background-color:lightcyan;
+  }
+  .legend .row:nth-of-type(even) div {
+  background: linen;
+  }
+  .rating-header {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+.starorange
+{
+color: orange;
+}
+.starblack
+{
+color: black;
+}

@@ -41,7 +41,7 @@ export class UserbillingComponent implements OnInit {
   private razorKey : any= environment.RazorKey;
   @ViewChild('mymodal') mymodal: ElementRef;
   virtualuser:any={};
-  gst:number=8;
+  gst:number=3.6;
 
   constructor(private toastService: ToastService,
     private activatedRoute: ActivatedRoute,

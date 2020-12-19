@@ -1,95 +1,122 @@
-
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: snow;">
-  <a class="navbar-brand" href="#">Brahmasmi</a>
-  <span style="width: 500px;"></span>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarColor03">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">Help</a>
-      </li>
-
-    </ul>
-
-
-  </div>
-</nav>
+<app-header></app-header>
 
 <div class="container-fluid jumbotron" style="background-color: linen;" >
 <div class="col-md-5 mt-10 w-50" style="margin-left:30%">
   <div class="card border-primary mb-3 w-100">
-      <div class="card-header font-weight-bold">Login</div>
+      <div class="card-header font-weight-bold ">
+        <ul class="nav nav-tabs" style="font-size: 18px;">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#otp">Login With OTP</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#pswd">Login With Password</a>
+          </li>
+
+
+        </ul>
+      </div>
 
       <div class="card-body" style="height: 100%">
 
-        <form (ngSubmit)="SendOTP()" class="contact-form form-validate"  novalidate="novalidate">
+
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active show" id="otp">
+    <form (ngSubmit)="SendOTP()" class="contact-form form-validate"  novalidate="novalidate">
+      <div class="row">
+          <div class="col-md-6  offset-3">
+              <div class="form-group col-centered">
+                <input type="mobile" class="form-control" required id="mobileNumber" name="mobileNumber" maxlength="10" minlength="10" (keypress)="keyPress($event)"  placeholder="Enter Mobile Number" [(ngModel)]="loginModel.mobileNumber">
+              </div>
+          </div>
+
+
+
+          </div>
           <div class="row">
-              <div class="col-md-6  offset-3">
-                  <div class="form-group col-centered">
-                    <input type="mobile" class="form-control" required id="mobileNumber" name="mobileNumber"  placeholder="Enter Mobile Number" [(ngModel)]="loginModel.mobileNumber">
-                  </div>
-              </div>
-
-
-
-              </div>
-              <div class="row">
-                <div class="col-md-6  offset-4">
-                    <div class="form-group col-centered">
-                      <button type="submit" class="btn btn-primary col-8" >Continue</button>
-                    </div>
+            <div class="col-md-6  offset-4">
+                <div class="form-group col-centered">
+                  <button type="submit" class="btn btn-primary col-8" >Continue</button>
                 </div>
+            </div>
 
 
 
-                </div>
-                </form>
-                <form (ngSubmit)="Login()">
-              <div class="row" >
-
-                <div class="col-md-12" *ngIf="isLogin">
-                  <hr/>
-                  <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                          <div class="text-center">
-                            <h6><b>Please Enter the One-Time Password to verify your account</b></h6>
-                            <p class="h7">A One-Time Password has been sent to {{loginModel.mobileNumber }}</p>
-                            <br>
-
-                          <ng-otp-input  (onInputChange)="onOtpChange($event)"  name="otpInput" [config]="{length:4}"></ng-otp-input>
-                        <span style="font-size:6px;">{{ActualOTP}}</span>
-                       </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6 offset-4">
-                      <div class="form-group">
-                        <button type="submit" class="btn btn-primary col-8">Login</button>
-                      </div>
-                  </div>
-
-                  </div>
-                  </div>
-
-              </div>
+            </div>
             </form>
+            <form (ngSubmit)="Login()">
+          <div class="row" >
+
+            <div class="col-md-12" *ngIf="isLogin">
+              <hr/>
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="text-center">
+                        <h6><b>Please Enter the One-Time Password to verify your account</b></h6>
+                        <p class="h7">A One-Time Password has been sent to {{loginModel.mobileNumber }}</p>
+                        <br>
+
+                      <ng-otp-input  (onInputChange)="onOtpChange($event)"  name="otpInput" [config]="{length:4}"></ng-otp-input>
+                    <span style="font-size:6px;">{{ActualOTP}}</span>
+                   </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 offset-4">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary col-8">Login</button>
+                  </div>
+              </div>
+
+              </div>
+              </div>
+
+          </div>
+        </form>
+  </div>
+  <div class="tab-pane fade" id="pswd">
+
+    <form (ngSubmit)="LoginWithPassword()" class="contact-form form-validate"  novalidate="novalidate">
+      <div class="row">
+          <div class="col-md-6  offset-3">
+              <div class="form-group col-centered">
+                <input type="mobile" class="form-control" required id="mobileNumber" name="mobileNumber"  placeholder="Enter Mobile Number" [(ngModel)]="loginModel.mobileNumber">
+              </div>
+              <div class="form-group col-centered">
+                <input type="password" class="form-control" required id="password" name="password"  placeholder="Enter Password" [(ngModel)]="loginModel.password">
+              </div>
+          </div>
+
+
+
+          </div>
+          <div class="row">
+            <div class="col-md-6  offset-4">
+                <div class="form-group col-centered">
+                  <button type="submit" class="btn btn-primary col-8" >Login</button>
+                </div>
+            </div>
+
+
+
+            </div>
+            </form>
+  </div>
+
+
+</div>
+
 
       </div>
 
   </div>
 </div>
 </div>
+
+
 <app-footer></app-footer>
 
 

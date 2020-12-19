@@ -1,0 +1,77 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron" style="background-color: linen; height:100%">
+  <div class="alert alert-dismissible alert-info">
+    <strong>Great !!</strong> Your order has been successfully placed. We will manually check your Payment and update
+    the status.
+    Please check your Email inbox for further details.
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-primary mb-3 w-100">
+          <div class="card-header font-weight-bold">Order Details
+            <div class="pull-right">Invoice No: {{invoiceno}}</div>
+          </div>
+
+          <div class="card-body" style="height: 100%">
+
+            <div class="conatiner-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-bordered w-100">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Order No</th>
+                        <th>Service Name</th>
+                        <th>Booking Date & Time</th>
+                        <th>Email Id</th>
+                        <th>Payment Date & Time</th>
+                        <th>Payment Method</th>
+                        <th>Service Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of templeOrderDetails;let i=index">
+                        <td>{{item.orderNo}}</td>
+                        <td>{{item.serviceName}}</td>
+                        <td>{{item.bookingDateTime}}</td>
+                        <td>{{item.emailId}}</td>
+                        <td>{{item.paymentDateTime}}</td>
+                        <td>{{item.modeofPayment}}</td>
+                        <td>{{item.serviceAmount}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2">
+                          Darshan: {{templeOrderDetails[0].darshanType}}: {{templeOrderDetails[0].darshanPrice}}
+                        </td>
+                        <td colspan="2">
+                          Room: {{templeOrderDetails[0].roomType}}: {{templeOrderDetails[0].roomPrice}}
+                        </td>
+                        <td colspan="2" style="padding-left:25%;font-weight: bold;">Total</td>
+                        <td>{{templeOrderDetails[0].totalAmount}}</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="card-footer">
+
+            <button type="button" class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="active">Back to
+              Home</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<app-footer></app-footer>
