@@ -21,6 +21,7 @@ namespace Brahmasmi.Models
         public string User_PinCode { get; set; }
         public string User_Latitude { get; set; }
         public string User_Longitude { get; set; }
+        public string User_Password { get; set; }
         public string User_Status { get; set; }
         public DateTime ModifiedDate { get; set; }
 

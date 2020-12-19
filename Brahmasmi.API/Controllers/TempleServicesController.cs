@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Brahmasmi.API.Controllers
 {
@@ -28,11 +29,27 @@ namespace Brahmasmi.API.Controllers
 
         [EnableCors("CorsPolicy")]
         [HttpPost]
-        public async Task<ActionResult<int>> RegisterTemple(TempleServicesAdminModel templeServicesAdminModel)
+        public async Task<ActionResult<int>> RegisterTemple()
         {
             try
             {
-                var result = await Task.FromResult(templeRepository.AddTempleAdminData(templeServicesAdminModel));
+                TempleServicesAdminModel data = new TempleServicesAdminModel();
+
+                var imageFile = Request.Form.Files[0];
+                data.TempleImageFileName = imageFile.FileName;
+
+                data.Action = Request.Form["Action"].ToString();
+                data.TempleTypeId = Convert.ToInt32(Request.Form["TempleTypeId"].ToString());
+                data.TempleId = Convert.ToInt32(Request.Form["TempleId"].ToString());
+                data.TempleName = Request.Form["TempleName"].ToString();
+                data.TempleDescription = Request.Form["TempleDescription"].ToString();
+                data.ServicesTimings = JsonConvert.DeserializeObject<List<ServiceTimingsModel>>(Request.Form["ServicesTimings"]);
+
+                data.StateId = Convert.ToInt32(Request.Form["StateId"].ToString());
+                data.CityId = Convert.ToInt32(Request.Form["CityId"].ToString());
+                data.CustomerReviews = Request.Form["CustomerReviews"].ToString();
+
+                var result = await Task.FromResult(templeRepository.AddTempleAdminData(imageFile, data));
 
                 return Ok(result);
             }
@@ -41,6 +58,23 @@ namespace Brahmasmi.API.Controllers
                 logger.LogError($"Exception at Login Method: {ex}");
                 return StatusCode(500, "Internal server error");
             }
+        }
+
+        [EnableCors("CorsPolicy")]
+        [HttpPost]
+        public async Task<ActionResult<int>> DeleteTemple(TempleServicesAdminModel data)
+        {
+            try
+            {
+                var result = await Task.FromResult(templeRepository.DeleteTemple(data));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+
         }
 
         [EnableCors("CorsPolicy")]
@@ -98,6 +132,39 @@ namespace Brahmasmi.API.Controllers
             try
             {
                 var result = await Task.FromResult(templeRepository.GetTemplesWithTypesList());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [EnableCors("CorsPolicy")]
+        [HttpPost]
+        public async Task<ActionResult<int>> SaveUserServiceRequest(UserServiceRequestModel request)
+        {
+            try
+            {
+                var result = await Task.FromResult(templeRepository.SaveUserServiceRequest(request));
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<List<TempleServiceUserRequest>>> GetTempleServiceUserRequest()
+        {
+            try
+            {
+                var result = await Task.FromResult(templeRepository.GetTempleServiceUserRequest());
                 return Ok(result);
             }
             catch (Exception ex)

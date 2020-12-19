@@ -36,15 +36,12 @@ namespace Brahmasmi.API.Controllers
 
         // GET api/Login/mobilenumber
         [EnableCors("CorsPolicy")]
-        [HttpGet("{MobileNumber}")]
-        public async Task<ActionResult<User>> UserExist(string mobileNumber)
+        [HttpPost]
+        public async Task<ActionResult<User>> UserExist(UserLogin user)
         {
             try
             {
-                logger.LogInformation(mobileNumber);
-                var result = await Task.FromResult(loginRepository.UserLogin(mobileNumber));
-                logger.LogInformation("end");
-
+                var result = await Task.FromResult(loginRepository.UserLogin(user));
                 return Ok(result);
             }
             catch (Exception ex)
@@ -54,15 +51,12 @@ namespace Brahmasmi.API.Controllers
             }
         }
         [EnableCors("CorsPolicy")]
-        [HttpGet("{MobileNumber}")]
-        public async Task<ActionResult<Vendor>> VendorExist(string mobileNumber)
+        [HttpPost]
+        public async Task<ActionResult<Vendor>> VendorExist(UserLogin user)
         {
             try
             {
-                logger.LogInformation(mobileNumber);
-                var result = await Task.FromResult(loginRepository.VendorLogin(mobileNumber));
-                logger.LogInformation("end");
-
+                var result = await Task.FromResult(loginRepository.VendorLogin(user));
                 return Ok(result);
             }
             catch (Exception ex)
@@ -72,14 +66,12 @@ namespace Brahmasmi.API.Controllers
             }
         }
         [EnableCors("CorsPolicy")]
-        [HttpGet("{MobileNumber}")]
-        public async Task<ActionResult<Store>> StoreExist(string mobileNumber)
+        [HttpPost]
+        public async Task<ActionResult<Store>> StoreExist(UserLogin user)
         {
             try
             {
-                logger.LogInformation(mobileNumber);
-                var result = await Task.FromResult(loginRepository.StoreExist(mobileNumber));
-                logger.LogInformation("end");
+                var result = await Task.FromResult(loginRepository.StoreExist(user));
 
                 return Ok(result);
             }
@@ -98,45 +90,28 @@ namespace Brahmasmi.API.Controllers
         }
         public int VerifyOTP(OTPVerification otpVerify)
         {
-            //OTP
              int otpValue = new Random().Next(1000, 9999);
-            ////------------------------
-            string recipient = otpVerify.MobileNumber;
+             string recipient = otpVerify.MobileNumber;
 
             string APIKey = "r0/FBFhRHR0-kjRFG13bkrqsfIJUKfCByvCDn3edoF";
             string message = "Your OTP is " + otpValue;
             string encodeMessage = HttpUtility.UrlEncode(message);
 
-            //using (var webClient = new WebClient())
-            //{
-            //    byte[] response = webClient.UploadValues("https://api.textlocal.in/send", new NameValueCollection()
-            //        {
-            //            {"apikey",APIKey },
-            //            {"numbers",recipient },
-            //            { "message",encodeMessage},
-            //           // {"sender","Brahmasmi" }
-            //            {"sender","TXTLCL" }
-            //        });
-            //    string results = System.Text.Encoding.UTF8.GetString(response);
-            //    var jsonObject = JObject.Parse(results);
+            using (var webClient = new WebClient())
+            {
+                byte[] response = webClient.UploadValues("https://api.textlocal.in/send", new NameValueCollection()
+                    {
+                        {"apikey",APIKey },
+                        {"numbers",recipient },
+                        { "message",encodeMessage},
+                       // {"sender","Brahmasmi" }
+                        {"sender","VYDIKA" }
+                    });
+                string results = System.Text.Encoding.UTF8.GetString(response);
+                var jsonObject = JObject.Parse(results);
 
 
-            //}
-            //return otpValue;
-
-
-            //using (var wb = new WebClient())
-            //{
-            //    byte[] response = wb.UploadValues("https://api.textlocal.in/send/", new NameValueCollection()
-            //    {
-            //    {"apikey" , APIKey},
-            //    {"numbers" , recipient},
-            //    {"message" , encodeMessage},
-            //    {"sender" , "TXTLCL"}
-            //    });
-            //    string result = System.Text.Encoding.UTF8.GetString(response);
-            //    //return result;
-            //}
+            }
             return otpValue;
         }
     }

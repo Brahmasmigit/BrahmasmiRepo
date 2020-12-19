@@ -71,5 +71,86 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        [EnableCors("CorsPolicy")]
+        [HttpPost]
+        public async Task<ActionResult<Product>> SaveProduct()
+        {
+            try
+            {
+                Product product = new Product();
+                var imageFile = Request.Form.Files[0];
+                product.ProductCategoryID = Convert.ToInt32(Request.Form["productCategoryID"]);
+                product.ProductName = Request.Form["productName"].ToString();
+                product.ProductPrice = Request.Form["ProductPrice"].ToString();
+                product.ProductPrice = Request.Form["ProductPrice"].ToString();
+                product.CityID = Convert.ToInt32(Request.Form["cityID"]);
+               
+                product.ProductShortDescription = Request.Form["productShortDescription"].ToString();
+                product.ProductLongDescription = Request.Form["productLongDescription"].ToString();
+                product.Action = Request.Form["action"].ToString();
+                product.ProductKitItems = JsonConvert.DeserializeObject<List<ProductItems>>(Request.Form["kitItems"]);
+                product.ProductkeyInsights = JsonConvert.DeserializeObject<List<ProductKeyInsights>>(Request.Form["keyInsights"]);
+
+
+
+                if (product.Action == "Update")
+                {
+                    var productID = Convert.ToInt32(Request.Form["ProductID"]);
+                    product.ProductID = productID;
+                }
+                else
+                {
+                    //  var serviceTypeID = DBNull.Value;
+                    product.ProductID = 0;
+                }
+
+           
+            
+
+
+
+                var result = await Task.FromResult(productRepository.AddProduct(imageFile, product));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<ItemCategories>> GetItemCategories()
+        {
+            try
+            {
+ 
+                var result = await Task.FromResult(productRepository.GetAllItemCategories());
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<Product>> GetProducts()
+        {
+            try
+            {
+
+                var result = await Task.FromResult(productRepository.GetProducts());
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace Brahmasmi.API.Controllers
      
         [EnableCors("CorsPolicy")]
         [HttpPost]
-        public async Task<ActionResult<User>> RegisterUser(UserLogin user)
+        public async Task<ActionResult<int>> RegisterUser(UserLogin user)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace Brahmasmi.API.Controllers
             catch (Exception ex)
             {
                 logger.LogError($"Exception at Login Method: {ex}");
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, ex);
             }
         }
         [EnableCors("CorsPolicy")]
