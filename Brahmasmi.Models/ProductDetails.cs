@@ -8,6 +8,8 @@ namespace Brahmasmi.Models
     {
         public int ItemID { get; set; }
         public int ProductID { get; set; }
+        public int ItemCategoryID { get; set; }
+        public string ItemCategoryName { get; set; }
         public string ItemName { get; set; }
         public string IsDelete { get; set; }
     }

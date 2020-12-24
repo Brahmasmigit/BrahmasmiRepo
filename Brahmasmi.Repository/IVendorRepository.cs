@@ -14,6 +14,8 @@ namespace Brahmasmi.Repository
 
         List<VendorOrder> VendorPayment(VendorPayment vendorPayment);
         Tuple<Vendor, List<VendorCertification>, List<VendorSocialNetwork>, List<VendorRelationShip>, List<VendorSpecialization>> GetVendorDetails(int VendorID);
+        int UploadPhoto(IFormFile imageFile, Vendor vendor);
+        Vendor GetVendorProfile(int VendorID);
 
        
     }

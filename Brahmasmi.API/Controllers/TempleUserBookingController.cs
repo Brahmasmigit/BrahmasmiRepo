@@ -52,6 +52,8 @@ namespace Brahmasmi.API.Controllers
         //        return StatusCode(500, ex);
         //    }
         //}
+
+        [HttpPost]
         public async Task<ActionResult<TempleOrders>> TempleUserSlotBooking(TempleUserBooking userBooking)
         {
             try
@@ -77,7 +79,7 @@ namespace Brahmasmi.API.Controllers
 
         [EnableCors("CorsPolicy")]
         [HttpGet]
-        public async Task<ActionResult<TempleOrderDetail>> GetTempleOrderDetails(string invoiceno)
+        public async Task<ActionResult<Tuple<List<TempleOrderDetailService>, List<TempleOrderDetailServiceAccommodation>>>> GetTempleOrderDetails(string invoiceno)
         {
             try
             {
@@ -93,7 +95,7 @@ namespace Brahmasmi.API.Controllers
 
         [EnableCors("CorsPolicy")]
         [HttpGet]
-        public async Task<ActionResult<TempleUserDashboardModel>> GetTempleUserDashboardData(int userId)
+        public async Task<ActionResult<Tuple<List<TempleOrderDetailService>, List<TempleOrderDetailServiceAccommodation>>>> GetTempleUserDashboardData(int userId)
         {
             try
             {

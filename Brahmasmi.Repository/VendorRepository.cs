@@ -28,13 +28,22 @@ namespace Brahmasmi.Repository
                  , commandType: CommandType.StoredProcedure).ToList();
             return result.ToList();
         }
+        
+        public Vendor GetVendorProfile(int vendorID)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("VendorID", vendorID, DbType.Int32);
+            var result = dapper.Get<Vendor>("[dbo].[SP_Get_Vendorpreview]", dbParam
+                 , commandType: CommandType.StoredProcedure);
+            return result;
+        }
         //public Vendor GetVendorDetails(int vendorID)
         //{
-        //var dbParam = new DynamicParameters();
-        //dbParam.Add("VendorID", vendorID, DbType.Int32);
-        //var result = dapper.Get<Vendor>("[dbo].[SP_Get_VendorDetails]", dbParam
-        //     , commandType: CommandType.StoredProcedure);
-        //return result;
+        //    var dbParam = new DynamicParameters();
+        //    dbParam.Add("VendorID", vendorID, DbType.Int32);
+        //    var result = dapper.Get<Vendor>("[dbo].[SP_Get_VendorDetails]", dbParam
+        //         , commandType: CommandType.StoredProcedure);
+        //    return result;
         //}
         public string RandomString(int size, bool lowerCase = false)
         {
@@ -455,6 +464,30 @@ namespace Brahmasmi.Repository
             return result;
 
         }
+        public int UploadPhoto(IFormFile imageFile, Vendor vendor)
+        {
+            var dbParam = new DynamicParameters();
+            // var uploadFile = Request.Form.Files[0];
+            var uploadFile = imageFile;
+            long length = uploadFile.Length;
+            byte[] bytes = new byte[length];
+            var reader = uploadFile.OpenReadStream();
+            reader.ReadAsync(bytes, 0, Convert.ToInt32(length));
+            reader.Close();
+
+
+   
+            dbParam.Add("VendorID", vendor.VendorID, DbType.Int32);
+          
+            dbParam.Add("Vendor_Photo", bytes, DbType.Binary);
+            dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
+            var result = dapper.Execute("[dbo].[SP_Update_VendorPhoto]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
+        
     }
 }
 

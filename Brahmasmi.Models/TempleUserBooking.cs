@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Brahmasmi.Models
 {
-    public class TempleUserBooking
+    public class TempleUserBooking1
     {
         public int UserId { get; set; }
         //public string BookingDate { get; set; }
@@ -48,6 +48,30 @@ namespace Brahmasmi.Models
         public List<UserServiceDetails> ServiceDetails { get; set; }
     }
 
+    public class TempleUserBooking
+    {
+        public int UserId { get; set; }
+        public int TempleId { get; set; }
+        public int BookingStatusId { get; set; }
+        public string BookingLocation { get; set; }
+        public int CityId { get; set; }
+        public string UserName { get; set; }
+        public string MobileNumber { get; set; }
+        public string EmailId { get; set; }
+        public string PinCode { get; set; }
+        public string Address { get; set; }
+        public string BillingAddress { get; set; }
+        public string OrderNO { get; set; }
+        public string InvoiceNo { get; set; }
+        public int PaymentMode { get; set; }
+        public int PaymentStatus { get; set; }
+        public int Total { get; set; }
+        public string UserQuery { get; set; }
+        public int AcmdNoOfDays { get; set; }
+        public List<UserServiceDetails> ServiceDetails { get; set; }
+        public List<UserAccommodationDetails> AccommodationDetails { get; set; }
+    }
+
     public class UserServiceDetails
     {
         public int ServiceId { get; set; }
@@ -55,6 +79,15 @@ namespace Brahmasmi.Models
         public int ServicePrice { get; set; }
         public DateTime BookingDate { get; set; }
         public string BookingTime { get; set; }
+    }
+
+    public class UserAccommodationDetails
+    {
+        public int RoomTypeId { get; set; }
+        public string RoomType { get; set; }
+        public int RoomPrice { get; set; }
+        public DateTime RoomBookingDate { get; set; }
+        public string RoomBookingTime { get; set; }
     }
 
     public class TempleOrders

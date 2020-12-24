@@ -6,6 +6,7 @@ using Brahmasmi.Service;
 using Dapper;
 using System.Data;
 using Microsoft.AspNetCore.Cors;
+using System.Linq;
 
 namespace Brahmasmi.Repository
 {
@@ -16,58 +17,7 @@ namespace Brahmasmi.Repository
         public TempleUserBookingRepository(IDapper _dapper)
         {
             dapper = _dapper;
-        }
-        //public List<TempleOrders> UserBooking(List<TempleUserBooking> userBooking)
-        //{
-        //    int result=0;
-        //    List<TempleOrders> listOrders = new List<TempleOrders>();
-        //    string invoiceNo= RandomString(10); 
-        //    for (int i = 0; i < userBooking.Count; i++)
-        //    {
-        //        userBooking[i].OrderNO = RandomString(8);
-        //        userBooking[i].InvoiceNo = invoiceNo;
-        //        var dbParam = new DynamicParameters();
-        //        dbParam.Add("UserId", userBooking[i].UserId, DbType.Int32);
-        //        dbParam.Add("BookingStatusId", userBooking[i].BookingStatusId, DbType.Int32);
-        //        dbParam.Add("ServiceId", userBooking[i].ServiceId, DbType.Int32);
-        //        dbParam.Add("ServiceTypeId", userBooking[i].ServiceTypeId, DbType.Int32);
-        //        dbParam.Add("VendorId", userBooking[i].VendorId, DbType.Int32);
-        //        dbParam.Add("ReviewComments", userBooking[i].ReviewComments, DbType.String);
-        //        dbParam.Add("BookingType", userBooking[i].BookingType, DbType.String);
-        //        dbParam.Add("BookingLocation", userBooking[i].BookingLocation, DbType.String);
-        //        dbParam.Add("BookingDate", userBooking[i].BookingDate, DbType.DateTime);
-        //        dbParam.Add("BookingTime", userBooking[i].BookingTime, DbType.Time);
-
-        //        dbParam.Add("ISDIFFERENTLOCATION", userBooking[i].IsDifferentLocation, DbType.String);
-        //        dbParam.Add("@CITYID", userBooking[i].CityId, DbType.Int32);
-        //        dbParam.Add("@PINCODE", userBooking[i].PinCode, DbType.String);
-        //        dbParam.Add("@NEWCITYID", userBooking[i].NewCItyId, DbType.Int32);
-        //        dbParam.Add("@NEWPINCODE", userBooking[i].NewPinCode, DbType.String);
-        //        dbParam.Add("@NEWADDRESS", userBooking[i].NewAddress, DbType.String);
-        //        dbParam.Add("@USERNAME", userBooking[i].UserName, DbType.String);
-        //        dbParam.Add("@MOBILENUMBER", userBooking[i].MobileNumber, DbType.String);
-        //        dbParam.Add("@EMAILID", userBooking[i].EmailId, DbType.String);
-        //        dbParam.Add("@PACKAGEID", userBooking[i].PackageId, DbType.Int32);
-
-        //        dbParam.Add("@ORDERNO", userBooking[i].OrderNO, DbType.String);
-        //        dbParam.Add("@PAYMENTMODE", userBooking[i].PaymentMode, DbType.Int32);
-        //        dbParam.Add("@PAYMENTSTATUS", userBooking[i].PaymentStatus, DbType.Int32);
-        //        dbParam.Add("@INVOICENO", userBooking[i].InvoiceNo, DbType.String);
-        //        dbParam.Add("@TOTALAMOUNT", userBooking[i].Total, DbType.Int32);
-
-        //        dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
-        //        result = dapper.Execute("[dbo].[SP_TEMPLEUSERBOOKING]"
-        //            , dbParam,
-        //            commandType: CommandType.StoredProcedure);
-        //        listOrders.Add(new TempleOrders() { OrderNO = userBooking[i].OrderNO, InvoiceNo= invoiceNo, Result = result });
-        //    }
-        //    return listOrders;
-        //}
-
-        public void UserBooking12()
-        {
-
-        }
+        }        
 
         public List<TempleOrders> UserBooking(TempleUserBooking userBooking)
         {
@@ -80,39 +30,27 @@ namespace Brahmasmi.Repository
                 userBooking.OrderNO = RandomString(8);
                 userBooking.InvoiceNo = invoiceNo;
                 var dbParam = new DynamicParameters();
-                dbParam.Add("UserId", userBooking.UserId, DbType.Int32);
-                dbParam.Add("BookingStatusId", userBooking.BookingStatusId, DbType.Int32);
 
-                dbParam.Add("ServiceId", userBooking.ServiceDetails[i].ServiceId, DbType.Int32);
-                dbParam.Add("ServiceName", userBooking.ServiceDetails[i].ServiceName, DbType.String);
-                dbParam.Add("ServicePrice", userBooking.ServiceDetails[i].ServicePrice, DbType.Int64);
-
-                dbParam.Add("BookingType", "Temple", DbType.String);
-                dbParam.Add("BookingLocation", userBooking.BookingLocation, DbType.String);
-                dbParam.Add("TempleId", userBooking.TempleId, DbType.Int32);
-                dbParam.Add("UserQuery", userBooking.UserQuery, DbType.String);
-
-                dbParam.Add("RoomTypeId", userBooking.RoomTypeId);
-                dbParam.Add("RoomType", userBooking.RoomType);
-                dbParam.Add("RoomPrice", userBooking.RoomPrice);
-
-                dbParam.Add("DarshanTypeId", userBooking.DarshanTypeId);
-                dbParam.Add("DarshanType", userBooking.DarshanType);
-                dbParam.Add("DarshanPrice", userBooking.DarshanPrice);
-
-                dbParam.Add("BookingDate", userBooking.ServiceDetails[i].BookingDate, DbType.DateTime);
-                dbParam.Add("BookingTime", userBooking.ServiceDetails[i].BookingTime, DbType.Time);
-
-                dbParam.Add("@CITYID", userBooking.CityId, DbType.Int32);
-                dbParam.Add("@PINCODE", userBooking.PinCode, DbType.String);
-                dbParam.Add("@NEWCITYID", userBooking.NewCItyId, DbType.Int32);
-                dbParam.Add("@NEWPINCODE", userBooking.NewPinCode, DbType.String);
-
-                dbParam.Add("@NEWADDRESS", userBooking.NewAddress, DbType.String);
+                dbParam.Add("@TransactionDetails", 1, DbType.Int32);
+                dbParam.Add("@UserId", userBooking.UserId, DbType.Int32);
                 dbParam.Add("@USERNAME", userBooking.UserName, DbType.String);
                 dbParam.Add("@MOBILENUMBER", userBooking.MobileNumber, DbType.String);
                 dbParam.Add("@EMAILID", userBooking.EmailId, DbType.String);
-                dbParam.Add("@PACKAGEID", userBooking.PackageId, DbType.Int32);
+                dbParam.Add("@PINCODE", userBooking.PinCode, DbType.String);
+                dbParam.Add("@BILLINGADDRESS", userBooking.BillingAddress, DbType.String);
+                dbParam.Add("@TempleId", userBooking.TempleId, DbType.Int32);
+                dbParam.Add("@UserQuery", userBooking.UserQuery, DbType.String);
+
+                dbParam.Add("@ServiceId", userBooking.ServiceDetails[i].ServiceId, DbType.Int32);
+                dbParam.Add("@ServiceName", userBooking.ServiceDetails[i].ServiceName, DbType.String);
+                dbParam.Add("@ServicePrice", userBooking.ServiceDetails[i].ServicePrice, DbType.Int64);
+                dbParam.Add("@BookingDate", userBooking.ServiceDetails[i].BookingDate, DbType.DateTime);
+                dbParam.Add("@BookingTime", userBooking.ServiceDetails[i].BookingTime, DbType.Time);
+                dbParam.Add("@BookingStatusId", userBooking.BookingStatusId, DbType.Int32);
+                dbParam.Add("@BookingLocation", userBooking.BookingLocation, DbType.String);
+
+                dbParam.Add("@BookingType", "Temple", DbType.String);
+                dbParam.Add("@CityId", userBooking.CityId, DbType.Int32);
 
                 dbParam.Add("@ORDERNO", userBooking.OrderNO, DbType.String);
                 dbParam.Add("@PAYMENTMODE", userBooking.PaymentMode, DbType.Int32);
@@ -126,70 +64,43 @@ namespace Brahmasmi.Repository
                     commandType: CommandType.StoredProcedure);
                 listOrders.Add(new TempleOrders() { OrderNO = userBooking.OrderNO, InvoiceNo = invoiceNo, Result = result });
             }
+
+            for (int i = 0; i < userBooking.AccommodationDetails.Count; i++)
+            {
+                userBooking.InvoiceNo = invoiceNo;
+                var dbParam = new DynamicParameters();
+
+                dbParam.Add("@TransactionDetails", 2, DbType.Int32);
+
+                dbParam.Add("@UserId", userBooking.UserId, DbType.Int32);
+                dbParam.Add("@USERNAME", userBooking.UserName, DbType.String);
+                dbParam.Add("@MOBILENUMBER", userBooking.MobileNumber, DbType.String);
+                dbParam.Add("@EMAILID", userBooking.EmailId, DbType.String);
+                dbParam.Add("@PINCODE", userBooking.PinCode, DbType.String);
+                dbParam.Add("@BILLINGADDRESS", userBooking.BillingAddress, DbType.String);
+                dbParam.Add("@TempleId", userBooking.TempleId, DbType.Int32);
+                dbParam.Add("@UserQuery", userBooking.UserQuery, DbType.String);
+
+                dbParam.Add("@RoomTypeId", userBooking.AccommodationDetails[i].RoomTypeId, DbType.Int32);
+                dbParam.Add("@RoomType", userBooking.AccommodationDetails[i].RoomType, DbType.String);
+                dbParam.Add("@RoomPrice", userBooking.AccommodationDetails[i].RoomPrice, DbType.Int64);
+                dbParam.Add("@RoomBookingDate", userBooking.AccommodationDetails[i].RoomBookingDate, DbType.DateTime);
+                dbParam.Add("@NoOfDaysRequired", userBooking.AcmdNoOfDays, DbType.Int32);
+
+                dbParam.Add("@CityId", userBooking.CityId, DbType.Int32);
+                dbParam.Add("@PINCODE", userBooking.PinCode, DbType.String);
+                dbParam.Add("@BILLINGADDRESS", userBooking.BillingAddress, DbType.String);
+
+                dbParam.Add("@INVOICENO", userBooking.InvoiceNo, DbType.String);
+
+                dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
+                result = dapper.Execute("[dbo].[SP_TEMPLEUSERBOOKING]"
+                    , dbParam,
+                    commandType: CommandType.StoredProcedure);
+            }
+
             return listOrders;
         }
-
-        //public List<TempleOrders> UserBooking(TempleUserBooking userBooking)
-        //{
-        //    int result = 0;
-        //    List<TempleOrders> listOrders = new List<TempleOrders>();
-        //    string invoiceNo = RandomString(10);
-        //    //for (int i = 0; i < userBooking.Count; i++)
-        //    //{
-        //    userBooking.OrderNO = RandomString(8);
-        //    userBooking.InvoiceNo = invoiceNo;
-        //    var dbParam = new DynamicParameters();
-        //    dbParam.Add("UserId", userBooking.UserId, DbType.Int32);
-        //    dbParam.Add("BookingStatusId", userBooking.BookingStatusId, DbType.Int32);
-        //    //dbParam.Add("ServiceId", userBooking.ServiceId, DbType.Int32);
-        //    //dbParam.Add("ServiceTypeId", userBooking.ServiceTypeId, DbType.Int32);
-        //    //dbParam.Add("VendorId", userBooking.VendorId, DbType.Int32);
-        //    //dbParam.Add("ReviewComments", userBooking.ReviewComments, DbType.String);
-        //    dbParam.Add("BookingType", "Temple", DbType.String);
-        //    dbParam.Add("BookingLocation", userBooking.BookingLocation, DbType.String);
-        //    dbParam.Add("TempleId", userBooking.TempleId, DbType.Int32);
-        //    dbParam.Add("UserQuery", userBooking.UserQuery, DbType.String);
-
-        //    dbParam.Add("RoomTypeId", userBooking.RoomTypeId);
-        //    dbParam.Add("RoomType", userBooking.RoomType);
-        //    dbParam.Add("RoomPrice", userBooking.RoomPrice);
-
-        //    dbParam.Add("DarshanTypeId", userBooking.DarshanTypeId);
-        //    dbParam.Add("DarshanType", userBooking.DarshanType);
-        //    dbParam.Add("DarshanPrice", userBooking.DarshanPrice);
-
-        //    //dbParam.Add("BookingDate", userBooking.BookingDate, DbType.DateTime);
-        //    //dbParam.Add("BookingTime", userBooking.BookingTime, DbType.Time);
-
-        //    //dbParam.Add("ISDIFFERENTLOCATION", userBooking.IsDifferentLocation, DbType.String);
-        //    dbParam.Add("@CITYID", userBooking.CityId, DbType.Int32);
-        //    dbParam.Add("@PINCODE", userBooking.PinCode, DbType.String);
-        //    dbParam.Add("@NEWCITYID", userBooking.NewCItyId, DbType.Int32);
-        //    dbParam.Add("@NEWPINCODE", userBooking.NewPinCode, DbType.String);
-        //    dbParam.Add("@NEWADDRESS", userBooking.NewAddress, DbType.String);
-        //    dbParam.Add("@USERNAME", userBooking.UserName, DbType.String);
-        //    dbParam.Add("@MOBILENUMBER", userBooking.MobileNumber, DbType.String);
-        //    dbParam.Add("@EMAILID", userBooking.EmailId, DbType.String);
-        //    dbParam.Add("@PACKAGEID", userBooking.PackageId, DbType.Int32);
-
-        //    dbParam.Add("@ORDERNO", userBooking.OrderNO, DbType.String);
-        //    dbParam.Add("@PAYMENTMODE", userBooking.PaymentMode, DbType.Int32);
-        //    dbParam.Add("@PAYMENTSTATUS", userBooking.PaymentStatus, DbType.Int32);
-        //    dbParam.Add("@INVOICENO", userBooking.InvoiceNo, DbType.String);
-        //    dbParam.Add("@TOTALAMOUNT", userBooking.Total, DbType.Int32);
-
-        //    DataTable serviceBooking = new DataTable();
-        //    serviceBooking = GetServiceBookingDetails(userBooking.ServiceDetails);
-        //    dbParam.Add("ServiceBooking", serviceBooking.AsTableValuedParameter("dbo.TT_ServiceBooking"));
-
-        //    dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
-        //    result = dapper.Execute("[dbo].[SP_TEMPLEUSERBOOKING]"
-        //        , dbParam,
-        //        commandType: CommandType.StoredProcedure);
-        //    listOrders.Add(new TempleOrders() { OrderNO = userBooking.OrderNO, InvoiceNo = invoiceNo, Result = result });
-        //    //}
-        //    return listOrders;
-        //}
 
         public DataTable GetServiceBookingDetails(List<UserServiceDetails> lstdetails)
         {
@@ -225,6 +136,7 @@ namespace Brahmasmi.Repository
                  commandType: CommandType.StoredProcedure);
             return result;
         }
+
         public string RandomString(int size, bool lowerCase = false)
         {
             Random _random = new Random();
@@ -248,24 +160,30 @@ namespace Brahmasmi.Repository
             return lowerCase ? builder.ToString().ToLower() : builder.ToString();
         }
 
-        public List<TempleOrderDetail> GetTempleOrderDetails(string invoiceno)
+        public Tuple<List<TempleOrderDetailService>, List<TempleOrderDetailServiceAccommodation>> GetTempleOrderDetails(string invoiceno)
         {
             var dbParam = new DynamicParameters();
             dbParam.Add("invoiceno", invoiceno, DbType.String);
-            var result = dapper.GetAll<TempleOrderDetail>("[dbo].[SP_GETTEMPLEORDERDETAILS]"
-                 , dbParam,
-                 commandType: CommandType.StoredProcedure);
+            //var result = dapper.GetAll<TempleOrderDetail>("[dbo].[SP_GETTEMPLEORDERDETAILS]"
+            //     , dbParam,
+            //     commandType: CommandType.StoredProcedure);
+
+            var result = dapper.GetMultipleResult1<TempleOrderDetailService, TempleOrderDetailServiceAccommodation>("[dbo].[SP_GETTEMPLEORDERDETAILS]", dbParam, commandType: CommandType.StoredProcedure);
+
             return result;
 
         }
 
-        public List<TempleUserDashboardModel> GetTempleUserDashboard(int userId)
+        public Tuple<List<TempleOrderDetailService>, List<TempleOrderDetailServiceAccommodation>> GetTempleUserDashboard(int userId)
         {
             var dbParam = new DynamicParameters();
             dbParam.Add("userId", userId, DbType.Int32);
-            var result = dapper.GetAll<TempleUserDashboardModel>("[dbo].[SP_TempleUserDashboard]"
-                 , dbParam,
-                 commandType: CommandType.StoredProcedure);
+            //var result = dapper.GetAll<TempleUserDashboardModel>("[dbo].[SP_TempleUserDashboard]"
+            //     , dbParam,
+            //     commandType: CommandType.StoredProcedure);
+
+            var result = dapper.GetMultipleResult1<TempleOrderDetailService, TempleOrderDetailServiceAccommodation>("[dbo].[SP_TempleUserDashboard]", dbParam, commandType: CommandType.StoredProcedure);
+
             return result;
         }
     }

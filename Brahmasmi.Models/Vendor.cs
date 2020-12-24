@@ -73,6 +73,13 @@ namespace Brahmasmi.Models
         public string Vendor_AddressProof { get; set; }
         public string Vendor_GSTIN { get; set; }
         public string Vendor_VedaShakha { get; set; }
+        public string Name { get; set; }
+        public string Languages { get; set; }
+        public string Specializations { get; set; }
+        public string Certifications { get; set; }
+        public string IndustryTypes { get; set; }
+        public string VirtualPlatforms { get; set; }
+        public string SocialNetworks { get; set; }
 
         public List<VendorCertification> VendorCertifications { get; set; }
         public List<VendorSocialNetwork> VendorSocialNetworks { get; set; }

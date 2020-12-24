@@ -23,7 +23,7 @@ namespace Brahmasmi.API.Controllers
             vendorRepository = _vendorRepository;
             logger = _logger;
         }
-      
+        [EnableCors("CorsPolicy")]
         [HttpGet]
         public async Task<ActionResult<Vendor>> GetVendors()
         {
@@ -32,6 +32,24 @@ namespace Brahmasmi.API.Controllers
 
                 var result = await Task.FromResult(vendorRepository.GetAllVendor());
                 //throw new Exception("Exception while fetching...");
+                logger.LogInformation("end");
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet("{VendorID}")]
+        public async Task<ActionResult<Vendor>> GetVendorProfile(int VendorID)
+        {
+            try
+            {
+
+                var result = await Task.FromResult(vendorRepository.GetVendorProfile(VendorID));
                 logger.LogInformation("end");
 
                 return Ok(result);
@@ -86,6 +104,26 @@ namespace Brahmasmi.API.Controllers
                 //throw new Exception("Exception while fetching...");
                 logger.LogInformation("end");
                 return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpPost]
+        public async Task<ActionResult<Vendor>> UploadPhoto()
+        {
+            try
+            {
+                var imageFile = Request.Form.Files[0];
+                Vendor vendor = new Vendor();
+                vendor.VendorID= Convert.ToInt32(Request.Form["vendorID"]);
+                var result = await Task.FromResult(vendorRepository.UploadPhoto(imageFile, vendor));
+                logger.LogInformation("end");
+                return Ok(result);
+
             }
             catch (Exception ex)
             {

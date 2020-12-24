@@ -42,9 +42,12 @@ namespace Brahmasmi.API.Controllers
                 data.TempleTypeId = Convert.ToInt32(Request.Form["TempleTypeId"].ToString());
                 data.TempleId = Convert.ToInt32(Request.Form["TempleId"].ToString());
                 data.TempleName = Request.Form["TempleName"].ToString();
+                data.AboutTemple = Request.Form["AboutTemple"].ToString();
                 data.TempleDescription = Request.Form["TempleDescription"].ToString();
+                data.TempleTransport = Request.Form["TempleTransport"].ToString();
                 data.ServicesTimings = JsonConvert.DeserializeObject<List<ServiceTimingsModel>>(Request.Form["ServicesTimings"]);
 
+                data.AccommodationTimings = JsonConvert.DeserializeObject<List<AccommodationTimingsModel>>(Request.Form["AccommodationTimings"]);
                 data.StateId = Convert.ToInt32(Request.Form["StateId"].ToString());
                 data.CityId = Convert.ToInt32(Request.Form["CityId"].ToString());
                 data.CustomerReviews = Request.Form["CustomerReviews"].ToString();
@@ -126,12 +129,12 @@ namespace Brahmasmi.API.Controllers
         }
 
         [EnableCors("CorsPolicy")]
-        [HttpGet]
-        public async Task<ActionResult<List<TemplesWithTypesList>>> GetTemplesWithTypesList()
+        [HttpGet("{TempleId}")]
+        public async Task<ActionResult<List<AccommodationTimingsModel>>> GetAllAccommodationTimings(int TempleId)
         {
             try
             {
-                var result = await Task.FromResult(templeRepository.GetTemplesWithTypesList());
+                var result = await Task.FromResult(templeRepository.GetAllAccommodationTimings(TempleId));
                 return Ok(result);
             }
             catch (Exception ex)
@@ -142,13 +145,12 @@ namespace Brahmasmi.API.Controllers
         }
 
         [EnableCors("CorsPolicy")]
-        [HttpPost]
-        public async Task<ActionResult<int>> SaveUserServiceRequest(UserServiceRequestModel request)
+        [HttpGet]
+        public async Task<ActionResult<List<TemplesWithTypesList>>> GetTemplesWithTypesList()
         {
             try
             {
-                var result = await Task.FromResult(templeRepository.SaveUserServiceRequest(request));
-
+                var result = await Task.FromResult(templeRepository.GetTemplesWithTypesList());
                 return Ok(result);
             }
             catch (Exception ex)

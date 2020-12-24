@@ -19,5 +19,6 @@ namespace Brahmasmi.Models
         public string IsDelete { get; set; }
         public string Store_Password { get; set; }
         public string UserTypeID { get; set; }
+        public string Name { get; set; }
     }
 }

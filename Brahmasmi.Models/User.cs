@@ -24,6 +24,7 @@ namespace Brahmasmi.Models
         public string User_Password { get; set; }
         public string User_Status { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public string Name { get; set; }
 
 
 

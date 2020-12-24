@@ -12,8 +12,8 @@ namespace Brahmasmi.Repository
         List<Temple> GetTempleData(int TempleId);
         List<TempleType> GetTempleTypes();
         List<ServicesTimings> GetAllServicesTimings(int TempleId);
+        List<AccommodationTimingsModel> GetAllAccommodationTimings(int TempleId);
         List<TemplesWithTypesList> GetTemplesWithTypesList();
-        int SaveUserServiceRequest(UserServiceRequestModel request);
         List<TempleServiceUserRequest> GetTempleServiceUserRequest();
         int DeleteTemple(TempleServicesAdminModel data);
     }

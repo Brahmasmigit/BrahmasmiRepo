@@ -9,10 +9,13 @@ namespace Brahmasmi.Models
         public int TempleTypeId { get; set; }
         public int TempleId { get; set; }
         public string TempleName { get; set; }
+        public string AboutTemple { get; set; }
         public string TempleDescription { get; set; }
+        public string TempleTransport { get; set; }
         public int StateId { get; set; }
         public int CityId { get; set; }
         public List<ServiceTimingsModel> ServicesTimings { get; set; }
+        public List<AccommodationTimingsModel> AccommodationTimings { get; set; }
         public string CustomerReviews { get; set; }
         public string Action { get; set; }
         public byte[] TempleImage { get; set; }
@@ -28,13 +31,24 @@ namespace Brahmasmi.Models
         public int ServiceId { get; set; }
     }
 
+    public class AccommodationTimingsModel
+    {
+        public int TempleId { get; set; }
+        public string RoomType { get; set; }
+        public string RoomTimings { get; set; }
+        public double RoomPrice { get; set; }
+        public int RoomTypeId { get; set; }
+    }
+
     public class Temple
     {
         public int TempleTypeId { get; set; }
         public string TempleType { get; set; }
         public int TempleId { get; set; }
         public string TempleName { get; set; }
+        public string AboutTemple { get; set; }
         public string TempleDescription { get; set; }
+        public string TempleTransport { get; set; }
         public int StateId { get; set; }
         public string StateName { get; set; }
         public int CityId { get; set; }

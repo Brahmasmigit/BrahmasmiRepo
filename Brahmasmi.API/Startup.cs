@@ -81,6 +81,12 @@ namespace Brahmasmi.API
             services.AddScoped<IHoroscopeRepository, HoroscopeRepository>();
             services.AddScoped<ITempleServiceRepository, TempleServiceRepository>();
             services.AddScoped<ITempleUserBookingRepository, TempleUserBookingRepository>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<ICommunityServicesRepository, CommunityServicesRepository>();
+            services.AddScoped<IConcernEnquiryRepository, ConcernEnquiryRepository>();
+            services.AddScoped<IPoojaSubscriptionFormRepository, PoojaSubscriptionFormRepository>();
+            services.AddScoped<ISpecialserviceRepository, SpecialserviceRepository>();
+            services.AddScoped<IVedapatashalaOnBoardingRepository, VedapatashalaOnBoardingRepository>();
             services.AddScoped<IDapper, Dapperr>();
         }
 
