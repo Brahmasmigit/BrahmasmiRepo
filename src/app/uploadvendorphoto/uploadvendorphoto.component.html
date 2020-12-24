@@ -1,0 +1,44 @@
+<app-adminheader></app-adminheader>
+<form #vendorphotouploadForm="ngForm" (ngSubmit)="vendorphotouploadForm.form.valid && UploadAPhoto()">
+    <div class="row">
+        <div class="container card border-primary  p-4">
+            <br>
+            <h4>Upload Photo :</h4>
+            <hr />
+            <div class="form-group row">
+                <div class="col-6 ">
+                    <div class="form-group row">
+                        <div class="col-5">
+                            <label>Name :</label>
+                        </div>
+                        <div class="col-7">
+                       {{vendorname}}
+                        </div>
+                    
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-5">
+                            <label>Upload Your Photo :</label>
+                        </div>
+                        <div class="col-7">
+                            <input type="file" accept="image/*" #file (change)="upload($event)"
+                                name="vendor_Photo" />
+                        </div>
+                    
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4 offset-5">
+                              <button type="submit" class="btn btn-primary col-12">Submit</button>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-4 ">
+                    <div class="imagePreview" *ngIf="imageURL && imageURL !== ''">
+                        <img [src]="imageURL" width="200px" height="200px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<app-footer></app-footer>

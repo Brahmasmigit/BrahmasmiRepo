@@ -295,6 +295,14 @@
     padding-left: 35px;
     text-align: left;
   }
+  .sidenav a
+  {
+    color:white;
+  }
+  .sidenav
+  {
+    background-image: linear-gradient(rgb(255, 136, 0),orange,rgb(255, 136, 0));
+  }
 
   </style>
 
@@ -303,7 +311,7 @@
   <div id="mySidenav" class="sidenav">
 
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-    <a routerLink="/main" routerLinkActive="active">Home</a>
+    <a routerLink="/homepage" routerLinkActive="active">Home</a>
     <a routerLink="/vendorsearch" routerLinkActive="active">Book Pandit</a>
     <a routerLink="/vendorregistration" routerLinkActive="active">Register As A Pandit</a>
     <a *ngIf="isLogin && isVendor"  routerLink="/vendordashboard" routerLinkActive="active">My Dashboard</a>
@@ -318,6 +326,11 @@
     <a routerLink="/userproductorders" routerLinkActive="active" *ngIf="isLogin && !isVendor">My Orders</a>
     <a routerLink="/horoscope" routerLinkActive="active">Horoscope</a>
     <a routerLink="/adminlogin" routerLinkActive="active" *ngIf="!isLogin" >Admin</a>
+    <a  routerLink="/blog" routerLinkActive="active">Blog</a>
+    <a  routerLink="/vedapatashalaonboarding" routerLinkActive="active">Vedapatashala Onboarding</a>
+    <a  routerLink="/concernenquiry" routerLinkActive="active">Concern Enquiry</a>
+    <a  routerLink="/communityservices" routerLinkActive="active">Community Services</a>
+    <a  routerLink="/poojasubscriptionform" routerLinkActive="active">Pooja Subscription Form</a>
     <a  *ngIf="isLogin && !isVendor" class="nav-link" routerLink="/tempeuserdashboard" routerLinkActive="active">Temple Orders</a>
      <a *ngIf="isLogin"  (click)="Logout()"  >Logout</a>
   </div>
@@ -339,12 +352,22 @@
                 <td class="login">
                     <br>
 
-                    <p style="color: #ffffff;float: left;">
+                    <p style="color: #ffffff;float: left;padding-right: 35px;">
                       <img src="../../assets/img/call-icon.png" style="width: 25px;height: 25px;float: left;">&nbsp;
                       1800 891 6676</p>
-                     <a href="">
-                      <img src="../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;"></a>
-                    <a routerLink="/login" class="cursor: pointer;" routerLinkActive="active"  style="color: #ffffff;margin-left: 10px;">Login/Sign Up</a>
+                    <!-- <a href="">
+                      <img src="../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;"></a> -->
+<!--                      
+                        <select>
+                     
+                          <option value="">Venkatesh</option>
+                                          <option value="profile"><a >Profile</a></option>
+                                          <option value="logout"><a >Logout</a></option>
+                                     
+                        </select> -->
+                        <a href="">
+                          <img src="../../assets/homepageimages/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;"></a>
+                    <a *ngIf="!isLogin" routerLink="/login" class="cursor: pointer;" routerLinkActive="active"  style="color: #ffffff;margin-left: 10px;">Login</a>
 
                   <!-- <a *ngIf="!isLogin" routerLink="/login" class="pointer" routerLinkActive="active" style="width: 25px;height: 25px;margin-left: 50px;"> <img src="../../../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;">
                       Login/Sign Up</a>
@@ -352,6 +375,9 @@
                        Logout</a>-->
 
                 </td>
+                <td>  <h5  *ngIf="isLogin" style="color:white">
+                  {{username}}
+                                  </h5></td>
         </tr>
     </table>
 

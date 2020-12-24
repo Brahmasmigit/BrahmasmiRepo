@@ -1,0 +1,97 @@
+<app-header></app-header>
+<form #concernenquiryForm="ngForm" (ngSubmit)="concernenquiryForm.form.valid && AddConcernEnquiry() " >
+    <div class="row">
+    
+        <div class="container card border" style="margin-top:50px;">
+            <br><br>
+            <h4 style="color:#63bc33;text-align: center; font-weight: bold;"> CONCERN ENQUIRY FORM </h4>
+        <hr/>
+            <div class="form-group row">
+                <div class="col-3 offset-1">
+                    <label>Select Concern Type :</label>
+                </div>
+                <div class="col-7">
+                    <select name="concernID"  [(ngModel)]="concernModel.concernID" class="form-control" #concernID="ngModel" required>
+                        <option *ngFor="let concern of ConcernTypes" [value]="concern.concernID" >
+                            {{concern.concernType}}
+                        </option>
+                    </select>
+                    <span class="text-danger"
+                    *ngIf="(concernID.touched || concernenquiryForm.submitted) && concernID.errors?.required">
+                    Concern Type is required
+                </span>
+                </div>
+            </div>
+         
+            <div class="form-group row">
+                <div class="col-3 offset-1">
+                    <label>Name :</label>
+                </div>
+                <div class="col-7">
+                    <input type="text" class="form-control" id="name" name="name"
+                    [(ngModel)]="concernModel.name" #name="ngModel" required>
+                    <span class="text-danger"
+                    *ngIf="(name.touched || concernenquiryForm.submitted) && name.errors?.required">
+                    Name is required
+                </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3 offset-1">
+                    <label>Mobile Number :</label>
+                </div>
+                <div class="col-7">
+                    <input type="text" class="form-control" id="mobileNumber" name="mobileNumber"
+                    [(ngModel)]="concernModel.mobileNumber"#mobileNumber="ngModel" required >
+                    <span class="text-danger"
+                    *ngIf="(mobileNumber.touched || concernenquiryForm.submitted) && mobileNumber.errors?.required">
+                    MobileNumber is required
+                </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3 offset-1">
+                    <label>EmailID :</label>
+                </div>
+                <div class="col-7">
+                    <input type="text" class="form-control" id="emailID" name="emailID"
+                    [(ngModel)]="concernModel.emailID" #emailID="ngModel" required >
+                    <span class="text-danger"
+                    *ngIf="(emailID.touched || concernenquiryForm.submitted) && emailID.errors?.required">
+                    EmailID is required
+                </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3 offset-1">
+                    <label>Requested Amount :</label>
+                </div>
+                <div class="col-7">
+                    <input type="number" class="form-control" id="requestedAmount" name="requestedAmount" maxlength="10"
+                    [(ngModel)]="concernModel.requestedAmount" #requestedAmount="ngModel" required>
+                    <span class="text-danger"
+                    *ngIf="(requestedAmount.touched || concernenquiryForm.submitted) && requestedAmount.errors?.required">
+                    Requested Amount is required
+                </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3 offset-1">
+                    <label>Address :</label>
+                </div>
+                <div class="col-7">
+                    <textarea type="text" class="form-control" id="address" name="address"
+                    [(ngModel)]="concernModel.address" ></textarea>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-3 offset-4">
+                        <button type="submit"   class="btn btn-primary col-12" >Submit</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+    
+    

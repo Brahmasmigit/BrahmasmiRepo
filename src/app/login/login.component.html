@@ -1,10 +1,31 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
+<style>
+  @media screen and (max-width:100px){
+  .container-fluid
+  {
+display: flex;
+  }
+}
 
+.nav-tabs{
+  border-bottom-color: transparent;
+}
+.cardbody
+{
+  border:1px solid darkmagenta !important;
+  width:70%;
+}
+.container-fluid
+{
+  background-color:darkgoldenrod;
+}
+</style>
+<app-header></app-header>
 <div class="container-fluid jumbotron" style="background-color: linen;" >
 <div class="col-md-5 mt-10 w-50" style="margin-left:30%">
-  <div class="card border-primary mb-3 w-100">
+  <div class="card border mb-3  cardbody">
       <div class="card-header font-weight-bold ">
-        <ul class="nav nav-tabs" style="font-size: 18px;">
+        <ul class="nav nav-tabs" style="font-size: 20px;">
           <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#otp">Login With OTP</a>
           </li>
@@ -32,10 +53,11 @@
 
 
           </div>
+          <br>
           <div class="row">
             <div class="col-md-6  offset-4">
                 <div class="form-group col-centered">
-                  <button type="submit" class="btn btn-primary col-8" >Continue</button>
+                  <button type="submit" class="btn btn-primary  col-8"  >Continue</button>
                 </div>
             </div>
 
@@ -57,7 +79,7 @@
                         <br>
 
                       <ng-otp-input  (onInputChange)="onOtpChange($event)"  name="otpInput" [config]="{length:4}"></ng-otp-input>
-                    <span style="font-size:6px;">{{ActualOTP}}</span>
+                    <!-- <span style="font-size:6px;">{{ActualOTP}}</span> -->
                    </div>
                     </div>
                 </div>
@@ -67,7 +89,7 @@
             <div class="row">
               <div class="col-md-6 offset-4">
                   <div class="form-group">
-                    <button type="submit" class="btn btn-primary col-8">Login</button>
+                    <button type="submit" class="btn  col-8" >Login</button>
                   </div>
               </div>
 
@@ -96,7 +118,7 @@
           <div class="row">
             <div class="col-md-6  offset-4">
                 <div class="form-group col-centered">
-                  <button type="submit" class="btn btn-primary col-8" >Login</button>
+                  <button type="submit" class="btn  col-8" >Login</button>
                 </div>
             </div>
 
@@ -115,8 +137,11 @@
   </div>
 </div>
 </div>
+<app-footer>
+
+</app-footer>
 
 
-<app-footer></app-footer>
+
 
 

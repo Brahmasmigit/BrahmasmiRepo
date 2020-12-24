@@ -1,4 +1,7 @@
+
+
 <app-header></app-header>
+
 <div class="container-fluid jumbotron" style="background-color: linen;margin-top: 30px;" >
   <h3><b>Product Details :</b></h3>
     <div class="main-body">
@@ -26,10 +29,10 @@
                 <h6 class="header-title" >{{product.productShortDescription}}</h6>
                <p style="height: 8px;border-bottom: 1px solid;"></p>
 
-                <div class="pt-1" *ngIf="ShowItems">
+                <div class=" colmncount" *ngIf="ShowItems">
                     <h6 class="text-uppercase mt-0">Items :</h6>
                     <div>
-                        <ul class="columnlist" *ngFor="let item of productDetails; let index = index">
+                        <ul class="grid-list" *ngFor="let item of productDetails; let index = index">
                             <li>{{item.itemName}}</li>
                         </ul>
 
@@ -39,7 +42,7 @@
                 <div class="pt-1" *ngIf="ShowKeyInsights">
                 
                   <div>
-                      <ul class="columnlist" *ngFor="let item of productKeyInsights; let index = index">
+                      <ul  *ngFor="let item of productKeyInsights; let index = index">
                           <li>{{item.productKeyInsightsName}}</li>
                       </ul>
 
@@ -53,7 +56,7 @@
             <div class="col-md-12">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
+                      <a class="nav-link active btn btn-scondary" data-toggle="tab" href="#description">Description</a>
                     </li>
                     <!-- <li class="nav-item">
                       <a class="nav-link" data-toggle="tab" href="#reviews">Reviews</a>

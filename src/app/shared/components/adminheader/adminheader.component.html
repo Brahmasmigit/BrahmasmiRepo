@@ -37,10 +37,20 @@
 
   </div>
 </nav>-->
+<style>
+  .sidenav a
+  {
+    color:white;
+  }
+  .sidenav
+  {
+    background-image: linear-gradient(rgb(255, 136, 0),orange,rgb(255, 136, 0));
+  }
+</style>
 
-<body style="overflow-x: hidden;background-color: #29384c; height: 70px;">
+<body style="overflow-y: hidden; height: 70px;">
 
-  <div id="mySidenav" class="sidenav">
+  <div id="mySidenav" class="sidenav" >
 
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
 
@@ -70,12 +80,16 @@
       <a  routerLink="/adminloyaltypoints" routerLinkActive="active">Add Loyalty Points</a>
 
       <a  routerLink="/horoscopemaster" routerLinkActive="active">Horoscope</a>
+      <a  routerLink="/adminblog" routerLinkActive="active">Blog</a>
+      <a  routerLink="/adminonboarding" routerLinkActive="active">Vedapatashala Onboarding</a>
+      <a  routerLink="/admincommunityservices" routerLinkActive="active">Community Services Enquiry</a>
+      <a  routerLink="/adminspecialservicesenquiry" routerLinkActive="active">Special Services Enquiry</a>
 
   </div>
 
   <div id="main">
 
-    <table class="head-table" style="width: 100%;background-image: url('img/head01.png');">
+    <table class="head-table" style="width: 100%;background-image: url('../../assets/homepageimages/head01.png');">
       <tr>
           <td >
             <span style="font-size:35px;cursor:pointer;margin-top: 0px;color: #ffffff;" (click)="openNav()">&#9776;</span>

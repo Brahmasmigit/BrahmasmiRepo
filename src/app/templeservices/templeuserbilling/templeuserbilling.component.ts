@@ -28,7 +28,6 @@ export class TempleUserBillingComponent implements OnInit {
   private razorKey: any = environment.RazorKey;
   closeResult: string;
   @ViewChild('mymodal') mymodal: ElementRef;
-  // cartitems: any = [];
   cartItems: CartItems = {} as CartItems;
   accommodation: boolean;
 
@@ -49,38 +48,27 @@ export class TempleUserBillingComponent implements OnInit {
   LoadTempleCartItems() {
     if (sessionStorage.getItem("templeServiceDetails") != null || sessionStorage.getItem("templeServiceDetails") != undefined) {
       this.templeUserBillingItems = JSON.parse(sessionStorage.getItem("templeServiceDetails"));
-      // this.cartItems = this.templeUserBillingItems;
-      console.log('temple', this.templeUserBillingItems);
+      console.log('temple billing', this.templeUserBillingItems);
       this.DisplayUserDetails();
       this.CalculateTotalItemsPrice();
     }
-    // if (sessionStorage.getItem("templeServiceDetails") != null || sessionStorage.getItem("templeServiceDetails") != undefined) {
-    //   this.templeUserCartItems = JSON.parse(sessionStorage.getItem("templeServiceDetails"));
-    //   this.cartitems = this.templeUserCartItems;
-    //   console.log('temple', this.templeUserCartItems);
-    //   this.CalculateTotalItemsPrice();
-    // }
   }
 
   DisplayUserDetails() {
     this.templeUserBilling.UserName = this.templeUserBillingItems.UserName;
     this.templeUserBilling.UserMobileNo = this.templeUserBillingItems.UserMobileNo;
     this.templeUserBilling.UserEmail = this.templeUserBillingItems.UserEmail;
-    this.accommodation = this.templeUserBillingItems.RoomTypeId > 0 ? true : false;
   }
 
   CalculateTotalItemsPrice() {
     this.subTotal = 0;
     this.total = 0;
-    // this.templeUserCartItems.forEach(item => {
-    //   this.subTotal += item.ServicePrice;
-    // });
     this.templeUserBillingItems.serviceDetails.forEach(item => {
       this.subTotal += item.ServicePrice;
     });
-
-    this.subTotal += this.templeUserBillingItems.RoomPrice;
-    this.subTotal += this.templeUserBillingItems.DarshanPrice;
+    this.templeUserBillingItems.accommodationDetails.forEach(item => {
+      this.subTotal += item.RoomPrice
+    });
 
     this.total = this.subTotal;
   }
@@ -196,7 +184,6 @@ export class TempleUserBillingComponent implements OnInit {
   }
 
   Confirm() {
-    // if (this.templeUserCartItems.length > 0) {
     if (this.templeUserBillingItems.serviceDetails.length > 0) {
       let bookingstatusid;
       let paymentstatus;
@@ -217,37 +204,29 @@ export class TempleUserBillingComponent implements OnInit {
         paymentstatus = 4;//onhold
       }
 
-      // for (var i = 0; i < this.templeUserBillingItems.serviceDetails.length; i++) {
       this.cartItems.BookingLocation = this.city.find(c => c.cityID == Number(this.templeUserBilling.CityId)).cityName;
       this.cartItems.BookingStatusId = bookingstatusid;
       this.cartItems.PinCode = this.templeUserBilling.Pincode;
       this.cartItems.MobileNumber = this.templeUserBilling.UserMobileNo;
       this.cartItems.EmailId = this.templeUserBilling.UserEmail;
-      this.cartItems.NewAddress = this.templeUserBilling.UserAddress
-      this.cartItems.NewPinCode = this.templeUserBilling.Pincode;
+      this.cartItems.BillingAddress = this.templeUserBilling.UserAddress
+
       this.cartItems.UserName = this.templeUserBilling.UserName;
       this.cartItems.CityId = Number(this.templeUserBilling.CityId);
-      this.cartItems.NewCityId = Number(this.templeUserBilling.CityId);
       this.cartItems.PaymentStatus = paymentstatus;
       this.cartItems.PaymentMode = paymentMode;
       this.cartItems.OrderNo = '';
       this.cartItems.InvoiceNo = '';
+
       this.cartItems.Total = this.total;
       this.cartItems.UserQuery = this.templeUserBillingItems.UserRequestQuery;
       this.cartItems.TempleId = this.templeUserBillingItems.TempleId;
-      
-      this.cartItems.RoomTypeId = Number(this.templeUserBillingItems.RoomTypeId);
-      this.cartItems.RoomType = this.templeUserBillingItems.RoomType;
-      this.cartItems.RoomPrice = this.templeUserBillingItems.RoomPrice;
-      
-      this.cartItems.DarshanTypeId = Number(this.templeUserBillingItems.DarshanTypeId);
-      this.cartItems.DarshanType = this.templeUserBillingItems.DarshanType;
-      this.cartItems.DarshanPrice = this.templeUserBillingItems.DarshanPrice;
-      
+      this.cartItems.AcmdNoOfDays = this.templeUserBillingItems.AcmdNoOfDays;
       this.cartItems.ServiceDetails = this.templeUserBillingItems.serviceDetails;
+      this.cartItems.AccommodationDetails = this.templeUserBillingItems.accommodationDetails;
 
       console.log('car', this.cartItems);
-      // }
+
       this.templeUserBillingService.UserBooking(this.cartItems).subscribe(
         (data) => {
           if (data) {

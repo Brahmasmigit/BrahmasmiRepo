@@ -24,6 +24,7 @@ export class ServicedetailsComponent implements OnInit {
       (data) => {
           if (data) {
               this.serviceDetails = data;
+              console.log(data)
           }
 
       },

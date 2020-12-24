@@ -81,6 +81,8 @@ export class LoginComponent implements OnInit {
         if (data) {
           this.userInfo.userId=data.vendorID;
           this.userInfo.userTypeId=data.userTypeID;
+          this.userInfo.name=data.name;
+          console.log(this.userInfo)
           sessionStorage.clear();
           sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
           this.route.navigate(['./vendordashboard']);
@@ -93,6 +95,9 @@ export class LoginComponent implements OnInit {
                 if (data) {
                   this.userInfo.userId=data.userID;
                   this.userInfo.userTypeId=data.userTypeID;
+                  this.userInfo.name=data.name;
+                  console.log(data)
+                  console.log(this.userInfo)
                   sessionStorage.clear();
                   sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
                   this.route.navigate(['./userdashboard']);
@@ -103,6 +108,8 @@ export class LoginComponent implements OnInit {
                         if (data) {
                           this.userInfo.userId=data.storeID;
                           this.userInfo.userTypeId=data.userTypeID;
+                          this.userInfo.name=data.name;
+                          console.log(this.userInfo)
                           sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
                           this.route.navigate(['./storedashboard']);
                           }
@@ -117,9 +124,12 @@ export class LoginComponent implements OnInit {
                                   if (data) {
                                     this.userInfo.userId=data.userID;
                                     this.userInfo.userTypeId=data.userTypeID;
+                                    this.userInfo.name=data.name;
+                                    console.log(this.userInfo)
+                                    console.log(data)
                                     sessionStorage.clear();
                                     sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
-                                      this.route.navigate(['./userdashboard']);
+                                   this.route.navigate(['./userdashboard']);
                                   }
                                   else{
 
@@ -167,6 +177,7 @@ export class LoginComponent implements OnInit {
         if (data) {
           this.userInfo.userId=data.vendorID;
           this.userInfo.userTypeId=data.userTypeID;
+          this.userInfo.name=data.name;
           sessionStorage.clear();
           sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
           this.route.navigate(['./vendordashboard']);
@@ -178,6 +189,7 @@ export class LoginComponent implements OnInit {
                 if (data) {
                   this.userInfo.userId=data.userID;
                   this.userInfo.userTypeId=data.userTypeID;
+                  this.userInfo.name=data.name;
                   sessionStorage.clear();
                   sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
                   this.route.navigate(['./userdashboard']);
@@ -188,6 +200,8 @@ export class LoginComponent implements OnInit {
                         if (data) {
                           this.userInfo.userId=data.storeID;
                           this.userInfo.userTypeId=data.userTypeID;
+                          this.userInfo.name=data.name;
+                          sessionStorage.clear();
                           sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
                           this.route.navigate(['./storedashboard']);
                           }

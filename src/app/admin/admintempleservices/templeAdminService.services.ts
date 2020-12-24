@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject, throwError } from "rxjs"
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from "@angular/common/http"
 import { map, catchError, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { ServicesTimings, Temple, TempleServiceAdmin, TempleServiceRequest, TempleType } from './templeservice.model';
+import { AccommodationTimings, ServicesTimings, Temple, TempleServiceAdmin, TempleServiceRequest, TempleType } from './templeservice.model';
 
 
 @Injectable()
@@ -51,6 +51,14 @@ export class TempleAdminService {
 
     GetServicesTimings(templeId: number): Observable<ServicesTimings[]> {
         return this.http.get<ServicesTimings[]>(this.API_URL + "TempleServices/GetAllServicesTimings/" + templeId)
+            .pipe(
+                tap(),
+                catchError(this.handleError)
+            );
+    }
+
+    GetAccommodationTimings(templeId: number): Observable<AccommodationTimings[]> {
+        return this.http.get<AccommodationTimings[]>(this.API_URL + "TempleServices/GetAllAccommodationTimings/" + templeId)
             .pipe(
                 tap(),
                 catchError(this.handleError)

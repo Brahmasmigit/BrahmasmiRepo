@@ -35,7 +35,7 @@ export class ContactusComponent implements OnInit {
                  if(data=="1")
                  {
                    console.log(data)
-                   //this.myForm.resetForm();
+                   this.myForm.resetForm();
                  this.showError('Successfully Submitted ...')
                  this.contact={};
                  }

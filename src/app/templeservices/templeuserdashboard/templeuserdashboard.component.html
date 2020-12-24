@@ -1,4 +1,127 @@
 <app-header></app-header>
+<div class="container-fluid jumbotron" style="background-color: linen; height:100%">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-primary mb-3 w-100">
+          <div class="card-header font-weight-bold">Order Details: {{templeServiceDetails[0].templeName}}
+            <div class="pull-right">Invoice No: {{templeServiceDetails[0].invoice}}</div>
+          </div>
+
+          <div class="card-body" style="height: 100%">
+            <label style="font-weight: bold;">Service Details</label>
+            <div class="conatiner-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-bordered w-100">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Order No</th>
+                        <th>Service Name</th>
+                        <th>Service Date & Time</th>
+                        <th>Email Id</th>
+                        <th>Payment Date & Time</th>
+                        <th>Payment Method</th>
+                        <th>Service Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of templeServiceDetails;let i=index">
+                        <td>{{item.orderNo}}</td>
+                        <td>{{item.serviceName}}</td>
+                        <td>{{item.dateOfService}}</td>
+                        <td>{{item.emailId}}</td>
+                        <td>{{item.paymentDate}}</td>
+                        <td>{{item.modeOfPayment}}</td>
+                        <td>{{item.servicePrice}}</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+            <div *ngIf="templeAccommodationDetails.length>0">
+              <label style="font-weight: bold;">Accommodation Details</label>
+              <div class="conatiner-fluid">
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table table-bordered w-100">
+                      <thead class="thead-light">
+                        <tr>                          
+                          <th>Room</th>                          
+                          <th>Room Booking Date</th>
+                          <th>Email Id</th>
+                          <th>No Of Days Stay</th>
+                          <th>Payment Date & Time</th>
+                          <th>Payment Method</th>
+                          <th>Room Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of templeAccommodationDetails;let i=index">                          
+                          <td>{{item.room}}</td>                          
+                          <td>{{item.roomBookingDate}}</td>
+                          <td>{{item.emailId}}</td>
+                          <td>{{item.noOfDaysStay}}</td>
+                          <td>{{item.paymentDate}}</td>
+                          <td>{{item.modeOfPayment}}</td>
+                          <td>{{item.roomPrice}}</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <label style="font-weight: bold;">Total Amount: {{templeServiceDetails[0].totalAmount}}</label>
+
+          </div>
+          <div class="card-footer">
+
+            <button type="button" class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="active">Back to
+              Home</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <app-header></app-header>
 
 <div class="container-fluid jumbotron h-100" style="background-color: linen;margin-top: 25px;height:100%">
     <div class="container h-100 mt-5">
@@ -72,29 +195,11 @@
                                 </tr>
                                 <tr *ngFor="let item of selectedTempleInvoiceData" class="legends">
                                     <th>{{item.serviceName}}</th>
-                                    <th>{{item.bookingDateTime}}</th>                                    
+                                    <th>{{item.bookingDateTime}}</th>
                                     <th>{{item.orderNo}}</th>
                                     <th>{{item.bookingAmount}}</th>
                                 </tr>
                             </table>
-
-                            <!-- <div class="row p-2">
-                                <div class="col-md-6">
-                                    Professional Mobile No:
-                                </div>
-                                <div class="col-md-6">
-                                    94853984754
-                                </div>
-                            </div>
-
-                            <div class="row p-2">
-                                <div class="col-md-6">
-                                    Professional Mobile No:
-                                </div>
-                                <div class="col-md-6">
-                                    3895734534959
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </ng-template>
@@ -102,4 +207,4 @@
             </div>
         </div>
     </div>
-    <app-footer></app-footer>
+    <app-footer></app-footer> -->

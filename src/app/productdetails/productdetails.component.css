@@ -1,4 +1,11 @@
-.columnlist
-{
-    column-count: 2;
-}
+.grid-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .colmncount
+  {
+    column-count: 3;
+    height:300px;
+    overflow-x: scroll;
+    
+  }

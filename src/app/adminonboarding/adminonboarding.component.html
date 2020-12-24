@@ -1,0 +1,69 @@
+<app-adminheader></app-adminheader>
+
+<div class="container-fluid w-100  mt-5">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card border mb-3 w-100">
+              <div class="card-header w-100 font-weight-bold">Vedapatashala OnBoarding Details
+              
+            </div>
+
+              <div class="card-body w-100" style="height: 630px;overflow: scroll;">
+
+                  <div class="conatiner-fluid">
+                      <div class="row">
+
+                          <div class="table-responsive w-100">
+                            <table class="table table-bordered w-100" >
+                              <thead class="thead-light">
+      
+            <th>StateName</th>
+            <th style="display: none;">StateID</th>
+            <th style="display: none;"> CityID</th>
+            <th>CityName</th>
+            
+            <th>Name Of Vedapatashala</th>
+            <th>MobileNumber</th>
+            <th>EmailID</th>
+            <th>Address</th>
+            <th>PinCode</th>
+            <th style="display: none;">Latitude</th>
+            <th style="display: none;">Longitude</th>
+            <th>No.of Students</th>
+            <th>AnyHelpNeeded</th>
+            <th>Certifications</th>
+            </thead>
+     
+        <tbody *ngFor="let onboard of OnBoardingDetails; let i=index"
+            [ngClass]="{'active': selectedIndex == i}">
+            <td> {{onboard.stateName}}</td>
+            <td style="display: none;"> {{onboard.stateID}}</td>
+            <td style="display: none;"> {{onboard.cityID}}</td>
+            <td>{{onboard.cityName}}</td>
+           
+            <td> {{onboard.nameOfVedapatashala}}</td>
+            <td> {{onboard.mobileNumber}}</td>
+            <td >{{onboard.emailIDOfVedapatashala}}</td>
+            <td> {{onboard.addressOfVedapatashala}}</td>
+            <td> {{onboard.pinCode}}</td>  
+            <td style="display: none;"> {{onboard.latitude}}</td>
+            <td style="display: none;"> {{onboard.longitude}}</td>
+            <td> {{onboard.numberOfStudents}}</td>
+            <td> {{onboard.anyHelpNeeded}}</td>
+            <td>{{onboard.certifications}}</td>
+            
+        </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+<app-footer></app-footer>

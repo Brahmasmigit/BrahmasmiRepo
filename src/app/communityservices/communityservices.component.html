@@ -1,0 +1,120 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron mt-10" >
+  <div class="col-md-5 mt-10 w-50" style="margin-left:30%">
+    <div class="card border mb-3 w-100">
+        <div class="card-header font-weight-bold text-center">Register for Community Services</div>
+        <div class="card-body" style="height: 100%">
+    <form #CommunityForm="ngForm" (ngSubmit)="CommunityForm.form.valid && RegisterCommunityServices()">
+     
+      <div class="form-group row">
+          <div class="col-12 ">
+                <select name="stateID"  class="form-control" (change)="selectState($event.target.value)"
+                [(ngModel)]="CommunityModel.stateID"  #stateID="ngModel" required  >
+                <option [value]="undefined" disabled hidden>Select Your State </option>
+                       <option *ngFor="let item of State"
+                       [value]="item.stateID"
+                       [attr.selected]="CommunityModel.stateID==item.stateID ? true : null">
+                        {{item.stateName}}
+                   </option>
+                </select>
+
+              <span class="text-danger"
+              *ngIf="(stateID.touched || CommunityForm.submitted) && stateID.errors?.required">
+              state is required
+          </span>
+          </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-12 ">
+              <select name="cityID"  class="form-control"
+              [(ngModel)]="CommunityModel.cityID"  #cityID="ngModel" required  >
+              <option [value]="undefined" disabled hidden>Select Your City </option>
+                     <option *ngFor="let item of City"
+                     [value]="item.cityID"
+                     [attr.selected]="CommunityModel.cityID==item.cityID ? true : null"
+                    >
+                      {{item.cityName}}
+                 </option>
+              </select>
+
+            <span class="text-danger"
+            *ngIf="(cityID.touched || CommunityForm.submitted) && cityID.errors?.required">
+            City is required
+        </span>
+        </div>
+    </div>
+      <div class="form-group row">
+          <div class="col-12 ">
+          <select name="communityCategoryID"  class="form-control"
+          [(ngModel)]="CommunityModel.communityCategoryID"  #communityCategoryID="ngModel" required>
+          <option [value]="undefined" disabled hidden>Select Category </option>
+          <option *ngFor="let item of CommunityCategories"
+          [value]="item.communityCategoryID"
+          [attr.selected]="CommunityModel.communityCategoryID==item.communityCategoryID ? true : null">
+           {{item.communityCategoryName}}
+      </option>   
+      </select>
+        <span class="text-danger"
+        *ngIf="(communityCategoryID.touched || CommunityForm.submitted) && communityCategoryID.errors?.required">
+        Category is required
+    </span>
+    </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-12 ">
+        <input type="textbox" name="name" id="name"  [(ngModel)]="CommunityModel.name"
+         placeholder="Enter Your Name" class="form-control" #name="ngModel" required>
+         <span class="text-danger"
+         *ngIf="(name.touched || CommunityForm.submitted) && name.errors?.required">
+         Owner Name is required
+     </span>
+      </div>
+</div>
+<div class="form-group row">
+  <div class="col-12">
+    <input type="textbox" name="mobileNumber" id="mobileNumber"  [(ngModel)]="CommunityModel.mobileNumber"
+     placeholder="Enter Your MobileNumber" class="form-control" #mobileNumber="ngModel" required>
+     <span class="text-danger"
+     *ngIf="(mobileNumber.touched || CommunityForm.submitted) && mobileNumber.errors?.required">
+     Mobile Number is required
+ </span>
+  </div>
+</div>
+<div class="form-group row">
+      <div class="col-12 ">
+        <input type="textbox" name="email" id="email"  [(ngModel)]="CommunityModel.emailID"
+         placeholder="Enter Your Email" class="form-control" #emailID="ngModel" required>
+         <span class="text-danger"
+         *ngIf="(emailID.touched || CommunityForm.submitted) && emailID.errors?.required">
+         Email Id is required
+     </span>
+      </div>
+      </div>
+     
+      <div class="form-group row">
+        <div class="col-12 ">
+  <textarea type="text" placeholder="Enter your Address" name="address" id="address" [(ngModel)]="CommunityModel.address"
+    class="form-control"></textarea>
+</div>
+</div>
+<div class="form-group row">
+  <div class="col-12 ">
+  <input type="textbox" placeholder="Enter your Pincode" name="pinCode" id="pinCode" [(ngModel)]="CommunityModel.pincode"
+    class="form-control">
+</div>
+</div>
+
+
+<div class="form-group row" >
+  <button class="col-6 offset-3 btn ">Register</button>
+</div>
+
+    
+
+</form>
+</div>
+</div>
+
+</div>
+</div>
+<app-footer></app-footer>

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import 'quill-emoji/dist/quill-emoji.js';
-import { TempleServiceAdmin, ServicesTimings, State, City, Temple, TempleType, TempleTypeData } from '../admintempleservices/templeservice.model'
+import { TempleServiceAdmin, ServicesTimings, State, City, Temple, TempleType, TempleTypeData, AccommodationTimings } from '../admintempleservices/templeservice.model'
 import { TempleAdminService } from './templeAdminService.services';
 import { ToastService } from 'src/app/shared/services/toastservice';
 import { UtilitiesService } from 'src/app/shared/services/utilities.service';
@@ -20,10 +20,17 @@ export class AdmintempleservicesComponent implements OnInit {
   States: State;
   serviceTimings: ServicesTimings[] = [];
   newService: ServicesTimings = {} as ServicesTimings;
+  // data: ServicesTimings[] = [];
+
+  accommodationTimings: AccommodationTimings[] = [];
+  newAccommodation: AccommodationTimings = {} as AccommodationTimings;
+  acmdData: AccommodationTimings[] = [];
+
   templeAdminData: TempleServiceAdmin = {} as TempleServiceAdmin;
   templeDetails: Temple[] = [];
   servicesTimings: ServicesTimings[] = [];
-  data: ServicesTimings[] = [];
+
+
   isEdit: boolean = false;
   btntext: string;
   templeType: TempleType[] = [];
@@ -41,8 +48,12 @@ export class AdmintempleservicesComponent implements OnInit {
     this.imageURL = null;
     this.getState();
     this.serviceTimings = [];
+    this.accommodationTimings = [];
     this.newService = { serviceId: 0, serviceName: "", serviceTimings: "", servicePrice: 0, templeId: 0 };
     this.serviceTimings.push(this.newService);
+
+    this.newAccommodation = { roomTypeId: 0, roomType: "", roomTimings: "", roomPrice: 0, templeId: 0 };
+    this.accommodationTimings.push(this.newAccommodation);
     this.getAllTemples();
     this.getTempleType();
   }
@@ -106,8 +117,11 @@ export class AdmintempleservicesComponent implements OnInit {
     this.formData.append('TempleTypeId', JSON.parse(this.templeModel.TempleTypeId.toString()));
     this.formData.append('TempleId', (this.templeModel.TempleId == null || this.templeModel.TempleId == undefined) ? '0' : this.templeModel.TempleId.toString());
     this.formData.append('TempleName', this.templeModel.TempleName);
+    this.formData.append('AboutTemple', this.templeModel.AboutTemple);
     this.formData.append('TempleDescription', this.templeModel.TempleDescription);
+    this.formData.append('TempleTransport', this.templeModel.TempleTransport);
     this.formData.append('ServicesTimings', JSON.stringify(this.serviceTimings));
+    this.formData.append('AccommodationTimings', JSON.stringify(this.accommodationTimings));
     this.formData.append('StateId', JSON.parse(this.templeModel.StateId.toString()));
     this.formData.append('CityId', JSON.parse(this.templeModel.CityId.toString()));
     this.formData.append('TempleImage', this.UploadedFile);
@@ -145,11 +159,27 @@ export class AdmintempleservicesComponent implements OnInit {
     return true;
   }
 
+  addAccommodation() {
+    var tId = this.isEdit ? this.templeModel.TempleId : 0;
+    this.newAccommodation = { roomTypeId: 0, roomType: "", roomTimings: "", roomPrice: 0, templeId: tId };
+    this.accommodationTimings.push(this.newAccommodation);
+    return true;
+  }
+
   deleteService(index) {
     if (this.serviceTimings.length == 1) {
       return false;
     } else {
       this.serviceTimings.splice(index, 1);
+      return true;
+    }
+  }
+
+  deleteAccommodation(index) {
+    if (this.accommodationTimings.length == 1) {
+      return false;
+    } else {
+      this.accommodationTimings.splice(index, 1);
       return true;
     }
   }
@@ -169,6 +199,7 @@ export class AdmintempleservicesComponent implements OnInit {
       if (data) {
         this.templeDetails = data;
         this.getServiceTimings();
+        this.getAccommodationTimings();
       }
     },
       (error) => {
@@ -189,12 +220,26 @@ export class AdmintempleservicesComponent implements OnInit {
       });
   }
 
+  getAccommodationTimings() {
+    let tmpData = 0;
+    this.templeService.GetAccommodationTimings(tmpData).subscribe((data) => {
+      if (data) {
+        this.acmdData = data;
+        this.addAccommodationTimingsToTemples();
+      }
+    },
+      (error) => {
+        this.errorMessage = error;
+      });
+  }
+
   addServicesTimingsToTemples() {
+    var data = {} as ServicesTimings[];
     this.templeDetails.forEach(temple => {
       let concatString;
       let servId;
-      this.data = this.servicesTimings.filter(data => data.templeId == temple.templeId);
-      this.data.forEach(d => {
+      data = this.servicesTimings.filter(data => data.templeId == temple.templeId);
+      data.forEach(d => {
         let str = d.serviceName + ' - ' + d.serviceTimings + ' - ' + 'Rs.' + d.servicePrice.toString();
         servId = d.serviceId;
         if (concatString == null || concatString == undefined) {
@@ -206,7 +251,26 @@ export class AdmintempleservicesComponent implements OnInit {
       temple.servTimings = concatString;
       temple.serviceId = servId;
     })
+  }
 
+  addAccommodationTimingsToTemples() {
+    var data = {} as AccommodationTimings[];
+    this.templeDetails.forEach(temple => {
+      let concatString;
+      let roomId;
+      data = this.acmdData.filter(data => data.templeId == temple.templeId);
+      data.forEach(d => {
+        let str = d.roomType + ' - ' + d.roomTimings + ' - ' + 'Rs.' + d.roomPrice.toString();
+        roomId = d.roomTypeId;
+        if (concatString == null || concatString == undefined) {
+          concatString = str;
+        } else {
+          concatString = concatString + '\r\n' + str;
+        }
+      })
+      temple.roomTimings = concatString;
+      temple.roomTypeId = roomId;
+    })
   }
 
   onEdit(data: Temple) {
@@ -219,12 +283,16 @@ export class AdmintempleservicesComponent implements OnInit {
     this.templeModel.TempleTypeId = data.templeTypeId;
     this.templeModel.TempleId = data.templeId
     this.templeModel.TempleName = data.templeName;
+    this.templeModel.AboutTemple = data.aboutTemple;
     this.templeModel.TempleDescription = data.templeDescription;
+    this.templeModel.TempleTransport = data.templeTransport;
     this.templeModel.StateId = data.stateId;
     this.templeModel.CityId = data.cityId;
     this.templeModel.CustomerReviews = data.customerReviews;
     this.templeModel.TempleImageFileName = data.templeImageFileName;
     this.serviceTimings = this.servicesTimings.filter(service => service.templeId == data.templeId);
+    this.accommodationTimings = this.acmdData.filter(acmd => acmd.templeId == data.templeId);
+
   }
 
   onDelete(data: Temple) {

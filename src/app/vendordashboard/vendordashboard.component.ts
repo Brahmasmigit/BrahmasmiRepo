@@ -32,6 +32,7 @@ export class VendordashboardComponent implements OnInit {
     if(sessionStorage.getItem("userInfo")!=null)
     {
       this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
+      console.log(this.userInfo.name)
       if(this.userInfo.userTypeId=="2")
       {
         this.vendorId=this.userInfo.userId;

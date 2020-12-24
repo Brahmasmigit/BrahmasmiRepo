@@ -33,7 +33,7 @@ export class ProductdetailsComponent implements OnInit {
     console.log(this.productCategoryID)
     this.paramsModel.productID=Number(this.productID);
     this.paramsModel.productCategoryID=Number(this.productCategoryID);
-    if( this.paramsModel.productCategoryID==3)
+    if( this.paramsModel.productCategoryID==1)
     {
       this.getProductDetails( this.productID);
       this.ShowKeyInsights=false;

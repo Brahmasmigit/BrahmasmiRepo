@@ -1,0 +1,610 @@
+
+ <style>
+   body{
+     font-family: 'Quicksand';
+   }
+   .header{
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding: 3px 5px;
+}
+.content{
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding: 3px 5px;
+  position: relative;
+  overflow-y: auto;
+}
+
+.footer{
+  flex-shrink: 0;
+  flex-grow: 0;
+  background: #eee;
+  padding: 3px 15px;
+}
+  .slick-slider {
+  width: 90%;
+  margin: auto;
+  
+}
+
+.nav-btn {
+  height: 47px;
+  position: absolute;
+  width: 26px;
+  cursor: pointer;
+  top: 100px !important;
+}
+
+ .prev-slide.slick-disabled,
+.next-slide.slick-disabled {
+  pointer-events: none;
+  opacity: 0.2;
+} 
+
+.prev-slide {
+  
+  left: -33px;
+}
+
+.next-slide {
+  
+  right: -33px;
+}
+
+ .prev-slide:hover {
+  background-position: 0px -53px;
+}
+
+.next-slide:hover {
+  background-position: -24px -53px;
+} 
+
+
+h3
+{
+  text-align: left;
+  color:#218009;
+  font-weight: bold;
+padding-left: 80px;
+padding-top: 10px;
+}
+ul li a 
+{
+  color:#ffffff;
+}
+a i
+{
+color:#ffffff;
+}
+ul li a:hover
+{
+  color:#63bc33;
+  font-weight: bold;
+}
+a i:hover
+{
+color:#63bc33;
+font-weight: bold;
+}
+
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  display: none;
+}
+
+.header{
+  width: 100%;
+  padding: 0px;
+  position: sticky;
+}
+
+.text-center a:hover{
+  color:#63bc33;
+}
+.sidenav a
+  {
+    color:white;
+  }
+  .sidenav
+  {
+    background-image: linear-gradient(rgb(255, 136, 0),orange,rgb(255, 136, 0));
+  }
+
+</style>
+<meta name="viewport" content="width=device-width,intial-scale=1.0">
+<div class="container-fluid" >
+
+ <div>
+ 
+
+    <div id="mySidenav" class="sidenav">
+
+        <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+        <a routerLink="/homepage" routerLinkActive="active">Home</a>
+        <a routerLink="/vendorsearch" routerLinkActive="active">Book Pandit</a>
+        <a routerLink="/vendorregistration" routerLinkActive="active">Register As A Pandit</a>
+        <a *ngIf="isLogin && isVendor"  routerLink="/vendordashboard" routerLinkActive="active">My Dashboard</a>
+        <a  *ngIf="isLogin && !isVendor"  routerLink="/userdashboard" routerLinkActive="active">My Dashboard</a>
+        <a routerLink="/vendorenquiry" routerLinkActive="active">Pandit Enquiry</a>
+    
+        <a routerLink="/astrologyslotbooking" routerLinkActive="active">Astrology</a>
+        <a routerLink="/storeregistration" routerLinkActive="active">Register As a store</a>
+        <a routerLink="/productcategories" routerLinkActive="active">Shop</a>
+        <a routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja</a>
+        <a routerLink="/templeservices" routerLinkActive="active">Temple Services</a>
+        <a routerLink="/userproductorders" routerLinkActive="active" *ngIf="isLogin && !isVendor">My Orders</a>
+        <a routerLink="/horoscope" routerLinkActive="active">Horoscope</a>
+        <a routerLink="/adminlogin" routerLinkActive="active" *ngIf="!isLogin" >Admin</a>
+        <a  routerLink="/blog" routerLinkActive="active">Blog</a>
+        <a  routerLink="/vedapatashalaonboarding" routerLinkActive="active">Vedapatashala Onboarding</a>
+        <a  routerLink="/concernenquiry" routerLinkActive="active">Concern Enquiry</a>
+        <a  routerLink="/communityservices" routerLinkActive="active">Community Services</a>
+        <a  routerLink="/poojasubscriptionform" routerLinkActive="active">Pooja Subscription Form</a>
+        <a  *ngIf="isLogin && !isVendor" class="nav-link" routerLink="/tempeuserdashboard" routerLinkActive="active">Temple Orders</a>
+         <a *ngIf="isLogin"  (click)="Logout()"  >Logout</a>
+        <!-- <a  [routerLink]="['/home']" routerLinkActive="active">Home</a>
+        <a [routerLink]="['/vendorsearch']" routerLinkActive="active">Book Pandit</a>
+        <a routerLink="['/vendorregistration']" routerLinkActive="active">Register As A Pandit</a>
+        <a *ngIf="isLogin && isVendor"  routerLink="['/vendordashboard']" routerLinkActive="active">My Dashboard</a>
+        <a  *ngIf="isLogin && !isVendor"  routerLink="['/userdashboard']" routerLinkActive="active">My Dashboard</a>
+        <a routerLink="['/vendorenquiry']" routerLinkActive="active">Pandit Enquiry</a>
+    
+        <a routerLink="['/astrologyslotbooking']" routerLinkActive="active">Astrology</a>
+        <a routerLink="['/storeregistration']" routerLinkActive="active">Register As a store</a>
+        <a routerLink="['/productcategories']" routerLinkActive="active">Shop</a>
+        <a routerLink="['/virtualslotbooking']" routerLinkActive="active">Virtual Pooja</a>
+        <a routerLink="['/templeservices']" routerLinkActive="active">Temple Services</a>
+        <a routerLink="['/userproductorders']" routerLinkActive="active" *ngIf="isLogin && !isVendor">My Orders</a>
+        <a routerLink="['/horoscope']" routerLinkActive="active">Horoscope</a>
+        <a  routerLink="/blog" routerLinkActive="active">Blog</a>
+        <a  routerLink="/vedapatashalaonboarding" routerLinkActive="active">Vedapatashala Onboarding</a>
+        <a  routerLink="/concernenquiry" routerLinkActive="active">Concern Enquiry</a>
+        <a  routerLink="/communityservices" routerLinkActive="active">Community Services</a>
+        <a routerLink="['/adminlogin']" routerLinkActive="active" *ngIf="!isLogin" >Admin</a>
+        <a  *ngIf="isLogin && !isVendor" class="nav-link" routerLink="['/tempeuserdashboard']" routerLinkActive="active">Temple Orders</a>
+        <a *ngIf="isLogin"  (click)="Logout()"  >Logout</a> -->
+      </div> 
+<div id="main"> 
+  <nav class="header">
+ <table class="head-table" style="width: 100%;background-image: url('../../assets/homepageimages/head01.png');">
+    <tr>
+        <td >
+          <span style="font-size:35px;cursor:pointer;margin-top: 0px;color: #ffffff;" (click)="openNav()">&#9776;</span>
+            <a href="">
+                <img src="../../assets/homepageimages/Brahmasmi_logo.png" style="height: 70px;"></a>
+        </td>
+        <td></td>
+        <td>
+         </td>
+         <td>
+         </td>
+            <td class="login">
+                <br>
+                
+                <p style="color: #ffffff;float: left;padding-top: 0px;">
+                  <img src="i../../assets/homepageimages/call-icon.png" style="width: 25px;height: 25px;float: left;">&nbsp;
+                  1800 891 6676</p>
+                <a href="">
+                  <img src="../../assets/homepageimages/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;"></a>
+                <a *ngIf="!isLogin" [routerLink]="['/login']" routerLinkActive="active" style="color: #ffffff;margin-left: 10px;">Login</a>
+              
+                <!-- <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button> -->
+           
+               
+            </td>
+            <td>  <h5  *ngIf="isLogin" >
+              {{username}}
+                              </h5></td>
+    </tr>
+</table>
+</nav>
+
+
+
+<div class="container-fluid" style="width: 100%;position:inherit;" >
+  
+    <ngb-carousel>
+      <ng-template ngbSlide >
+        <div class="wrapper">
+          <img src="../../assets/homepageimages/ganapathi_001.png" alt="Random first slide" width="100%" >
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img src="../../assets/homepageimages/temple_services.png" alt="Random second slide" width="100%">
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img src="../../assets/homepageimages/Priest_Img.png"  alt="Random third slide" width="100%">
+        </div>
+      </ng-template>
+      <!--<ng-template ngbSlide>
+        <div class="wrapper">
+          <img src="../../assets/homepageimages/pandit-img.png" alt="Random first slide" width="100%" >
+        </div>
+      </ng-template>-->
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img src="../../assets/homepageimages/E-Cart.png" alt="Random second slide" width="100%">
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img src="../../assets/homepageimages/young-pandit.png"  alt="Random third slide" width="100%">
+        </div>
+      </ng-template>
+      <!--<ng-template ngbSlide>
+        <div class="wrapper">
+          <img src="../../assets/homepageimages/shivudu.png" alt="Random first slide" width="100%" >
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="wrapper">
+          <img src="../../assets/homepageimages/pandit-slide.png" alt="Random second slide" width="100%">
+        </div>
+      </ng-template>-->
+
+    </ngb-carousel>
+  
+
+    </div>
+    <div class="container-fluid" style="width: 90%;height:100%;background-color: #e1e2d0;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-top: 100px;">
+    <div class="container-fluid" >
+     <h3>Most Common Poojas</h3>
+      
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="fiveslideConfig" (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+    
+    <div ngxSlickItem *ngFor="let slide of mostcommn" class="slide msthgt">
+      <a [routerLink]="['/servicedetails',slide.imgid]" routerLinkActive="active">
+        <img src="{{ slide.img }}" alt="" width="100%">
+      </a>
+    </div>
+    </ngx-slick-carousel>
+  </div>
+  <br/>
+  <br/>
+
+  <div class="container-fluid"  >
+    <h3>Poojas by Category</h3>
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sixslideConfig" (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+    
+    <div ngxSlickItem *ngFor="let slide of poojasbycategory" class="slide Categoryhgt">
+      <a [routerLink]="['/servicelist',slide.imgid,1]" routerLinkActive="active"  >
+      <img src="{{ slide.img }}" alt="" width="100%">
+      </a>
+    </div>
+    </ngx-slick-carousel>
+   
+  </div>
+  <br/>
+  <br/>
+
+  <div class="container-fluid"  >
+    <h3>Recent poojas</h3>
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="fiveslideConfig" (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+    
+    <div ngxSlickItem *ngFor="let slide of recentpoojas" class="slide recenthgt">
+      <a [routerLink]="['/servicelist',slide.imgid,1]" routerLinkActive="active">
+      <img src="{{ slide.img }}" alt="" width="100%">
+      </a>
+    </div>
+    </ngx-slick-carousel>
+  </div>
+  <br>
+  <br>
+
+    <div class="container-fluid"  >
+      <h3>Our Top Priests in Hyderabad</h3>
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="singleslideConfig" (init)="slickInit($event)"
+      (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+      
+      <div ngxSlickItem *ngFor="let slide of toppriest" class="slide priesthgt">
+        
+        <img src="{{ slide.img }}" alt="" width="100%">
+       
+      </div>
+      </ngx-slick-carousel>
+    </div>
+    <br>
+    <br>
+
+    <div class="container-fluid"  >
+      <h3>Upcoming Events</h3>
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="fiveslideConfig" (init)="slickInit($event)"
+      (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+      
+      <div ngxSlickItem *ngFor="let slide of upcomingevents" class="slide upcominghgt">
+        <a [routerLink]="['/']" routerLinkActive="active"  >
+        <img src="{{ slide.img }}" alt="" width="100%">
+        </a>
+        
+      </div>
+      </ngx-slick-carousel>
+    </div>
+    <br>
+    <br>
+
+    <div class="container-fluid" >
+      <h3>Auspicious Dates</h3>
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sixslideConfig" (init)="slickInit($event)"
+      (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+      
+      <div ngxSlickItem *ngFor="let slide of auspiciousdates" class="slide auspicioushgt">
+        <a [routerLink]="['/']" routerLinkActive="active"  >
+        <img src="{{ slide.img }}" alt="" width="100%"></a>
+        
+      </div>
+      </ngx-slick-carousel>
+    </div>
+    <br>
+    <br>
+
+    <div class="container-fluid" >
+      <h3>Horoscope</h3>
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sixslideConfig" (init)="slickInit($event)"
+      (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+      
+      <div ngxSlickItem *ngFor="let slide of horoscope" class="slide horoscopehgt">
+        <a [routerLink]="['/horoscope']" routerLinkActive="active"  >
+        <img src="{{ slide.img }}" alt="" width="100%">
+        </a>
+      </div>
+      </ngx-slick-carousel>
+    </div>
+    <br>
+    <br>
+
+    <div class="container-fluid">
+      <h3>Special Services</h3>
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="specialslideConfig" (init)="slickInit($event)"
+      (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+      
+      <div ngxSlickItem *ngFor="let slide of specialservices" class="slide specialhgt">
+        <a [routerLink]="['/specialservicesenquiry']" routerLinkActive="active" >
+        <img src="{{ slide.img }}" alt="" width="100%">
+        </a>
+      </div>
+      </ngx-slick-carousel>
+    </div>
+    <br>
+    <br>
+</div>
+
+<div class="container-fluid">
+<footer class="page-footer font-small stylish-color-dark pt-4" style="background-image: url('../../assets/homepageimages/foot.png');margin-top: 50px;">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+     
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4" style="color: #ffffff;font-size:16px;" >Main Links</h5>
+
+        <ul class="list-unstyled" style="font-size:12px;">
+          
+          <li>
+            <a [routerLink]="['/vendorsearch']" routerLinkActive="active">Book Pandit</a>
+          </li>
+          <li>
+            <a  [routerLink]="['/astrologyslotbooking']" routerLinkActive="active">Book an Astrologer</a>
+          </li>
+          <li>
+            <a  [routerLink]="['/templeservices']" routerLinkActive="active">Temple Services</a>
+          </li>
+          <li>
+            <a  [routerLink]="['/productcategories']" routerLinkActive="active">E-Cart</a>
+          </li>
+          <li>
+            <a  [routerLink]="['/vendorsearch']" routerLinkActive="active">Pandit Bulk Booking</a>
+          </li>
+         
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      
+
+      
+     
+
+
+        <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4" style="color: #ffffff;font-size:16px;">Contact Info</h5>
+
+        <ul class="list-unstyled" style="font-size:12px;">
+          <li>
+          <a href="mailto:info@brahmasmi.in"><i class="fa fa-envelope" style="width: 20px;color:white;"></i>info@brahmasmi.in</a> 
+          </li>
+        
+          <li>
+            <a [routerLink]="['/vendorenquiry']" routerLinkActive="active"><i class="fa fa-comments" style="width: 20px;"></i>Enquiry</a>
+          </li>
+          <li>
+            <a  [routerLink]="['/contactus']" routerLinkActive="active"><i class="fa fa-phone" style="width: 20px;"></i>Contact Us</a>
+          </li>
+          <li>
+            <a [routerLink]="['/aboutus']" routerLinkActive="active"><i class="fa fa-address-book-o" style="width: 20px;"></i>About Us</a>
+          </li>
+          
+         
+          
+        </ul>
+
+      </div>
+
+      <div class="col-md-3 mx-auto">
+
+          <!-- Links -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4" style="color: #ffffff;font-size:16px;">Policy Info</h5>
+  
+          <ul class="list-unstyled" style="font-size:12px;">
+              <li>
+                  <a  [routerLink]="['/terms']"  routerLinkActive="active"><i class="fa fa-info-circle" style="width: 20px;"></i><span></span>Terms and Conditions</a>
+                </li>
+                <li>
+                    <a  [routerLink]="['/howwework']"  routerLinkActive="active"><i class="fa fa-group" style="width: 20px;"></i><span></span>How We Work</a>
+                  </li>
+                  <li>
+                      <a  [routerLink]="['/privacypolicy']"  routerLinkActive="active"><i class="fa fa-unlock-alt" style="width: 20px;"></i><span></span>Privacy Policy</a>
+                    </li>
+                    <li>
+                      <a [routerLink]="['/faq']"  routerLinkActive="active"><i class="fa fa-question-circle-o" style="width: 20px;"></i><span></span>FAQ'S</a>
+                    </li>
+                    <li>
+                        <a  [routerLink]="['/cancellation']"  routerLinkActive="active"><i class="fa fa-close" style="width: 20px;"></i><span></span>Cancellation & Refund Policy</a>
+                      </li>
+            
+          </ul>
+  
+        </div>
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4" style="color: #ffffff;font-size:16px;">Payment</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!"><img src="../../assets/homepageimages/razorpay.png" class="pay-icon" style="width: 120px;height: 30px;"> </a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+      
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <hr style="border-color: #9e9c9c;">
+
+  <!-- Call to action -->
+ 
+<div class="text-center" style="color: #ffffff;">
+  <h5></h5>
+  <p><b>Address :&nbsp; </b><i style="font-size: 12px;">Brahmasmi Online Services Pvt. Ltd. Workafella Cyber Crown, Sec-II, HUDA
+    Enclave, Madhapur, Hyderabd, Telangana 500081.</i>
+  </p>
+</div>
+
+  <hr style="border-color: #9e9c9c;">
+
+  <div class="text-center" style="font-size:12px;color:#a5a5a5;">
+    <h5 style="text-align:center;color:#ffffff;font-weight:bold;">Special Services</h5>
+      <a  [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+       Groceries</a> |
+
+      <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+         Transport</a> |
+      <!-- <a href="#">
+        <i class="fa fa-google" style="width: 50px;"></i><span></span></a> -->
+      <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+          Hotels Accomadates</a> |
+
+      <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+          Beauty Services</a> |
+
+        <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+            Photoshoot</a> |
+
+          <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+              Printing</a> |
+
+            <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+                Matrimony</a> |
+
+                <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+                    Eventmanagement</a> |
+
+                    <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+                        Alankaramam</a> |
+
+                    <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+                        Singing & Dancing</a> |
+
+                        <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+                            Catering</a> |
+
+                            <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+                               Function hall finder</a> |
+
+                                <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+                                    Ticketing</a>
+                                    <a [routerLink]="['/specialservicesenquiry']"  routerLinkActive="active" class="spclsrvc" style="color:#ffffff;">
+                                      House Keeping</a>
+                                   
+    </div>
+  <!-- Social buttons -->
+  
+  <hr style="border-color: #9e9c9c;">
+
+  <div class="text-center">
+    <a href="https://www.facebook.com/indiabrahmasmi">
+      <i class="fa fa-facebook" style="width: 50px;"></i><span></span></a>
+    <a href="https://twitter.com/BrahmasmiIndia">
+      <i class="fa fa-twitter" style="width: 50px;"></i><span></span></a>
+    <!-- <a href="#">
+      <i class="fa fa-google" style="width: 50px;"></i><span></span></a> -->
+    <a href="#">
+      <i class="fa fa-linkedin" style="width: 50px;"> </i><span></span></a>
+    <a href="https://www.instagram.com/brahmasmi_india">
+      <i class="fa fa-instagram" style="width: 50px;"></i><span></span></a>
+      <a href="#">
+        <i class="fa fa-whatsapp" style="width: 50px;"></i><span></span></a>
+        <a href="https://www.youtube.com/channel/UC1LJpLpZwmagE1iNkm04v5g/about">
+          <i class="fa fa-youtube-play" style="width: 50px;"></i><span></span></a>
+      
+  </div>
+
+  <hr style="border-color: #9e9c9c;">
+ 
+
+  <!-- Social buttons -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center" style="color: #ffffff;font-weight: bold;">© 2020 Copyright:
+    <a href="www.brahmasmi.in" class="link" style="color: #ffffff;">www.brahmasmi.in</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+</div>
+</div>
+</div>
+</div>
+
+
+  

@@ -1,0 +1,99 @@
+
+<app-header></app-header>
+<div class="container-fluid jumbotron" >
+    <div class="col-md-5 mt-10 w-50" style="margin-left:30%">
+      <div class="card border mb-3 w-100">
+          <div class="card-header font-weight-bold text-center">Registration for Special Services</div>
+          <div class="card-body" style="height: 100%">
+    <form #brahmasmiotherservicesForm="ngForm" (ngSubmit)="brahmasmiotherservicesForm.form.valid && brahmasmiotherservices()">
+        <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
+    
+           <br><br>
+                <div class="form-group row">
+                    <div class="col-3 offset-1">
+                        <label for="Services">Select Special Service</label>
+                    </div>
+                    <div class="col-7">
+                        <select name="specialServiceID" id="specialServiceID" class="form-control"
+                            [(ngModel)]="serviceModel.specialServiceID" #specialServiceID="ngModel" required>
+                            <option *ngFor="let service of Services" [value]="service.specialServiceID"
+                                [attr.selected]="serviceModel.specialServiceID==service.specialServiceID ? true : null">
+                                {{service.specialServiceName}}
+                            </option>
+                        </select>
+                        <span class="text-danger"
+                            *ngIf="(specialServiceID.touched || brahmasmiotherservicesForm.submitted) && specialServiceID.errors?.required">
+                            Special Service is required
+                        </span>
+                    </div>
+                </div>
+                    <div class="form-group row">
+                        <div class="col-3 offset-1">
+                                <label class="form-label"> Name </label>
+                        </div>
+                            <div class="col-7 " >
+                                <input type="textbox" name="Name" id="Name"  [(ngModel)]="serviceModel.Name"
+                                 placeholder="Enter  Name" class="form-control" #Name="ngModel" required>
+                                 <span class="text-danger"
+                                 *ngIf="(Name.touched || brahmasmiotherservicesForm.submitted) && Name.errors?.required">
+                                 Full Name is required
+                             </span>
+                            </div>
+                    </div> 
+                    <div class="form-group row">
+                        <div class="col-3 offset-1">
+                            <label class="form-label">Mobile Number  </label>
+                        </div>
+                        <div class="col-7">
+                          <input type="textbox" name="mobileNumber" id="mobileNumber"  [(ngModel)]="serviceModel.mobileNumber"
+                           placeholder="Enter mobileNumber" class="form-control" #mobileNumber="ngModel" required>
+                           <span class="text-danger"
+                           *ngIf="(mobileNumber.touched || brahmasmiotherservicesForm.submitted) && mobileNumber.errors?.required">
+                           Mobile Number is required
+                           </span>
+                        </div> 
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-3 offset-1">
+                            <label class="form-label">EmailID  </label>
+                        </div>
+                        <div class="col-7">
+                          <input type="textbox" name="emailID" id="emailID"  [(ngModel)]="serviceModel.emailID"
+                           placeholder="Enter EmailID" class="form-control"  #emailID="ngModel" required>
+                           <span class="text-danger"
+                           *ngIf="(emailID.touched || brahmasmiotherservicesForm.submitted) && emailID.errors?.required">
+                           EmailID is required
+                       </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-3 offset-1">
+                            <label class="form-label">Address</label>
+                        </div>
+                        <div class="col-7">
+                            <textarea type="textbox" name="address" id="address" [(ngModel)]="serviceModel.address"
+                                placeholder="Enter Address" class="form-control" #address="ngModel" required></textarea>
+                            <span class="text-danger"
+                                *ngIf="(address.touched || brahmasmiotherservicesForm.submitted) && address.errors?.required">
+                                Address is required
+                            </span>
+                        </div>
+                    </div>
+                   
+                    
+                    <div class="form-group row">
+                        <div class="col-4 offset-4">
+                        <button class="col-12  btn" >Submit</button>
+                        </div>
+                        </div>
+                
+            
+      
+ 
+        
+    </form>
+    </div>
+    </div>
+</div>
+<app-footer></app-footer>
+

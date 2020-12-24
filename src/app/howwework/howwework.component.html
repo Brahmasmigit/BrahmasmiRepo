@@ -1,0 +1,73 @@
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: right;
+  width: 50%;
+  padding: 80px;
+  height: 300px; /* Should be removed. Only for demonstration */
+  
+
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+h2{
+    text-align: center;
+    font-weight: bold;
+}
+</style>
+
+<app-header></app-header>
+<div class="container-fluid">
+<h2 style="color: #FF9F1C;" >How We Work </h2>
+<br>
+<div class="row">
+  <div class="column" style="background-color:#ffffff;">
+    <h3 style="color: #DD1C1A;">1. From Over 360 Different Poojas</h3>
+    <ul>
+        <li style="color: #659B5E;">Select your priest preference based on your community and language.</li>
+        <li style="color: #659B5E;">Select the location you want to perform the pooja.</li>
+    </ul>
+  </div>
+  <div class="column" >
+    <img src="../../assets/homepageimages/pugari.jpg" width="500px" height="300px">
+  </div>
+</div>
+<div class="row" >
+    <div class="column" style="background-color:#ffffff;">
+        <img src="../../assets/homepageimages/img3.jpg" width="500px" height="300px">
+    </div>
+    <div class="column" >
+        <h3 style="color: #DD1C1A;">2. Book Your Pooja</h3>
+        <ul>
+            <li style="color: #659B5E;">Select your preferred date and packages.</li>
+            <li style="color: #659B5E;">Pay an advance or the full amount and make the booking.</li>
+        </ul>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="column" style="background-color:#ffffff;">
+        <h3 style="color: #DD1C1A;">3. Get Connected</h3>
+        <ul>
+            <li style="color: #659B5E;"><a style="color:  #659B5E;" href="https://www.Brahmasmi.in">Brahmasmi</a> will connect you with our select panel of professional priests.</li>
+            <li style="color: #659B5E;">All homa samagri will be brought by our priest to ensure the best of service.</li>
+        </ul>
+    </div>
+    <div class="column" >
+      <img src="../../assets/homepageimages/pooja.jpg" width="500px" height="250px">
+    </div>
+  </div>
+</div>
+  <app-footer></app-footer>
+

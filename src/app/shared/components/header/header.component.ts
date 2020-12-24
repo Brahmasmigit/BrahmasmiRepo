@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  username:any;
   constructor(
     private router:Router
   ) { }
@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit {
     {
         this.isLogin=true;
         this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
+        this.username=this.userInfo.name;
         this.isVendor=this.userInfo.userTypeId=="2" ? true : false;
 
     }

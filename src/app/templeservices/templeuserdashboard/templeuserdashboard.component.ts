@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { TempleDashboardLoggedInUser, TempleUserDashboardModel, TempleUserInvoiceData, TempleUserServiceData } from 'src/app/admin/admintempleservices/templeservice.model';
+import { TempleDashboardLoggedInUser, TempleOrderDetailsAccommodation, TempleOrderDetailService, TempleUserDashboardModel, TempleUserInvoiceData, TempleUserServiceData } from 'src/app/admin/admintempleservices/templeservice.model';
 import { TempleService } from '../templeService.service';
 
 @Component({
@@ -24,61 +24,72 @@ export class TempleUserDashboardComponent implements OnInit {
   @ViewChild('mymodal') mymodal: ElementRef;
   closeResult: string;
   loggedUser: TempleDashboardLoggedInUser = {} as TempleDashboardLoggedInUser;
+  templeServiceDetails: TempleOrderDetailService[] = {} as TempleOrderDetailService[];
+  templeAccommodationDetails: TempleOrderDetailsAccommodation[] = {} as TempleOrderDetailsAccommodation[];
 
   constructor(private router: Router, private templeService: TempleService, private modalService: NgbModal,) { }
 
   ngOnInit(): void {
     this.loggedUser = JSON.parse(sessionStorage.getItem('userInfo'));
     this.GetUserDashBoardData();
-    console.log('user', sessionStorage.getItem('userInfo'));    
+    console.log('user', sessionStorage.getItem('userInfo'));
     console.log('user1', this.loggedUser);
   }
 
   GetUserDashBoardData() {
-    this.templeInvoiceData = [];
-    this.templeServiceData = [];
-    this.templeService.GetTempleUserDashboard(this.loggedUser.userId).subscribe((result) => {
-      if (result) {
-        this.templeDashboardData = result;
-        console.log('dash', this.templeDashboardData);
-
-        this.templeDashboardData.forEach(x => {
-
-          this.tmpInvData = {} as TempleUserInvoiceData;
-
-          this.tmpInvData.invoiceNo = x.invoiceNo;
-          this.tmpInvData.userId = x.userId;
-          this.tmpInvData.templeId = x.templeId;
-          this.tmpInvData.templeName = x.templeName;
-          this.tmpInvData.roomTypeId = x.roomTypeId;
-          this.tmpInvData.roomType = x.roomType;
-          this.tmpInvData.roomPrice = x.roomPrice;
-          this.tmpInvData.darshanTypeId = x.darshanTypeId;
-          this.tmpInvData.darshanType = x.darshanType;
-          this.tmpInvData.darshanPrice = x.darshanPrice;
-          this.tmpInvData.totalAmount = x.totalAmount;
-          this.tmpInvData.modeOfPayment = x.modeOfPayment;
-          if (!this.templeInvoiceData.some(usrData => usrData.invoiceNo == this.tmpInvData.invoiceNo))
-            this.templeInvoiceData.push(this.tmpInvData);
-
-          this.tmpSerData = {} as TempleUserServiceData;
-
-          this.tmpSerData.serviceId = x.serviceId;
-          this.tmpSerData.serviceName = x.serviceName;
-          this.tmpSerData.bookingAmount = x.bookingAmount;
-          this.tmpSerData.bookingDate = x.bookingDate;
-          this.tmpSerData.bookingDateTime = x.bookingDateTime;
-          this.tmpSerData.orderNo = x.orderNo;
-          this.tmpSerData.invoiceNo = x.invoiceNo;
-          this.tmpSerData.templeId = x.templeId;
-          // if (!this.templeServiceData.some(serData => serData == this.tmpSerData))
-          this.templeServiceData.push(this.tmpSerData);
-        })
-        console.log('tmpinvdata', this.templeInvoiceData);
-        console.log('tmpserData', this.templeServiceData);
+    this.templeService.GetTempleUserDashboard(this.loggedUser.userId).subscribe((data) => {
+      if (data) {
+        this.templeServiceDetails = data["item1"];
+        this.templeAccommodationDetails = data["item2"];
       }
-    })
+    });
   }
+
+  // GetUserDashBoardData() {
+  //   this.templeInvoiceData = [];
+  //   this.templeServiceData = [];
+  //   this.templeService.GetTempleUserDashboard(this.loggedUser.userId).subscribe((result) => {
+  //     if (result) {
+  //       this.templeDashboardData = result;
+  //       console.log('dash', this.templeDashboardData);
+
+  //       this.templeDashboardData.forEach(x => {
+
+  //         this.tmpInvData = {} as TempleUserInvoiceData;
+
+  //         this.tmpInvData.invoiceNo = x.invoiceNo;
+  //         this.tmpInvData.userId = x.userId;
+  //         this.tmpInvData.templeId = x.templeId;
+  //         this.tmpInvData.templeName = x.templeName;
+  //         this.tmpInvData.roomTypeId = x.roomTypeId;
+  //         this.tmpInvData.roomType = x.roomType;
+  //         this.tmpInvData.roomPrice = x.roomPrice;
+  //         this.tmpInvData.darshanTypeId = x.darshanTypeId;
+  //         this.tmpInvData.darshanType = x.darshanType;
+  //         this.tmpInvData.darshanPrice = x.darshanPrice;
+  //         this.tmpInvData.totalAmount = x.totalAmount;
+  //         this.tmpInvData.modeOfPayment = x.modeOfPayment;
+  //         if (!this.templeInvoiceData.some(usrData => usrData.invoiceNo == this.tmpInvData.invoiceNo))
+  //           this.templeInvoiceData.push(this.tmpInvData);
+
+  //         this.tmpSerData = {} as TempleUserServiceData;
+
+  //         this.tmpSerData.serviceId = x.serviceId;
+  //         this.tmpSerData.serviceName = x.serviceName;
+  //         this.tmpSerData.bookingAmount = x.bookingAmount;
+  //         this.tmpSerData.bookingDate = x.bookingDate;
+  //         this.tmpSerData.bookingDateTime = x.bookingDateTime;
+  //         this.tmpSerData.orderNo = x.orderNo;
+  //         this.tmpSerData.invoiceNo = x.invoiceNo;
+  //         this.tmpSerData.templeId = x.templeId;
+  //         // if (!this.templeServiceData.some(serData => serData == this.tmpSerData))
+  //         this.templeServiceData.push(this.tmpSerData);
+  //       })
+  //       console.log('tmpinvdata', this.templeInvoiceData);
+  //       console.log('tmpserData', this.templeServiceData);
+  //     }
+  //   })
+  // }
 
   ShowServiceInfo(templeId: number, invoiceNo: string) {
     console.log('click', templeId, invoiceNo);

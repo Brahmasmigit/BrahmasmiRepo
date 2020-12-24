@@ -1,10 +1,10 @@
-import { Time } from '@angular/common';
-
 export class TempleServiceAdmin {
     TempleTypeId: number;
     TempleId: number;
     TempleName: string;
+    AboutTemple: string;
     TempleDescription: string;
+    TempleTransport: string;
     StateId: number;
     CityId: number;
     CityName: string;
@@ -23,6 +23,42 @@ export class ServicesTimings {
     templeId: number
 }
 
+export class ServiceDetailDateTime {
+    serviceId: number;
+    serviceName: string;
+    serviceTimings: string;
+    servicePrice: number;
+    templeId: number;
+    bookingDate: Date;
+    bookingTime: string;
+}
+
+export class ServicesTimingsWithCheckBox {
+    serviceId: number;
+    serviceName: string;
+    serviceTimings: string;
+    servicePrice: number;
+    templeId: number;
+    checked: boolean = false;
+}
+
+export class AccommodationTimings {
+    roomTypeId: number;
+    roomType: string;
+    roomTimings: string;
+    roomPrice: number;
+    templeId: number;
+}
+
+export class AccommodationTimingsWithCheckBox {
+    roomTypeId: number;
+    roomType: string;
+    roomTimings: string;
+    roomPrice: number;
+    templeId: number;
+    checked: boolean = false;
+}
+
 export class State {
     stateID: number;
     stateName: string;
@@ -38,7 +74,9 @@ export class Temple {
     templeType: string;
     templeId: number;
     templeName: string;
+    aboutTemple: string;
     templeDescription: string;
+    templeTransport: string;
     stateId: number;
     stateName: string;
     cityId: number;
@@ -46,6 +84,8 @@ export class Temple {
     customerReviews: string;
     servTimings: string;
     serviceId: number;
+    roomTypeId: number;
+    roomTimings: string;
     templeImage: any;
     templeImageFileName: string;
 }
@@ -86,11 +126,15 @@ export interface TempleUserServiceRequest {
     RoomTypeId: number;
     RoomType: string;
     RoomPrice: number;
+    AcmdDate: Date
+    AcmdTime: string;
+    AcmdNoOfDays: number
+    UserRequestQuery: string;
+
     DarshanTypeId: number;
     DarshanType: string;
     DarshanPrice: number;
     NoOfPerson: number;
-    UserRequestQuery: string;
 }
 
 export interface UserServiceRequest {
@@ -102,12 +146,17 @@ export interface UserServiceRequest {
     RoomTypeId: number;
     RoomType: string;
     RoomPrice: number;
+    AcmdDate: Date
+    AcmdTime: string;
+    AcmdNoOfDays: number
+    UserRequestQuery: string;
+    serviceDetails: ServiceRequest[];
+    accommodationDetails: AccommodationRequest[];
+
     DarshanTypeId: number;
     DarshanType: string;
     DarshanPrice: number;
     NoOfPerson: number;
-    UserRequestQuery: string;
-    serviceDetails: ServiceRequest[];
 }
 
 export interface ServiceRequest {
@@ -118,25 +167,33 @@ export interface ServiceRequest {
     BookingTime: string;
 }
 
+export interface AccommodationRequest {
+    RoomTypeId: number;
+    RoomType: string;
+    RoomPrice: number;
+    RoomBookingDate: Date;
+    RoomBookingTime: string;
+}
+
 export interface CartItems {
     UserName: string;
     EmailId: string;
     TempleId: number;
     MobileNumber: string;
     TempleCity: string;
-    RoomTypeId: number;
-    RoomType: string;
-    RoomPrice: number;
-    DarshanTypeId: number;
-    DarshanType: string;
-    DarshanPrice: number;
-    NoOfPerson: number;
+    // RoomTypeId: number;
+    // RoomType: string;
+    // RoomPrice: number;
+    // DarshanTypeId: number;
+    // DarshanType: string;
+    // DarshanPrice: number;
+    AcmdNoOfDays: number;
     UserRequestQuery: string;
     BookingLocation: string;
     BookingStatusId: number;
     PinCode: string;
-    NewAddress: string;
-    NewPinCode: string;
+    BillingAddress: string;
+    // NewPinCode: string;
     CityId: number;
     NewCityId: number;
     PaymentStatus: number;
@@ -146,6 +203,7 @@ export interface CartItems {
     Total: number;
     UserQuery: string
     ServiceDetails: ServiceRequest[];
+    AccommodationDetails: AccommodationRequest[];
 }
 
 export interface TempleUserBillingDetails {
@@ -177,20 +235,30 @@ export interface TempleServiceRequest {
     Aging: number;
 }
 
-export interface TempleOrderDetails {
-    OrderNo: string;
-    PaymentDateTime: string;
-    BookingDateTime: string;
-    EmailId: string;
+export interface TempleOrderDetailService {
+    orderNo: string;
+    invoice: string;
+    emailid: string;
+    serviceName: string;
+    templeName: string;
+    dateOfService: string;
+    servicePrice: number;
+    modeOfPayment: number;
+    paymentDate: string;
     totalAmount: number;
-    ServiceAmount: number;
-    ModeofPayment: string;
-    ServiceName: string;
-    userId: number;
-    roomType: string;
+}
+
+export interface TempleOrderDetailsAccommodation {
+    invoice: string;
+    emailid: string;
+    templeName: string;
+    room: string;
     roomPrice: number;
-    darshanType: number;
-    darshanPrice: number;
+    noOfDaysStay: number;
+    roomBookingDate: string;
+    modeOfPayment: number;
+    paymentDate: string;
+    totalAmount: number;
 }
 
 export interface TempleUserDashboardModel {

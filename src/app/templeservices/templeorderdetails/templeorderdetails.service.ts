@@ -2,7 +2,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { TempleOrderDetails } from 'src/app/admin/admintempleservices/templeservice.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,10 +15,10 @@ export class TempleOrderDetailsService {
   constructor(private http: HttpClient) {
   }
 
-  getTempleOrderDetails(invoiceno: string): Observable<TempleOrderDetails[]> {
+  getTempleOrderDetails(invoiceno: string): Observable<any> {
     let params = new HttpParams()
       .set('invoiceno', invoiceno);
-    return this.http.get<TempleOrderDetails[]>(this.API_URL + "TempleUserBooking/GetTempleOrderDetails", { params })
+    return this.http.get<any>(this.API_URL + "TempleUserBooking/GetTempleOrderDetails", { params })
       .pipe(
         tap(status => console.log("status: " + status)),
         catchError(this.handleError)

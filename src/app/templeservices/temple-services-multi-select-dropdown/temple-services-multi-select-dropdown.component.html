@@ -1,0 +1,16 @@
+<div>
+    <div (mouseleave)="showDropDown = false">
+        <button type="button" class="drop-toggle btn flat" (click)="showDropDown=!showDropDown">
+            <span *ngIf="checkedList.length==0">Select</span>
+            <span *ngIf="checkedList.length>0">{{selectedServices.join(', ')}}</span>
+            <i class="fa fa-angle-down"></i>
+        </button>
+        <div class="drop-show" *ngIf="showDropDown">
+            <label *ngFor="let service of serviceList">
+                <input type="checkbox" [(ngModel)]="service.checked"
+                    (change)="getSelectedValue(service.checked, service.serviceId, service.serviceName, service.servicePrice)" />
+                <span>{{service.serviceName}}</span>
+            </label>
+        </div>
+    </div>
+</div>

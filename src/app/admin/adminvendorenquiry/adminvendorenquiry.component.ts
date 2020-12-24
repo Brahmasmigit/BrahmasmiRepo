@@ -28,6 +28,7 @@ export class AdminvendorenquiryComponent implements OnInit {
           (data) => {
               if (data) {
                   this.vendorDetails = data;
+                  console.log(data)
               }
 
           },

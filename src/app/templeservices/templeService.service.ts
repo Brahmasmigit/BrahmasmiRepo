@@ -24,14 +24,6 @@ export class TempleService {
       );
   }
 
-  // SaveUserServiceRequest(data: UserModel): Observable<any> {
-  //   return this.http.post(this.API_URL + 'TempleServices/SaveUserServiceRequest/', data)
-  //     .pipe(
-  //       tap(status => console.log("status: " + status)),
-  //       catchError(this.handleError)
-  //     );
-  // }
-
   GetTempleUserDashboard(userId: number): Observable<TempleUserDashboardModel[]> {
     return this.http.get<TempleUserDashboardModel[]>(this.API_URL + "TempleUserBooking/GetTempleUserDashboardData?userId=" + userId)
       .pipe(

@@ -1,0 +1,147 @@
+<app-header></app-header>
+<div class="container jumbotron mt-10" style="background-color: white;" >
+<form #vedapatashalaOnBoardingForm="ngForm"
+    (ngSubmit)="vedapatashalaOnBoardingForm.form.valid && vedapatashalaOnBoarding()">
+    <div class="card border-primary mb-3" style="max-width: 66rem;">
+        <div class="card-header font-weight-bold text-center">
+            <h3><b>Vedapatashala OnBoarding Form</b></h3>
+        </div>
+        <div class="card-body" style="height: auto">
+            <div class="form-group row">
+
+                <div class="col-4">Select State :</div>
+                <div class="col-8">
+                    <select name="stateID" class="form-control" (change)="selectState($event.target.value)"
+                        [(ngModel)]="onboard.stateID" #stateID="ngModel" required>
+                        <option *ngFor="let state of State" [value]="state.stateID">
+                            {{state.stateName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">Select City :</div>
+                <div class="col-8">
+                    <select name="cityID" class="form-control" [(ngModel)]="onboard.cityID" #cityID="ngModel" required>
+                        <option *ngFor="let city of City" [value]="city.cityID">
+                            {{city.cityName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">NAME OF VEDAPATASHALA :</label>
+                </div>
+                <div class="col-8 ">
+                    <input type="textbox" name="NameOfVedapatashala" id="NameOfVedapatashala" [(ngModel)]="onboard.NameOfVedapatashala" placeholder="Enter Name Of Vedapatashala"
+                        class="form-control" #NameOfVedapatashala="ngModel" required>
+                    <span class="text-danger"
+                        *ngIf="(NameOfVedapatashala.touched || vedapatashalaOnBoardingForm.submitted) && NameOfVedapatashala.errors?.required">
+                        Name Of Vedapatashala is required
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">MOBILE NUMBER :</label>
+                </div>
+                <div class="col-8">
+                    <input type="textbox" name="MobileNumber" id="MobileNumber" [(ngModel)]="onboard.MobileNumber" (keypress)="keyPress($event)"
+                        class="form-control" #MobileNumber="ngModel" required>
+                    <span class="text-danger"
+                        *ngIf="(MobileNumber.touched || vedapatashalaOnBoardingForm.submitted) && MobileNumber.errors?.required">
+                        MobileNumber is required
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">EMAILID OF VEDAPATASHALA :</label>
+                </div>
+                <div class="col-8">
+                    <input type="textbox" name="EmailIDOfVedapatashala" id="EmailIDOfVedapatashala" [(ngModel)]="onboard.EmailIDOfVedapatashala"
+                        placeholder="Enter EmailID Of Vedapatashala" class="form-control" #EmailIDOfVedapatashala="ngModel" required>
+                    <span class="text-danger"
+                        *ngIf="(EmailIDOfVedapatashala.touched || vedapatashalaOnBoardingForm.submitted) && EmailIDOfVedapatashala.errors?.required">
+                        EmailID Of Vedapatashala is required
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">ADDRESS :</label>
+                </div>
+                <div class="col-8">
+                    <textarea type="textbox" name="AddressOfVedapatashala" id="AddressOfVedapatashala" [(ngModel)]="onboard.AddressOfVedapatashala" maxlength="2000"
+                        placeholder="Enter Address Of Vedapatashala" class="form-control" #AddressOfVedapatashala="ngModel" required></textarea>
+                    <span class="text-danger"
+                        *ngIf="(AddressOfVedapatashala.touched || vedapatashalaOnBoardingForm.submitted) && AddressOfVedapatashala.errors?.required">
+                        Address Of Vedapatashala is required
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">PINCODE :</label>
+                </div>
+                <div class="col-8">
+                    <input type="textbox" name="PinCode" id="PinCode" [(ngModel)]="onboard.PinCode"
+                        placeholder="Enter PinCode" class="form-control" #PinCode="ngModel" required>
+                    <span class="text-danger"
+                        *ngIf="(PinCode.touched || vedapatashalaOnBoardingForm.submitted) && PinCode.errors?.required">
+                        PinCode is required
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                  <label class="form-label">SPECIALIZATION IN VEDAS :</label>                 
+                </div>
+                
+              </div>
+            <div class="form-group row">
+                <div class="col-12">
+                    <span *ngFor="let cert of Certification">
+                        <input type="checkbox" name="{{cert.certificationName}}" value="{{cert.certificationID}}"
+                          [(ngModel)]="cert.isChecked" (change)="change($event, cert)">
+                        {{cert.certificationName}}
+            
+                      </span> 
+                      </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">NUMBER OF STUDENTS :</label>
+                </div>
+                <div class="col-8 ">
+                    <input type="number" name="NumberOfStudents" id="NumberOfStudents" [(ngModel)]="onboard.NumberOfStudents" placeholder="Enter Number Of Students"
+                        class="form-control" #NumberOfStudents="ngModel" required>
+                    <span class="text-danger"
+                        *ngIf="(NumberOfStudents.touched || vedapatashalaOnBoardingForm.submitted) && NumberOfStudents.errors?.required">
+                        Number is required
+                    </span>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="form-label">ANY HELP NEEDED :</label>
+                </div>
+                <div class="col-8">
+                    <textarea type="textbox" name="AnyHelpNeeded" id="AnyHelpNeeded" [(ngModel)]="onboard.AnyHelpNeeded" maxlength="2000"
+                        placeholder="Enter If Any Help Needed" class="form-control" #AnyHelpNeeded="ngModel" required></textarea>
+                    <span class="text-danger"
+                        *ngIf="(AnyHelpNeeded.touched || vedapatashalaOnBoardingForm.submitted) && AnyHelpNeeded.errors?.required">
+                        Message is required
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <button class="col-4 offset-4 btn btn-primary">{{btnText}}</button>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+<app-footer></app-footer>

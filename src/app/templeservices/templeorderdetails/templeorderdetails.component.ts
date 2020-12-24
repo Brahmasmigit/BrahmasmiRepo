@@ -1,6 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import { TempleOrderDetails } from 'src/app/admin/admintempleservices/templeservice.model';
-import { OrderDetailsService } from 'src/app/orderdetails/orderdetails.service';
+import { TempleOrderDetailsAccommodation, TempleOrderDetailService } from 'src/app/admin/admintempleservices/templeservice.model';
 import { TempleOrderDetailsService } from './templeorderdetails.service';
 
 @Component({
@@ -16,28 +15,25 @@ export class TempleOrderDetailsComponent implements OnInit {
   invoiceno: any;
   ngZone: NgZone;
   isReload: boolean = false;
-  cartType: any;
-  templeOrderDetails: TempleOrderDetails[] = {} as TempleOrderDetails[];
+  templeServiceDetails: TempleOrderDetailService[] = {} as TempleOrderDetailService[];
+  templeAccommodationDetails: TempleOrderDetailsAccommodation[] = {} as TempleOrderDetailsAccommodation[];
 
   constructor(private templeOrderDetailsService: TempleOrderDetailsService) { }
 
   ngOnInit(): void {
-
     this.getOrderdetails();
   }
   getOrderdetails() {
     if (sessionStorage.getItem("templeorders") != null) {
-      // if (sessionStorage.getItem("cartType") != null) {
-      //   this.cartType = sessionStorage.getItem("cartType");
-      // }
       this.orders = JSON.parse(sessionStorage.getItem("templeorders"));
       this.invoiceno = this.orders[0].invoiceNo;
-      this.templeOrderDetailsService.getTempleOrderDetails(this.orders[0].invoiceNo).subscribe(
+      this.templeOrderDetailsService.getTempleOrderDetails(this.invoiceno).subscribe(
         (data) => {
           if (data) {
-            this.templeOrderDetails = data;
+            this.templeServiceDetails = data["item1"];
+            this.templeAccommodationDetails = data["item2"];
             sessionStorage.removeItem("templeorders");
-            console.log('order detail', this.templeOrderDetails);
+            console.log('order detail', data);
           }
 
         },

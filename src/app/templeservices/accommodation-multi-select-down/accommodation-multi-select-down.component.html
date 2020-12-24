@@ -1,0 +1,16 @@
+<div>
+    <div (mouseleave)="showDropDown = false">
+        <button type="button" class="drop-toggle btn flat" (click)="showDropDown=!showDropDown">
+            <span *ngIf="checkedList.length==0">Select</span>
+            <span *ngIf="checkedList.length>0">{{selectedAccommodation.join(', ')}}</span>
+            <i class="fa fa-angle-down"></i>
+        </button>
+        <div class="drop-show" *ngIf="showDropDown">
+            <label *ngFor="let acmd of acmdList">
+                <input type="checkbox" [(ngModel)]="acmd.checked"
+                    (change)="getSelectedValue(acmd.checked, acmd.roomTypeId, acmd.roomType, acmd.roomPrice)" />
+                <span>{{acmd.roomType}}</span>
+            </label>
+        </div>
+    </div>
+</div>

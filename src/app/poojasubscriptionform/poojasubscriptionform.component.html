@@ -1,0 +1,149 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron" style="background-color: linen;">
+    <form #poojasubscriptionForm="ngForm" (ngSubmit)="poojasubscriptionForm.form.valid && poojasubscriptionform()">
+        <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
+        <div class="container card border mb-3" style="max-width: 35rem;">
+            <div class="card-header text-center bold text-info">
+                <h3><b>Pooja Subscription Form</b></h3>
+            </div>
+            <div class="card-body" style="height: auto">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label for="Services">Subscription Category :</label>
+                    </div>
+                    <div class="col-8 ">
+                        <select name="subscriptionCategoryID" id="subscriptionCategoryID" class="form-control"
+                            [(ngModel)]="poojaModel.subscriptionCategoryID" #subscriptionCategoryID="ngModel" required>
+                            <option *ngFor="let service of Subscriptions" [value]="service.subscriptionCategoryID"
+                                [attr.selected]="poojaModel.subscriptionCategoryID==service.subscriptionCategoryID ? true : null">
+                                {{service.subscriptionCategoryName}}
+                            </option>
+                        </select>
+                        <span class="text-danger"
+                            *ngIf="(subscriptionCategoryID.touched || poojasubscriptionForm.submitted) && subscriptionCategoryID.errors?.required">
+                            Subscription Category is required
+                        </span>
+                    </div>
+                </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label class="form-label">Name :</label>
+                        </div>
+                        <div class="col-8 ">
+                            <input type="textbox" name="Name" id="Name" [(ngModel)]="poojaModel.Name"
+                                placeholder="Enter Name" class="form-control" #Name="ngModel" required>
+                            <span class="text-danger"
+                                *ngIf="(Name.touched || poojasubscriptionForm.submitted) && Name.errors?.required">
+                                Name is required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label class="form-label">Address :</label>
+                        </div>
+                        <div class="col-8 ">
+                            <textarea type="textbox" name="address" id="address" [(ngModel)]="poojaModel.address"
+                                placeholder="Enter Address" class="form-control" #address="ngModel" required></textarea>
+                            <span class="text-danger"
+                                *ngIf="(address.touched || poojasubscriptionForm.submitted) && address.errors?.required">
+                                Address is required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label class="form-label">Mobile Number :</label>
+                        </div>
+                        <div class="col-8 ">
+                            <input type="textbox" name="mobilenumber" id="mobilenumber"
+                                [(ngModel)]="poojaModel.mobilenumber" placeholder="Enter Mobile Number"
+                                class="form-control" #mobilenumber="ngModel" required>
+                            <span class="text-danger"
+                                *ngIf="(mobilenumber.touched || poojasubscriptionForm.submitted) && mobilenumber.errors?.required">
+                                Mobile Number is required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label class="form-label">Email ID :</label>
+                        </div>
+                        <div class="col-8 ">
+                            <input type="textbox" name="email" id="email" [(ngModel)]="poojaModel.emailID"
+                                placeholder="Enter Email Id" class="form-control" #emailID="ngModel" required>
+                            <span class="text-danger"
+                                *ngIf="(emailID.touched || poojasubscriptionForm.submitted) && emailID.errors?.required">
+                                Email Id is required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label class="form-label">Pooja Services Intrested in :</label>
+                        </div>
+                        <div class="col-8">
+                            <span *ngFor="let pooja of poojaservices">
+                                <input type="checkbox" name="{{pooja.poojaServicesName}}"
+                                    value="{{pooja.poojaServicesID}}" [(ngModel)]="pooja.isChecked"
+                                    (change)="change($event, pooja)">
+                                {{pooja.poojaServicesName}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="Services">Time Period :</label>
+                        </div>
+                    <div class="col-8 ">
+                        <select name="timeperiodName" id="timeperiodName" class="form-control"
+                            [(ngModel)]="poojaModel.timeperiodName" #timeperiodName="ngModel" required>
+                            <option *ngFor="let service of timeperiod" [value]="service.timeperiodName"
+                                [attr.selected]="poojaModel.timeperiodName==service.timeperiodName ? true : null">
+                                {{service.timeperiodName}}
+                            </option>
+                        </select>
+                        <span class="text-danger"
+                            *ngIf="(timeperiodName.touched || poojasubscriptionForm.submitted) && timeperiodName.errors?.required">
+                            Time Period is required
+                        </span>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label class="form-label">From :</label>
+                        </div>
+                        <div class="col-8 ">
+                            <input type="date" name="from" id="from" [(ngModel)]="poojaModel.from"
+                                placeholder="Enter Date" class="form-control" #from="ngModel" required>
+                            <span class="text-danger"
+                                *ngIf="(from.touched || poojasubscriptionForm.submitted) && from.errors?.required">
+                                Date is required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label class="form-label">To :</label>
+                        </div>
+                        <div class="col-8 ">
+                            <input type="date" name="to" id="to" [(ngModel)]="poojaModel.to" placeholder="Enter Date"
+                                class="form-control" #to="ngModel" required>
+                            <span class="text-danger"
+                                *ngIf="(to.touched || poojasubscriptionForm.submitted) && to.errors?.required">
+                                Date is required
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <button class="col-6 offset-4 btn btn-primary">Submit</button>
+                    </div>
+                
+            </div>
+        </div>
+    </form>
+</div>
+<app-footer></app-footer>

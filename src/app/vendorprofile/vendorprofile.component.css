@@ -1,0 +1,51 @@
+
+
+.card1{
+    background-color:transparent ;
+}
+.mt-3{
+    color: #e0e0e0;
+}
+h6{
+    color:#888888;
+   
+}
+.card {
+    color: #000;
+}
+
+  .text-uppercase{
+      color:#000;
+  }
+  .mb-1{
+      color: #007bff;
+  }
+  h6:hover{
+      color:#007bff ;
+  }
+  .text-secondary{
+      font-size: 20px;
+  }
+  .list-group-item  {
+     box-shadow: 2px 2px #c7c6c6;
+  }
+  .list-group-item1 {
+    box-shadow: 2px 2px #c7c6c6;
+    
+ }
+ .list-group-item2  {
+    box-shadow: 2px 2px #c7c6c6;
+   
+ }
+ .list-group-item3 {
+    box-shadow: 2px 2px #c7c6c6;
+    
+ }
+ .list-group-item4 {
+    box-shadow: 2px 2px #c7c6c6;
+    
+ }
+  .header-title{
+      color: #007bff;
+      font-weight: bold;
+  }

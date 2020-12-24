@@ -126,6 +126,36 @@ import { TempleUserBillingService } from './templeservices/templeuserbilling/tem
 import { TempleOrderDetailsComponent } from './templeservices/templeorderdetails/templeorderdetails.component';
 import { TempleOrderDetailsService } from './templeservices/templeorderdetails/templeorderdetails.service';
 import { TempleUserDashboardComponent } from './templeservices/templeuserdashboard/templeuserdashboard.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { RouterModule } from '@angular/router';
+import { HowweworkComponent } from './howwework/howwework.component';
+import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
+import { FaqComponent } from './faq/faq.component';
+import { CancellationComponent } from './cancellation/cancellation.component';
+import {adminspecialservicesenquiryComponent} from './adminspecialservicesenquiry/adminspecialservicesenquiry.component';
+import { SpecialservicesenquiryComponent } from './specialservicesenquiry/specialservicesenquiry.component';
+import { SpecialServicesEnquiryService } from './specialservicesenquiry/specialservicesenquiry.service';
+import { adminspecialservicesenquiryService } from './adminspecialservicesenquiry/adminspecialservicesenquiry.service';
+import { OnboardingComponent } from './onboarding/onboarding.component';
+import { AdminonboardingComponent } from './adminonboarding/adminonboarding.component';
+import { adminOnBoardingService } from './adminonboarding/adminonboarding.service';
+import { OnBoardingService } from './onboarding/onboarding.service';
+import { AdminblogComponent } from './adminblog/adminblog.component';
+import { BlogComponent } from './blog/blog.component';
+import { BlogdetailsComponent } from './blogdetails/blogdetails.component';
+import { AdminBlogService } from './adminblog/adminblog.service';
+import { ConcernenquiryComponent } from './concernenquiry/concernenquiry.component';
+import { ConcernEnquiryService } from './concernenquiry/ConcernEnquiry.service';
+import { CommunityServicesComponent } from './communityservices/communityservices.component';
+import { admincommunityservicesComponent } from './admincommunityservices/admincommunityservices.component';
+import { admincommunityservicesService } from './admincommunityservices/admincommunityservices.service';
+import { CommunityServicesService } from './communityservices/CommunityServices.service';
+import { adminpoojasubscriptionformComponent } from './adminpoojasubscriptionform/adminpoojasubscriptionform.component';
+import { poojasubscriptionformComponent } from './poojasubscriptionform/poojasubscriptionform.component';
+import { poojasubscriptionformService } from './poojasubscriptionform/poojasubscriptionform.service';
+import { adminpoojasubscriptionformService } from './adminpoojasubscriptionform/adminpoojasubscriptionform.service';
+import { TempleServicesMultiSelectDropdownComponent } from './templeservices/temple-services-multi-select-dropdown/temple-services-multi-select-dropdown.component';
+import { AccommodationMultiSelectDownComponent } from './templeservices/accommodation-multi-select-down/accommodation-multi-select-down.component';
 
 @NgModule({
   declarations: [
@@ -197,8 +227,26 @@ import { TempleUserDashboardComponent } from './templeservices/templeuserdashboa
     TempleUserCartComponent,
     TempleUserBillingComponent,
     TempleOrderDetailsComponent,
-    TempleUserDashboardComponent
-
+    TempleUserDashboardComponent,
+    HomepageComponent,
+    HowweworkComponent,
+    PrivacypolicyComponent,
+    FaqComponent,
+    CancellationComponent,
+    adminspecialservicesenquiryComponent,
+    SpecialservicesenquiryComponent,
+    OnboardingComponent,
+    AdminonboardingComponent,
+    AdminblogComponent,
+    BlogComponent,
+    BlogdetailsComponent,
+    ConcernenquiryComponent,
+    CommunityServicesComponent,
+    admincommunityservicesComponent,
+    adminpoojasubscriptionformComponent,
+    poojasubscriptionformComponent,
+    TempleServicesMultiSelectDropdownComponent,
+    AccommodationMultiSelectDownComponent
 
   ],
   imports: [
@@ -209,6 +257,7 @@ import { TempleUserDashboardComponent } from './templeservices/templeuserdashboa
     AppRoutingModule,
     NgbModule,
     NgOtpInputModule,
+    RouterModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCeA6ad2qsS-zSHDjdQX6qnuEbLQzsfDC0',
       libraries: ['geometry','places']
@@ -225,7 +274,9 @@ import { TempleUserDashboardComponent } from './templeservices/templeuserdashboa
   AstrologySlotBookingService,StockEntryService,StoreDashboardService,UserProductOrderDetailsService,AdminProductDashboardService,
   VirtualVideoSlotBookingService,VendorSearchService,VendorBookingService,ProductCategoriesService,TempleservicesService,
   AdminCouponService,AdminLoyaltyPointsService,DatePipe,ContactUsService,ProductMasterService,HoroscopeService,HoroscopeDetailsService,
-  HoroscopeMasterService,TempleAdminService, TempleService, TempleUserBillingService,TempleOrderDetailsService],
+  HoroscopeMasterService,TempleAdminService, TempleService, TempleUserBillingService,TempleOrderDetailsService,SpecialServicesEnquiryService
+,adminspecialservicesenquiryService,adminOnBoardingService,OnBoardingService,AdminBlogService,ConcernEnquiryService,admincommunityservicesService
+,CommunityServicesService,poojasubscriptionformService,adminpoojasubscriptionformService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,71 @@
+<app-header></app-header>
+<br>
+<h1 style="text-align:center;color: #FF9F1C;"><b>FAQ's</b></h1>
+<br>
+<div class="container">
+    <p>
+        <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            Can I Pay Partial Amount As Advance To Confirm The Poojas And Pay The Balance As Cash Or Pay Online After
+            The Homam?
+        </button>
+    </p>
+    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+        <div class="card">
+            <div class="card-body">
+                Yes, you can pay the partial amount as token advance to confirm your booking. You can pay the balance
+                amount after the homam with cash directly to our Priests or through Online transfer (Click on
+                “Pay-Balance” button in your My- Account section corresponding to your order number).
+            </div>
+        </div>
+    </div>
+    <p>
+        <button type="button" class="btn btn-outline-primary" (click)="isCollapsed2= !isCollapsed2"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            How Long Does The Pooja/Havan Take To Complete?
+        </button>
+    </p>
+    <div id="collapseExample2" [ngbCollapse]="isCollapsed2">
+        <div class="card">
+            <div class="card-body">
+                Poojas are typically performed for 1:30+ hours at the same time it also depends on the package
+                selected for the poojas.
+
+            </div>
+        </div>
+    </div>
+    <p>
+        <button type="button" class="btn btn-outline-primary" (click)="isCollapsed3 = !isCollapsed3"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            What All Items I Need To Keep Ready For The Pooja, How Will I Know?
+        </button>
+    </p>
+    <div id="collapseExample3" [ngbCollapse]="isCollapsed3">
+        <div class="card">
+            <div class="card-body">
+                As soon as you book the pooja by paying advance or full amount you will be receiving a To-do
+                List in your email in few hours, which will clearly mention all the required items like deepam,
+                matchbox, pooja bell, Mats ,bowls, trays etc you need to keep ready.
+            </div>
+        </div>
+    </div>
+    <p>
+        <button type="button" class="btn btn-outline-primary" (click)="isCollapsed4 = !isCollapsed4"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            What All Materials Will The Priest Bring Along With Him?
+        </button>
+    </p>
+    <div id="collapseExample4" [ngbCollapse]="isCollapsed4">
+        <div class="card">
+            <div class="card-body">
+                Our Priests will bring all the samagris like Coconuts, Kalash, Dhoop, samith sticks, Navdhanya, rice,
+                dravyas, ghee, darba, Camphor etc which is used in pooja/homam.
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<app-footer></app-footer>

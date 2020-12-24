@@ -46,6 +46,7 @@ export class VendorsearchComponent implements OnInit {
       (data) => {
           if (data) {
               this.vendor = data;
+              console.log(data)
           }
 
       },

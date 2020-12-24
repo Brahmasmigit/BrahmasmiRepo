@@ -1,0 +1,68 @@
+<app-adminheader></app-adminheader>
+
+<div class="container-fluid w-100  mt-5">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card border mb-3 w-100">
+              <div class="card-header w-100 font-weight-bold">Community Services
+              
+            </div>
+
+              <div class="card-body w-100" style="height: 630px;overflow: scroll;">
+
+                  <div class="conatiner-fluid">
+                      <div class="row">
+
+                          <div class="table-responsive w-100">
+                            <table class="table table-bordered w-100" >
+                              <thead class="thead-light">
+      
+                    <th style="display: none;" > CommunityServicesID</th>
+                    
+                    <th>CommunityCategoryName</th>
+                    <th style="display: none;">StateID</th>
+                    <th>StateName</th>
+                    <th>CityName</th>
+                    <th style="display: none;">CityID</th>
+                    <th>Name</th>
+                    <th>MobileNumber</th>
+                    <th>EmailID</th>
+                    <th>Address</th>
+                    <th>Pincode</th>
+                    
+                </thead>
+                <tbody *ngFor="let service of Services; let i=index"
+                    [ngClass]="{'active': selectedIndex == i}">
+                    <td  style="display: none;"> {{service.communityservicesID}}</td>
+                    
+                    <td> {{service.communityCategoryName}}</td>
+                    <td style="display: none;"> {{service.stateID}}</td>
+                    <td> {{service.stateName}}</td>
+                    <td> {{service.cityName}}</td>
+                    <td style="display: none;"> {{service.cityID}}</td>
+                    <td> {{service.name}}</td>
+                    <td> {{service.mobileNumber}}</td>
+                    <td> {{service.emailID}}</td>
+                    <td> {{service.address}}</td>
+                    <td> {{service.pincode}}</td>
+                    
+                    
+                   <!--  <td  class="columnWidth">
+                        <button class="btn btn-secondary"  (click)="onEdit(service)">Edit</button>
+                        <button class="btn btn-danger" (click)="onDelete(service)">Delete</button>
+                    </td> -->
+                </tbody>
+            </table>
+          </div>
+        
+        </div>
+        </div>
+        
+        </div>
+    
+        </div>
+        </div>
+        </div>
+        
+        </div>
+        <app-footer></app-footer>

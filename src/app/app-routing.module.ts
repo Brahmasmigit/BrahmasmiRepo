@@ -60,9 +60,29 @@ import { TempleUserCartComponent } from './templeservices/templeusercart/templeu
 import { TempleUserBillingComponent } from './templeservices/templeuserbilling/templeuserbilling.component';
 import { TempleOrderDetailsComponent } from './templeservices/templeorderdetails/templeorderdetails.component';
 import { TempleUserDashboardComponent } from './templeservices/templeuserdashboard/templeuserdashboard.component';
+import {HomepageComponent} from './homepage/homepage.component';
+import { HowweworkComponent } from './howwework/howwework.component';
+import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
+import { CancellationComponent } from './cancellation/cancellation.component';
+import { adminspecialservicesenquiryComponent } from './adminspecialservicesenquiry/adminspecialservicesenquiry.component';
+import { SpecialservicesenquiryComponent } from './specialservicesenquiry/specialservicesenquiry.component';
+import { FaqComponent } from './faq/faq.component';
+import { OnboardingComponent } from './onboarding/onboarding.component';
+import { AdminonboardingComponent } from './adminonboarding/adminonboarding.component';
+import { BlogComponent } from './blog/blog.component';
+import { AdminblogComponent } from './adminblog/adminblog.component';
+import { BlogdetailsComponent } from './blogdetails/blogdetails.component';
+
+import { ConcernenquiryComponent } from './concernenquiry/concernenquiry.component';
+import { admincommunityservicesComponent } from './admincommunityservices/admincommunityservices.component';
+import { CommunityServicesComponent } from './communityservices/communityservices.component';
+
+import { adminpoojasubscriptionformComponent } from './adminpoojasubscriptionform/adminpoojasubscriptionform.component';
+import { poojasubscriptionformComponent } from './poojasubscriptionform/poojasubscriptionform.component';
+
 
 const routes: Routes = [
-  { path: '', redirectTo: '/main', pathMatch: 'full' },
+  { path: '', redirectTo: '/homepage', pathMatch: 'full' },
   { path: 'vendordashboard', component: VendordashboardComponent },
   { path: 'vendorprofile', component: VendorprofileComponent },
   { path: 'servicedetails/:serviceId', component: ServicedetailsComponent },
@@ -122,6 +142,25 @@ const routes: Routes = [
   { path: 'templeuserbilling', component: TempleUserBillingComponent },
   { path: 'templeorderdetails', component: TempleOrderDetailsComponent },
   { path: 'tempeuserdashboard', component: TempleUserDashboardComponent },
+  {path:'homepage',component:HomepageComponent},
+  {path:'howwework',component:HowweworkComponent},
+  {path:'privacypolicy',component:PrivacypolicyComponent},
+  {path:'cancellation',component:CancellationComponent},
+  {path:'faq',component:FaqComponent},
+  {path:'adminspecialservicesenquiry',component:adminspecialservicesenquiryComponent},
+  {path:'specialservicesenquiry', component:SpecialservicesenquiryComponent},
+  {path:'vedapatashalaonboarding',component:OnboardingComponent},
+  {path:'adminonboarding',component:AdminonboardingComponent},
+  { path: 'adminblog', component: AdminblogComponent },
+  { path: 'blog', component: BlogComponent },
+  { path: 'blogdetails/:blogID', component: BlogdetailsComponent },
+  {path:'concernenquiry',component:ConcernenquiryComponent},
+  {path:'admincommunityservices',component:admincommunityservicesComponent},
+  {path:'communityservices',component:CommunityServicesComponent},
+  {path:'poojasubscriptionform',component:poojasubscriptionformComponent}
+  // {path:'adminpoojasubscriptionform',component:adminpoojasubscriptionformComponent}
+
+
 ];
 
 @NgModule({

@@ -1,14 +1,14 @@
 <app-adminheader></app-adminheader>
 
-<div class="container-fluid w-100 h-100 mt-5">
+<div class="container-fluid w-100  mt-5">
   <div class="row">
       <div class="col-md-12">
-          <div class="card border-primary mb-3 w-100">
+          <div class="card border mb-3 w-100">
               <div class="card-header w-100 font-weight-bold">Enquiry Details
                <div class="pull-right"> <button class="btn btn-info" routerLink="/vendorregistration" (click)="AddVendor()"  routerLinkActive="active">Add Pandit</button></div>
               </div>
 
-              <div class="card-body w-100 h-100">
+              <div class="card-body w-100" style="height: 630px;overflow: scroll;">
 
                   <div class="conatiner-fluid">
                       <div class="row">
@@ -17,6 +17,7 @@
                             <table class="table table-bordered w-100" >
                               <thead class="thead-light">
                                   <tr>
+                                    <th></th>
                                     <th style="display: none;">UserTypeID</th>
                                       <th>User Type</th>
 
@@ -45,7 +46,8 @@
                               <tbody >
                                   <tr *ngFor="let item of vendorDetails;let i=index">
                                     <td><button class="btn btn-info" routerLink="/vendorregistration" (click)="selectVendor(item)" routerLinkActive="active">Register</button></td>
-                                    <td>{{item.userType}}</td>
+                                    <td style="display: none;">{{item.userType}}</td>
+                                    <td>{{item.userTypeName}}</td>
                                       <td>{{item.userTypeName}}</td>
                                       <td>{{item.name}}</td>
 

@@ -1,0 +1,35 @@
+
+   <h4 class="text-info">Special Services</h4><br>
+   <table class="table table-striped table-bordered">
+       <tr>
+           <th style="display: none;"> SubscriptionCategoryID</th>
+           <th style="display: none;"> PoojaServicesID</th>
+           <th style="display: none;"> PoojaSubscriptionFormID</th>
+           
+           <th>Name</th>
+           <th>Address</th>
+           <th>MobileNumber</th>
+           <th>EmailID</th>
+           <th>Latitude</th>
+           <th>Longitude</th>
+           
+       </tr>
+       <tr *ngFor="let service of Services; let i=index"
+           [ngClass]="{'active': selectedIndex == i}">
+           <td style="display: none;"> {{service.SubscriptionCategoryID}}</td>
+           <td style="display: none;"> {{service.PoojaServicesID}}</td>
+           <td style="display: none;"> {{service.PoojaSubscriptionFormID}}</td>
+           
+           <td> {{service.name}}</td>
+           <td> {{service.address}}</td>
+           <td> {{service.mobileNumber}}</td>
+           <td> {{service.emailID}}</td>
+           <td> {{service.latitude}}</td>
+           <td> {{service.longitude}}</td>
+           
+          <!--  <td  class="columnWidth">
+               <button class="btn btn-secondary"  (click)="onEdit(service)">Edit</button>
+               <button class="btn btn-danger" (click)="onDelete(service)">Delete</button>
+           </td> -->
+       </tr>
+   </table>

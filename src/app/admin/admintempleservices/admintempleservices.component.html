@@ -10,14 +10,15 @@
                 <div class="col-12">
                     <div class="form-group row">
                         <div class="col-4">
-                            <label>Temple Type :</label>
+                            <label><b>Temple Type :</b></label>
                         </div>
                         <div class="col-4" *ngFor="let type of templeType">
                             <input id="type.templeTypeId" type="radio" [value]="type.templeTypeId" name="templeType"
                                 [(ngModel)]="templeModel.TempleTypeId" required> &nbsp;
                             <label>{{type.templeTypeName}}</label>
                         </div>
-                        <div class="text-danger col-10" style="text-align: center;" *ngIf="templeForm.invalid">
+                        <div class="text-danger col-10" style="text-align: center;"
+                            *ngIf="templeForm.invalid && templeForm.untouched">
                             <p>Please select Temple Type</p>
                         </div>
                     </div>
@@ -26,7 +27,7 @@
                 <div class="col-7">
                     <div class="form-group row">
                         <div class="col-5">
-                            <label>Temple Name :</label>
+                            <label><b>Temple Name :</b></label>
                         </div>
                         <div class="col-7">
                             <input type="text" class="form-control" id="templeName" name="templeName"
@@ -41,20 +42,62 @@
 
                 <div class="col-12">
                     <div class="form-group">
-                        <label>Temple Description :</label>
+                        <label><b>About Temple :</b></label>
                     </div>
                 </div>
 
                 <div class="col-12">
                     <div class="form-group">
-                        <quill-editor [styles]="{height: '200px'}" name="temple_Description"
-                            [(ngModel)]="templeModel.TempleDescription" trackChanges="all" #temple_Description="ngModel"
+                        <quill-editor [styles]="{height: '200px'}" name="about_temple"
+                            [(ngModel)]="templeModel.AboutTemple" trackChanges="all" #about_temple="ngModel"
+                            maxlength="200" placeholder="Enter Short Description about Temple (100-200 characters)"
                             [modules]="modules" required>
                         </quill-editor>
                         <span class="text-danger"
-                            *ngIf="(temple_Description.touched || templeForm.submitted) && temple_Description.errors?.required">
-                            Temple Description is required
+                            *ngIf="(about_temple.touched || templeForm.submitted) && about_temple.errors?.required">
+                            About Temple is required
                         </span>
+                        <span class="text-danger" *ngIf="(about_temple.errors?.maxlength)">
+                            Enter below 200 characters.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label><b>Temple History And Description :</b></label>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <quill-editor [styles]="{height: '200px'}" name="temple_description"
+                            [(ngModel)]="templeModel.TempleDescription" trackChanges="all" #temple_description="ngModel"
+                            placeholder="Temple History, Temple Description etc" [modules]="modules" required>
+                        </quill-editor>
+                        <span class="text-danger"
+                            *ngIf="(temple_description.touched || templeForm.submitted) && temple_description.errors?.required">
+                            Temple History is required
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label><b>Transport Details :</b></label>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <quill-editor [styles]="{height: '200px'}" name="transport"
+                            [(ngModel)]="templeModel.TempleTransport" trackChanges="all" #transport="ngModel"
+                            placeholder="Transport Details" [modules]="modules" required>
+                        </quill-editor>
+                        <!-- <span class="text-danger"
+                            *ngIf="(transport.touched || templeForm.submitted) && transport.errors?.required">
+                            Temple History is required
+                        </span> -->
                     </div>
                 </div>
 
@@ -62,7 +105,7 @@
                     <div class="col-10">
                         <div class="form-group row">
                             <div class="col-5">
-                                <label>State </label>
+                                <label><b>State </b></label>
                             </div>
                             <div class="col-7">
                                 <select name="stateID" [(ngModel)]="templeModel.StateId" class="form-control"
@@ -82,7 +125,7 @@
                     <div class="col-10">
                         <div class="form-group row">
                             <div class="col-5">
-                                <label>City </label>
+                                <label><b>City </b></label>
                             </div>
                             <div class="col-7">
                                 <select name="cityID" [(ngModel)]="templeModel.CityId" class="form-control"
@@ -102,7 +145,7 @@
                     <div class="col-10">
                         <div class="form-group row">
                             <div class="col-5">
-                                <label>Temple Image</label>
+                                <label><b>Temple Image</b></label>
                             </div>
                             <div class="col-7">
                                 <input type="file" accept="image/*" #file (change)="upload($event)" name="templeImage"
@@ -120,9 +163,9 @@
 
                 <div class="col-12">
                     <div class="form-group row">
-                        <div class="col-3 bold">
+                        <div class="col-6">
                             <b>
-                                Services/Puja with Timings :
+                                Services/Puja, Darshan with Timings :
                             </b>
                         </div>
                     </div>
@@ -164,8 +207,53 @@
                 </div>
 
                 <div class="col-12">
+                    <div class="form-group row">
+                        <div class="col-6">
+                            <b>
+                                Accommodation with Timings :
+                            </b>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <th>ACTION</th>
+                                <th>Accommodation</th>
+                                <th>Timings</th>
+                                <th>Price</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let room of accommodationTimings; let i = index;">
+                                    <td (click)="deleteAccommodation(i)">
+                                        <i class="fa fa-trash fa-2x"></i>
+                                    </td>
+
+                                    <td>
+                                        <input [(ngModel)]="room.roomType" name="roomType[-{{i}}]"
+                                            id="roomType" class="form-control" type="text" autocomplete="off" />
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="room.roomTimings" name="roomTimings[-{{i}}]"
+                                            id="roomTimings" class="form-control" type="text" autocomplete="off" />
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="room.roomPrice" name="roomPrice[-{{i}}]"
+                                            id="roomPrice" class="form-control" type="number" autocomplete="off" />
+                                    </td>
+                                    <td (click)="addAccommodation(i)">
+                                        <i class="fa fa-plus fa-2x"></i>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-12">
                     <div class="form-group">
-                        <label>Customer Comments or Reviews :</label>
+                        <label><b>Customer Comments or Reviews :</b></label>
                     </div>
                 </div>
 
@@ -199,10 +287,13 @@
                             <th>Temple Image</th>
                             <th>Temple Type</th>
                             <th>Temple Name</th>
+                            <th>About Temple</th>
                             <th>Temple Description</th>
+                            <th>Temple Transport</th>
                             <th>State</th>
                             <th>City</th>
                             <th>Service - Timings - Price</th>
+                            <th>Accommodation - Timings - Price</th>
                             <th>Customer Reviews</th>
                             <th class="columnWidth">Action</th>
                         </tr>
@@ -212,11 +303,16 @@
                             </td>
                             <td>{{temple.templeType}}</td>
                             <td>{{temple.templeName}}</td>
+                            <td><span style="font-size: 13px" [innerHTML]="temple.aboutTemple"></span></td>
                             <td><span style="font-size: 13px" [innerHTML]="temple.templeDescription"></span></td>
+                            <td><span style="font-size: 13px" [innerHTML]="temple.templeTransport"></span></td>
                             <td>{{temple.stateName}}</td>
                             <td>{{temple.cityName}}</td>
                             <td>
                                 <pre><span style="font-size: 13px" [innerHTML]="temple.servTimings"></span></pre>
+                            </td>
+                            <td>
+                                <pre><span style="font-size: 13px" [innerHTML]="temple.roomTimings"></span></pre>
                             </td>
                             <td><span style="font-size: 13px" [innerHTML]="temple.customerReviews"></span>
                             </td>

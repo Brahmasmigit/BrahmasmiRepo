@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+
+    <style>
+        .collapsible {
+             /* background-color: #CCA43B; */
+             
+            color:#000;
+            cursor: pointer;
+            padding: 10px;
+            /* width: 1400px; */
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        } 
+
+            .active, .collapsible:hover {
+                /*background-color: #555;*/
+                color: #E06D06; 
+            }
+
+            .collapsible:after {
+                /* content: '\002B'; */
+                color:#000;
+                font-weight: bold;
+                float: right;
+                margin-left: 5px;
+                
+            }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            
+            
+        } 
+        .card-header{
+            background-image: url('light.jpg');
+            text-align: center;
+            color: #ffffff;
+             padding: 15px;
+             font-size: 30px;
+
+        }
+        b{
+        font-weight: bold;
+            font-size: 20px;
+    }
+        p{
+            /* color: #ffffff; */
+        }
+        .card-body{
+            background-image: url('q1.jpg');
+            
+            width: 1500px;
+            height: 800px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+<body>
+  <div class="card-header">
+   <b>FAQ's</b>
+</div><br>
+    <div class="card-body"  ><br>
+   <button class="collapsible">1)Can I Pay Partial Amount As Advance To Confirm The Poojas And Pay The Balance As Cash Or Pay Online After The Homam?</button>
+    <div class="content">
+        <p style="background-color: #ffffff; color: #000; padding: 5px;  width: 1300px;" >Yes, you can pay the partial amount as token advance to confirm your booking. You can pay the balance amount after the homam with cash directly to our Priests or through Online transfer (Click on “Pay-Balance”
+button in your My- Account section corresponding to your order number).</p>
+    </div>
+    <br>
+    
+    <button class="collapsible">2)How Long Does The Pooja/Havan Take To Complete?</button>
+    <div class="content">
+        <p style=" background-color: #ffffff; color: #000; padding: 5px;  width: 1300px;" >Poojas are typically performed for 1:30+ hours at the same time it also depends on the package selected for the poojas.</p>
+    </div><br>
+    <button class="collapsible">3)What All Items I Need To Keep Ready For The Pooja, How Will I Know?</button>
+    <div class="content">
+        <p style="background-color: #ffffff; color: #000; padding: 5px;  width: 1300px;">As soon as you book the pooja by paying advance or full amount you will be receiving a To-do List in your email in few hours, which will clearly mention all the required items like deepam, matchbox, pooja bell,</p>
+            <p> Mats ,bowls, trays etc you need to keep ready.</p>
+    </div><br>
+    <button class="collapsible">4)What All Materials Will The Priest Bring Along With Him?</button>
+    <div class="content">
+        <p style="background-color: #ffffff; color: #000; padding: 5px;  width: 1300px;">Our Priests will bring all the samagris like Coconuts, Kalash, Dhoop, samith sticks, Navdhanya, rice, dravyas,  ghee, darba, Camphor etc which is used in pooja/homam.</p>
+    </div>
+</div>
+    <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+    </script>
+
+</body>
+</html>
