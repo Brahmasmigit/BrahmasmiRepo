@@ -13,10 +13,10 @@ using Microsoft.AspNetCore.Cors;
 
 namespace Brahmasmi.API.Controllers
 {
-    [EnableCors("CorsPolicy")]
+    //[EnableCors("CorsPolicy")]
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ConcernEnquiryController : ControllerBase
+    public class ConcernEnquiryController : Controller
     {
         private readonly IConcernEnquiryRepository concernEnquiryRepository;
         private readonly ILogger<ConcernEnquiryController> logger;
@@ -27,7 +27,7 @@ namespace Brahmasmi.API.Controllers
         }
         [EnableCors("CorsPolicy")]
         [HttpGet]
-        public async Task<ActionResult<ConcernTypes>> GetAllConcernTypes()
+        public async Task<ActionResult<ConcernTypes>> GetConcernTypes()
         {
             try
             {
@@ -40,13 +40,28 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        [EnableCors("CorsPolicy")]
-        [HttpPost]
-        public async Task<ActionResult<ConcernEnquiry>> AddConcernDetails(ConcernEnquiry concern)
+       //(Admin)
+        public async Task<ActionResult<ConcernEnquiry>> GetAllConcernDetails()
         {
             try
             {
-                var result = await Task.FromResult(concernEnquiryRepository.AddConcernDetails(concern));
+                var result = await Task.FromResult(concernEnquiryRepository.GetAllConcernDetails());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpPost]
+        public async Task<ActionResult<ConcernEnquiry>> RegisterConcernDetails(ConcernEnquiry concernEnquiry)
+        {
+            try
+            {
+                var result = await Task.FromResult(concernEnquiryRepository.AddConcernDetails(concernEnquiry));
+                logger.LogInformation("end");
                 return Ok(result);
             }
             catch (Exception ex)

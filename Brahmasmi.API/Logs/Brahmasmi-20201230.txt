@@ -1,0 +1,105 @@
+2020-12-30T09:55:51.4920864+05:30  [INF] Now listening on: "http://127.0.0.1:30429" (d826f4b8)
+2020-12-30T09:55:51.5153560+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-30T09:55:51.5155273+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-30T09:55:51.5155805+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-12-30T09:55:53.7124863+05:30 0HM5CFBUSV79F:00000001 [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Cannot open server 'brahmasmi' requested by the login. Client with IP address '171.49.231.82' is not allowed to access the server.  To enable access, use the Windows Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect.
+   at System.Data.ProviderBase.DbConnectionPool.CheckPoolBlockingPeriod(Exception e)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1079
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 721
+   at Brahmasmi.Service.Dapperr.GetAll[T](String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 47
+   at Brahmasmi.Repository.UtilitiesRepository.AllCities() in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\UtilitiesRepository.cs:line 100
+   at Brahmasmi.API.Controllers.UtilitiesController.GetAllCities() in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\UtilitiesController.cs:line 165
+ClientConnectionId:42ddd859-5e54-410f-924e-ac4f53a6b85c
+Error Number:40615,State:1,Class:14 (75c620f4)
+2020-12-30T09:55:53.7124030+05:30 0HM5CFBUSV79H:00000001 [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Cannot open server 'brahmasmi' requested by the login. Client with IP address '171.49.231.82' is not allowed to access the server.  To enable access, use the Windows Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect.
+   at System.Data.ProviderBase.DbConnectionPool.CheckPoolBlockingPeriod(Exception e)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1079
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 721
+   at Brahmasmi.Service.Dapperr.GetAll[T](String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 47
+   at Brahmasmi.Repository.VendorRepository.GetAllVendor() in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\VendorRepository.cs:line 27
+   at Brahmasmi.API.Controllers.VendorController.GetVendors() in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\VendorController.cs:line 33
+ClientConnectionId:f7e0a479-1d60-4bbb-9776-05945812e7d9
+Error Number:40615,State:1,Class:14 (2555ec42)
+2020-12-30T09:55:53.7127107+05:30 0HM5CFBUSV79G:00000001 [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Cannot open server 'brahmasmi' requested by the login. Client with IP address '171.49.231.82' is not allowed to access the server.  To enable access, use the Windows Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect.
+   at System.Data.ProviderBase.DbConnectionPool.CheckPoolBlockingPeriod(Exception e)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1079
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 721
+   at Brahmasmi.Service.Dapperr.GetAll[T](String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 47
+   at Brahmasmi.Repository.VendorSearchRepository.SearchVendors(Int32 cityid, String region) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\VendorSearchRepository.cs:line 26
+   at Brahmasmi.API.Controllers.VendorSearchController.SearchVendor(Int32 cityid, String region) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\VendorSearchController.cs:line 34
+ClientConnectionId:c0115e81-439d-431a-8fc0-6ebf9dd0f2d2
+Error Number:40615,State:1,Class:14 (9e6f3148)
+2020-12-30T09:55:53.8774471+05:30 0HM5CFBUSV79G:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.Text.Json.JsonException: A possible object cycle was detected which is not supported. This can either be due to a cycle or if the object depth is larger than the maximum allowed depth of 32.
+   at System.Text.Json.ThrowHelper.ThrowInvalidOperationException_SerializerCycleDetected(Int32 maxDepth)
+   at System.Text.Json.JsonSerializer.Write(Utf8JsonWriter writer, Int32 originalWriterDepth, Int32 flushThreshold, JsonSerializerOptions options, WriteStack& state)
+   at System.Text.Json.JsonSerializer.WriteAsyncCore(Stream utf8Json, Object value, Type inputType, JsonSerializerOptions options, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-12-30T09:58:15.3238441+05:30  [INF] Now listening on: "http://127.0.0.1:39637" (d826f4b8)
+2020-12-30T09:58:15.7035290+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-12-30T09:58:15.7543929+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-12-30T09:58:15.7875455+05:30  [INF] Content root path: "C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API" (b5d60022)
+2020-12-30T09:58:39.1591149+05:30 0HM5CFD9LA1E4:00000002 [ERR] Exception at Login Method: System.Data.SqlClient.SqlException (0x80131904): Cannot open server 'brahmasmi' requested by the login. Client with IP address '171.49.231.82' is not allowed to access the server.  To enable access, use the Windows Azure Management Portal or run sp_set_firewall_rule on the master database to create a firewall rule for this IP address or address range.  It may take up to five minutes for this change to take effect.
+   at System.Data.ProviderBase.DbConnectionPool.CheckPoolBlockingPeriod(Exception e)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1079
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 721
+   at Brahmasmi.Service.Dapperr.GetAll[T](String sp, DynamicParameters parms, CommandType commandType) in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Service\Dapper.cs:line 47
+   at Brahmasmi.Repository.VendorRepository.GetAllVendor() in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.Repository\VendorRepository.cs:line 27
+   at Brahmasmi.API.Controllers.VendorController.GetVendors() in C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\Controllers\VendorController.cs:line 33
+ClientConnectionId:b0df4292-055c-4eb6-8d20-6cfb63eee501
+Error Number:40615,State:1,Class:14 (8b25249e)

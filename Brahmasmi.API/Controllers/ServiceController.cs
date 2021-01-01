@@ -167,5 +167,21 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
+        [EnableCors("CorsPolicy")]
+        [HttpGet("{CityID}")]
+        public async Task<ActionResult<Services>> GetAllServiceByCity( int CityID)
+        {
+            try
+            {
+                var result = await Task.FromResult(serviceRepository.GetAllServiceByCity(CityID));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 }

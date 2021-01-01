@@ -15,6 +15,7 @@ using System.Net;
 using System.Collections;
 using System.Collections.Specialized;
 using Newtonsoft.Json.Linq;
+using System.Text;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Brahmasmi.API.Controllers
@@ -91,11 +92,30 @@ namespace Brahmasmi.API.Controllers
         public int VerifyOTP(OTPVerification otpVerify)
         {
              int otpValue = new Random().Next(1000, 9999);
-             string recipient = otpVerify.MobileNumber;
+            //StringBuilder msg = new StringBuilder("Dear User", 2000);
+
+            StringBuilder msg = new StringBuilder();
+            msg.Append("Dear ");
+            msg.Append("User,");
+            msg.Append(Environment.NewLine);
+            msg.Append("Your OTP for login to www.brahmasmi.in portal is :" + otpValue);
+            //msg.Append(Environment.NewLine);
+            msg.Append("Valid for 30 minutes. ");
+           // msg.Append(Environment.NewLine);
+            msg.Append("Please do not share this OTP.");
+           // msg.Append(Environment.NewLine);
+            //msg.Append(Environment.NewLine);
+            msg.AppendLine("Regards,");
+           // msg.AppendLine("\n");
+            msg.AppendLine("Brahmasmi Team");
+            string recipient = otpVerify.MobileNumber;
 
             string APIKey = "r0/FBFhRHR0-kjRFG13bkrqsfIJUKfCByvCDn3edoF";
-            string message = "Your OTP is " + otpValue;
-            string encodeMessage = HttpUtility.UrlEncode(message);
+           // string message = msg.ToString();
+           string message = "Dear User, Your OTP is "+otpValue;
+            //message = msg.ToString();
+ 
+             string encodeMessage = HttpUtility.UrlEncode(message);
 
             using (var webClient = new WebClient())
             {

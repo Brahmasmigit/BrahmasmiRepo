@@ -101,7 +101,16 @@ namespace Brahmasmi.Repository
 
         }
 
+        public List<Services> GetAllServiceByCity( int cityid)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("CityID", cityid, DbType.Int32);
+            var result = dapper.GetAll<Services>("[dbo].[SP_Get_AllServiceByCity]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
 
+        }
 
     }
 }

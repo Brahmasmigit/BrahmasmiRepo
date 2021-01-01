@@ -72,5 +72,20 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<Package>> GetPackages()
+        {
+            try
+            {
+                var result = await Task.FromResult(packageRepository.GetServicePackages());
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 }

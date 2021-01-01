@@ -21,6 +21,21 @@ namespace Brahmasmi.Repository
         {
             dapper = _dapper;
         }
+        public List<VendorDetails> GetVendorDetail()
+        {
+            var dbParam = new DynamicParameters();
+            var result = dapper.GetAll<VendorDetails>("[dbo].[SP_Get_VendorDetails]", dbParam
+                 , commandType: CommandType.StoredProcedure).ToList();
+            return result.ToList();
+        }
+        public Vendor GetVendorPreview(int VendorID)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("VendorID", VendorID, DbType.Int32);
+            var result = dapper.Get<Vendor>("[dbo].[SP_Get_Vendorpreview]", dbParam
+                 , commandType: CommandType.StoredProcedure);
+            return result;
+        }
         public List<Vendor> GetAllVendor()
         {
             var dbParam = new DynamicParameters();

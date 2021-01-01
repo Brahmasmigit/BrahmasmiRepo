@@ -13,5 +13,6 @@ namespace Brahmasmi.Repository
         List<ServiceModel> GetAllServices();
         List<City> GetServiceTypeCity(int ServiceTypeID);
         int DeleteService(ServiceModel serviceModel);
+        List<Services> GetAllServiceByCity(int CityID);
     }
 }

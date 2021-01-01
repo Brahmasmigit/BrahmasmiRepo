@@ -27,12 +27,12 @@ namespace Brahmasmi.API.Controllers
         }
         [EnableCors("CorsPolicy")]
         [HttpGet]
-        public async Task<ActionResult<SubscriptionCategory>> GetSubscriptionForm()
+        public async Task<ActionResult<PoojaSubscriptionForm>> GetAllSubscriptionForm()
         {
             try
             {
                 //logger.LogInformation(stateid.ToString());
-                var result = await Task.FromResult(PoojaSubscriptionFormRepository.GetSubscriptionForm());
+                var result = await Task.FromResult(PoojaSubscriptionFormRepository.GetAllSubscriptionForm());
                 //throw new Exception("Exception while fetching...");
                 // logger.LogInformation("end");
 
@@ -61,6 +61,23 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        public async Task<ActionResult<SubscriptionCategory>> GetSubscriptionCategory()
+        {
+            try
+            {
+                //logger.LogInformation(stateid.ToString());
+                var result = await Task.FromResult(PoojaSubscriptionFormRepository.GetSubscriptionCategory());
+                //throw new Exception("Exception while fetching...");
+                // logger.LogInformation("end");
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
         [EnableCors("CorsPolicy")]
         [HttpPost]
         public async Task<ActionResult<PoojaSubscriptionForm>> SubscriptionForm(PoojaSubscriptionForm Form)
@@ -78,5 +95,6 @@ namespace Brahmasmi.API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+       
     }
 }

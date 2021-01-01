@@ -15,7 +15,8 @@ namespace Brahmasmi.Models
         public string BookingTime { get; set; }
         public string ReviewComments { get; set; }
         public int PackageId { get; set; }
-
+        public int LanguageId { get; set; }
+        public string Description { get; set; }
         public string PackageName { get; set; }
         public int CityId { get; set; }
 
@@ -26,7 +27,7 @@ namespace Brahmasmi.Models
         public string EmailId { get; set; }
         public string IsDifferentLocation { get; set; }
         public string PinCode { get; set; }
-
+        public string VendorList { get; set; }
         public string NewPinCode { get; set; }
         public string Address { get; set; }
         public string NewAddress { get; set; }

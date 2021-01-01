@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Cors;
 namespace Brahmasmi.Repository
 {
     [EnableCors("CorsPolicy")]
-    public class ConcernEnquiryRepository:IConcernEnquiryRepository
+    public class ConcernEnquiryRepository : IConcernEnquiryRepository
     {
         private readonly IDapper dapper;
         public ConcernEnquiryRepository(IDapper _dapper)
@@ -24,17 +24,27 @@ namespace Brahmasmi.Repository
             return result;
 
         }
-        public int AddConcernDetails(ConcernEnquiry concern)
+        //(Admin)
+        public List<ConcernEnquiry> GetAllConcernDetails()
         {
             var dbParam = new DynamicParameters();
-            dbParam.Add("ConcernID", concern.ConcernID, DbType.Int32);
-            dbParam.Add("RequestedAmount", concern.RequestedAmount, DbType.Decimal);
-            dbParam.Add("Name", concern.Name, DbType.String);
-            dbParam.Add("MobileNumber", concern.MobileNumber, DbType.String);
-            dbParam.Add("EmailID", concern.EmailID, DbType.String);
-            dbParam.Add("Address", concern.Address, DbType.String);
+            var result = dapper.GetAll<ConcernEnquiry>("[dbo].[SP_Get_AllConcernDetails]", dbParam
+                 , commandType: CommandType.StoredProcedure);
+            return result;
+
+        }
+        public int AddConcernDetails(ConcernEnquiry concernEnquiry)
+        {
+            var dbParam = new DynamicParameters();
+            dbParam.Add("ConcernID", concernEnquiry.ConcernID, DbType.Int32);
+            //dbParam.Add("ConcernType", concernEnquiry.ConcernType, DbType.String);
+            dbParam.Add("RequestedAmount", concernEnquiry.RequestedAmount, DbType.Decimal);
+            dbParam.Add("Name", concernEnquiry.Name, DbType.String);
+            dbParam.Add("MobileNumber", concernEnquiry.MobileNumber, DbType.String);
+            dbParam.Add("EmailID", concernEnquiry.EmailID, DbType.String);
+            dbParam.Add("Address", concernEnquiry.Address, DbType.String);
             dbParam.Add("result", null, DbType.Int32, ParameterDirection.ReturnValue);
-            var result = dapper.Execute("[dbo].[SP_Insert_ConcernDetails]"
+            var result = dapper.Execute("[dbo].[SP_Insert_ConcernEnquiry]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);
             return result;

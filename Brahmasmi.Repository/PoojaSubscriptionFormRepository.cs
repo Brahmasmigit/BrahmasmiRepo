@@ -19,11 +19,20 @@ namespace Brahmasmi.Repository
         {
             dapper = _dapper;
         }
-        public List<SubscriptionCategory> GetSubscriptionForm()
+        public List<SubscriptionCategory> GetSubscriptionCategory()
         {
             var dbParam = new DynamicParameters();
 
             var result = dapper.GetAll<SubscriptionCategory>("[dbo].[SP_Get_SubscriptionCategory]"
+                 , dbParam,
+                 commandType: CommandType.StoredProcedure);
+            return result;
+        }
+        public List<PoojaSubscriptionForm> GetAllSubscriptionForm()
+        {
+            var dbParam = new DynamicParameters();
+
+            var result = dapper.GetAll<PoojaSubscriptionForm>("[dbo].[SP_Get_AllSubscriptionForm]"
                  , dbParam,
                  commandType: CommandType.StoredProcedure);
             return result;
@@ -58,7 +67,7 @@ namespace Brahmasmi.Repository
                  commandType: CommandType.StoredProcedure);
             return result;
         }
-        public DataTable GetPoojaServices(List<PoojaSubscriptionServices> lstdetails)
+        public DataTable GetPoojaServices(List<PoojaServices> lstdetails)
         {
 
             var table = new DataTable();
@@ -85,5 +94,6 @@ namespace Brahmasmi.Repository
 
         }
 
+        
     }
 }

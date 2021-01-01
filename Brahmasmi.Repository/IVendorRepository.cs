@@ -16,7 +16,9 @@ namespace Brahmasmi.Repository
         Tuple<Vendor, List<VendorCertification>, List<VendorSocialNetwork>, List<VendorRelationShip>, List<VendorSpecialization>> GetVendorDetails(int VendorID);
         int UploadPhoto(IFormFile imageFile, Vendor vendor);
         Vendor GetVendorProfile(int VendorID);
+        List<VendorDetails> GetVendorDetail();
+        Vendor GetVendorPreview(int VendorID);
 
-       
+
     }
 }

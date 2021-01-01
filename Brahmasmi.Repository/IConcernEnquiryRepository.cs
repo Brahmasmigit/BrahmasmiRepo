@@ -9,5 +9,6 @@ namespace Brahmasmi.Repository
     {
         List<ConcernTypes> GetConcernTypes();
         int AddConcernDetails(ConcernEnquiry concernEnquiry);
+        List<ConcernEnquiry> GetAllConcernDetails();
     }
 }

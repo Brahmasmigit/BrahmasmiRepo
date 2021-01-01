@@ -6,6 +6,8 @@ namespace Brahmasmi.Models
 {
     public class PoojaSubscriptionForm
     {
+        public List<PoojaServices> PoojaSubscriptionServices;
+
         public int SubscriptionCategoryID { get; set; }
         public int PoojaServicesID { get; set; }
         public int PoojaSubscriptionFormID { get; set; }
@@ -15,7 +17,9 @@ namespace Brahmasmi.Models
         public string EmailID { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-        public List<PoojaSubscriptionServices> PoojaService { get; set; }
+        public string PoojaServices { get; set; }
+        public string SubscriptionCategoryName { get; set; }
+        public List<PoojaServices> PoojaService { get; set; }
       
     }
     public class SubscriptionCategory
@@ -26,15 +30,19 @@ namespace Brahmasmi.Models
     }
     public class PoojaServices
     {
-   
+        public int PoojaSubscriptionFormID { get; set; }
+
         public int PoojaServicesID { get; set; }
         public string PoojaServicesName { get; set; }
-    
+        public bool IsChecked { get; set; }
+
     }
-    public class PoojaSubscriptionServices
+    public class AllSubscriptionForm
     {
         public int PoojaSubscriptionFormID { get; set; }
         public int PoojaServicesID { get; set; }
+        public string SubscriptionCategoryID { get; set; }
+        public string SubscriptionCategoryName { get; set; }
         public bool IsChecked { get; set; }
     }
 

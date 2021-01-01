@@ -43,6 +43,44 @@ namespace Brahmasmi.API.Controllers
             }
         }
         [EnableCors("CorsPolicy")]
+        [HttpGet]
+        public async Task<ActionResult<VendorDetails>> GetVendorDetail()
+        {
+            try
+            {
+
+                var result = await Task.FromResult(vendorRepository.GetVendorDetail());
+                //throw new Exception("Exception while fetching...");
+                logger.LogInformation("end");
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
+        [HttpGet("{VendorID}")]
+        public async Task<ActionResult<Vendor>> GetVendorData(int VendorID)
+        {
+            try
+            {
+
+                var result = await Task.FromResult(vendorRepository.GetVendorPreview(VendorID));
+                //throw new Exception("Exception while fetching...");
+                logger.LogInformation("end");
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Exception at Login Method: {ex}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [EnableCors("CorsPolicy")]
         [HttpGet("{VendorID}")]
         public async Task<ActionResult<Vendor>> GetVendorProfile(int VendorID)
         {

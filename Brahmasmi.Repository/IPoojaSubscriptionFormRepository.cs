@@ -7,8 +7,8 @@ namespace Brahmasmi.Repository
     public interface IPoojaSubscriptionFormRepository
     {
         int AddPoojaSubscriptionForm(PoojaSubscriptionForm PoojaSubscription);
-        List<SubscriptionCategory> GetSubscriptionForm();
+        List<PoojaSubscriptionForm> GetAllSubscriptionForm();
         List<PoojaServices> GetPoojaServices();
-
+        List<SubscriptionCategory> GetSubscriptionCategory();
     }
 }

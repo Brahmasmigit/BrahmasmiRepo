@@ -8,6 +8,7 @@ namespace Brahmasmi.Models
     {
         public int ConcernsEnquiryID { get; set; }
         public int ConcernID { get; set; }
+        public string ConcernType { get; set; }
         public decimal RequestedAmount { get; set; }
         public string Name { get; set; }
         public string MobileNumber { get; set; }
@@ -20,4 +21,4 @@ namespace Brahmasmi.Models
         public string ConcernType { get; set; }
     }
 
-  }
+}

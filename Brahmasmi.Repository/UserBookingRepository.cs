@@ -48,6 +48,9 @@ namespace Brahmasmi.Repository
                 dbParam.Add("@MOBILENUMBER", userBooking[i].MobileNumber, DbType.String);
                 dbParam.Add("@EMAILID", userBooking[i].EmailId, DbType.String);
                 dbParam.Add("@PACKAGEID", userBooking[i].PackageId, DbType.Int32);
+                dbParam.Add("@LanguageId", userBooking[i].LanguageId, DbType.Int32);
+                dbParam.Add("@VendorList", userBooking[i].VendorList, DbType.String);
+                dbParam.Add("@Description", userBooking[i].Description, DbType.String);
 
                 dbParam.Add("@ORDERNO", userBooking[i].OrderNO, DbType.String);
                 dbParam.Add("@PAYMENTMODE", userBooking[i].PaymentMode, DbType.Int32);
