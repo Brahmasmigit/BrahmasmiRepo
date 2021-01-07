@@ -79,7 +79,18 @@ import { CommunityServicesComponent } from './communityservices/communityservice
 
 import { adminpoojasubscriptionformComponent } from './adminpoojasubscriptionform/adminpoojasubscriptionform.component';
 import { poojasubscriptionformComponent } from './poojasubscriptionform/poojasubscriptionform.component';
-
+import { UploadvendorphotoComponent } from './uploadvendorphoto/uploadvendorphoto.component';
+import { ProductservicemappingComponent } from './productservicemapping/productservicemapping.component';
+import {GalleryComponent} from './gallery/gallery.component';
+import {CorporateaddressComponent} from './corporateaddress/corporateaddress.component';
+import {GetaddressfromlatlngComponent} from './getaddressfromlatlng/getaddressfromlatlng.component';
+import {PriestpreferenceComponent} from './priestpreference/priestpreference.component';
+import {EventsComponent} from './events/events.component';
+import {AboutbrahmasmiComponent} from './aboutbrahmasmi/aboutbrahmasmi.component';
+import { adminconcernenquiryComponent } from './adminconcernenquiry/adminconcernenquiry.component';
+import {VendorSearchMapComponent} from './vendorsearchmap/vendorsearchmap.component';
+import {VendordetailsComponent} from './vendordetails/vendordetails.component';
+import {PressreleaseComponent} from './pressrelease/pressrelease.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
@@ -88,15 +99,20 @@ const routes: Routes = [
   { path: 'servicedetails/:serviceId', component: ServicedetailsComponent },
   { path: 'home', component: HomeComponent },
   { path: 'servicelist/:servicetypeId/:cityId', component: ServicelistComponent,pathMatch: 'full' },
+  { path: 'servicelist/:servicetypeId/:cityId/:languageName', component: ServicelistComponent,pathMatch: 'full' },
+  { path: 'servicelist/:serviceId/:servicetypeId/:cityId/:languageName', component: ServicelistComponent,pathMatch: 'full' },
   { path: 'userslotbooking', component: UserslotbookingComponent },
   { path: 'package/:serviceId/:serviceTypeId/:vendorId', component: PackageComponent },
+  //{ path: 'package/:serviceId/:serviceTypeId/:vendorId/:languageName/:cityId', component: PackageComponent },
+  { path: 'package/:serviceTypeId/:serviceId/:vendorId/:cityId/:languageName', component: PackageComponent },
   { path: 'userdashboard', component: UserdashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admindashboard', component: AdmindashboardComponent },
   { path: 'userbilling', component: UserbillingComponent },
   {path:'usercart', component: UsercartComponent},
   {path:'orderdetails', component: OrderdetailsComponent},
-  {path:'vendorregistration', component: VendorRegistrationComponent},
+  // {path:'vendorregistration', component: VendorRegistrationComponent},
+  {path:'panditregistration', component: VendorRegistrationComponent},
   {path:'userprofile', component: UserprofileComponent},
   {path:'adminvendorenquiry', component: AdminvendorenquiryComponent},
   {path:'vendorenquiry', component: VendorEnquiryComponent},
@@ -157,8 +173,24 @@ const routes: Routes = [
   {path:'concernenquiry',component:ConcernenquiryComponent},
   {path:'admincommunityservices',component:admincommunityservicesComponent},
   {path:'communityservices',component:CommunityServicesComponent},
-  {path:'poojasubscriptionform',component:poojasubscriptionformComponent}
-  // {path:'adminpoojasubscriptionform',component:adminpoojasubscriptionformComponent}
+  {path:'poojasubscriptionform',component:poojasubscriptionformComponent},
+  {path:'adminpoojasubscriptionform',component:adminpoojasubscriptionformComponent},
+  {path:'uploadvendorphoto', component:UploadvendorphotoComponent},
+  {path:'vendorprofile/:vendorId',component:VendorprofileComponent},
+  {path:'productservicemapping',component:ProductservicemappingComponent},
+  {path:'gallery',component:GalleryComponent},
+  {path:'corporateaddress',component:CorporateaddressComponent},
+  {path:'getaddress',component:GetaddressfromlatlngComponent},
+  {path:'priestpreference/:serviceId',component:PriestpreferenceComponent},
+  { path: 'servicedetails/:servicetypeId/:serviceId/:cityId/:languageName', component: ServicedetailsComponent },
+  { path: 'servicedetails/:serviceId/:cityId/:languageName', component: ServicedetailsComponent },
+  {path:'events',component:EventsComponent},
+  {path:'aboutbrahmasmi',component:AboutbrahmasmiComponent},
+  {path:'adminconcernenquiry',component:adminconcernenquiryComponent},
+  { path: 'bookpanditmap', component: VendorSearchMapComponent },
+  {path:'vendordetails',component:VendordetailsComponent},
+  {path:'pressrelease',component:PressreleaseComponent}
+
 
 
 ];

@@ -1,0 +1,105 @@
+<app-header></app-header>
+<div class="container-fluid jumbotron" >
+    <div class="col-md-5 mt-10 w-50" style="margin-left:30%">
+      <div class="card border-primary mb-3 w-100">
+          <div class="card-header font-weight-bold text-center">Product Service Mapping</div>
+          <div class="card-body" style="height: 100%">
+<form #productForm="ngForm" (ngSubmit)="productForm.form.valid && SaveMapping()">
+    <!-- <div class="jumbotron" style="background-color: rgb(222, 235, 235);" > -->
+                <!-- <div class="form-group row">
+                                    <div class="col-3 offset-1">
+                                        <label>Select City</label>
+                                    </div>
+                                    <div class="col-7">
+                                            <select name="cityID" placeholder="cityID" [(ngModel)]="productServiceModel.cityID" (change)="selectCity($event.target.value)"
+                                             class="form-control" #cityID="ngModel" required >
+                                                <option *ngFor="let city of cities"
+                                                    [value]="city.cityID"
+                                                   >
+                                                     {{city.cityName}}
+                                                </option>
+                                            </select>
+                                            <span class="text-danger"
+                                            *ngIf="(cityID.touched || productForm.submitted) && cityID.errors?.required">
+                                            city is required
+                                        </span>
+                                    </div>
+                            </div> -->
+                                    <div class="form-group row">
+                                        <div class="col-3 offset-1">
+                                            <label>Select Service :</label>
+                                        </div>
+                                        <div class="col-7">
+                                            <!-- <select name="serviceID" placeholder="serviceID"
+                                                [(ngModel)]="productServiceModel.serviceID" class="form-control"
+                                                #serviceID="ngModel" required>
+                                                <option *ngFor="let service of Services; let i = index;"
+                                                    [value]="service.serviceID">
+                                                    {{service.serviceName}}
+                                                </option>
+                                            </select> -->
+                                            <select name="serviceID" 
+                                            [(ngModel)]="productServiceModel.serviceID" class="form-control" (change)="selectService($event.target.value)"
+                                            #serviceID="ngModel" required>
+                                            <option *ngFor="let s of Services; let i = index;"
+                                                [value]="s.serviceID">
+                                                {{s.serviceName}}
+                                            </option>
+                                        </select>
+                                            <span class="text-danger"
+                                                *ngIf="(serviceID.touched || productForm.submitted) && serviceID.errors?.required">
+                                                Service is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-3 offset-1">
+                                            <label>Select Product :</label>
+                                        </div>
+                                        <div class="col-7">
+                                            <select name="productID" placeholder="productID"
+                                                [(ngModel)]="productServiceModel.productID" class="form-control"
+                                                #productID="ngModel" required>
+                                                <option *ngFor="let product of Products; let i = index;"
+                                                    [value]="product.productID">
+                                                    {{product.productName}}
+                                                </option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(serviceID.touched || productForm.submitted) && serviceID.errors?.required">
+                                                ProductName is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-3 offset-1">
+                                            <label>Select Package :</label>
+                                        </div>
+                                        <div class="col-7">
+                                            <select name="packageID" placeholder="packageID"
+                                                [(ngModel)]="productServiceModel.packageID" class="form-control"
+                                                #packageID="ngModel" required>
+                                                <option *ngFor="let pkg of Packages; let i = index;"
+                                                    [value]="pkg.packageId">
+                                                    {{pkg.packageName}}
+                                                </option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(packageID.touched || productForm.submitted) && packageID.errors?.required">
+                                                packageName is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-4 offset-4">
+                                                <button class="btn btn-primary col-12">Save</button>
+                                          </div>
+                                        </div>                    
+       
+
+                                    </form>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <app-footer></app-footer> 

@@ -136,14 +136,22 @@ body {
               <h3 class="color--white mb-5">Order Summary</h3>
 
               <ul class="contact-info__list list-style--none position-relative z-index-101">
-                  <li class="mb-4 pl-4">
-                   <span *ngIf="packages[0]"> Pooja name: {{packages[0].serviceName}}</span>
+                <li class="mb-4 pl-4">
+                    <span *ngIf="packages[0]">Language Preference:  {{languageName}}</span>
+
                   </li>
-                  <li class="mb-4 pl-4">
+                <li class="mb-4 pl-4">
                     <span *ngIf="packages[0]">City:  {{packages[0].cityName}}</span>
 
                   </li>
                   <li class="mb-4 pl-4">
+                   <span *ngIf="packages[0]"> Pooja name: {{packages[0].serviceName}}</span>
+                  </li>
+                  <li *ngIf="isPoojaKit" class="mb-4 pl-4">
+                    <span *ngIf="packages[0]">Pooja kit:  {{packages[0].itemName}}</span>
+                  </li>
+
+                  <li class="mb-4 pl-4" *ngIf="packagename">
                   Package: {{packagename}}
 
 
@@ -191,7 +199,7 @@ body {
                                                      <div class="col-md-5">
                                                       <h6>Inclusions</h6>
                                                       <div *ngFor="let m of item.lstItems; let i = index">
-                                                     <input type="checkbox" [checked]="m.checked" (change)="isCheckMaterial(item,m,$event,index)"/>
+                                                     <input type="checkbox"  [checked]="m.checked" (change)="isCheckMaterial(item,m,$event,index)"/>
                                                      <label class="ml-2">{{m.itemName}}</label>
                                                     </div>
                                                     </div>

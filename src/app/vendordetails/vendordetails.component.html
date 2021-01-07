@@ -1,0 +1,435 @@
+<!-- <style>
+    .clmnames
+    {
+        font-weight: bold;
+    }
+</style> -->
+
+<form (ngSubmit)="openDetailsPopup()">
+  <div class="container-fluid w-100 h-100 mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-primary mb-3 w-100">
+          <div class="card-header w-100 font-weight-bold">Vendor Details
+
+          </div>
+
+          <div class="card-body w-100 h-100">
+
+            <div class="conatiner-fluid">
+              <div class="row">
+                <div class="table-responsive w-100">
+                  <table class="table table-bordered w-100">
+                    <thead class="thead-light">
+
+                      <th style="display: none;">VendorID</th>
+                      <th>Full Name</th>
+                      <th>City</th>
+                      <th>Mobile</th>
+                      <th>Email Id</th>
+                      <th>Payment Mode</th>
+                      <th>Amount Paid</th>
+                      <th>Membership</th>
+                      <th>Booking Status</th>
+                      <th>Payment Status</th>
+                      <th>Vendor Status</th>
+                      <th></th>
+
+                    </thead>
+
+                    <tbody>
+                      <tr *ngFor="let item of vendorDetails; let i=index" [ngClass]="{'active': selectedIndex == i}">
+                        <td style="display: none;">{{item.vendorID}}</td>
+                        <td>{{item.fullName}}</td>
+                        <td>{{item.cityName}}</td>
+                        <td>{{item.vendor_MobileNumber}}</td>
+                        <td>{{item.vendor_EmailID}}</td>
+                        <td>{{item.modeOfPayment}}</td>
+                        <td>{{item.amountpaid}}</td>
+                        <td>{{item.membership}}</td>
+                        <td>{{item.bookingStatusName}}</td>
+                        <td>{{item.paymentStatusName}}</td>
+                        <td>{{item.vendor_Status}}</td>
+                        <td><button type="submit" class="btn btn-primary" (click)="selectVendor(item)">View
+                            Details</button></td>
+                      </tr>
+                      <!-- <td><button class="btn btn-info" routerLink="/vendorregistration" (click)="selectVendor(item)" routerLinkActive="active">Add More Info</button></td> -->
+
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="card-footer">
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Vendor Details</h4>
+    <button type="button" style="border:0px;" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body w-100">
+    <div class="contained-fluid w-100">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames">Full Name :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.fullName}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Father's Name :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_FatherName}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames">Mobile Number :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_MobileNumber}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Alternate mobileNumber :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_AlternateNumber}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames">Emergency Contact :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_EmergencyContactNumber}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">EmailID :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_EmailID}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> DOB :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_DOB}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Gender :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_Gender}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Nationality :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_Nationality}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Marital Status :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_MaritalStatus}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Resident Status :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_ResidentStatus}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Education :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.educationName}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Occupation :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_Occupation}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Caste :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_Caste}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Sub Caste :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_SubCaste}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Gothram :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_Gothram}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Suthram :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_Sutram}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Rishipravara :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_Rishipravara}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Vedashakha :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_VedaShakha}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Mother Tongue :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_MotherTongue}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Place of Birth :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_PlaceofBirth}}
+            </div>
+
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Communication Address :</label>
+            </div>
+            <div class="col-9">
+              {{vendor.vendor_Address1}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Permanent Address :</label>
+            </div>
+            <div class="col-9">
+              {{vendor.vendor_Address2}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Country :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.countryName}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">State:</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.stateName}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> City :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.cityName}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Pin code:</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_PinCode1}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Vedic Institution Name :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_VedicInstitutionName}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Vedic Institution Location:</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_VedicInstitutionLocation}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Vedic CourseName :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_VedicCourseName}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Vedic Course PassedYear:</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_VedicCoursePassedYear}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Organisation Name :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_OrganisationName}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Business Years :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_BusinessYears}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> Annual Income :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_AnnualIncome}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">Identity Proof :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_IdentityProof}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> IncomeProof :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_IncomeProof}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">AddressProof :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_AddressProof}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames"> PAN Number :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_PANNumber}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">GSTIN :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_GSTIN}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames">Aadhar Number :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_AadharNumber}}
+            </div>
+            <div class="col-3">
+              <label class="form-label clmnames">PassPortNumber :</label>
+            </div>
+            <div class="col-3 ">
+              {{vendor.vendor_PassportNumber}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames">Languages :</label>
+            </div>
+            <div class="col-9 ">
+              {{vendor.languages}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames">Specializations :</label>
+            </div>
+            <div class="col-9">
+              {{vendor.specializations}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames">Certifications :</label>
+            </div>
+            <div class="col-9 ">
+              {{vendor.certifications}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames">IndustryTypes :</label>
+            </div>
+            <div class="col-9">
+              {{vendor.industryTypes}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames">VirtualPlatforms :</label>
+            </div>
+            <div class="col-9">
+              {{vendor.virtualPlatforms}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-3 ">
+              <label class="form-label clmnames">SocialNetworks :</label>
+            </div>
+            <div class="col-9">
+              {{vendor.socialNetworks}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer text-center" style="text-align: center;">
+
+  </div>
+</ng-template>

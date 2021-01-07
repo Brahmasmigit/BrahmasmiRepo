@@ -1,0 +1,313 @@
+<app-header></app-header>
+
+<div class="container-fluid jumbotron">
+
+    <div class="row">
+        <div class="col-md-12 text-center font-weight-bold">
+            <h2>Book Pandit Using Map</h2>
+        </div>
+    </div>
+
+    <div class="col-12 row p-2">
+        <div class="border col-4" [ngClass]="{'disableDiv': !continueClicked}">
+            <form #bookPanditForm="ngForm" (ngSubmit)="bookPanditForm.form.valid && BookPanditUsingMap()">
+
+                <div class="form-group row">
+                    <label>Puja language</label>
+                    <select name="languageId" [(ngModel)]="panditModel.languageId" class="form-control"
+                        [ngClass]="{'disableDiv': !continueClicked}" #languageId="ngModel" required>
+                        <option *ngFor="let lang of language" [value]="lang.languageID">
+                            {{lang.languageName}}
+                        </option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="(languageId.touched || bookPanditForm.submitted) && languageId.errors?.required">
+                        Language is required
+                    </span>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12 ">
+                        <select name="cityID" class="form-control" [(ngModel)]="selectedCity" #cityID="ngModel"
+                            [ngClass]="{'disableDiv': !continueClicked}" required>
+                            <option [value]="undefined" disabled hidden>Select Your City </option>
+                            <option *ngFor="let item of city" [ngValue]="item">
+                                {{item.cityName}}
+                            </option>
+                        </select>
+
+                        <span class="text-danger"
+                            *ngIf="(cityID.touched || bookPanditForm.submitted) && cityID.errors?.required">
+                            City is required
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label>Puja Location</label>
+                    <input type="text" id="pujaLocation" name="pujaLocation" [(ngModel)]="panditModel.pujaLocation"
+                        class="form-control" #pujaLocation="ngModel" [ngClass]="{'disableDiv': !continueClicked}" />
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-1">
+                        <input type="checkbox" #checklocation (change)="isPujaDifferentLocation()"
+                            [ngClass]="{'disableDiv': !continueClicked}" [disabled]="panditModel.isNewLocation" />
+                    </div>
+                    <div class="col-11">
+                        Puja at different location? Drag marker on map to select location
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <select name="serviceType" class="form-control"
+                            (change)="onServiceTypeChange($event.target.value)" [(ngModel)]="panditModel.serviceType"
+                            #serviceType="ngModel" [ngClass]="{'disableDiv': !continueClicked}">
+                            <option [value]="undefined" disabled hidden>Select Service Type </option>
+                            <option>Pooja Services</option>
+                            <option>Astrology Services</option>
+                        </select>
+                        <span class="text-danger"
+                            *ngIf="(serviceType.touched || bookPanditForm.submitted) && serviceType.errors?.required">
+                            Service Type is required
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row" *ngIf="showAstrology">
+                    <div class="col-12 ">
+                        <select name="astrologyId" class="form-control" (change)="onAstrologyChange(selectedCategory)"
+                            [(ngModel)]="selectedCategory" #astrologyId="ngModel" required
+                            [ngClass]="{'disableDiv': !continueClicked}">
+                            <option [value]="undefined" disabled hidden>Select Astrology Services </option>
+                            <option *ngFor="let category of AstroCategories" [ngValue]="category">
+                                {{category.astrologyName}}
+                            </option>
+                        </select>
+                        <span class="text-danger"
+                            *ngIf="(astrologyId.touched || bookPanditForm.submitted) && astrologyId.errors?.required">
+                            Astrology Category is required
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row" *ngIf="showPooja">
+                    <div class="col-12 ">
+                        <select name="serviceId" class="form-control" (change)="onPoojaChange(selectedCategory)"
+                            [(ngModel)]="selectedCategory" #serviceId="ngModel" required
+                            [ngClass]="{'disableDiv': !continueClicked}">
+                            <option [value]="undefined" disabled hidden>Select Pooja Services </option>
+                            <option *ngFor="let pooja of PoojaServices" [ngValue]="pooja">
+                                {{pooja.serviceName}}
+                            </option>
+                        </select>
+                        <span class="text-danger"
+                            *ngIf="(serviceId.touched || bookPanditForm.submitted) && serviceId.errors?.required">
+                            Pooja Service is required
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row" *ngIf="showPackage">
+                    <div class="col-12 ">
+                        <select name="packageName" class="form-control" (change)="onPackageChange(selectedPackage)"
+                            [(ngModel)]="selectedPackage" #packageId="ngModel" required
+                            [ngClass]="{'disableDiv': !continueClicked}">
+                            <option [value]="undefined" disabled hidden>Select Service Package </option>
+                            <option *ngFor="let pkg of ServicePackages" [ngValue]="pkg">
+                                {{pkg.packageName}}
+                            </option>
+                        </select>
+                        <span class="text-danger"
+                            *ngIf="(packageId.touched || bookPanditForm.submitted) && packageId.errors?.required">
+                            Category is required
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input type="textbox" name="amount" id="amount" [(ngModel)]="panditModel.Total" disabled="false"
+                            placeholder="Amount" class="form-control" [ngClass]="{'disableDiv': !continueClicked}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input type="text" name="bookingDate" id="bookingdate" [(ngModel)]="panditModel.BookingDate"
+                            placeholder="Select Booking Date" onfocus="this.type='date'" class="form-control"
+                            #bookingdate="ngModel" required [ngClass]="{'disableDiv': !continueClicked}">
+                        <span class="text-danger"
+                            *ngIf="(bookingdate.touched || bookPanditForm.submitted) && bookingdate.errors?.required">
+                            Booking Date is required
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input type="text" name="bookingTime" id="bookingTime" [(ngModel)]="panditModel.BookingTime"
+                            placeholder="Select Booking Time" onfocus="(this.type='time')" class="form-control"
+                            #bookingTime="ngModel" required [ngClass]="{'disableDiv': !continueClicked}">
+                        <span class="text-danger"
+                            *ngIf="(bookingTime.touched || bookPanditForm.submitted) && bookingTime.errors?.required">
+                            Booking Time is required
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-12">
+                        <textarea type="textbox" name="description" id="description"
+                            [(ngModel)]="panditModel.description" placeholder="Write your Questions here.."
+                            class="form-control" [ngClass]="{'disableDiv': !continueClicked}"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label><b>Note:</b> After Continue to select Pandits, above fields will be disabled</label>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-1 ">
+                        <input type="checkbox" (change)="onCheckboxChange($event)"
+                            [ngClass]="{'disableDiv': !continueClicked}" />
+                    </div>
+                    <div class="col-11 ">
+                        <p> I Agree to the <a href="#">Terms and Conditions</a> and <a href="#">Disclaimer</a> of
+                            service.</p>
+                    </div>
+                </div>
+
+                <div class="form-group row" *ngIf="continueClicked">
+                    <button class="col-6 offset-3 btn btn-primary">Continue to Select Pandits</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="border col-8" *ngIf="continueClicked">
+            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                    [visible]="panditModel.isNewLocation" (dragEnd)="markerDragEnd($event)"></agm-marker>
+            </agm-map>
+
+            <h5>Address: {{address}}</h5>
+
+            <!-- <div>Latitude: {{latitude}}</div>
+
+            <div>Longitude: {{longitude}}</div> -->
+        </div>
+
+        <div class="border col-8" *ngIf="!continueClicked">
+
+            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <div *ngFor="let marker of vendors;let i=index">
+                    <agm-marker [latitude]="marker.vendor_Latitude" [longitude]="marker.vendor_Longitude"
+                        *ngIf="isShown" (mouseOver)="onMouseOver(infoWindow, $event)"
+                        [iconUrl]="{url: '../../assets/icons/om.jpg', scaledSize: {width: 30, height: 30}}">
+                        <agm-info-window [disableAutoPan]="false" #infoWindow>
+                            <div class="text-center">
+                                <img src="data:image/png;base64,{{marker.photo}}" width="50px" height="70px" />
+                            </div>
+                            <div class="InfoWindow">
+                                <div class="form-group row">
+                                    <div class="col-5">
+                                        <label>Name :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        {{marker.vendor_FirstName}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-5">
+                                        <label>Contact :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        {{marker.vendor_MobileNumber}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-5">
+                                        <label>Address :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        {{marker.vendor_Address1}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-5">
+                                        <label>Latitude :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        {{marker.vendor_Latitude}}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-5">
+                                        <label>Longitude :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        {{marker.vendor_Longitude}}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="btn btn-primary" style="margin-left: 10px;"
+                                        (click)="BookPandit(marker, infoWindow)">Book Pandit</button>
+                                </div>
+                            </div>
+                        </agm-info-window>
+                    </agm-marker>
+                </div>
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"></agm-marker>
+                <agm-circle [latitude]="radiusLat" [longitude]="radiusLong" [radius]="radius" [fillColor]="'red'"
+                    [circleDraggable]="true" [editable]="false" (dragEnd)="radiusDragEnd($event)"
+                    (radiusChange)="event('radiusChange',$event)">
+                </agm-circle>
+
+            </agm-map>
+
+            <br>
+
+            <label>Select Distance To See Pandit:</label> &nbsp; &nbsp;
+
+            <select placeholder="Select Distance" name="distance" class="selectkm" (change)="changeKm($event)">
+                <option></option>
+                <option>5Km</option>
+                <option>10Km</option>
+                <option>15Km</option>
+                <option>More Than 15Km</option>
+            </select>
+            <br>
+
+            <label><b>Please select Pandits on priority base, max upto 3. Next priority pandit will be assigned if
+                    former
+                    is not
+                    available.</b></label>
+            <br>
+
+            <table class="table table-striped table-bordered col-5">
+                <tr style="font-weight: bold;">
+                    <td>Priority</td>
+                    <td>Pandit Name</td>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let pandit of selectedPandit; let i=index">
+                    <td>{{i + 1}}</td>
+                    <td>{{pandit.vendor_FirstName}}</td>
+                    <td><a class="text-danger" (click)="RemoveSelectedPandit(pandit)" data-toggle="tooltip"
+                            data-placement="top" title="" data-original-title="Close"> <i
+                                class="fa fa-remove h5 m-0"></i></a></td>
+                </tr>
+            </table>
+
+            <button type="button" class="btn btn-primary" (click)="GoToCart()">Next</button>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

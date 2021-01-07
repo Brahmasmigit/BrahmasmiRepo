@@ -38,9 +38,14 @@ export class AdminloginComponent implements OnInit {
           if (data) {
            this.isLogin=true;
            this.loginModel={};
-           let userdata:any=data;
+           let userdata:any;
+           userdata=[];
+           userdata=data;
            this.userInfo.userId=userdata.userId;
+        
            this.userInfo.userTypeId=userdata.userType;
+           console.log(this.userInfo.userTypeId)
+           this.userInfo.name=userdata.userName;
            sessionStorage.clear();
            sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
            this.route.navigate(['./admindashboard']);

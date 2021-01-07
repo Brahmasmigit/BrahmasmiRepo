@@ -303,6 +303,9 @@
   {
     background-image: linear-gradient(rgb(255, 136, 0),orange,rgb(255, 136, 0));
   }
+  a i {
+    color: #ffffff;
+  }
 
   </style>
 
@@ -311,9 +314,10 @@
   <div id="mySidenav" class="sidenav">
 
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-    <a routerLink="/homepage" routerLinkActive="active">Home</a>
+    <!-- <a routerLink="/homepage" routerLinkActive="active">Home</a>
     <a routerLink="/vendorsearch" routerLinkActive="active">Book Pandit</a>
-    <a routerLink="/vendorregistration" routerLinkActive="active">Register As A Pandit</a>
+    <a  routerLink="/bookpanditmap" routerLinkActive="active">Book Pandit Using Map</a>
+    <a routerLink="/panditregistration" routerLinkActive="active">Register As A Pandit</a>
     <a *ngIf="isLogin && isVendor"  routerLink="/vendordashboard" routerLinkActive="active">My Dashboard</a>
     <a  *ngIf="isLogin && !isVendor"  routerLink="/userdashboard" routerLinkActive="active">My Dashboard</a>
     <a routerLink="/vendorenquiry" routerLinkActive="active">Pandit Enquiry</a>
@@ -331,7 +335,45 @@
     <a  routerLink="/concernenquiry" routerLinkActive="active">Concern Enquiry</a>
     <a  routerLink="/communityservices" routerLinkActive="active">Community Services</a>
     <a  routerLink="/poojasubscriptionform" routerLinkActive="active">Pooja Subscription Form</a>
-    <a  *ngIf="isLogin && !isVendor" class="nav-link" routerLink="/tempeuserdashboard" routerLinkActive="active">Temple Orders</a>
+    <a  *ngIf="isLogin && !isVendor" class="nav-link" routerLink="/tempeuserdashboard" routerLinkActive="active">Temple Orders</a> -->
+    <a routerLink="/homepage" routerLinkActive="active">Home</a>
+   
+    <div class="Pandit-container"> 
+       <a class="Pandit-btn" (click)="showPandit=!showPandit">Pandit 
+         <i class="fa fa-caret-down" style="top:5px;"></i>
+       </a>
+         <div *ngIf="showPandit" style="background-color: #dd8c30;">
+         <a routerLink="/vendorsearch" routerLinkActive="active">Book Pandit</a>
+         <a routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja for Pandit</a>
+         <a href="#">Bulk Pandit Booking</a>
+       </div>
+     </div> 
+    
+    <div class="Astrology-container"> 
+     <a class="Astrology-btn" (click)="showAstrology=!showAstrology">Astrology 
+       <i class="fa fa-caret-down" style="top:5px"></i>
+     </a>
+       <div *ngIf="showAstrology" style="background-color: #dd8c30;">
+       <a routerLink="/vendorsearch" routerLinkActive="active">Book Astrologer</a>
+       <a routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja for Astrologer</a>
+     </div>
+   </div> 
+  
+   <div class="E-Cart-container"> 
+     <a class="E-Cart-btn" (click)="showECart=!showECart">E-Cart 
+       <i class="fa fa-caret-down" style="top:5px"></i>
+     </a>
+       <div *ngIf="showECart" style="background-color: #dd8c30;">
+       <a href="#">Book Pooja Items</a>
+       <a routerLink="/storeregistration" routerLinkActive="active">Register As a store</a>
+     </div>
+   </div> 
+  
+    
+  
+     <a routerLink="/templeservices" routerLinkActive="active">Temple Services</a>
+     <a routerLink="/adminlogin" routerLinkActive="active" *ngIf="!isLogin">Admin</a>
+     <a routerLink="/blog" routerLinkActive="active">Blog</a>
      <a *ngIf="isLogin"  (click)="Logout()"  >Logout</a>
   </div>
 
@@ -350,24 +392,26 @@
              <td>
              </td>
                 <td class="login">
-                    <br>
+             
 
-                    <p style="color: #ffffff;float: left;padding-right: 35px;">
-                      <img src="../../assets/img/call-icon.png" style="width: 25px;height: 25px;float: left;">&nbsp;
+                   
+
+                    <p style="color: #ffffff;float: left;padding-top: 17px;">
+                      <img src="i../../assets/homepageimages/call-icon.png"
+                        style="width: 25px;height: 25px;float: left;">&nbsp;
                       1800 891 6676</p>
-                    <!-- <a href="">
-                      <img src="../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;"></a> -->
-<!--                      
-                        <select>
-                     
-                          <option value="">Venkatesh</option>
-                                          <option value="profile"><a >Profile</a></option>
-                                          <option value="logout"><a >Logout</a></option>
-                                     
-                        </select> -->
-                        <a href="">
+                    <a href="mailto:info@brahmasmi.in" style="color:white;"><i class="fa fa-envelope"
+                        style="width: 25px;height: 25px;margin-left: 50px;color: #63bc33;"></i>info@brahmasmi.in</a>
+                    <a [routerLink]="['/vendorenquiry']" routerLinkActive="active" style="color:white;"><i class="fa fa-comments"
+                        style="width: 25px;height: 25px;margin-left: 50px;color: #63bc33;"></i>Enquiry</a>
+                    <a href="">
+                      <img src="../../assets/homepageimages/user-icon.png"
+                        style="width: 25px;height: 25px;margin-left: 50px;"></a>
+                    <a *ngIf="!isLogin" [routerLink]="['/login']" routerLinkActive="active"
+                      style="color: #ffffff;margin-left: 10px;">Login</a>
+                        <!-- <a href="">
                           <img src="../../assets/homepageimages/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;"></a>
-                    <a *ngIf="!isLogin" routerLink="/login" class="cursor: pointer;" routerLinkActive="active"  style="color: #ffffff;margin-left: 10px;">Login</a>
+                    <a *ngIf="!isLogin" routerLink="/login" class="cursor: pointer;" routerLinkActive="active"  style="color: #ffffff;margin-left: 10px;">Login</a> -->
 
                   <!-- <a *ngIf="!isLogin" routerLink="/login" class="pointer" routerLinkActive="active" style="width: 25px;height: 25px;margin-left: 50px;"> <img src="../../../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;">
                       Login/Sign Up</a>
@@ -376,11 +420,12 @@
 
                 </td>
                 <td>  <h5  *ngIf="isLogin" style="color:white">
+             
                   {{username}}
                                   </h5></td>
         </tr>
     </table>
-
+ 
 
 </div>
  </body>

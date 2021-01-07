@@ -61,7 +61,7 @@
                     </div>
 
                     </div>
-                    <div class="row">
+                    <div *ngIf="!cartTypeByMap" class="row">
                       <div class="col-md-12">
                           <div class="form-group">
                             <input type="checkbox" #checklocation (change)="isdifferentlocation($event)" />
@@ -73,7 +73,7 @@
                       </div>
 
                       </div>
-                      <div class="row" >
+                      <div *ngIf="!cartTypeByMap" class="row" >
                         <div class="col-md-12" *ngIf="ischecked">
                           <div class="row">
                             <div class="col-md-6">
@@ -118,14 +118,14 @@
           <h5 class="card-header">Your Order</h5>
 
           <div class="conatiner-fluid">
-            <div class="row" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">
+            <div class="row" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'|| cartType=='panditByMap'">
                 <div class="col-md-12">
                   <table class="table table-bordered w-100" >
                     <thead>
                         <tr>
 
                             <th>Service Name</th>
-                            <th>Price</th>
+                            <th>Total Price</th>
 
                         </tr>
                     </thead>
@@ -137,6 +137,12 @@
                                 <li class="mb-2 pl-2">
                                  Pooja name: {{item.ServiceName}}
                                 </li>
+                                <li *ngIf="poojakitname" class="mb-2 pl-2">
+                                  Pooja kit: {{item.itemName}}
+                                 </li>
+                                 <li class="mb-2 pl-2">
+                                 Language Preference: {{item.languageName}}
+                                 </li>
                                 <li class="mb-2 pl-2">
                                  City:  {{item.CityName}}
 
@@ -228,7 +234,7 @@
             <div class="card-body">
 
               <div class="form-group">
-                <div class="custom-control custom-radio">
+                <div class="custom-control custom-radio" style="display: none;">
                   <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="razor" checked="true"  [(ngModel)]="isPaymentchecked">
                   <label class="custom-control-label" for="customRadio1">Pay with Card/ NetBanking/ Wallet</label>
                 </div>

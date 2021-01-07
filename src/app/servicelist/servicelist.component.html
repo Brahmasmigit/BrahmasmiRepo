@@ -1,16 +1,8 @@
 <app-header></app-header>
 
   <div class="container-fluid jumbotron  w-100" >
-
-
-
-
             <div class="card">
-
-
                 <div class="pt-1">
-
-
                     <div class="content">
                         <div class="container">
                             <div class="row ">
@@ -19,27 +11,26 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-xl-6">
                                                 <h4 class="header-title m-b-30">Select Service to Perform</h4>
+                                              <!-- <video width="640"  height="600" controls   poster= "../../../assets/VinayakaPooja.jpg">
+
+                                                    <source src="https://brahmasmivideos-inct.streaming.media.azure.net/f31014e1-7eec-4145-8bd4-1d606aedbbbb/bird.mp4" type="video/mp4">
+                                              </video>-->
                                             </div>
                                         </div>
-
                                         <div class="row">
                                             <div class="col-md-3" *ngFor="let item of services">
                                                 <div class="file-man-box">
                                                     <div class="file-img-box">
-                                                      <!--<img height="300px" width="200px" src="data:image/png;base64,{{item.serviceImage}}"  alt="icon">-->
-                                                      <img src="../../assets/No-Image.png" class="imgservice"  alt="icon">
+                                                      <img height="300px" width="200px" src="data:image/png;base64,{{item.serviceImage}}"  alt="icon">
+                                                      <!-- <img src="../../assets/No-Image.png" class="imgservice"  alt="icon"> -->
                                                     </div>
                                                     <div class="file-man-title">
-                                                        <h5 class="mb-0"><a [routerLink]="['/servicedetails',item.serviceId]" routerLinkActive="active" style="color: black;">{{item.serviceName}}</a></h5>
+                                                        <h5 class="mb-0"><a [routerLink]="['/servicedetails',servicetypeId,item.serviceId,cityId,languageName]" routerLinkActive="active" style="color: black;">{{item.serviceName}}</a></h5>
 
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
-
                                     </div>
                                 </div>
                                 <!-- end col -->

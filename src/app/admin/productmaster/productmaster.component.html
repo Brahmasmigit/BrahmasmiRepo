@@ -163,18 +163,13 @@
 
   <div class="form-group row" *ngIf="KeyInsights">
       <div class="col-2">
-
             Key Insights :
-
         </div>
       <div class="col-11">
       <table class="table table-striped table-bordered">
         <thead>
           <th>ACTION</th>
-
           <th>KeyInsights Name</th>
-
-
           <th></th>
         </thead>
         <tbody>
@@ -182,17 +177,13 @@
             <td (click)="deleteKey(i)">
               <i class="fa fa-trash fa-2x"></i>
             </td>
-
             <td>
               <input [(ngModel)]="dynamic.ProductKeyInsightsName" name="productKeyInsightsName[-{{i}}]" id="productKeyInsightsName" class="form-control" type="text" />
             </td>
-
-
             <td (click)="addKey(i)">
               <i class="fa fa-plus fa-2x"></i>
             </td>
           </tr>
-
         </tbody>
       </table>
       </div>

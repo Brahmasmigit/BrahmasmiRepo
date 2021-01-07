@@ -51,6 +51,7 @@ input[type=tel]:focus, input[type=date]:focus {
 .form{
   background-image: url('/assets/background_bg.png');
   padding: 20px;
+  width:100%;
 
 }
 

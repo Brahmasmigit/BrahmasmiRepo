@@ -17,13 +17,16 @@ export class PackageComponent implements OnInit {
   serviceId:any;
   serviceTypeId:any;
   userInfo:any={};
-  vendorId:any;
+  vendorId:any;languageName:any;cityId:any;
+  isPoojaKit:boolean=false;
   constructor(private toastService: ToastService,private activatedRoute: ActivatedRoute,private router:Router, private packageService:PackageService) { }
 
   ngOnInit(): void {
     this.serviceId= this.activatedRoute.snapshot.params['serviceId'];
     this.serviceTypeId= this.activatedRoute.snapshot.params['serviceTypeId'];
     this.vendorId= this.activatedRoute.snapshot.params['vendorId'];
+    this.languageName= this.activatedRoute.snapshot.params['languageName'];
+    this.cityId= this.activatedRoute.snapshot.params['cityId'];
     this.getServiceDetails(this.serviceId);
   }
   getServiceDetails(serviceId)
@@ -46,11 +49,13 @@ export class PackageComponent implements OnInit {
   {
     if(event.target.checked)
     {
+       this.isPoojaKit=true;
       this.packages[index].price=item.price + m.itemPrice;
 
     }
     else
     {
+      this.isPoojaKit=false;
       this.packages[index].price=this.packages[index].price - m.itemPrice;
     }
     if(this.selected==index)
@@ -73,12 +78,20 @@ export class PackageComponent implements OnInit {
         let orders:any={};
         let orderdetails:any=[];
         orders.ServiceId=Number(this.serviceId);
+        orders.languageName=this.languageName;
         orders.ServiceTypeId=Number(this.serviceTypeId);
         orders.ServiceName=this.packages[0].serviceName;
         orders.CityName=this.packages[0].cityName;
         orders.PackageId=Number(this.packages[0].packageId);
         orders.PackageName=this.packagename;
         orders.Total= Number(this.total);
+        if(this.isPoojaKit==true)
+        {
+          orders.itemName=this.packages[0].itemName;
+        }
+        else{
+          orders.itemName=null;
+        }
         if(sessionStorage.getItem("userInfo")!=null)
         {
         this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));

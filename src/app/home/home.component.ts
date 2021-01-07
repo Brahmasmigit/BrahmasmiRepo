@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
       (data) => {
           if (data) {
               this.serviceTypes = data;
+              console.log(data)
           }
 
       },

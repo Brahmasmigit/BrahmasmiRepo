@@ -19,7 +19,7 @@ export class UserslotbookingComponent implements OnInit {
   orderdetails:any=[];
   closeResult: string;
   selectVendorOption:boolean=true;
-  autoVendorId:string;
+  autoVendorId:string;poojakitname:boolean=false;
   @ViewChild('mymodal') mymodal: ElementRef;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -49,8 +49,18 @@ export class UserslotbookingComponent implements OnInit {
         {
           this.booking.cityName=element.CityName;
           this.booking.serviceName=element.ServiceName;
+          if(element.itemName!=null)
+          {
+            this.poojakitname=true;
+            this.booking.itemName=element.itemName;
+          }
+          else{
+               this.poojakitname=false;
+          }
+
           this.booking.Total=element.Total;
           this.booking.packageName=element.PackageName;
+          this.booking.languageName=element.languageName;
           this.autoVendorId=element.VendorId;
         }
       });
@@ -76,6 +86,7 @@ export class UserslotbookingComponent implements OnInit {
         this.orderdetails[i].BookingTime=this.booking.BookingTime;
         this.orderdetails[i].ReviewComments="";//this.booking.ReviewComments;
         this.orderdetails[i].VendorId=this.selectVendorOption == true ? this.autoVendorId: Number(this.booking.vendorId);
+
       }
     });
     sessionStorage.setItem("orderdetails", JSON.stringify(this.orderdetails));

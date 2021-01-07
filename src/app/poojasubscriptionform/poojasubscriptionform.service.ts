@@ -22,8 +22,8 @@ export class poojasubscriptionformService {
             catchError(this.handleError)
         );
     }
-    getSubscriptionForm(): Observable<any> {
-        return this.http.get<any>(this.API_URL + "PoojaSubscriptionForm/GetSubscriptionForm" )
+    getSubscriptionCategory(): Observable<any> {
+        return this.http.get<any>(this.API_URL + "PoojaSubscriptionForm/GetSubscriptionCategory" )
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)

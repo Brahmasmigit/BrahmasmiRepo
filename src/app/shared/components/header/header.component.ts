@@ -15,6 +15,9 @@ export class HeaderComponent implements OnInit {
   isVendor:boolean=false;
   userInfo:any={};
   myIndex:any = 0;
+  showECart:boolean=false;
+  showAstrology:boolean=false;
+  showPandit:boolean=false;
   ngOnInit(): void {
     this.myIndex=0;
   /*  this.carousel();
@@ -36,9 +39,10 @@ export class HeaderComponent implements OnInit {
 
    if(sessionStorage.getItem("userInfo")!=null)
     {
-        this.isLogin=true;
+      
         this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
         this.username=this.userInfo.name;
+        this.isLogin=true;
         this.isVendor=this.userInfo.userTypeId=="2" ? true : false;
 
     }

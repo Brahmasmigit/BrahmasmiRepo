@@ -11,6 +11,7 @@ export class AdminheaderComponent implements OnInit {
   isLogin:boolean=false;
   isAdmin:boolean=false;
   userInfo:any={};
+  username:any;
   constructor( private router:Router) { }
 
   ngOnInit(): void {
@@ -19,18 +20,24 @@ export class AdminheaderComponent implements OnInit {
     {
         this.isLogin=true;
         this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
+        console.log(this.userInfo.userTypeId)
         this.isAdmin=this.userInfo.userTypeId=="3" ? true : false;
+        console.log(this.isAdmin)
+        console.log(this.isLogin)
+        this.username=this.userInfo.name;
 
     }
    else
    {
      this.isLogin=false;
+     console.log(this.isLogin)
    }
   }
   Logout()
   {
     this.isLogin=false;
     this.isAdmin=false;
+    sessionStorage.clear();
     this.router.navigate(['/adminlogin']);
   }
   openNav() {

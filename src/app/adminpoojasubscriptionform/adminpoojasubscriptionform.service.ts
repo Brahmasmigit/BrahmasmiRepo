@@ -7,15 +7,14 @@ import { environment } from '../../environments/environment'
 
 @Injectable()
 export class adminpoojasubscriptionformService {
-    SpecialServiceID:any;
     private messageSource = new BehaviorSubject<any>(1);
     currentMessage = this.messageSource.asObservable();
     private API_URL : any= environment.API_URL;
     constructor(private http: HttpClient) {
 
     }
-    getAllPoojaSubscriptionServices(): Observable<any> {
-        return this.http.get<any>(this.API_URL + "Specialservice/GetAllSpecialServicesEnquiry" )
+    getAllSubscriptionForm(): Observable<any> {
+        return this.http.get<any>(this.API_URL + "PoojaSubscriptionForm/GetAllSubscriptionForm" )
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)

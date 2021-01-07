@@ -2,3 +2,7 @@
 {
   height: 200px !important;
 }
+.file-man-box .file-img-box img
+{
+  height: 180px;
+}

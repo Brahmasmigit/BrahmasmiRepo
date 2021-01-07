@@ -33,11 +33,12 @@ export class VendordashboardComponent implements OnInit {
     {
       this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
       console.log(this.userInfo.name)
-      if(this.userInfo.userTypeId=="2")
+      if(this.userInfo.userTypeId=="2" ||this.userInfo.userTypeId=="5" )
       {
         this.vendorId=this.userInfo.userId;
 
         this.getOngoing(this.vendorId,"current");
+        console.log('tabchanged')
         this.setCurrentLocation();
       }
       else
@@ -129,7 +130,9 @@ export class VendordashboardComponent implements OnInit {
   }
   CalendarTab(CalendarTab)
   {
+    
     this.getOngoing(this.vendorId,CalendarTab);
+    console.log('changed')
   }
   placeOrder(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', windowClass : "xlModal"}).result.then((result) => {

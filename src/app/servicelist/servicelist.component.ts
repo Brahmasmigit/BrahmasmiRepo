@@ -11,13 +11,14 @@ import {ServiceListService} from './servicelist.service';
 export class ServicelistComponent implements OnInit {
 
   services:[]=[];
-  errorMessage:any;
+  errorMessage:any;languageName:any;cityId:any;servicetypeId:any;
   constructor(private activatedRoute: ActivatedRoute,private serviceListService:ServiceListService) { }
 
   ngOnInit(): void {
-   var servicetypeId= this.activatedRoute.snapshot.params['servicetypeId'];
-   var cityId= this.activatedRoute.snapshot.params['cityId'];
-   this.getServices(servicetypeId, cityId)
+   this.servicetypeId= this.activatedRoute.snapshot.params['servicetypeId'];
+   this.cityId= this.activatedRoute.snapshot.params['cityId'];
+  this.languageName= this.activatedRoute.snapshot.params['languageName'];
+   this.getServices(this.servicetypeId, this.cityId)
   }
   getServices(servicetypeId, cityId)
   {
@@ -25,6 +26,7 @@ export class ServicelistComponent implements OnInit {
       (data) => {
           if (data) {
               this.services = data;
+              console.log(data)
           }
 
       },

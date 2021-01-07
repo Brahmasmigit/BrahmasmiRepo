@@ -35,9 +35,10 @@ export class poojasubscriptionformComponent implements OnInit {
       { timeperiodName: "Yearly" }
      ]
     this.btnText="Submit";
-    this.getSubscriptionForm();
+    this.getSubscriptionCategory();
     this.getPoojaServices();
     this.poojaModel.timeperiod();
+    this.btnText = "Submit";
   }
   change(e, type){
     console.log(type);
@@ -45,9 +46,9 @@ export class poojasubscriptionformComponent implements OnInit {
       this.selectedServices.push(type);
     }
    }
-  getSubscriptionForm()
+   getSubscriptionCategory()
   {
-    this.poojasubscriptionformService.getSubscriptionForm().subscribe(
+    this.poojasubscriptionformService.getSubscriptionCategory().subscribe(
       (data) => {
           if (data) {
               this.Subscriptions = data;

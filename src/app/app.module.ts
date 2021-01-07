@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgOtpInputModule } from  'ng-otp-input';
@@ -156,6 +156,26 @@ import { poojasubscriptionformService } from './poojasubscriptionform/poojasubsc
 import { adminpoojasubscriptionformService } from './adminpoojasubscriptionform/adminpoojasubscriptionform.service';
 import { TempleServicesMultiSelectDropdownComponent } from './templeservices/temple-services-multi-select-dropdown/temple-services-multi-select-dropdown.component';
 import { AccommodationMultiSelectDownComponent } from './templeservices/accommodation-multi-select-down/accommodation-multi-select-down.component';
+import { UploadvendorphotoComponent } from './uploadvendorphoto/uploadvendorphoto.component';
+import { UploadVendorPhotoService } from './uploadvendorphoto/UploadVendorPhoto.service';
+import { VendorProfileService } from './vendorprofile/VendorProfile.service';
+import { ProductservicemappingComponent } from './productservicemapping/productservicemapping.component';
+import { ProductServiceMappingService } from './productservicemapping/ProductServiceMapping.service';
+import {GalleryComponent} from './gallery/gallery.component';
+import { GalleryService } from './gallery/gallery.service';
+import {ImageFilterPipe} from './gallery/filter.pipe';
+import {CorporateaddressComponent} from './corporateaddress/corporateaddress.component';
+import { GetaddressfromlatlngComponent } from './getaddressfromlatlng/getaddressfromlatlng.component';
+import { PriestpreferenceComponent } from './priestpreference/priestpreference.component';
+import { EventsComponent } from './events/events.component';
+import {AboutbrahmasmiComponent} from './aboutbrahmasmi/aboutbrahmasmi.component';
+import {adminconcernenquiryComponent} from './adminconcernenquiry/adminconcernenquiry.component';
+import { adminconcernenquiryService } from './adminconcernenquiry/adminconcernenquiry.service';
+import {VendorSearchMapComponent} from './vendorsearchmap/vendorsearchmap.component';
+import { VendorDetailsService } from './vendordetails/VendorDetails.service';
+import { BrowserModule } from '@angular/platform-browser';
+import {VendordetailsComponent} from './vendordetails/vendordetails.component';
+import {PressreleaseComponent} from './pressrelease/pressrelease.component';
 
 @NgModule({
   declarations: [
@@ -246,7 +266,21 @@ import { AccommodationMultiSelectDownComponent } from './templeservices/accommod
     adminpoojasubscriptionformComponent,
     poojasubscriptionformComponent,
     TempleServicesMultiSelectDropdownComponent,
-    AccommodationMultiSelectDownComponent
+    AccommodationMultiSelectDownComponent,
+    UploadvendorphotoComponent,
+    ProductservicemappingComponent,
+    GalleryComponent,
+    ImageFilterPipe,
+    CorporateaddressComponent,
+    GetaddressfromlatlngComponent,
+    PriestpreferenceComponent,
+    EventsComponent,
+    AboutbrahmasmiComponent,
+    adminconcernenquiryComponent,
+    VendorSearchMapComponent,
+    VendordetailsComponent,
+    PressreleaseComponent
+
 
   ],
   imports: [
@@ -258,6 +292,7 @@ import { AccommodationMultiSelectDownComponent } from './templeservices/accommod
     NgbModule,
     NgOtpInputModule,
     RouterModule,
+ 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCeA6ad2qsS-zSHDjdQX6qnuEbLQzsfDC0',
       libraries: ['geometry','places']
@@ -276,7 +311,8 @@ import { AccommodationMultiSelectDownComponent } from './templeservices/accommod
   AdminCouponService,AdminLoyaltyPointsService,DatePipe,ContactUsService,ProductMasterService,HoroscopeService,HoroscopeDetailsService,
   HoroscopeMasterService,TempleAdminService, TempleService, TempleUserBillingService,TempleOrderDetailsService,SpecialServicesEnquiryService
 ,adminspecialservicesenquiryService,adminOnBoardingService,OnBoardingService,AdminBlogService,ConcernEnquiryService,admincommunityservicesService
-,CommunityServicesService,poojasubscriptionformService,adminpoojasubscriptionformService],
+,CommunityServicesService,poojasubscriptionformService,adminpoojasubscriptionformService,UploadVendorPhotoService,VendorProfileService,
+ProductServiceMappingService,GalleryService,ImageFilterPipe,adminconcernenquiryService,VendorDetailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

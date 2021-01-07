@@ -84,6 +84,8 @@
       <a  routerLink="/adminonboarding" routerLinkActive="active">Vedapatashala Onboarding</a>
       <a  routerLink="/admincommunityservices" routerLinkActive="active">Community Services Enquiry</a>
       <a  routerLink="/adminspecialservicesenquiry" routerLinkActive="active">Special Services Enquiry</a>
+      <a  routerLink="/adminconcernenquiry" routerLinkActive="active">Concern Enquiry Details</a>
+      <a *ngIf="isLogin"  (click)="Logout()"  >Logout</a>
 
   </div>
 
@@ -103,17 +105,29 @@
 
            </td>
               <td class="login">
-                  <br>
+                
 
-                  <p style="color: #ffffff;float: left;padding-top: 0px;">
-                    <img src="../../../../assets/img/call-icon.png" style="width: 25px;height: 25px;float: left;">&nbsp;
+                  <p style="color: #ffffff;float: left;padding-top: 17px;">
+                    <img src="i../../assets/homepageimages/call-icon.png"
+                      style="width: 25px;height: 25px;float: left;">&nbsp;
                     1800 891 6676</p>
+                  <a href="mailto:info@brahmasmi.in" style="color:white;"><i class="fa fa-envelope"
+                      style="width: 25px;height: 25px;margin-left: 50px;color: #63bc33;"></i>info@brahmasmi.in</a>
+                  <a [routerLink]="['/vendorenquiry']" routerLinkActive="active" style="color:white;"><i class="fa fa-comments"
+                      style="width: 25px;height: 25px;margin-left: 50px;color: #63bc33;"></i>Enquiry</a>
+           
 
-
-                      <a *ngIf="!isLogin" routerLink="/login" class="pointer" routerLinkActive="active" style="color: #ffffff;margin-left: 10px;"> <img src="../../../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;">
-                       Login/Sign Up</a>
-                       <a *ngIf="isLogin" (click)="Logout()" class="pointer" style="color: #ffffff;margin-left: 10px;"> <img src="../../../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;">
-                        Logout</a>
+                      <a *ngIf="!isLogin" routerLink="/login" class="pointer" routerLinkActive="active" style="color: #ffffff;margin-left: 10px;">
+                         <img src="../../../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;">
+                       Login</a>
+                       <a *ngIf="isLogin && isAdmin"  class="pointer" style="color: #ffffff;margin-left: 10px;"> 
+                        <img src="../../../../assets/img/user-icon.png" style="width: 25px;height: 25px;margin-left: 50px;">
+                        {{username}}</a>
+                        <!-- (click)="Logout()" -->
+              </td>
+                        <!-- <td>  <h5  *ngIf="isAdmin" style="color:white">
+                          {{username}}
+                                          </h5></td> -->
                       <!-- <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="isLogin">
 
                         <li class="nav-item avatar dropdown">
@@ -130,7 +144,7 @@
                           </div>
                         </li>
                       </ul>-->
-              </td>
+              
       </tr>
   </table>
 

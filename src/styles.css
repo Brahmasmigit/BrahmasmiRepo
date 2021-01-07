@@ -153,24 +153,40 @@ h5 {
 }
 
 .card-header{
-  background-image: url("../src/assets/img/light.jpg");
+  background-image: url("../src/assets/img/rainbow-1920x150.png");
+  background-repeat: no-repeat;
   /* opacity: 0.6; */
   font-weight: bold;
   text-align: center;
    font-size: 22px;
-   color:#F7F9F9;
+   color:darkmagenta;
 
 }
+/* .card{
+border:1px solid greenyellow !important;
+} */
 /* .container{
   background-color: #ffffff;
 } */
 .btn {
-  background-color: #29BF12;
+  background-image:url("../src/assets/img/btnbg.jpg");
   font-weight: bold;
-  color: #f7f9f9;
+  color: #f7f9f9 !important;
 }
 .jumbotron{
   background-color:  #f1f1f1;
   width: 100%;
 
 }
+.sidenav a
+  {
+    color:white;
+  }
+  .sidenav
+  {
+    background-image: linear-gradient(rgb(255, 136, 0),orange,rgb(255, 136, 0));
+  }
+  .btn:not(:disabled):not(.disabled).active, .btn:not(:disabled):not(.disabled):active {
+    background-color: #b0b532;
+    color: black !important;
+  }

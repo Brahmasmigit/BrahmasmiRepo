@@ -12,6 +12,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./vendorregistration.component.css']
 })
 export class VendorRegistrationComponent implements OnInit {
+  isVisible:boolean=false;
   vendor:any={};
   selectedEducation=[];
   selectedLanguages=[];

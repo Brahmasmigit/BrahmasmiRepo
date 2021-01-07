@@ -15,16 +15,16 @@ export class ConcernEnquiryService {
 
     }
 
-    addConcernDetails(concern)
+    AddConcernDetails(concern)
     {
-        return this.http.post(this.API_URL + 'ConcernEnquiry/AddConcernDetails/',concern)
+        return this.http.post(this.API_URL + 'ConcernEnquiry/RegisterConcernDetails',concern)
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)
         );
     }
-    getConcerntypes(): Observable<any> {
-        return this.http.get<any>(this.API_URL + "ConcernEnquiry/GetAllConcernTypes/")
+    getConcernTypes(): Observable<any> {
+        return this.http.get<any>(this.API_URL + 'ConcernEnquiry/GetConcernTypes')
         .pipe(
             tap(status => console.log("status: " + status)),
             catchError(this.handleError)

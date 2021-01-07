@@ -20,11 +20,11 @@ export class ConcernenquiryComponent implements OnInit {
   ngOnInit(): void {
     this.getConcernTypes();
   }
-  AddConcernEnquiry()
+  AddConcernDetails()
   {
     this.concernModel.concernID=Number(this.concernModel.concernID);
     console.log(this.concernModel);
-    this.concernEnquiryService.addConcernDetails(this.concernModel).subscribe(
+    this.concernEnquiryService.AddConcernDetails(this.concernModel).subscribe(
       (data) => {
           if (data) {
               if(data=="1")
@@ -52,7 +52,7 @@ export class ConcernenquiryComponent implements OnInit {
   getConcernTypes()
   {
 
-    this.concernEnquiryService.getConcerntypes().subscribe(
+    this.concernEnquiryService.getConcernTypes().subscribe(
       (data) => {
           if (data) {
               this.ConcernTypes = data;
@@ -73,7 +73,7 @@ showError(msg) {
     classname: 'bg-info text-light',
     delay: 5000 ,
     autohide: true,
-    headertext: 'Contact details!'
+    headertext: 'Concern Enquiry details!'
   });
 }
 }

@@ -72,27 +72,27 @@
             placeholder="Enter Gothram" class="form-control">
         </div>
         <div class="col-3">
-          <label class="form-label">SUTRHAM :</label>
+          <label class="form-label">SUTRAM :</label>
         </div>
         <div class="col-3 ">
           <input type="textbox" name="vendor_Suthram" id="vendor_Suthram" [(ngModel)]="vendor.vendor_Sutram"
-            placeholder="Enter Suthram" class="form-control">
+            placeholder="Enter Sutram" class="form-control">
         </div>
       </div>
       <div class="form-group row">
         <div class="col-3 ">
-          <label class="form-label">RISHIPRAVARA :</label>
+          <label class="form-label">RISHI PRAVARA :</label>
         </div>
         <div class="col-3 ">
           <input type="textbox" name="vendor_Rishipravara" id="vendor_Rishipravara" [(ngModel)]="vendor.vendor_Rishipravara"
-            placeholder="Enter Rishipravara" class="form-control">
+            placeholder="Enter Rishi pravara" class="form-control">
         </div>
         <div class="col-3">
-          <label class="form-label">VEDASHAKHA :</label>
+          <label class="form-label">VEDA SHAKHA :</label>
         </div>
         <div class="col-3 ">
           <input type="textbox" name="vendor_Vedashakha" id="vendor_Vedashakha" [(ngModel)]="vendor.vendor_Vedashakha"
-            placeholder="Enter Vedashakha" class="form-control">
+            placeholder="Enter Veda shakha" class="form-control">
         </div>
       </div>
       <div class="form-group row">
@@ -243,7 +243,7 @@
           Retired
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row" *ngIf="isVisible">
         <!-- <div class="col-3">
                         <label class="form-label">OCCUPATION :</label>
                     </div>
@@ -260,10 +260,10 @@
 
       </div>
       <div class="form-group row">
-        <div class="col-3">
+        <div class="col-3" *ngIf="isVisible">
           <label class="form-label">WEIGHT :</label>
         </div>
-        <div class="col-3">
+        <div class="col-3" *ngIf="isVisible">
           <input type="number" name="vendor_Weight" id="vendor_Weight" [(ngModel)]="vendor.vendor_Weight"
             placeholder="Enter your Weight" class="form-control" maxlength="3">
         </div>
@@ -451,7 +451,7 @@
           [(ngModel)]="vendor.vendor_VedicCoursePassedYear" class="form-control">
         </div>
       </div>
-      <div class="form-group row" >
+      <div class="form-group row" *ngIf="isVisible" >
         <div class="col-3">
           <label class="form-label">INDUSTRY TYPE :</label>
         </div>
@@ -464,7 +464,7 @@
           </span>
           </div>
       </div>
-      <div class="form-group row" >
+      <div class="form-group row" *ngIf="isVisible" >
         <div class="col-3">
           <label class="form-label">ORGANISATION TYPE :</label>
         </div>
@@ -491,7 +491,7 @@
           Section 25 Co.
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row" *ngIf="isVisible">
         <div class="col-3">
           <label class="form-label"> NAME OF THE ORG./BUSINESS :</label>
         </div>
@@ -508,10 +508,10 @@
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-3">
+        <div class="col-3" *ngIf="isVisible">
           <label class="form-label"> INCOME (ANNUAL) IN RUPEE :</label>
         </div>
-        <div class="col-3">
+        <div class="col-3" *ngIf="isVisible">
           <input type="number" name="income" id="income" maxlength="10"
             [(ngModel)]="vendor.vendor_AnnualIncome" class="form-control">
         </div>
@@ -524,10 +524,10 @@
         </div>
       </div>
       <div class="form-group row">
-        <div class="col-3">
+        <div class="col-3" *ngIf="isVisible">
           <label class="form-label"> INCOME PROOF :</label>
         </div>
-        <div class="col-3">
+        <div class="col-3" *ngIf="isVisible">
           <input type="text" name="incomeProof" id="incomeProof"
             [(ngModel)]="vendor.vendor_IncomeProof" class="form-control">
         </div>

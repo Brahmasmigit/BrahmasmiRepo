@@ -7,51 +7,51 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./auspiciousdates.component.css']
 })
 export class AuspiciousdatesComponent implements OnInit {
-  dec11th:boolean=false;
-  dec15th:boolean=false;
-  dec19th:boolean=false;
-  dec20th:boolean=false;
-  dec25th:boolean=false;
-  dec27th:boolean=false;
-  dec29th:boolean=false;
-  dec30th:boolean=false;
+  jan1st:boolean=false;
+  jan13th:boolean=false;
+  jan14th:boolean=false;
+  jan15th:boolean=false;
+  jan26th:boolean=false;
+  // dec27th:boolean=false;
+  // dec29th:boolean=false;
+  // dec30th:boolean=false;
   auspicious:any;
   constructor(private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.auspicious= this.activatedRoute.snapshot.params['auspicious'];
-    if(this.auspicious=="dec-11th.png")
+    if(this.auspicious=="jan-1st.png")
     {
-      this.dec11th=true;
+      this.jan1st=true;
     }
-    if(this.auspicious=="dec-15th.png")
+    if(this.auspicious=="jan-13th.png")
     {
-      this.dec15th=true;
+      this.jan13th=true;
     }
-    if(this.auspicious=="dec-19th.png")
+    if(this.auspicious=="jan-14th.png")
     {
-      this.dec19th=true;
+      this.jan14th=true;
     }
-    if(this.auspicious=="dec-20th.png")
+    if(this.auspicious=="jan-15th.png")
     {
-      this.dec20th=true;
+      this.jan15th=true;
     }
-    if(this.auspicious=="dec-25th.png")
+    if(this.auspicious=="jan-26th.png")
     {
-      this.dec25th=true;
+      this.jan26th=true;
     }
-    if(this.auspicious=="dec-27th.png")
-    {
-      this.dec27th=true;
-    }
-    if(this.auspicious=="dec-29th.png")
-    {
-      this.dec29th=true;
-    }
-    if(this.auspicious=="dec-30th.png")
-    {
-      this.dec30th=true;
-    }
+    // if(this.auspicious=="dec-27th.png")
+    // {
+    //   this.dec27th=true;
+    // }
+    // if(this.auspicious=="dec-29th.png")
+    // {
+    //   this.dec29th=true;
+    // }
+    // if(this.auspicious=="dec-30th.png")
+    // {
+    //   this.dec30th=true;
+    // }
   }
 
 }

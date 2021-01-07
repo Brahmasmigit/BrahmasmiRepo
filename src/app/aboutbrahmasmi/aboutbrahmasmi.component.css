@@ -1,0 +1,22 @@
+.jumbotron { 
+    
+    height: 50px;
+    color:green;
+}
+
+
+    .tn{
+ margin:6px 6px;
+ border: 4px solid #eee;
+ box-shadow:#555 1px 1px 8px 1px;
+ cursor: pointer
+    }
+    
+    .modal-content {
+        width: 1200px !important;
+      }
+      
+      h1, h2{
+          margin-bottom: 20px;
+      }
+      

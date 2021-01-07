@@ -22,15 +22,15 @@ export class adminpoojasubscriptionformComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.btnText="Submit";
-    this.getAllPoojaSubscriptionServices();
+    this.getAllSubscriptionForm();
   }
-  getAllPoojaSubscriptionServices()
+  getAllSubscriptionForm()
 {
-  this.adminpoojasubscriptionformService.getAllPoojaSubscriptionServices().subscribe(
+  this.adminpoojasubscriptionformService.getAllSubscriptionForm().subscribe(
     (data) => {
         if (data) {
             this.Services = data;
-
+            console.log(data)
         }
 
     },

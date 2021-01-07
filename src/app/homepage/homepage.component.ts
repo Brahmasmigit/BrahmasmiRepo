@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute,Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import {HomeService} from '../home/home.service';
+import {UtilitiesService} from '../shared/services/utilities.service';
+import {ToastService} from '../shared/services/toastservice'
 
 
 @Component({
@@ -13,7 +16,22 @@ export class HomepageComponent implements OnInit {
   isLogin:boolean=false;
   isVendor:boolean=false;
   userInfo:any={};username:any;
- 
+  enrollment:boolean=false;
+  showChat:boolean=false;
+  showECart:boolean=false;
+  showAstrology:boolean=false;
+  showPandit:boolean=false;
+  serviceTypes:[]=[];
+  errorMessage:string;
+  cityId:any;languageID:any;
+  languageName:string;
+
+  City:any=[];
+  services:any=[];
+  flag:any=true;
+  serviceName:any;
+  serviceId:any;
+  Languages:any;
 mostcommn=[
   {imgid:97,img: "../../assets/homepageimages/ganapathi01.png"},
   {imgid:32,img: "../../assets/homepageimages/shiva01.png"},
@@ -54,7 +72,8 @@ recentpoojas = [
 ];
 toppriest=
 [ 
-  {img: "../../assets/homepageimages/Priest_Img.png"},
+  {img: "../../assets/homepageimages/Priest_Img.png"}
+
 
 ];
 upcomingevents=[
@@ -114,7 +133,7 @@ singleslideConfig={
   "prevArrow": "<div class='nav-btn prev-slide' style='color:white'>&#8249</div>",
   "dots": true,
   "infinite": false,
-  "arrows": true,
+  "arrows": false,
 }
 fourslideConfig = {
   "slidesToShow": 4,
@@ -123,7 +142,7 @@ fourslideConfig = {
   "prevArrow": "<div class='nav-btn prev-slide' style='color:white'>&#8249</div>",
   "dots": true,
   "infinite": false,
-  "arrows": true,
+  "arrows": false,
  
 }
 fiveslideConfig={
@@ -133,7 +152,7 @@ fiveslideConfig={
   "prevArrow": "<div class='nav-btn prev-slide' style='color:white'>&#8249</div>",
   "dots": true,
   "infinite": false,
-  "arrows": true,
+  "arrows": false,
 }
 sixslideConfig={
   "slidesToShow": 5,
@@ -142,7 +161,7 @@ sixslideConfig={
   "prevArrow": "<div class='nav-btn prev-slide' style='color:white'>&#8249</div>",
   "dots": true,
   "infinite": false,
-  "arrows": true,
+  "arrows": false,
 }
 
 eightslideConfig={
@@ -152,7 +171,7 @@ eightslideConfig={
   "prevArrow": "<div class='nav-btn prev-slide' style='color:white'>&#8249</div>",
   "dots": true,
   "infinite": false,
-  "arrows": true,
+  "arrows": false,
 }
 specialslideConfig={
   "slidesToShow": 5,
@@ -161,7 +180,7 @@ specialslideConfig={
   "prevArrow": "<div class='nav-btn prev-slide' style='color:white'>&#8249</div>",
   "dots": true,
   "infinite": false,
-  "arrows": true,
+  "arrows": false,
 }
 
 
@@ -181,7 +200,7 @@ beforeChange(e) {
   console.log('beforeChange');
 }
 
-  constructor(config: NgbCarouselConfig,private activatedRoute:ActivatedRoute,private router:Router) {
+  constructor(config: NgbCarouselConfig,private activatedRoute:ActivatedRoute,private router:Router,private homeService:HomeService, private utilitiesService :UtilitiesService,private toastService: ToastService) {
     config.interval = 10000;
     config.keyboard = true;
     config.pauseOnHover = true;
@@ -191,6 +210,7 @@ beforeChange(e) {
     if(sessionStorage.getItem("userInfo")!=null)
     {
         this.isLogin=true;
+        console.log(this.isLogin)
         this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
         console.log(this.userInfo.name)
         this.username=this.userInfo.name;
@@ -200,8 +220,13 @@ beforeChange(e) {
    else
    {
      this.isLogin=false;
+     console.log(this.isLogin)
    }
-
+   this.cityId=1;
+   this.languageName='Telugu';
+   this.getCity();
+   this. getLanguages();
+   this.getServiceTypes(this.cityId);
   }
   Logout()
   {
@@ -220,6 +245,116 @@ beforeChange(e) {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 
+  }
+  onEnrollmentClick()
+  {
+    this.enrollment=!this.enrollment;
+    if(this.enrollment==false)
+    {
+      document.getElementById("contentdiv").style.width = "0";
+      document.getElementById("btndiv").style.marginRight = "0";
+    }
+    if(this.enrollment==true)
+    {
+      document.getElementById("contentdiv").style.width = "250px";
+      document.getElementById("btndiv").style.marginRight = "250px";
+    }
+ 
+  }
+  getLanguages()
+{
+  this.utilitiesService.getlanguages().subscribe(
+    (data) => {
+        if (data) {
+            this.Languages = data;
+            console.log(data)
+        }
+      },
+      (error) => {
+        this.errorMessage = error;
+    },
+    () => {
+    }
+);
+}
+  getCity()
+  {
+
+    this.utilitiesService.getCities(0).subscribe(
+      (data) => {
+          if (data) {
+              this.City = data;
+
+          }
+
+      },
+      (error) => {
+          this.errorMessage = error;
+      },
+      () => {
+      }
+  );
+  }
+  getServiceTypes(cityid)
+  {
+    this.homeService.getServiceTypes(cityid).subscribe(
+      (data) => {
+          if (data) {
+              this.serviceTypes = data;
+              console.log(data)
+          }
+
+      },
+      (error) => {
+          this.errorMessage = error;
+      },
+      () => {
+
+      });
+  }
+  selectCity(event:any)
+  {
+    this.cityId=event.target.value;
+    this.getServiceTypes(this.cityId);
+  }
+  
+  Search(search)
+  {
+    this.homeService.SearchService(search,this.cityId).subscribe(
+      (data) => {
+          if (data) {
+              this.services = data;
+          }
+
+      },
+      (error) => {
+          this.errorMessage = error;
+      },
+      () => {
+
+      });
+  }
+  searchService(serviceName): void {
+    this.flag = true;
+    this.Search(serviceName);
+  }
+  onselectItem(item)
+  {
+    if (item.serviceId != 0) {
+      this.serviceName = item.serviceName;
+      this.serviceId=item.serviceId;
+      this.flag = false;
+    }
+    else {
+      return false;
+    }
+  }
+  OnSearchClick()
+  {
+    if(this.serviceName!=undefined && this.serviceName!="" && this.serviceId!=0)
+    {
+
+    }
   }
  
 }

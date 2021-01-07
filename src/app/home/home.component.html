@@ -1,87 +1,107 @@
 <app-header></app-header>
-  <div class="container-fluid jumbotron" style="background-color: linen;" >
+<div class="container-fluid jumbotron" style="background-color: linen;">
 
 
-            <div class="row justify-content-center">
+    <div class="row justify-content-center">
 
-                <div class="col-12 col-md-10 col-lg-10  mt-10">
+        <div class="col-12 col-md-10 col-lg-10  mt-10">
 
-                    <form class="card card-sm">
-                        <div class="card-body row no-gutters align-items-center">
-                          <select style="width: 200px;margin-right: 20px;"  class="form-control" name="language" id="language">
-                            <option value="1">Priest Preference</option>
-                            <option value="1">Telugu</option>
-                            <option value="2">Kannada</option>
+            <form class="card card-sm">
+                <div class="card-body row no-gutters align-items-center">
+                    <select style="width: 200px;margin-right: 20px;" class="form-control" name="language" id="language">
+                        <option value="1">Priest Preference</option>
+                        <option value="1">Telugu</option>
+                        <option value="2">Kannada</option>
 
-                          </select>
-                          <select style="width: 200px;margin-right: 20px;" name="cityID" placeholder="Title" class="form-control"
-                          (change)="selectCity($event)"  [(ngModel)]="cityId"  >
-                                 <option *ngFor="let city of City"
-                                 [value]="city.cityID"
-                                 [selected]="cityId==city.cityID">
+                    </select>
+                    <select style="width: 200px;margin-right: 20px;" name="cityID" placeholder="Title"
+                        class="form-control" (change)="selectCity($event)" [(ngModel)]="cityId">
+                        <option *ngFor="let city of City" [value]="city.cityID" [selected]="cityId==city.cityID">
 
-                                  {{city.cityName}}
-                             </option>
-                          </select>
-                            <div class="col-auto">
-                                <i class="fa fa-search h4 text-body"></i>
-                            </div>
-                            <!--end of col-->
-                            <div class="col-5">
-                                <!--<input class="form-control form-control-md form-control-borderless" type="search" placeholder="Search topics or keywords">-->
+                            {{city.cityName}}
+                        </option>
+                    </select>
+                    <div class="col-auto">
+                        <i class="fa fa-search h4 text-body"></i>
+                    </div>
+                    <!--end of col-->
+                    <div class="col-5">
+                        <!--<input class="form-control form-control-md form-control-borderless" type="search" placeholder="Search topics or keywords">-->
 
-                                  <div class="w-100">
-                                      <input  class="form-control" autocomplete="Off" name="txtsearch" id="txtsearch" type="text" [value]="serviceName" [(ngModel)]="serviceName" (keyup)="searchService(serviceName)" />
+                        <div class="w-100">
+                            <input class="form-control" autocomplete="Off" name="txtsearch" id="txtsearch" type="text"
+                                [value]="serviceName" [(ngModel)]="serviceName" (keyup)="searchService(serviceName)" />
 
 
-                                  </div>
-
-                              <div class="search-result" *ngIf="flag">
-                                  <ul>
-                                      <li *ngFor="let item of services">
-                                          <a (click)="onselectItem(item)">{{item.serviceName}}</a>
-                                      </li>
-                                  </ul>
-                              </div>
-                            </div>
-                            <!--end of col-->
-                            <div class="col-auto ml-2">
-                                <button [disabled]="flag" class="btn btn-md btn-primary" type="submit" [routerLink]="['/servicedetails',serviceId]" >Search</button>
-                            </div>
-                            <!--end of col-->
                         </div>
-                    </form>
+
+                        <div class="search-result" *ngIf="flag">
+                            <ul>
+                                <li *ngFor="let item of services">
+                                    <a (click)="onselectItem(item)">{{item.serviceName}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto ml-2">
+                        <button [disabled]="flag" class="btn btn-md btn-primary" type="submit"
+                            [routerLink]="['/servicedetails',serviceId]">Search</button>
+                    </div>
+                    <!--end of col-->
                 </div>
-                <!--end of col-->
-            </div>
+            </form>
+        </div>
+        <!--end of col-->
+    </div>
+    <div class="container-fluid jumbotron  w-80">
+        <div class="card">
 
-            <div class="card  p-2 mt-5">
 
 
-                <div class="pt-1">
+            <div class="pt-1">
 
 
-                    <div class="content">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card-box">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-xl-6">
-                                                <h4 class="header-title m-b-30">Choose Category</h4>
-                                            </div>
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-box">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-xl-6">
+                                            <h4 class="header-title m-b-30">Choose Category</h4>
                                         </div>
+                                    </div>
 
-                                        <div class="row">
-                                            <div class="col-md-3"  *ngFor="let item of serviceTypes; let index = index">
-                                                <div class="file-man-box">
-                                                    <div class="file-img-box"><img height="300px" width="200px" src="data:image/png;base64,{{item.serviceTypeImage}}" alt="icon"></div>
+                                    <div class="row">
+                                        <div class="col-md-3" *ngFor="let item of serviceTypes; let index = index">
+                                            <div class="file-man-box">
+                                                <div class="file-img-box">
+
+                                                    <img src="data:image/png;base64,{{item.serviceTypeImage}}"
+                                                        class="imgservice" alt="icon">
+                                                </div>
+
+                                                <div class="file-man-title">
+                                                    <h5 class="mb-0"><a
+                                                            [routerLink]="['/servicelist',item.serviceTypeID,cityId]"
+                                                            routerLinkActive="active"
+                                                            style="color: black;">{{item.serviceTypeName}}</a></h5>
+
+                                                </div>
+
+                                            </div>
+                                            <!-- <div class="col-md-3" *ngFor="let item of serviceTypes; let index = index">
+                                            
+                                                    <div class="file-img-box">
+                                                      <img src="data:image/png;base64,{{item.serviceTypeImage}}" class="imgservice"  alt="icon">
+                                                    </div>
                                                     <div class="file-man-title">
-                                                        <h5 class="mb-0"><a [routerLink]="['/servicelist',item.serviceTypeID,cityId]" routerLinkActive="active" style="color: black;">{{item.serviceTypeName}}</a></h5>
+                                                        <h5 class="mb-0"><a [routerLink]="['/servicelist',item.serviceTypeID,cityId]" routerLinkActive="active" style="color: black;text-align: center;">{{item.serviceTypeName}}</a></h5>
 
                                                     </div>
-                                                </div>
-                                            </div>
+                                               
+                                            </div> -->
 
                                         </div>
 
@@ -99,13 +119,14 @@
 
 
 
+
+
             </div>
+        </div>
 
 
 
+    </div>
+    </div>
 
-
-</div>
-
-<app-footer></app-footer>
-
+    <app-footer></app-footer>

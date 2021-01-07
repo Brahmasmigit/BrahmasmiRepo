@@ -1,0 +1,40 @@
+<app-header></app-header>
+  <div class="container-fluid jumbotron" style="background-color: linen;" >
+
+<h3 style="text-align: center;color:orange;font-weight: bold;">Select Your Preferences</h3>
+            <div class="row justify-content-center">
+
+                <div class="col-6 col-md-6 col-lg-6  mt-6">
+
+                    <form class="card card-sm">
+                        <div class="card-body row no-gutters align-items-center">
+                          <select style="width: 200px;margin-right: 20px;"  class="form-control" name="language" id="language" [(ngModel)]="priestModel.languageName" >
+                            <!-- <option value="1">Priest Preference</option>
+                            <option value="1">Telugu</option>
+                            <option value="2">Kannada</option> -->
+                            <option [value]="undefined" disabled hidden>Priest Preference </option>
+                            <option *ngFor="let lang of Languages"
+                            [value]="lang.languageName"
+                            [selected]="languageName==lang.languageName">
+                                {{lang.languageName}}
+                            </option>
+
+                          </select>
+                          <select style="width: 200px;margin-right: 20px;" name="cityID" placeholder="Title" class="form-control"
+                          (change)="selectCity($event)"  [(ngModel)]="priestModel.cityId"  >
+                          <option [value]="undefined" disabled hidden>Select City </option>
+                                 <option *ngFor="let city of City"
+                                 [value]="city.cityID"
+                                 [selected]="cityId==city.cityID">
+
+                                  {{city.cityName}}
+                             </option>
+                          </select>
+                          <button type="submit" class="col-2  btn" (click)="continue()" [routerLink]="['/servicedetails',priestModel.serviceId,priestModel.languageName,priestModel.cityId]" routerLinkActive="active">Continue</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+      
+    </div>
+<app-footer></app-footer>

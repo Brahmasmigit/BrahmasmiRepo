@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="jumbotron" >
-<div class="container" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">
+<div class="container" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'|| cartType=='panditByMap'">
   <div class="row">
       <div class="col-md-8">
           <div class="card border-primary mb-3 w-100">
@@ -17,6 +17,7 @@
                                   <tr>
                                       <th>Slno</th>
                                       <th>Service Name</th>
+                                      <th *ngIf="poojakitname">Pooja kit Name</th>
                                       <th>Price</th>
                                       <th></th>
                                   </tr>
@@ -25,6 +26,7 @@
                                   <tr *ngFor="let item of cartitems;let i=index">
                                       <td>{{i + 1}}</td>
                                       <td>{{item.ServiceName}}</td>
+                                      <td *ngIf="poojakitname">{{item.itemName}}</td>
                                       <td>{{item.Total}}</td>
                                       <td><a  class="text-danger" (click)="Delete(item.ServiceId,i)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a></td>
                                   </tr>
@@ -39,7 +41,7 @@
               </div>
               <div class="card-footer">
 
-                <button type="button" (click)="BookAnotherService()"  class="btn btn-primary" >Book another Service</button>
+                <button type="button" *ngIf="!cartTypeByMap" (click)="BookAnotherService()"  class="btn btn-primary" >Book another Service</button>
 
             </div>
           </div>
