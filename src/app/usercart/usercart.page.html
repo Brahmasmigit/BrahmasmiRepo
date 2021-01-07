@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+    <button type="button" class="btn" (click)="Back()" slot="end" size="default">
+      Back
+     </button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="container" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'|| cartType=='panditByMap'">
+     <ion-card>
+<ion-card-header>
+  <ion-text color="default" style="text-align: left;">
+    Cart Items
+  </ion-text>
+</ion-card-header>
+  <ion-card-content>
+      <ion-grid class="ion-text-center">
+
+     
+    
+        <ion-row class="header-row">
+          <ion-col>
+            <ion-text>Slno</ion-text>
+          </ion-col>
+    
+          <ion-col>
+            <ion-text>Service Name</ion-text>
+          </ion-col>
+    
+          <ion-col *ngIf="poojakitname">
+            <ion-text>Pooja kit Name</ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-text>Price</ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-text></ion-text>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let item of cartitems;let i=index">
+          <ion-col>
+            <ion-text>
+              {{i + 1}}
+            </ion-text>
+          </ion-col>
+    
+            <ion-col>
+              <ion-text>
+                {{item.ServiceName}}
+              </ion-text>
+            </ion-col>
+      
+            <ion-col *ngIf="poojakitname">
+              <ion-text>
+                {{item.itemName}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                {{item.Total}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                <a  class="text-danger" (click)="Delete(item.ServiceId,i)" > <ion-icon name="trash"></ion-icon></a>
+              </ion-text>
+            </ion-col>
+          
+        </ion-row>
+    
+      </ion-grid>
+  </ion-card-content>
+  
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-text color="default" style="text-align: left;">
+          Cart Total
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content style="text-align: left;"> 
+        <ion-row>
+          <ion-col>
+            Sub Total: <span style="margin-left: 20px;">{{subtotal}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            Discount: <span style="margin-left: 25px;">{{discount}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            Total: <span style="margin-left: 53px;">{{total}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row style="text-align: right;">
+          <ion-col>
+            <ion-button  class="primary" (click)="CheckOut()" >Proceed To Checkout</ion-button>
+          </ion-col>
+        </ion-row>
+      
+      </ion-card-content>
+      </ion-card>
+    </div>
+    
+    
+</ion-content>

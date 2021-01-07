@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar class="background">
+    
+   
+    <ion-title>Pooja Services</ion-title>
+    
+    
+    <button type="button" class="btn" (click)="Back()" slot="end" size="default">
+      Back
+     </button>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+   <ion-row>
+    <ion-col *ngFor="let item of services" >  
+        <ion-card (click)="Navigate(item.serviceId)">  
+          <ion-card-content>
+          <img src="data:image/png;base64,{{item.serviceImage}}" width="70%" height="70%"  style="margin-top: 10px;"
+          alt="icon">
+        
+          <p>{{item.serviceName}}</p>  
+        </ion-card-content>
+        </ion-card>  
+    </ion-col>
+    </ion-row>
+ </ion-content>
+ 

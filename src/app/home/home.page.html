@@ -1,20 +1,160 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<!--<ion-header [translucent]="true" >
+  <ion-toolbar class="background">
     <ion-title>
-      Blank
+      Pooja Details
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+<ion-content [fullscreen]="true" >
+ <ion-list>
+    <ion-item *ngFor="let item of servicetypes" >
+   
+      <ion-label style="margin-left: 10px;">{{item.serviceTypeName}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+  <ion-footer>
+    <ion-toolbar class="footerbg">
+
+    </ion-toolbar>
+  </ion-footer>-->
+
+  <ion-header [translucent]="true" >
+    <ion-toolbar class="background">
+      <ion-buttons slot="start" color="primary">  
+       <ion-menu-button></ion-menu-button>
+        <img src="../../assets/Images/Brahmasmi_logo.png" width="40%"/>   
+      </ion-buttons>  
+      <ion-title>
+        
+      </ion-title>
+      <ion-buttons slot="end" color="primary" style="margin-right: 15px;">  
+        <img src="../../assets/icon/search2.png" width="30%" height="30%" style="margin-right: 15px;"/> 
+        <img src="../../assets/icon/bell2.png" width="30%" height="30%"  style="margin-right: 45px;"/> 
+
+      </ion-buttons>  
     </ion-toolbar>
   </ion-header>
+     
+<ion-content> 
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  <ion-row>
+    <ion-col >  
+  <ion-slides pager="true" [options]="slideOpts">  
+
+  
+    <ion-slide >  
+      <img src="../../assets/Images/ganapathi_001.png"/>  
+
+    </ion-slide>  
+  
+    <ion-slide >  
+      <img src="../../assets/Images/Priest_Img.png"/>  
+
+    </ion-slide>  
+  
+    <ion-slide >  
+      <img src="../../assets/Images/temple_services.png"/>  
+
+    </ion-slide>  
+  
+  
+  </ion-slides>  
+  </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col >  
+     <!--<ion-button expand="block" routerLink="/servicetype" routerDirection="root">
+      
+    
+        Login
+      </ion-button>
+      <ion-button routerLink="/servicetype" routerDirection="forward">sign</ion-button>
+      <a routerLink="servicetype">road to nowhere</a>--> 
+        <ion-card (click)="Navigate()">  
+       
+          <p>Book Pooja</p>  
+        </ion-card>  
+    </ion-col>
+    <ion-col >
+        <ion-card>  
+           
+          <P>  
+            Book Pandit
+          </P>  
+        </ion-card>  
+    </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col >  
+          <ion-card>  
+         
+            <p>Book Astrologer</p>  
+          </ion-card>  
+      </ion-col>
+      <ion-col >
+          <ion-card>  
+             
+            <P (click)="go()">  
+              Shop Pooja Items
+            </P>  
+          </ion-card>  
+      </ion-col>
+      </ion-row>
+      <div style="text-align: left;font-weight: bold;color: red;margin-top: 15px;margin-bottom: 5px;">Recent Poojas</div> 
+      <div>
+     <ion-slides pager="true" [options]="slideOpts">  
+
+  
+        <ion-slide (click)="go()">  
+          <img src="../../assets/Images/ganapathi01.png" class="imgrecent" />  
+    
+        </ion-slide>  
+      
+        <ion-slide >  
+          <img src="../../assets/Images/hanuman01.png" class="imgrecent" />  
+    
+        </ion-slide>  
+      
+        <ion-slide >  
+          <img src="../../assets/Images/ayyappa001.png" class="imgrecent" />  
+    
+        </ion-slide>  
+      
+      
+      </ion-slides>  
+    </div>
+</ion-content> 
+
+
+<ion-footer>
+  <ion-toolbar style="background-color: #f1f1f1;">
+  <ion-tabs style="background-color: #f1f1f1;">
+    <ion-tab-bar slot="bottom" style="background-color: #f1f1f1;">
+      <ion-tab-button tab="schedule">
+        <ion-icon name="briefcase" (click)="go()"></ion-icon>
+        <ion-label>Orders</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="speakers">
+        <ion-icon name="person-circle"></ion-icon>
+        <ion-label>My Account</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="map"></ion-icon>
+        <ion-label>Map</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="about">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

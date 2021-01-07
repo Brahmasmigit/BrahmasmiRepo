@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar class="background">
+    <ion-title>userslotbooking</ion-title>
+    <button type="button" class="btn" (click)="Back()" slot="end" size="default">
+      Back
+     </button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="Booking()" novalidate>
+    <ion-row style="border-bottom: 1px solid;">
+      <ion-col>
+      <label class="required-field" for="date">Select Date</label>
+      <div style="margin-top:10px;">
+      <input type="date"  class="form-control" id="txtDate" name="txtDate" [(ngModel)]="booking.BookingDate"></div>
+    </ion-col>
+    </ion-row>
+    <ion-row style="border-bottom: 1px solid;">
+      <ion-col>
+      <label for="time">Time Preference</label>
+    <div style="margin-top:10px;">
+      <input type="time"  class="form-control" id="time" name="time" [(ngModel)]="booking.BookingTime">
+  </div>
+</ion-col>
+</ion-row>
+<ion-row style="border-bottom: 1px solid; text-align: right;">
+  <ion-col>
+    <button type="submit" class="btn" size="default">
+      Proceed To Cart
+      </button>
+</ion-col>
+</ion-row>
+  </form>
+</ion-content>

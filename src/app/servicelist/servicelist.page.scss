@@ -1,0 +1,32 @@
+.background{
+    --background: url(../../assets/bg.png) ;
+    --background-repeat: no-repeat;
+  --background-size: cover; 
+  color: white;
+  }
+  .footerbg{
+    --background: url(../../assets/foot.png) ;
+    --background-repeat: no-repeat;
+  --background-size: cover; 
+  color: white;
+  }
+  ion-card {
+    height: 180px;
+    width: 150px;
+    text-align: center;
+    background-color: #f1f1f1;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    margin-bottom:0 !important;
+    margin-top: 10px !important;
+    ion-card-content{
+        padding: 0 !important; 
+    };
+    font-weight: bold;
+  
+  }
+  .btn {
+    background-image:url("../../assets/Images/btnbg.jpg");
+    font-weight: bold;
+    color: #f7f9f9 !important;
+  }

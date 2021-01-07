@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar class="background">
+    <ion-title>Select Package</ion-title>
+    <button type="button" class="btn" (click)="Back()" slot="end" size="default">
+      Back
+     </button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card-content>
+      <ion-row style="text-align: left;">
+        <ion-col *ngFor="let item of packages; let index = index" >
+      <ion-row>
+        <ion-col style="border-bottom: 1px solid;">
+          <h5>Package: {{item.packageName}}</h5>
+          <p style="height: 8px;border-bottom: 1px solid;"></p>
+          <h6 class="mt-5">Procedures involved:</h6>
+          <ul *ngFor="let p of item.lstProcedures;">
+            <li>{{p}}</li>
+
+        </ul>     
+         
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="border-bottom: 1px solid;">
+            <h6>Inclusions</h6>
+            <div *ngFor="let m of item.lstItems; let i = index">
+           <input type="checkbox"  [checked]="m.checked" (change)="isCheckMaterial(item,m,$event,index)"/>
+           <ion-label style="margin-left: 6px;">{{m.itemName}}</ion-label>       
+         </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="border-bottom: 1px solid;">
+           Amount:  {{item.price}}
+          
+     
+         
+          </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="border-bottom: 1px solid; ">
+            
+              <button type="submit"  class="btn btn-primary"   [style.background]="selected==index?'blue':'grey'" (click)="selectPackage(index,item.packageName)">Select Package</button>      
+           
+            </ion-col>
+            </ion-row>
+        </ion-col>
+     </ion-row>
+      </ion-card-content>
+      </ion-card>
+    
+      <ion-card>
+     
+        <ion-card-header style="text-align: left;">
+          <h3 class="color--white mb-5">Order Summary</h3>
+        </ion-card-header>
+        <ion-card-content>
+        <ion-row style="text-align: left;">
+          <ion-col>
+            
+
+            <ul>
+              <li class="mb-4 pl-4">
+                  <span *ngIf="packages[0]">Language Preference:  {{languageName}}</span>
+
+                </li>
+              <li class="mb-4 pl-4">
+                  <span *ngIf="packages[0]">City:  {{packages[0].cityName}}</span>
+
+                </li>
+                <li class="mb-4 pl-4">
+                 <span *ngIf="packages[0]"> Pooja name: {{packages[0].serviceName}}</span>
+                </li>
+                <li *ngIf="isPoojaKit" class="mb-4 pl-4">
+                  <span *ngIf="packages[0]">Pooja kit:  {{packages[0].itemName}}</span>
+                </li>
+             
+                <li class="mb-4 pl-4" *ngIf="packagename"> 
+                Package: {{packagename}}
+
+
+
+                </li>
+
+                <li class="pull-right mb-4 pl-4 font-weight-bold" *ngIf="total">
+                <span >Total: {{total}}</span>
+
+                </li>
+
+             
+            </ul>
+          </ion-col>
+        </ion-row>
+     <ion-row style="text-align: right;">
+       <ion-col>
+        <button  class="btn btn-primary"  routerLinkActive="active" (click)="Continue()">Continue</button>
+       </ion-col>
+     </ion-row>
+
+        </ion-card-content>
+       
+      </ion-card>
+</ion-content>
