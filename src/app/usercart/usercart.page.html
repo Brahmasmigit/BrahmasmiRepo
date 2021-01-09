@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Cart</ion-title>
-    <button type="button" class="btn" (click)="Back()" slot="end" size="default">
+    <ion-button type="button" class="primary" color="warning" size="small" (click)="Back()" slot="end" >
       Back
-     </button>
+     </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -100,7 +100,7 @@
         </ion-row>
         <ion-row style="text-align: right;">
           <ion-col>
-            <ion-button  class="primary" (click)="CheckOut()" >Proceed To Checkout</ion-button>
+            <ion-button  class="primary" size="small" color="warning" (click)="CheckOut()" >Proceed To Checkout</ion-button>
           </ion-col>
         </ion-row>
       

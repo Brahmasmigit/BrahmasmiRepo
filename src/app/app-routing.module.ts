@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'userbilling',
     loadChildren: () => import('./userbilling/userbilling.module').then( m => m.UserbillingPageModule)
   },
+  {
+    path: 'orderdetails',
+    loadChildren: () => import('./orderdetails/orderdetails.module').then( m => m.OrderdetailsPageModule)
+  },
 ];
 
 @NgModule({

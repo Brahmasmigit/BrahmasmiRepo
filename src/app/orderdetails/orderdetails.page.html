@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Order Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      Order Details
+    </ion-card-header>
+    <ion-card-content>
+      <table class="table table-bordered w-100" style="border:1px solid;">
+        <thead class="thead-light">
+            <tr style="border:1px solid;">
+                <th>Order No</th>
+                <th *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">Service Name</th>
+                <th *ngIf="cartType=='ecart'">Product Name</th>
+                <th *ngIf="cartType=='vendorpayment'">Name</th>
+                <th *ngIf="cartType!='vendorpayment'">Service Type</th>
+                <th>Date</th>
+                <th>Email Id</th>
+                <th>Total</th>
+                <th>Payment Method</th>
+                <th *ngIf="cartType=='vendorpayment'">Membership</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of orderdetails;let i=index" style="border:1px solid;">
+                <td>{{item.orderNo}}</td>
+                <td>
+                  <span *ngIf="cartType!='vendorpayment'">{{item.serviceName}}</span>
+                  <span *ngIf="cartType=='vendorpayment'">{{item.name}}</span>
+                </td>
+                <td *ngIf="cartType!='vendorpayment'">
+                  <span *ngIf="cartType=='service'">Pooja</span>
+                  <span *ngIf="cartType=='astrology'">Astrology</span>
+                  <span *ngIf="cartType=='virtual'">Virtual Online</span>
+                  <span *ngIf="cartType=='pandit'">
+                    <span *ngIf="item.bookingType=='panditPooja'">Pooja</span>
+                    <span *ngIf="item.bookingType=='panditAstrology'">Astrology</span>
+                  </span>
+                  <span *ngIf="cartType=='ecart'">Product</span>
+                </td>
+                <td>{{item.paymentDate}}</td>
+                <td>{{item.emailId}}</td>
+                <td>{{item.total}}</td>
+                <td>{{item.modeofPayment}}</td>
+                <td *ngIf="cartType=='vendorpayment'">{{item.membership}}</td>
+            </tr>
+
+        </tbody>
+      </table>
+      <div class="card-footer">
+        <button type="button" *ngIf="!isAdmin" class="btn btn-primary" [routerLink]="['/userdashboard']" routerLinkActive="active">Track your Order</button>
+
+        <button type="button"  *ngIf="isAdmin" class="btn btn-primary" [routerLink]="['/admindashboard']" routerLinkActive="active">Verify Payment and Approve Pandit</button>
+    </div>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
+<ion-footer>
+ 
+  <ion-toolbar class="footerbg">
+ 
+    <ion-button type="button" class="primary" color="warning" slot="start" size="default"  *ngIf="!isAdmin" class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="active">Track your Order</ion-button>
+
+    <ion-button type="button" class="primary" color="warning" slot="start" size="default"  *ngIf="isAdmin" class="btn btn-primary" [routerLink]="['/admindashboard']" routerLinkActive="active">Verify Payment and Approve Pandit</ion-button>
+    </ion-toolbar>
+
+</ion-footer>

@@ -20,7 +20,7 @@ export class UserslotbookingPage implements OnInit {
   selectVendorOption:boolean=true;
   autoVendorId:string;poojakitname:boolean=false;
   constructor(private activatedRoute: ActivatedRoute,public toastCtrl: ToastController,private navCtrl: NavController,
-    private router: Router ,) { }
+    private router: Router ) { }
 
   ngOnInit() {
     var today = new Date().toISOString().split('T')[0];

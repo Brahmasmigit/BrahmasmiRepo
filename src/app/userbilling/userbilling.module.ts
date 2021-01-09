@@ -7,14 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { UserbillingPageRoutingModule } from './userbilling-routing.module';
 
 import { UserbillingPage } from './userbilling.page';
+import { HttpClientModule } from "@angular/common/http";
+import { UserBillingService } from './userbilling.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UserbillingPageRoutingModule
+    UserbillingPageRoutingModule,
+    HttpClientModule
   ],
-  declarations: [UserbillingPage]
+  declarations: [UserbillingPage],
+  providers: [UserBillingService]
 })
 export class UserbillingPageModule {}

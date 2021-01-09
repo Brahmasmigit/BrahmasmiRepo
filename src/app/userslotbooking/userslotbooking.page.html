@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar class="background">
-    <ion-title>userslotbooking</ion-title>
+    <ion-title>Book Slot</ion-title>
     <button type="button" class="btn" (click)="Back()" slot="end" size="default">
       Back
      </button>
@@ -8,28 +8,91 @@
 </ion-header>
 
 <ion-content>
+  <ion-card style="text-align: left;">
+  
+  <ion-card-content>
   <form (ngSubmit)="Booking()" novalidate>
     <ion-row style="border-bottom: 1px solid;">
-      <ion-col>
+      <ion-col w-100>
       <label class="required-field" for="date">Select Date</label>
       <div style="margin-top:10px;">
-      <input type="date"  class="form-control" id="txtDate" name="txtDate" [(ngModel)]="booking.BookingDate"></div>
+      <input type="date" width="150px"   class="form-control" id="txtDate" name="txtDate" [(ngModel)]="booking.BookingDate"></div>
     </ion-col>
     </ion-row>
     <ion-row style="border-bottom: 1px solid;">
-      <ion-col>
+      <ion-col w-100>
       <label for="time">Time Preference</label>
     <div style="margin-top:10px;">
-      <input type="time"  class="form-control" id="time" name="time" [(ngModel)]="booking.BookingTime">
+      <input type="time"  width="250px"  class="form-control" id="time" name="time" [(ngModel)]="booking.BookingTime">
   </div>
 </ion-col>
 </ion-row>
 <ion-row style="border-bottom: 1px solid; text-align: right;">
   <ion-col>
-    <button type="submit" class="btn" size="default">
-      Proceed To Cart
-      </button>
+   
 </ion-col>
 </ion-row>
   </form>
+  </ion-card-content>
+</ion-card>
+<ion-card>
+     
+  <ion-card-header style="text-align: left;">
+    <h3 class="color--white mb-5">Order Summary</h3>
+  </ion-card-header>
+  <ion-card-content>
+  <ion-row style="text-align: left;">
+    <ion-col>
+      
+
+      <ul>
+        <li class="mb-4 pl-4">
+            <span >Language Preference:  {{booking.languageName}}</span>
+
+          </li>
+        <li class="mb-4 pl-4">
+            <span >City:  {{booking.cityName}}</span>
+
+          </li>
+          <li class="mb-4 pl-4">
+           <span > Pooja name: {{booking.serviceName}}</span>
+          </li>
+          <li *ngIf="poojakitname" class="mb-4 pl-4">
+
+            Pooja kit: {{booking.itemName}}
+
+
+        </li>
+       
+          <li class="mb-4 pl-4"> 
+          Package: {{booking.packageName}}
+
+
+
+          </li>
+
+          <li class="pull-right mb-4 pl-4 font-weight-bold">
+          <span >Total: {{booking.Total}}</span>
+
+          </li>
+
+       
+      </ul>
+    </ion-col>
+  </ion-row>
+
+
+  </ion-card-content>
+ 
+</ion-card>
 </ion-content>
+
+<ion-footer>
+ 
+  <ion-toolbar class="footerbg" style="text-align:right;">
+    <ion-button type="button" class="primary" color="warning" (click)="Booking()">
+      Proceed To Cart
+      </ion-button>
+    </ion-toolbar>
+
+</ion-footer>

@@ -106,7 +106,7 @@ export class PackagePage implements OnInit {
           orders.UserId=0;
         }
 
-        orders.VendorId= Number(this.vendorId);
+        orders.VendorId= 1;//Number(this.vendorId); //TBD
         orderdetails.push(orders);
         if(sessionStorage.getItem("orderdetails")!=null)
         {
@@ -119,7 +119,7 @@ export class PackagePage implements OnInit {
             }
             else
             {
-             // this.showError("Service already added to Cart.");
+             this.ShowError("Service already added to Cart.");
               return;
             }
 

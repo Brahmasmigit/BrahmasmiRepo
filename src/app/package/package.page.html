@@ -45,7 +45,7 @@
           <ion-row>
             <ion-col style="border-bottom: 1px solid; ">
             
-              <button type="submit"  class="btn btn-primary"   [style.background]="selected==index?'blue':'grey'" (click)="selectPackage(index,item.packageName)">Select Package</button>      
+              <ion-button type="submit" size="small"  class="primary" color="warning"   [style.background]="selected==index?'blue':'grey'" (click)="selectPackage(index,item.packageName)">Select Package</ion-button>      
            
             </ion-col>
             </ion-row>
@@ -98,7 +98,7 @@
         </ion-row>
      <ion-row style="text-align: right;">
        <ion-col>
-        <button  class="btn btn-primary"  routerLinkActive="active" (click)="Continue()">Continue</button>
+        <ion-button  class="primary" color="warning" (click)="Continue()">Continue</ion-button>
        </ion-col>
      </ion-row>
 

@@ -1,9 +1,240 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>userbilling</ion-title>
+  <ion-toolbar class="background">
+    <ion-title>Billing</ion-title>
+    <ion-button type="button" class="primary" color="warning" size="small" (click)="Back()" slot="end" >
+      Back
+     </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-header style="text-align: left;">
+      Billing Details
+    </ion-card-header>
+    <ion-card-content style="text-align: left;">
+      <form  novalidate="novalidate">
+      <ion-row >
+        <ion-col size="5"  size-sm>
+          <input  placeholder="Name" class="form-control" id="username" name="username" [(ngModel)]="userdetails.userName">
+        </ion-col>
+        <ion-col size="5"  size-sm >
+          <input  placeholder="Mobile Number"  class="form-control" id="mobileno" name="mobileno" [(ngModel)]="userdetails.mobileNumber">
+        </ion-col>
+      </ion-row>
+      <ion-row >
+        <ion-col size="12"  size-sm>
+          <input  placeholder="Email Address"  class="form-control" id="email" name="email" [(ngModel)]="userdetails.emailId">
+        </ion-col>
+    
+      </ion-row>
+      <ion-row >
+        <ion-col size="12"  size-sm >
+          <select  name="cityID" placeholder="Title" class="form-control"
+          (change)="selectCity($event)"  [(ngModel)]="userdetails.cityId"  >
+                 <option *ngFor="let city of City"
+                 [value]="city.cityID"
+                 [selected]="cityId==city.cityID">
+
+                  {{city.cityName}}
+             </option>
+          </select>
+        </ion-col>
+      
+      </ion-row>
+      <ion-row >
+        <ion-col size="12"  size-sm >
+          <input  placeholder="Pincode" width="40px" class="form-control" id="pincode" name="pincode" [(ngModel)]="userdetails.pinCode">
+        </ion-col>
+      </ion-row>
+      <ion-row >
+        <ion-col size="12"  size-sm>
+          <input  placeholder="Address" class="form-control" id="address" name="address" [(ngModel)]="userdetails.address">
+        </ion-col>
+       
+      </ion-row>
+      <div *ngIf="!cartTypeByMap" class="row">
+     
+        <ion-row >
+          <ion-col size="12"  size-sm>
+            <input type="checkbox" #checklocation (change)="isdifferentlocation($event)" />
+            <label class="ml-2" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">Perform Service in different Location?</label>
+            <label class="ml-2" *ngIf="cartType=='ecart'">Different Biiling Address?</label>
+          </ion-col>
+         
+        </ion-row>
+        <div class="col-md-12" *ngIf="ischecked">
+        <ion-row >
+          <ion-col size="12"  size-sm >
+            <select  name="billingcityID" placeholder="Title" class="form-control"
+            (change)="selectCity($event)"  [(ngModel)]="userdetails.cityId"  >
+                   <option *ngFor="let city of City"
+                   [value]="city.cityID"
+                   [selected]="cityId==city.cityID">
+  
+                    {{city.cityName}}
+               </option>
+            </select>
+          </ion-col>
+        
+        </ion-row>
+        <ion-row >
+          <ion-col size="12"  size-sm >
+            <input  placeholder="Pincode" width="40px" class="form-control" id="billingpincode" name="billingpincode" [(ngModel)]="userdetails.pinCode">
+          </ion-col>
+        </ion-row>
+        <ion-row >
+          <ion-col size="12"  size-sm>
+            <input  placeholder="Address" class="form-control" id="billingaddress" name="billingaddress" [(ngModel)]="userdetails.address">
+          </ion-col>
+         
+        </ion-row>
+        </div>
+      </div>
+      </form>
+      <ion-card>
+        <ion-card-header style="text-align: left;">
+          Your Order
+        </ion-card-header>
+        <ion-card-content style="text-align: left;">
+          <div class="row" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'|| cartType=='panditByMap'">
+            <div class="col-md-12">
+              <table class="table table-bordered w-100" style="border:1px solid;">
+                <thead>
+                    <tr>
+
+                        <th>Service Name</th>
+                        <th>Total Price</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cartitems;let i=index" style="border:1px solid;">
+
+                        <td>
+                          <ul class="list-style--none ">
+                            <li class="mb-2 pl-2">
+                             Pooja name: {{item.ServiceName}}
+                            </li>
+                            <li *ngIf="poojakitname" class="mb-2 pl-2">
+                              Pooja kit: {{item.itemName}}
+                             </li>
+                             <li class="mb-2 pl-2">
+                             Language Preference: {{item.languageName}}
+                             </li>
+                            <li class="mb-2 pl-2">
+                             City:  {{item.CityName}}
+
+                            </li>
+                            <li class="mb-2 pl-2" *ngIf="item.PackageName">
+                            Package: {{item.PackageName}}
+
+                            </li>
+                            <li class="mb-2 pl-2">
+                              Date: {{item.BookingDate}}
+
+                              </li>
+                              <li class="mb-2 pl-2">
+                                Time: {{item.BookingTime}}
+
+                                </li>
+
+
+                        </ul>
+                        </td>
+
+                          <td>{{item.Total}}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">GST:</td>
+                      <td>{{gst}}%</td>
+                    </tr>
+                      <tr>
+                        <td class="font-weight-bold">Total:</td>
+                        <td>{{total}}</td>
+                      </tr>
+                </tbody>
+              </table>
+            </div>
+
+        </div>
+        <div class="row" *ngIf="cartType=='ecart'">
+          <div class="col-md-12">
+            <table class="table table-bordered w-100" style="border:1px solid;">
+              <thead>
+                  <tr>
+
+                      <th>Product Name</th>
+                      <th>Price</th>
+
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of productitems;let i=index" style="border:1px solid;">
+
+                      <td>
+                        <ul class="list-style--none ">
+                          <li class="mb-2 pl-2">
+                           Product Name: {{item.ProductName}}
+                          </li>
+                          <li class="mb-2 pl-2">
+                           Quantity:  {{item.Quantity}}
+
+                          </li>
+                          <li class="mb-2 pl-2">
+                          Unit Price: {{item.ProductPrice}}
+
+                          </li>
+
+
+                      </ul>
+                      </td>
+
+                        <td>{{item.ProductCost}}</td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">GST:</td>
+                    <td>{{gst}}%</td>
+                  </tr>
+                    <tr>
+                      <td class="font-weight-bold">Total:</td>
+                      <td>{{total}}</td>
+                    </tr>
+              </tbody>
+            </table>
+          </div>
+
+      </div>
+          </ion-card-content>
+
+      </ion-card>
+      <ion-card style="text-align: left;">
+        <ion-card-header>
+          Choose Payment Method
+        </ion-card-header>
+        <ion-card-content>
+          <div class="form-group">
+            <div class="custom-control custom-radio">
+              <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="razor" checked="true"  [(ngModel)]="isPaymentchecked">
+              <label class="custom-control-label" for="customRadio1">Pay with Card/ NetBanking/ Wallet</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="cod" [(ngModel)]="isPaymentchecked">
+              <label class="custom-control-label" for="customRadio2">Cash after Service</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="upi" [(ngModel)]="isPaymentchecked">
+              <label class="custom-control-label" for="customRadio3">Pay with UPI/  QR Code</label>
+            </div>
+
+          </div>
+          <div style="text-align: right;">
+
+            <ion-button  class="primary" size="small" color="warning" (click)="PlaceOrder()" >Place Order</ion-button>
+            </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
