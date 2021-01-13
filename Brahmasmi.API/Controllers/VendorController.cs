@@ -25,7 +25,7 @@ namespace Brahmasmi.API.Controllers
         }
         [EnableCors("CorsPolicy")]
         [HttpGet]
-        public async Task<ActionResult<Vendor>> GetVendors()
+        public async Task<ActionResult<VendorDataForMap>> GetVendors()
         {
             try
             {

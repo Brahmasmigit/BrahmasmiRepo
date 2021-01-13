@@ -12,7 +12,8 @@
           "Brahmasmi.Models": "1.0.0",
           "Brahmasmi.Service": "1.0.0",
           "Microsoft.AspNetCore.Cors": "2.2.0",
-          "NETStandard.Library": "2.0.3"
+          "NETStandard.Library": "2.0.3",
+          "MCPG.CCA.Util": "1.0.0.0"
         },
         "runtime": {
           "Brahmasmi.Repository.dll": {}
@@ -355,6 +356,14 @@
         "runtime": {
           "Brahmasmi.Service.dll": {}
         }
+      },
+      "MCPG.CCA.Util/1.0.0.0": {
+        "runtime": {
+          "MCPG.CCA.Util.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -609,6 +618,11 @@
     },
     "Brahmasmi.Service/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MCPG.CCA.Util/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

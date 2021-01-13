@@ -10,7 +10,7 @@ namespace Brahmasmi.Repository
     {
         List<VendorApplicationNumber> RegisterVendor(Vendor vendor);
         int UpdateVendor(Vendor vendor);
-        List<Vendor> GetAllVendor();
+        List<VendorDataForMap> GetAllVendor();
 
         List<VendorOrder> VendorPayment(VendorPayment vendorPayment);
         Tuple<Vendor, List<VendorCertification>, List<VendorSocialNetwork>, List<VendorRelationShip>, List<VendorSpecialization>> GetVendorDetails(int VendorID);

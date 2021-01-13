@@ -10,7 +10,7 @@ namespace Brahmasmi.Models
         public int Total { get; set; }
         public string ModeofPayment { get; set; }
         public string ServiceName { get; set; }
-
+        public string ProductName { get; set; }
         public string BookingType { get; set; }
         public string Membership { get; set; }
 

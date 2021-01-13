@@ -13,4 +13,10 @@
     <ProjectReference Include="..\Brahmasmi.Service\Brahmasmi.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="MCPG.CCA.Util">
+      <HintPath>bin\Debug\netstandard2.0\MCPG.CCA.Util.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

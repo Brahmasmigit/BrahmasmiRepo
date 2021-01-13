@@ -25,6 +25,11 @@ namespace Brahmasmi.Models
 
         public string CityName { get; set; }
 
+        public string VendorListIds { get; set; }
+        public string VendorListNames { get; set; }
+        public string Vendor_MobileNumber { get; set; }
+        public string Vendor_EmailID { get; set; }
+        
 
     }
     public class VendorBooking

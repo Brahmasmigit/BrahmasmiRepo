@@ -8,5 +8,6 @@ namespace Brahmasmi.Repository
     {
         List<Orders> UserBooking(List<UserBooking> userBooking);
         UserDetails GetUserDetails(int userid);
+        string ChangeResponseStatus(string response);
     }
 }

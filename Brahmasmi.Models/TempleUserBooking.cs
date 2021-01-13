@@ -60,6 +60,8 @@ namespace Brahmasmi.Models
         public string EmailId { get; set; }
         public string PinCode { get; set; }
         public string Address { get; set; }
+        public int TempleCityId { get; set; }
+        public int TempleStateId { get; set; }
         public string BillingAddress { get; set; }
         public string OrderNO { get; set; }
         public string InvoiceNo { get; set; }
@@ -88,6 +90,10 @@ namespace Brahmasmi.Models
         public int RoomPrice { get; set; }
         public DateTime RoomBookingDate { get; set; }
         public string RoomBookingTime { get; set; }
+        public DateTime CheckInDate { get; set; }
+        public string CheckInTime { get; set; }
+        public DateTime CheckOutDate { get; set; }
+        public string CheckOutTime { get; set; }
     }
 
     public class TempleOrders

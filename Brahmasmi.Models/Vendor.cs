@@ -73,13 +73,6 @@ namespace Brahmasmi.Models
         public string Vendor_AddressProof { get; set; }
         public string Vendor_GSTIN { get; set; }
         public string Vendor_VedaShakha { get; set; }
-        public string Name { get; set; }
-        public string Languages { get; set; }
-        public string Specializations { get; set; }
-        public string Certifications { get; set; }
-        public string IndustryTypes { get; set; }
-        public string VirtualPlatforms { get; set; }
-        public string SocialNetworks { get; set; }
 
         public List<VendorCertification> VendorCertifications { get; set; }
         public List<VendorSocialNetwork> VendorSocialNetworks { get; set; }
@@ -89,6 +82,17 @@ namespace Brahmasmi.Models
         public List<VendorLanguage> VendorLanguages { get; set; }
         public List<VendorIndustryType> VendorIndustryTypes { get; set; }
         public List<VendorVirtualPlatform> VendorVirtualPlatforms { get; set; }
+        public string FullName { get; set; }
+        public string Languages { get; set; }
+        public string Specializations { get; set; }
+        public string Certifications { get; set; }
+        public string IndustryTypes { get; set; }
+        public string VirtualPlatforms { get; set; }
+        public string SocialNetworks { get; set; }
+
+        public string CountryName { get; set; }
+        public string StateName { get; set; }
+        public string CityName { get; set; }
 
     }
     public class VendorCertification
@@ -173,5 +177,21 @@ namespace Brahmasmi.Models
         public int Result { get; set; }
        
     }
+    public class VendorDataForMap
+    {
+
+        public int VendorID { get; set; }
+        public string Vendor_FirstName { get; set; }
+        public string Vendor_MobileNumber { get; set; }
+        public string Vendor_Rishipravara { get; set; }
+        public string Vendor_Address1 { get; set; }
+        public string Vendor_Latitude { get; set; }
+        public string Vendor_Longitude { get; set; }
+        public string Vendor_Photo { get; set; }
   
+        
+
+    }
+
+
 }

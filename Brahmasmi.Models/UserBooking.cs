@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Brahmasmi.Models
 {
@@ -17,6 +18,7 @@ namespace Brahmasmi.Models
         public int PackageId { get; set; }
         public int LanguageId { get; set; }
         public string Description { get; set; }
+
         public string PackageName { get; set; }
         public int CityId { get; set; }
 
@@ -26,8 +28,8 @@ namespace Brahmasmi.Models
         public string MobileNumber { get; set; }
         public string EmailId { get; set; }
         public string IsDifferentLocation { get; set; }
-        public string PinCode { get; set; }
-        public string VendorList { get; set; }
+        public string PinCode { get; set; }        
+
         public string NewPinCode { get; set; }
         public string Address { get; set; }
         public string NewAddress { get; set; }
@@ -37,6 +39,10 @@ namespace Brahmasmi.Models
         public int PaymentMode { get; set; }
         public int PaymentStatus { get; set; }
         public int Total { get; set; }
+        public List<VendorData> VendorList { get; set; }
+        public int ProductID { get; set; }
+        public decimal ItemPrice { get; set; }
+   
 
 
     }
@@ -46,6 +52,12 @@ namespace Brahmasmi.Models
 
         public string InvoiceNo { get; set; }
         public int Result { get; set; }
+        public string EncryptedResult { get; set; }
+    }
+
+    public class VendorData
+    {
+        public int VendorID { get; set; }
     }
 }
 

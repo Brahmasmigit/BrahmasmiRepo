@@ -80,3 +80,9 @@ C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Debug\netcoreapp3.1\staticwebassets
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Debug\netcoreapp3.1\Brahmasmi.API.dll
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Debug\netcoreapp3.1\Brahmasmi.API.pdb
 C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\obj\Debug\netcoreapp3.1\Brahmasmi.API.genruntimeconfig.cache
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\Grpc.Core.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\Grpc.Core.Api.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libgrpc_csharp_ext.x64.so
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libgrpc_csharp_ext.x64.dylib
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\grpc_csharp_ext.x64.dll
+C:\Brahmasmi\Brahmasmi.API\Brahmasmi.API\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\grpc_csharp_ext.x86.dll

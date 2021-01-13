@@ -36,10 +36,10 @@ namespace Brahmasmi.Repository
                  , commandType: CommandType.StoredProcedure);
             return result;
         }
-        public List<Vendor> GetAllVendor()
+        public List<VendorDataForMap> GetAllVendor()
         {
             var dbParam = new DynamicParameters();
-            var result = dapper.GetAll<Vendor>("[dbo].[SP_Get_AllVendors]", dbParam
+            var result = dapper.GetAll<VendorDataForMap>("[dbo].[SP_Get_AllVendors]", dbParam
                  , commandType: CommandType.StoredProcedure).ToList();
             return result.ToList();
         }

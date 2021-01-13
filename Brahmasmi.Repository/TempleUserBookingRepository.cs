@@ -48,6 +48,8 @@ namespace Brahmasmi.Repository
                 dbParam.Add("@BookingTime", userBooking.ServiceDetails[i].BookingTime, DbType.Time);
                 dbParam.Add("@BookingStatusId", userBooking.BookingStatusId, DbType.Int32);
                 dbParam.Add("@BookingLocation", userBooking.BookingLocation, DbType.String);
+                dbParam.Add("@TempleCityId", userBooking.TempleCityId, DbType.Int32);
+                dbParam.Add("@TempleStateId", userBooking.TempleStateId, DbType.Int32);
 
                 dbParam.Add("@BookingType", "Temple", DbType.String);
                 dbParam.Add("@CityId", userBooking.CityId, DbType.Int32);
@@ -71,7 +73,6 @@ namespace Brahmasmi.Repository
                 var dbParam = new DynamicParameters();
 
                 dbParam.Add("@TransactionDetails", 2, DbType.Int32);
-
                 dbParam.Add("@UserId", userBooking.UserId, DbType.Int32);
                 dbParam.Add("@USERNAME", userBooking.UserName, DbType.String);
                 dbParam.Add("@MOBILENUMBER", userBooking.MobileNumber, DbType.String);
@@ -84,7 +85,11 @@ namespace Brahmasmi.Repository
                 dbParam.Add("@RoomTypeId", userBooking.AccommodationDetails[i].RoomTypeId, DbType.Int32);
                 dbParam.Add("@RoomType", userBooking.AccommodationDetails[i].RoomType, DbType.String);
                 dbParam.Add("@RoomPrice", userBooking.AccommodationDetails[i].RoomPrice, DbType.Int64);
-                dbParam.Add("@RoomBookingDate", userBooking.AccommodationDetails[i].RoomBookingDate, DbType.DateTime);
+                //dbParam.Add("@RoomBookingDate", userBooking.AccommodationDetails[i].RoomBookingDate, DbType.DateTime);
+                dbParam.Add("@CheckInDate", userBooking.AccommodationDetails[i].CheckInDate, DbType.DateTime);
+                dbParam.Add("@CheckInTime", userBooking.AccommodationDetails[i].CheckInTime, DbType.Time);
+                dbParam.Add("@CheckOutDate", userBooking.AccommodationDetails[i].CheckOutDate, DbType.DateTime);
+                dbParam.Add("@CheckOutTime", userBooking.AccommodationDetails[i].CheckOutTime, DbType.Time);
                 dbParam.Add("@NoOfDaysRequired", userBooking.AcmdNoOfDays, DbType.Int32);
 
                 dbParam.Add("@CityId", userBooking.CityId, DbType.Int32);
@@ -99,33 +104,35 @@ namespace Brahmasmi.Repository
                     commandType: CommandType.StoredProcedure);
             }
 
+
+
             return listOrders;
         }
 
-        public DataTable GetServiceBookingDetails(List<UserServiceDetails> lstdetails)
-        {
+        //public DataTable GetServiceBookingDetails(List<UserServiceDetails> lstdetails)
+        //{
 
-            var table = new DataTable();
-            table.Columns.Add("ServiceId", typeof(int));
-            table.Columns.Add("ServiceName", typeof(string));
-            table.Columns.Add("ServicePrice", typeof(double));
-            table.Columns.Add("BookingDate", typeof(DateTime));
-            table.Columns.Add("BookingTime", typeof(string));
-            if (lstdetails.Count > 0)
-            {
-                for (int i = 0; i < lstdetails.Count; i++)
-                {
-                    var row = table.NewRow();
-                    row["ServiceId"] = lstdetails[i].ServiceId;
-                    row["ServiceName"] = lstdetails[i].ServiceName;
-                    row["ServicePrice"] = lstdetails[i].ServicePrice;
-                    row["BookingDate"] = lstdetails[i].BookingDate;
-                    row["BookingTime"] = lstdetails[i].BookingTime;
-                    table.Rows.Add(row);
-                }
-            }
-            return table;
-        }
+        //    var table = new DataTable();
+        //    table.Columns.Add("ServiceId", typeof(int));
+        //    table.Columns.Add("ServiceName", typeof(string));
+        //    table.Columns.Add("ServicePrice", typeof(double));
+        //    table.Columns.Add("BookingDate", typeof(DateTime));
+        //    table.Columns.Add("BookingTime", typeof(string));
+        //    if (lstdetails.Count > 0)
+        //    {
+        //        for (int i = 0; i < lstdetails.Count; i++)
+        //        {
+        //            var row = table.NewRow();
+        //            row["ServiceId"] = lstdetails[i].ServiceId;
+        //            row["ServiceName"] = lstdetails[i].ServiceName;
+        //            row["ServicePrice"] = lstdetails[i].ServicePrice;
+        //            row["BookingDate"] = lstdetails[i].BookingDate;
+        //            row["BookingTime"] = lstdetails[i].BookingTime;
+        //            table.Rows.Add(row);
+        //        }
+        //    }
+        //    return table;
+        //}
 
         public UserDetails GetUserDetails(int userid)
         {

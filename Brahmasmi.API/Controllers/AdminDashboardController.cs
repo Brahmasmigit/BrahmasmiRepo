@@ -9,7 +9,10 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Cors;
-
+using System.Net;
+using System.Web;
+using System.Collections.Specialized;
+using Newtonsoft.Json.Linq;
 
 namespace Brahmasmi.API.Controllers
 {
@@ -21,10 +24,12 @@ namespace Brahmasmi.API.Controllers
         private readonly IAdminDashboardRepository adminDashboardRepository;
         private readonly IBookingChangeStatusRepository bookingChangeStatusRepository;
         private readonly ILogger<AdminDashboardController> logger;
-        public AdminDashboardController(IAdminDashboardRepository _adminDashboardRepository, ILogger<AdminDashboardController> _logger, IBookingChangeStatusRepository _bookingChangeStatusRepository)
+        private readonly ILogger<SMS> smslogger;
+        public AdminDashboardController(IAdminDashboardRepository _adminDashboardRepository, ILogger<AdminDashboardController> _logger, IBookingChangeStatusRepository _bookingChangeStatusRepository, ILogger<SMS> _smslogger)
         {
             adminDashboardRepository = _adminDashboardRepository;
             logger = _logger;
+            smslogger = _smslogger;
             bookingChangeStatusRepository = _bookingChangeStatusRepository;
         }
 
@@ -52,6 +57,15 @@ namespace Brahmasmi.API.Controllers
             try
             {
                 var result = await Task.FromResult(bookingChangeStatusRepository.BookingChangeStatus(booking));
+                if(result==1)
+                {
+                    string recipient = booking.Vendor_MobileNumber;
+                    string message = "Greetings from Brahmasmi!! Your gracious presence is required for performing ______ Pooja on date ______; time______; location _______. Please confirm on Brahmasmi website whether you are available or not available for the respective event. Thank you.";
+                       // "Hello " + booking.Vendor_Name + ", Greetings from Brahmasmi!! Thank you for choosing us. Your invoice number  " + Invoice + " is being processed by us. Our team will come back to you in a short time.";
+                    string encodeMessage = HttpUtility.UrlEncode(message);
+                    SMS sms = new SMS(smslogger);
+                    var smsresponse = sms.SendSMS(recipient, encodeMessage);
+                }
                 return Ok(result);
             }
             catch (Exception ex)
