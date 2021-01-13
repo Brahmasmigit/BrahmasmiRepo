@@ -3,12 +3,12 @@
 <body>-->
   <app-header></app-header>
 
-
-  <form class="form"  #enquiryForm="ngForm"  (ngSubmit)="saveVendor()">
+<div class="container-fluid" style="margin-left:400px;">
+  <form class="form"  #enquiryForm="ngForm"  (ngSubmit)="saveVendor()" >
 
       <table style="color: #307c06;" align="center">
         <tr >
-          <td >
+          <td  colspan="2">
             <h1 style="margin-left:40px; margin-top:60px;">Registration Form</h1>
             <p style="margin-left:40px;">Please fill in this form to create an account.</p>
             <hr>
@@ -207,5 +207,5 @@
           </tr>
         </table>
       </form>
-
+    </div>
 <app-footer></app-footer>

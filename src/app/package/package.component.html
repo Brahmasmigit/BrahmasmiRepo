@@ -131,35 +131,49 @@ body {
   <div class="contact__wrapper shadow-lg mt-n9">
       <div class="row no-gutters">
 
-          <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2">
+          <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-1 order-lg-2">
 
               <h3 class="color--white mb-5">Order Summary</h3>
 
               <ul class="contact-info__list list-style--none position-relative z-index-101">
-                <li class="mb-4 pl-4">
-                    <span *ngIf="packages[0]">Language Preference:  {{languageName}}</span>
+              
+                  <li class="mb-4 pl-4">
+                   <span *ngIf="packages[0]"> <b>Pooja name:</b> {{packages[0].serviceName}}</span>
+                  </li>
+                  <li *ngIf="isPoojaKit" class="mb-4 pl-4">
+                    <span *ngIf="packages[0]"><b>Pooja kit: </b> {{packages[0].itemName}}</span>
+                  </li>
+                  <li class="mb-4 pl-4">
+                    <span *ngIf="packages[0]"><b>Language :</b>  {{languageName}}</span>
 
                   </li>
                 <li class="mb-4 pl-4">
-                    <span *ngIf="packages[0]">City:  {{packages[0].cityName}}</span>
+                    <span ><b>City:</b>  {{cityName}}</span>
 
                   </li>
                   <li class="mb-4 pl-4">
-                   <span *ngIf="packages[0]"> Pooja name: {{packages[0].serviceName}}</span>
+                   <span > <b>Pooja Location:</b> {{poojaLocation}}</span>
                   </li>
-                  <li *ngIf="isPoojaKit" class="mb-4 pl-4">
-                    <span *ngIf="packages[0]">Pooja kit:  {{packages[0].itemName}}</span>
+                  <li *ngIf="isNewLocation" class="mb-4 pl-4">
+                   <span > <b>Pooja Location:</b> {{newLocationAddress}}</span>
                   </li>
-
-                  <li class="mb-4 pl-4" *ngIf="packagename">
-                  Package: {{packagename}}
+                  
+               
+                  <li class="mb-4 pl-4">
+                   <span > <b>Pooja Date:</b> {{BookingDate}}</span>
+                  </li>
+                  <li class="mb-4 pl-4">
+                   <span > <b>Pooja Time:</b> {{BookingTime}}</span>
+                  </li>
+                  <li class="mb-4 pl-4">
+                 <b>Package:</b>  {{packagename}}
 
 
 
                   </li>
 
                   <li class="pull-right mb-4 pl-4 font-weight-bold">
-                  <span *ngIf="total">Total: {{total}}</span>
+                  <span *ngIf="total"><b>Total:</b> {{total}}</span>
 
                   </li>
 

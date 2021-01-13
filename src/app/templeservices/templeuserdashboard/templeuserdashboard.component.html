@@ -5,6 +5,406 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card border-primary mb-3 w-100">
+          <div *ngFor="let item of invoiceDetails; let i=index">
+            <div class="card-header font-weight-bold">Invoice No: {{item.invoice}}
+              <!-- <div class="pull-left"></div> -->
+            </div>
+
+            <div class="card-body" style="height: 100%">
+              <!-- <label style="font-weight: bold;">Service Details</label> -->
+              <div class="conatiner-fluid">
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table table-bordered w-100">
+                      <thead class="thead-light">
+                        <tr>
+                          <th>Temple Name</th>
+                          <th>Temple City</th>
+                          <th>Temple State</th>
+                          <th>Booking Date</th>
+                          <th>Request Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <button type="button" class="btn btn-primary"
+                              (click)="OpenModalPopup('booking', item.invoice)">{{item.templeName}}</button>
+                          </td>
+                          <td>{{item.templeCity}}</td>
+                          <td>{{item.templeState}}</td>
+                          <td>{{item.paymentDate}}</td>
+                          <td>{{item.bookingStatus}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+
+            <button type="button" class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="active">Back to
+              Home</button>
+
+          </div>
+        </div>
+
+        <ng-template #mymodal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+
+              <span *ngIf="!isRating"> Booking Details</span>
+              <span *ngIf="isRating">Rate your Experience</span>
+            </h4>
+            <button type="button" style="border:0px;" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+
+          <div class="card-body" style="height: 100%">
+            <label style="font-weight: bold;">Service Details</label>
+            <div class="conatiner-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-bordered w-100">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Order Number</th>
+                        <th>Service Name</th>
+                        <th>Date Of Service</th>
+                        <th>Service Price</th>
+                        <th>Mode Of Payment</th>
+                        <th>Email Id</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let service of serviceDetailView; let i=index">
+                        <td>{{service.orderNo}}</td>
+                        <td>{{service.serviceName}}</td>
+                        <td>{{service.dateOfService}}</td>
+                        <td>{{service.servicePrice}}</td>
+                        <td>{{service.modeOfPayment}}</td>
+                        <td>{{service.emailId}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body" style="height: 100%" *ngIf="accommodationDetailView.length>0">
+            <label style="font-weight: bold;">Accommodation Details</label>
+            <div class="conatiner-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-bordered w-100">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Room Type</th>
+                        <th>Check-In Date & Time</th>
+                        <th>Check-Out Date & Time</th>
+                        <th>Number Of Days Stay</th>
+                        <th>Room Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let acmd of accommodationDetailView; let i=index">
+                        <td>{{acmd.room}}</td>
+                        <td>{{acmd.checkInDateTime}}</td>
+                        <td>{{acmd.checkOutDateTime}}</td>
+                        <td>{{acmd.noOfDaysStay}}</td>
+                        <td>{{acmd.roomPrice}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <b>Total:</b> {{totalAmount}}
+          </div>
+
+          <div *ngIf="false" class="modal-body w-100">
+            <div class="contained-fluid w-100 text-left">
+              <div class="row p-2">
+                <div class="col-md-4 mt-2">
+                  Rate a Professional:
+                </div>
+                <div class="col-md-8" style="vertical-align: top;">
+
+
+
+
+                  <button (click)="GiveRating($event,'1',stars.star1)"
+                    [ngClass]="stars.star1==true ? 'starorange' : 'starblack'" [value]="stars.star1" type="button"
+                    class="btnrating btn btn-default btn-lg" data-attr="1" id="star1" name="star1">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </button>
+                  <button (click)="GiveRating($event,'2',stars.star2)"
+                    [ngClass]="stars.star2==true ? 'starorange' : 'starblack'" [value]="stars.star2" type="button"
+                    class="btnrating btn btn-default btn-lg" data-attr="2" id="star2" name="star2">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </button>
+                  <button (click)="GiveRating($event,'3',stars.star3)"
+                    [ngClass]="stars.star3==true ? 'starorange' : 'starblack'" [value]="stars.star3" type="button"
+                    class="btnrating btn btn-default btn-lg" data-attr="3" id="star3" name="star3">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </button>
+                  <button (click)="GiveRating($event,'4',stars.star4)"
+                    [ngClass]="stars.star4==true ? 'starorange' : 'starblack'" [value]="stars.star4" type="button"
+                    class="btnrating btn btn-default btn-lg" data-attr="4" id="star4" name="star4">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </button>
+                  <button (click)="GiveRating($event,'5',stars.star5)"
+                    [ngClass]="stars.star5==true ? 'starorange' : 'starblack'" [value]="stars.star5" type="button"
+                    class="btnrating btn btn-default btn-lg" data-attr="5" id="star5" name="star5">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </button>
+
+
+                </div>
+              </div>
+              <div class="row p-2">
+                <div class="col-md-4 mt-2">
+                  Feedback/ Review:
+                </div>
+                <div class="col-md-8" style="vertical-align: top;">
+                  <textarea class="form-control" [(ngModel)]="feedback.ReviewComments" id="txtFeedback"
+                    rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="false" class="modal-body w-100">
+            <div class="contained-fluid w-100 text-left legend">
+              <div class="row p-2">
+                <div class="col-md-6">
+                  Professional Mobile No:
+                </div>
+                <div class="col-md-6">
+                  {{item.mobileNumber}}
+                </div>
+              </div>
+
+              <div class="row p-2">
+                <div class="col-md-6">
+                  Professional EmailId:
+                </div>
+                <div class="col-md-6">
+                  {{item.emailId}}
+                </div>
+              </div>
+
+              <div class="row p-2">
+                <div class="col-md-6">
+                  City:
+                </div>
+                <div class="col-md-6">
+                  {{item.cityName}}
+                </div>
+              </div>
+
+              <div class="row p-2">
+                <div class="col-md-6">
+                  Amount Paid:
+                </div>
+                <div class="col-md-6">
+                  {{item.total}}
+                </div>
+              </div>
+              <div class="row p-2">
+                <div class="col-md-6">
+                  Payment Mode:
+                </div>
+                <div class="col-md-6">
+                  {{item.modeOfPayment}}
+                </div>
+              </div>
+              <div class="row p-2">
+                <div class="col-md-6">
+                  Package:
+                </div>
+                <div class="col-md-6">
+                  {{item.packageName}}
+                </div>
+              </div>
+
+              <div class="row p-2">
+                <div class="col-md-6">
+                  Review Comments:
+                </div>
+                <div class="col-md-6">
+                  {{item.reviewComments}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+
+            <!-- <button *ngIf="isRating" type="button" class="btn btn-primary" style="margin-left: 1px;"
+              (click)="SubmitFeedback(item.bookingId)">Submit Feedback</button>
+            <button *ngIf="!isRating" type="button" class="btn btn-primary" style="margin-left: 1px;"
+              (click)="CancelBooking(item.bookingId,4)">Cancel Booking</button> -->
+            <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Close</button>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <app-header></app-header>
+
+<div class="container-fluid jumbotron h-100" style="background-color: linen;margin-top: 25px;height:100%">
+    <div class="container h-100 mt-5">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card border-primary mb-3 w-100">
+                    <div class="card-header font-weight-bold">Order Details</div>
+                    <div class="card-body w-100 h-100">
+                        <div class="conatiner-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered w-100">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>TempleName</th>
+                                                <th>Darshan</th>
+                                                <th>Darshan Price</th>
+
+                                                <th>Room</th>
+                                                <th>Room Price</th>
+
+                                                <th>Total</th>
+                                                <th>Payment Method</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            <tr *ngFor="let data of templeInvoiceData">
+                                                <td>{{data.templeName}}</td>
+                                                <td>{{data.darshanType}}</td>
+                                                <td>{{data.darshanPrice}}</td>
+
+                                                <td>{{data.roomType}}</td>
+                                                <td>{{data.roomPrice}}</td>
+
+                                                <td>{{data.totalAmount}}</td>
+                                                <td>{{data.modeOfPayment}}</td>
+                                                <td><input type="button"
+                                                        (click)="ShowServiceInfo(data.templeId, data.invoiceNo)"
+                                                        value="View Booking"></td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <ng-template #mymodal let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">
+
+                            <span *ngIf="!isRating"> Booking Details</span>
+                            <span *ngIf="isRating">Rate your Experience</span>
+                        </h4>
+                        <button type="button" style="border:0px;" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body w-100">
+                        <div class="contained-fluid w-100 text-left">
+                            <table class="table table-bordered w-100">
+                                <tr>
+                                    <th>Service Name</th>
+                                    <th>Service Date & Time</th>
+                                    <th>Order No</th>
+                                    <th>Amount</th>
+                                </tr>
+                                <tr *ngFor="let item of selectedTempleInvoiceData" class="legends">
+                                    <th>{{item.serviceName}}</th>
+                                    <th>{{item.bookingDateTime}}</th>
+                                    <th>{{item.orderNo}}</th>
+                                    <th>{{item.bookingAmount}}</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <app-header></app-header>
+<div class="container-fluid jumbotron" style="background-color: linen; height:100%">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-primary mb-3 w-100">
           <div class="card-header font-weight-bold">Order Details: {{templeServiceDetails[0].templeName}}
             <div class="pull-right">Invoice No: {{templeServiceDetails[0].invoice}}</div>
           </div>
@@ -207,4 +607,4 @@
             </div>
         </div>
     </div>
-    <app-footer></app-footer> -->
+    <app-footer></app-footer> --> -->

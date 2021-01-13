@@ -1,47 +1,48 @@
-
 <app-adminheader></app-adminheader>
 
-<div class="container-fluid w-100" style="margin-top: 20px;" >
-  <div class="text-center"> <h4>Manage Services</h4></div>
-    <div class="row">
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-pattern">
-                <div class="card-body">
-                    <div class="float-right">
-                        <i class="fa fa-archive text-primary h4 ml-3"></i>
-                    </div>
-                    <h5 class="font-size-20 mt-0 pt-1">{{totalRequests}}</h5>
-                    <p class="text-muted mb-0">Total Requests</p>
-                </div>
-            </div>
+<div class="container-fluid w-100" style="margin-top: 20px;">
+  <div class="text-center">
+    <h4>Manage Services</h4>
+  </div>
+  <div class="row">
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-pattern">
+        <div class="card-body">
+          <div class="float-right">
+            <i class="fa fa-archive text-primary h4 ml-3"></i>
+          </div>
+          <h5 class="font-size-20 mt-0 pt-1">{{totalRequests}}</h5>
+          <p class="text-muted mb-0">Total Requests</p>
         </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-pattern">
-                <div class="card-body">
-                    <div class="float-right">
-                        <i class="fa fa-th text-primary h4 ml-3"></i>
-                    </div>
-                    <h5 class="font-size-20 mt-0 pt-1">{{completedRequests}}</h5>
-                    <p class="text-muted mb-0">Completed Requests</p>
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-pattern">
+        <div class="card-body">
+          <div class="float-right">
+            <i class="fa fa-th text-primary h4 ml-3"></i>
+          </div>
+          <h5 class="font-size-20 mt-0 pt-1">{{completedRequests}}</h5>
+          <p class="text-muted mb-0">Completed Requests</p>
         </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-pattern">
-                <div class="card-body">
-                    <div class="float-right">
-                        <i class="fa fa-file text-primary h4 ml-3"></i>
-                    </div>
-                    <h5 class="font-size-20 mt-0 pt-1">{{pendingRequests}}</h5>
-                    <p class="text-muted mb-0">Pending Requests</p>
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-pattern">
+        <div class="card-body">
+          <div class="float-right">
+            <i class="fa fa-file text-primary h4 ml-3"></i>
+          </div>
+          <h5 class="font-size-20 mt-0 pt-1">{{pendingRequests}}</h5>
+          <p class="text-muted mb-0">Pending Requests</p>
         </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <form>
-                       <!--<div class="form-group mb-0">
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form>
+            <!--<div class="form-group mb-0">
                             <label>Search</label>
                             <div class="input-group mb-0">
                                 <input type="text" class="form-control" placeholder="Search..." aria-describedby="project-search-addon" />
@@ -50,109 +51,125 @@
                                 </div>
                             </div>
                         </div>-->
-                        <div class="form-group mb-0">
-                          <button class="btn btn-danger" type="button" id="project-search-addon" (click)="getbookingData()">Refresh</button>
+            <div class="form-group mb-0">
+              <button class="btn btn-danger" type="button" id="project-search-addon"
+                (click)="getbookingData()">Refresh</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+
+  <div class="row">
+    <div class="col-lg-12 w-100">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive project-list">
+            <table class="table project-table table-centered table-nowrap">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Services</th>
+                  <th scope="col">Booking Date</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Vendor</th>
+                  <th style="display: none;">MobileNumber</th>
+                  <th style="display: none;">EamilID</th>
+                  <th scope="col">Customer</th>
+                  <th scope="col">Amount Paid</th>
+                  <th scope="col">Payment Mode</th>
+                  <th scope="col">City</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Update Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of adminDasboard; let i=index">
+                  <th scope="row">{{i+1}}</th>
+                  <td><a href="">{{item.serviceName}}</a></td>
+                  <td>{{item.bookingDate}}</td>
+                  <td>
+                    {{item.bookingTime}}
+                  </td>
+                  <td *ngIf="item.vendorname == null">
+                    <app-multivendorselectdropdown [vendor]="item"
+                      (shareServiceCheckedVendorList)="shareServiceCheckedVendorList($event)"></app-multivendorselectdropdown>
+                  </td>
+                  <td *ngIf="item.vendorname != null">
+                    {{item.vendorname}}
+                  </td>
+                  <td style="display: none;">{{item.vendor_MobileNumber}}</td>
+                  <td style="display: none;">{{item.vednor_EmailID}}</td>
+                  <td>
+                    {{item.username}}
+                  </td>
+                  <td>
+                    {{item.bookingAmount}}
+                  </td>
+                  <td>
+                    {{item.paymentMode}}
+                  </td>
+                  <td>
+                    {{item.cityName}}
+                  </td>
+                  <td>
+                    <span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i>
+                      {{item.bookingStatus}}</span>
+                  </td>
+
+                  <td>
+                    <div class="action">
+                      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <button type="button" class="btn btn-primary">Update</button>
+                        <div class="btn-group" role="group">
+                          <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item pointer" (click)="AssignVendor(item.bookingId)">Assign Vendor</a>
+                            <a *ngIf="item.bookingType=='virtualPooja' || item.bookingType=='virtualAstrology'"
+                              class="dropdown-item pointer"
+                              (click)="AddMeeting(item.bookingId,item.bookingStatusID,item.vendorname)">Add Meeting</a>
+                            <a *ngIf="item.bookingStatusID=='7'" class="dropdown-item pointer"
+                              (click)="ChangeStatus(item.bookingId,1,item.vendorname,item.bookingType,item.vendor_MobileNumber,item.vednor_EmailID)">Approve</a>
+                            <a *ngIf="item.bookingStatusID!='7'" class="dropdown-item pointer"
+                              (click)="ChangeStatus(item.bookingId,5,item.vendorname,item.bookingType,item.vendor_MobileNumber,item.vednor_EmailID)">Approve</a>
+                            <a class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,4)">Cancel</a>
+                          </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end row -->
-
-    <div class="row">
-        <div class="col-lg-12 w-100">
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive project-list">
-                        <table class="table project-table table-centered table-nowrap">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Services</th>
-                                    <th scope="col">Booking Date</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Vendor</th>
-                                    <th scope="col">Customer</th>
-                                    <th scope="col">Amount Paid</th>
-                                    <th scope="col">Payment Mode</th>
-                                    <th scope="col">City</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Update Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of adminDasboard; let i=index">
-                                    <th scope="row">{{i+1}}</th>
-                                    <td><a href="">{{item.serviceName}}</a></td>
-                                    <td>{{item.bookingDate}}</td>
-                                    <td>
-                                        {{item.bookingTime}}
-                                    </td>
-                                    <td>
-                                        {{item.vendorname}}
-                                    </td>
-                                    <td>
-                                      {{item.username}}
-                                  </td>
-                                  <td>
-                                    {{item.bookingAmount}}
-                                </td>
-                                <td>
-                                  {{item.paymentMode}}
-                              </td>
-                              <td>
-                                {{item.cityName}}
-                            </td>
-                                    <td>
-                                        <span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> {{item.bookingStatus}}</span>
-                                    </td>
-
-                                    <td>
-                                        <div class="action">
-                                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                                <button type="button" class="btn btn-primary" >Update</button>
-                                                <div class="btn-group" role="group">
-                                                  <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                    <a class="dropdown-item pointer" (click)="AssignVendor(item.bookingId)">Assign Vendor</a>
-                                                    <a *ngIf="item.bookingType=='virtualPooja' || item.bookingType=='virtualAstrology'" class="dropdown-item pointer" (click)="AddMeeting(item.bookingId,item.bookingStatusID,item.vendorname)">Add Meeting</a>
-                                                    <a *ngIf="item.bookingStatusID=='7'" class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,1,item.vendorname,item.bookingType)">Approve</a>
-                                                    <a *ngIf="item.bookingStatusID!='7'" class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,5,item.vendorname,item.bookingType)">Approve</a>
-                                                    <a class="dropdown-item pointer" (click)="ChangeStatus(item.bookingId,4)">Cancel</a>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                           <!-- <a  class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
+                      </div>
+                      <!-- <a  class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
                                             <a  class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>-->
-                                        </div>
-                                    </td>
-                                </tr> <!--end of gor loop-->
-
-
-                            </tbody>
-                        </table>
                     </div>
-                    <!-- end project-list -->
+                  </td>
+                </tr>
+                <!--end of gor loop-->
 
-                    <div class="pt-3" style="display: none;">
-                        <ul class="pagination justify-content-end mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
+              </tbody>
+            </table>
+          </div>
+          <!-- end project-list -->
+
+          <div class="pt-3" style="display: none;">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- end row -->
+  </div>
+  <!-- end row -->
 </div>
 
 <ng-template #mymodal let-modal>
@@ -161,7 +178,7 @@
       <span *ngIf="isAssignVendor">Assign Vendor</span>
       <span *ngIf="isMeeting">Schedule Meeting</span>
     </h4>
-    <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <button type="button" style="border:0px;" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">×</span>
     </button>
   </div>
@@ -170,39 +187,37 @@
       <div class="row p-2">
         <div class="col-md-12">
           <select style="width: 200px;margin-right: 20px;" name="cityID" placeholder="Title" class="form-control"
-          (change)="selectCity($event)"  [(ngModel)]="cityId"  >
-                 <option *ngFor="let city of City"
-                 [value]="city.cityID"
-                 [selected]="cityId==city.cityID">
+            (change)="selectCity($event)" [(ngModel)]="cityId">
+            <option *ngFor="let city of City" [value]="city.cityID" [selected]="cityId==city.cityID">
 
-                  {{city.cityName}}
-             </option>
+              {{city.cityName}}
+            </option>
           </select>
         </div>
       </div>
       <div class="row p-2">
         <div class="col-md-12">
-          <table class="table table-bordered w-100" >
+          <table class="table table-bordered w-100">
             <thead class="thead-light">
-                <tr>
-                  <th></th>
-                    <th>Vendor Name</th>
-                    <th>City</th>
-                    <th>Mobile Number</th>
-                    <th>Email Id</th>
-                    <th>Address</th>
-                </tr>
+              <tr>
+                <th></th>
+                <th>Vendor Name</th>
+                <th>City</th>
+                <th>Mobile Number</th>
+                <th>Email Id</th>
+                <th>Address</th>
+              </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of vendorlist;let i=index"  [class.selected]="i == HighlightRow"  >
-                  <td><a  class="text-danger pointer"  (click)="SelectVendor(item.vendorId,i)"> Select</a></td>
-                    <td>{{item.vendorName}}</td>
-                    <td>{{item.cityName}}</td>
-                    <td>{{item.mobileNumber}}</td>
-                    <td>{{item.emailId}}</td>
-                    <td>{{item.vendorAddress}}</td>
+              <tr *ngFor="let item of vendorlist;let i=index" [class.selected]="i == HighlightRow">
+                <td><a class="text-danger pointer" (click)="SelectVendor(item.vendorId,i)"> Select</a></td>
+                <td>{{item.vendorName}}</td>
+                <td>{{item.cityName}}</td>
+                <td>{{item.mobileNumber}}</td>
+                <td>{{item.emailId}}</td>
+                <td>{{item.vendorAddress}}</td>
 
-                </tr>
+              </tr>
 
             </tbody>
           </table>
@@ -214,45 +229,47 @@
     <div class="contained-fluid w-100" *ngIf="isMeeting">
       <div class="col-md-7 mt-10 w-50" style="margin-left:30%">
         <div class="card border-primary mb-3 w-100">
-            <div class="card-header font-weight-bold text-center">Schedule Meeting</div>
+          <div class="card-header font-weight-bold text-center">Schedule Meeting</div>
 
-            <div class="card-body" style="height: 100%">
+          <div class="card-body" style="height: 100%">
 
-              <form (ngSubmit)="CreateMeeting()" class="contact-form form-validate"  novalidate="novalidate">
-                <div class="row">
-                    <div class="col-md-8  offset-3">
-                        <div class="form-group col-centered">
-                          <input type="meetingid" class="form-control" required id="meetingid" name="meetingid"  placeholder="Enter Meeting Id" [(ngModel)]="loginModel.MeetingId">
-                        </div>
-                    </div>
-
-
-                    </div>
-                    <div class="row">
-                      <div class="col-md-8  offset-3">
-                          <div class="form-group col-centered">
-                            <input type="pwd" class="form-control" required id="password" name="password"  placeholder="Enter Meeting Password" [(ngModel)]="loginModel.MeetingPassword">
-                          </div>
-                      </div>
+            <form (ngSubmit)="CreateMeeting()" class="contact-form form-validate" novalidate="novalidate">
+              <div class="row">
+                <div class="col-md-8  offset-3">
+                  <div class="form-group col-centered">
+                    <input type="meetingid" class="form-control" required id="meetingid" name="meetingid"
+                      placeholder="Enter Meeting Id" [(ngModel)]="loginModel.MeetingId">
+                  </div>
+                </div>
 
 
-                      </div>
-                    <div class="row mt-10 text-center" style="margin-top:40px ;">
-                      <div class="col-md-8  offset-2">
-                          <div class="form-group col-centered">
-                            <button type="submit"  class="btn btn-primary col-8" >Schedule Meeting</button>
+              </div>
+              <div class="row">
+                <div class="col-md-8  offset-3">
+                  <div class="form-group col-centered">
+                    <input type="pwd" class="form-control" required id="password" name="password"
+                      placeholder="Enter Meeting Password" [(ngModel)]="loginModel.MeetingPassword">
+                  </div>
+                </div>
 
-                          </div>
-                      </div>
 
+              </div>
+              <div class="row mt-10 text-center" style="margin-top:40px ;">
+                <div class="col-md-8  offset-2">
+                  <div class="form-group col-centered">
+                    <button type="submit" class="btn btn-primary col-8">Schedule Meeting</button>
 
-
-                      </div>
-                      </form>
+                  </div>
+                </div>
 
 
 
-            </div>
+              </div>
+            </form>
+
+
+
+          </div>
 
 
         </div>

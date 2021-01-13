@@ -13,8 +13,8 @@
             <form #bookPanditForm="ngForm" (ngSubmit)="bookPanditForm.form.valid && BookPanditUsingMap()">
 
                 <div class="form-group row">
-                    <label>Puja language</label>
-                    <select name="languageId" [(ngModel)]="panditModel.languageId" class="form-control"
+                    <label>Pooja language</label>
+                    <select name="languageId" [(ngModel)]="panditModel.languageId" class="form-control" (change)="selectlang($event)"
                         [ngClass]="{'disableDiv': !continueClicked}" #languageId="ngModel" required>
                         <option *ngFor="let lang of language" [value]="lang.languageID">
                             {{lang.languageName}}
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label>Puja Location</label>
+                    <label>Pooja Location</label>
                     <input type="text" id="pujaLocation" name="pujaLocation" [(ngModel)]="panditModel.pujaLocation"
                         class="form-control" #pujaLocation="ngModel" [ngClass]="{'disableDiv': !continueClicked}" />
                 </div>
@@ -55,7 +55,7 @@
                             [ngClass]="{'disableDiv': !continueClicked}" [disabled]="panditModel.isNewLocation" />
                     </div>
                     <div class="col-11">
-                        Puja at different location? Drag marker on map to select location
+                        Pooja at different location? Drag marker on map to select location
                     </div>
                 </div>
 
@@ -176,7 +176,7 @@
                             [ngClass]="{'disableDiv': !continueClicked}" />
                     </div>
                     <div class="col-11 ">
-                        <p> I Agree to the <a href="#">Terms and Conditions</a> and <a href="#">Disclaimer</a> of
+                        <p> I Agree to the <a  routerLink="/terms" routerLinkActive="active" >Terms and Conditions</a> and <a href="#">Disclaimer</a> of
                             service.</p>
                     </div>
                 </div>
@@ -204,13 +204,13 @@
         <div class="border col-8" *ngIf="!continueClicked">
 
             <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-                <div *ngFor="let marker of vendors;let i=index">
+                <div *ngFor="let marker of VendorsList;let i=index">
                     <agm-marker [latitude]="marker.vendor_Latitude" [longitude]="marker.vendor_Longitude"
                         *ngIf="isShown" (mouseOver)="onMouseOver(infoWindow, $event)"
                         [iconUrl]="{url: '../../assets/icons/om.jpg', scaledSize: {width: 30, height: 30}}">
                         <agm-info-window [disableAutoPan]="false" #infoWindow>
                             <div class="text-center">
-                                <img src="data:image/png;base64,{{marker.photo}}" width="50px" height="70px" />
+                                <img src="data:image/png;base64,{{marker.vendor_Photo}}" width="50px" height="50px" [routerLink]="['/vendorprofile',marker.vendorID]" routerLinkActive="active"  />
                             </div>
                             <div class="InfoWindow">
                                 <div class="form-group row">
@@ -221,14 +221,22 @@
                                         {{marker.vendor_FirstName}}
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <div class="col-5">
                                         <label>Contact :</label>
                                     </div>
                                     <div class="col-7">
                                         {{marker.vendor_MobileNumber}}
                                     </div>
-                                </div>
+                                </div> -->
+                                <!-- <div class="form-group row">
+                                    <div class="col-5">
+                                        <label>Rishi Pravara :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        {{marker.vendor_Rishipravara}}
+                                    </div>
+                                </div> -->
                                 <div class="form-group row">
                                     <div class="col-5">
                                         <label>Address :</label>
@@ -237,7 +245,7 @@
                                         {{marker.vendor_Address1}}
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <div class="col-5">
                                         <label>Latitude :</label>
                                     </div>
@@ -253,7 +261,7 @@
                                     <div class="col-7">
                                         {{marker.vendor_Longitude}}
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div>
                                     <button type="button" class="btn btn-primary" style="margin-left: 10px;"
@@ -265,7 +273,7 @@
                 </div>
                 <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"></agm-marker>
                 <agm-circle [latitude]="radiusLat" [longitude]="radiusLong" [radius]="radius" [fillColor]="'red'"
-                    [circleDraggable]="true" [editable]="false" (dragEnd)="radiusDragEnd($event)"
+                    [circleDraggable]="true" [editable]="false" (dragEnd)="radiusDragEnd($event)" 
                     (radiusChange)="event('radiusChange',$event)">
                 </agm-circle>
 
@@ -305,7 +313,7 @@
                 </tr>
             </table>
 
-            <button type="button" class="btn btn-primary" (click)="GoToCart()">Next</button>
+            <button type="button" class="btn btn-primary" (click)="GoToService()">Next</button>
         </div>
     </div>
 </div>

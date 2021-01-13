@@ -176,6 +176,7 @@ import { VendorDetailsService } from './vendordetails/VendorDetails.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {VendordetailsComponent} from './vendordetails/vendordetails.component';
 import {PressreleaseComponent} from './pressrelease/pressrelease.component';
+import { MultiVendorSelectDropdownComponent } from './admin/admindashboard/multivendorselectdropdown/multivendorselectdropdown.component';
 
 @NgModule({
   declarations: [
@@ -279,7 +280,8 @@ import {PressreleaseComponent} from './pressrelease/pressrelease.component';
     adminconcernenquiryComponent,
     VendorSearchMapComponent,
     VendordetailsComponent,
-    PressreleaseComponent
+    PressreleaseComponent,
+    MultiVendorSelectDropdownComponent
 
 
   ],

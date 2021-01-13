@@ -26,7 +26,8 @@
                               <thead class="thead-light">
                                   <tr>
                                       <th>Order No</th>
-                                      <th *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">Service Name</th>
+                                      <th *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit' || cartType=='panditByMap'">Service Name</th>
+                                      <th *ngIf="isPoojaKit">Pooja Kit</th>
                                       <th *ngIf="cartType=='ecart'">Product Name</th>
                                       <th *ngIf="cartType=='vendorpayment'">Name</th>
                                       <th *ngIf="cartType!='vendorpayment'">Service Type</th>
@@ -44,13 +45,14 @@
                                         <span *ngIf="cartType!='vendorpayment'">{{item.serviceName}}</span>
                                         <span *ngIf="cartType=='vendorpayment'">{{item.name}}</span>
                                       </td>
+                                      <td *ngIf="isPoojaKit">{{item.productName}}</td>
                                       <td *ngIf="cartType!='vendorpayment'">
                                         <span *ngIf="cartType=='service'">Pooja</span>
                                         <span *ngIf="cartType=='astrology'">Astrology</span>
                                         <span *ngIf="cartType=='virtual'">Virtual Online</span>
-                                        <span *ngIf="cartType=='pandit'">
-                                          <span *ngIf="item.bookingType=='panditPooja'">Pooja</span>
-                                          <span *ngIf="item.bookingType=='panditAstrology'">Astrology</span>
+                                        <span *ngIf="cartType=='pandit' ||cartType=='panditByMap'">
+                                          <span *ngIf="item.bookingType=='panditPooja' ||item.bookingType=='panditByMapPooja'">Pooja</span>
+                                          <span *ngIf="item.bookingType=='panditAstrology' ||item.bookingType=='panditByMapAstrology'">Astrology</span>
                                         </span>
                                         <span *ngIf="cartType=='ecart'">Product</span>
                                       </td>

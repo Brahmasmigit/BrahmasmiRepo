@@ -130,7 +130,7 @@ export class VendordashboardComponent implements OnInit {
   }
   CalendarTab(CalendarTab)
   {
-    
+    console.log('changed')
     this.getOngoing(this.vendorId,CalendarTab);
     console.log('changed')
   }

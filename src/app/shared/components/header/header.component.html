@@ -313,7 +313,6 @@
 
   <div id="mySidenav" class="sidenav">
 
-    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
     <!-- <a routerLink="/homepage" routerLinkActive="active">Home</a>
     <a routerLink="/vendorsearch" routerLinkActive="active">Book Pandit</a>
     <a  routerLink="/bookpanditmap" routerLinkActive="active">Book Pandit Using Map</a>
@@ -336,45 +335,91 @@
     <a  routerLink="/communityservices" routerLinkActive="active">Community Services</a>
     <a  routerLink="/poojasubscriptionform" routerLinkActive="active">Pooja Subscription Form</a>
     <a  *ngIf="isLogin && !isVendor" class="nav-link" routerLink="/tempeuserdashboard" routerLinkActive="active">Temple Orders</a> -->
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
     <a routerLink="/homepage" routerLinkActive="active">Home</a>
-   
-    <div class="Pandit-container"> 
-       <a class="Pandit-btn" (click)="showPandit=!showPandit">Pandit 
-         <i class="fa fa-caret-down" style="top:5px;"></i>
-       </a>
-         <div *ngIf="showPandit" style="background-color: #dd8c30;">
-         <a routerLink="/vendorsearch" routerLinkActive="active">Book Pandit</a>
-         <a routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja for Pandit</a>
-         <a href="#">Bulk Pandit Booking</a>
-       </div>
-     </div> 
-    
-    <div class="Astrology-container"> 
-     <a class="Astrology-btn" (click)="showAstrology=!showAstrology">Astrology 
-       <i class="fa fa-caret-down" style="top:5px"></i>
-     </a>
-       <div *ngIf="showAstrology" style="background-color: #dd8c30;">
-       <a routerLink="/vendorsearch" routerLinkActive="active">Book Astrologer</a>
-       <a routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja for Astrologer</a>
-     </div>
-   </div> 
-  
-   <div class="E-Cart-container"> 
-     <a class="E-Cart-btn" (click)="showECart=!showECart">E-Cart 
-       <i class="fa fa-caret-down" style="top:5px"></i>
-     </a>
-       <div *ngIf="showECart" style="background-color: #dd8c30;">
-       <a href="#">Book Pooja Items</a>
-       <a routerLink="/storeregistration" routerLinkActive="active">Register As a store</a>
-     </div>
-   </div> 
-  
-    
-  
-     <a routerLink="/templeservices" routerLinkActive="active">Temple Services</a>
-     <a routerLink="/adminlogin" routerLinkActive="active" *ngIf="!isLogin">Admin</a>
-     <a routerLink="/blog" routerLinkActive="active">Blog</a>
-     <a *ngIf="isLogin"  (click)="Logout()"  >Logout</a>
+    <a *ngIf="isLogin && isVendor"  routerLink="/vendordashboard" routerLinkActive="active">My Dashboard</a>
+    <a  *ngIf="isLogin && !isVendor"  routerLink="/userdashboard" routerLinkActive="active">My Dashboard</a>
+    <div class="Pandit-container">
+      <a class="Pandit-btn" (click)="showPandit=!showPandit">Pandit
+        <i class="fa fa-caret-down" style="top:5px;"></i>
+      </a>
+      <div *ngIf="showPandit" style="background-color: #dd8c30;">
+        <a routerLink="/bookpanditmap" routerLinkActive="active">Book Pandit</a>
+        <a routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja for Pandit</a>
+        <a routerLink="/bookpanditmap" routerLinkActive="active">Bulk Pandit Booking</a>
+      </div>
+    </div>
+
+    <div class="Astrology-container">
+      <a class="Astrology-btn" (click)="showAstrology=!showAstrology">Astrology
+        <i class="fa fa-caret-down" style="top:5px"></i>
+      </a>
+      <div *ngIf="showAstrology" style="background-color: #dd8c30;">
+        <a routerLink="/astrologyslotbooking" routerLinkActive="active">Book Astrologer</a>
+        <a routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja for Astrologer</a>
+      </div>
+    </div>
+
+    <div class="E-Cart-container">
+      <a class="E-Cart-btn" (click)="showECart=!showECart">E-Cart
+        <i class="fa fa-caret-down" style="top:5px"></i>
+      </a>
+      <div *ngIf="showECart" style="background-color: #dd8c30;">
+        <a [routerLink]="['/productcategories']" routerLinkActive="active">Book Pooja Items</a>
+        <a routerLink="/storeregistration" routerLinkActive="active">Register As a store</a>
+      </div>
+    </div>
+    <a routerLink="/userproductorders" routerLinkActive="active" *ngIf="isLogin && !isVendor">My Orders</a>
+
+
+    <a routerLink="/templeservices" routerLinkActive="active">Temple Services</a>
+    <a  *ngIf="isLogin && !isVendor" class="nav-link" routerLink="/tempeuserdashboard" routerLinkActive="active">Temple Orders</a>
+    <a routerLink="/adminlogin" routerLinkActive="active" *ngIf="!isLogin">Admin</a>
+    <a routerLink="/blog" routerLinkActive="active">Blog</a>
+
+    <a *ngIf="isLogin" (click)="Logout()">Logout</a>
+      <!-- <a routerLink="/homepage" routerLinkActive="active">Home</a>
+      <a *ngIf="isLogin && isVendor"  routerLink="/vendordashboard" routerLinkActive="active">My Dashboard</a>
+      <a  *ngIf="isLogin && !isVendor"  routerLink="/userdashboard" routerLinkActive="active">My Dashboard</a>
+      <div class="Pandit-container">
+        <a class="Pandit-btn" (click)="showPandit=!showPandit">Pandit
+          <i class="fa fa-caret-down" style="top:5px;"></i>
+        </a>
+        <div *ngIf="showPandit" style="background-color: #dd8c30;">
+          <a routerLink="/vendorsearch" routerLinkActive="active">Book Pandit</a>
+          <a routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja for Pandit</a>
+          <a routerLink="/bookpanditmap" routerLinkActive="active">Bulk Pandit Booking</a>
+        </div>
+      </div>
+
+      <div class="Astrology-container">
+        <a class="Astrology-btn" (click)="showAstrology=!showAstrology">Astrology
+          <i class="fa fa-caret-down" style="top:5px"></i>
+        </a>
+        <div *ngIf="showAstrology" style="background-color: #dd8c30;">
+          <a routerLink="/astrologyslotbooking" routerLinkActive="active">Book Astrologer</a>
+          <a routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja for Astrologer</a>
+        </div>
+      </div>
+
+      <div class="E-Cart-container">
+        <a class="E-Cart-btn" (click)="showECart=!showECart">E-Cart
+          <i class="fa fa-caret-down" style="top:5px"></i>
+        </a>
+        <div *ngIf="showECart" style="background-color: #dd8c30;">
+          <a [routerLink]="['/productcategories']" routerLinkActive="active">Book Pooja Items</a>
+          <a routerLink="/storeregistration" routerLinkActive="active">Register As a store</a>
+        </div>
+      </div>
+      <a routerLink="/userproductorders" routerLinkActive="active" *ngIf="isLogin && !isVendor">My Orders</a>
+
+
+      <a routerLink="/templeservices" routerLinkActive="active">Temple Services</a>
+      <a  *ngIf="isLogin && !isVendor" class="nav-link" routerLink="/tempeuserdashboard" routerLinkActive="active">Temple Orders</a>
+      <a routerLink="/adminlogin" routerLinkActive="active" *ngIf="!isLogin">Admin</a>
+      <a routerLink="/blog" routerLinkActive="active">Blog</a>
+
+      <a *ngIf="isLogin" (click)="Logout()">Logout</a> -->
   </div>
 
   <div id="main">

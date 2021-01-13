@@ -188,10 +188,10 @@
   </div>
     <div class="form-group row">
           <div class="col-1 ">
-      <input type="checkbox"  (change)="onCheckboxChange($event)" />
+      <input type="checkbox"  (change)="onCheckboxChange($event)" [ngClass]="{'disableDiv': !continueClicked}"  />
           </div>
           <div class="col-11 ">
-       <p> I Agree to the <a href="#">Terms and Conditions</a> and <a href="#">Disclaimer</a> of service.</p>
+       <p> I Agree to the <a routerLink="/terms" routerLinkActive="active">Terms and Conditions</a></p>
        </div>
     </div>
       <div class="form-group row" >

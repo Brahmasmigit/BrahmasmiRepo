@@ -105,6 +105,7 @@ const routes: Routes = [
   { path: 'package/:serviceId/:serviceTypeId/:vendorId', component: PackageComponent },
   //{ path: 'package/:serviceId/:serviceTypeId/:vendorId/:languageName/:cityId', component: PackageComponent },
   { path: 'package/:serviceTypeId/:serviceId/:vendorId/:cityId/:languageName', component: PackageComponent },
+  { path: 'package/:serviceTypeId/:serviceId/:cityId/:languageName', component: PackageComponent },
   { path: 'userdashboard', component: UserdashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admindashboard', component: AdmindashboardComponent },
@@ -189,7 +190,8 @@ const routes: Routes = [
   {path:'adminconcernenquiry',component:adminconcernenquiryComponent},
   { path: 'bookpanditmap', component: VendorSearchMapComponent },
   {path:'vendordetails',component:VendordetailsComponent},
-  {path:'pressrelease',component:PressreleaseComponent}
+  {path:'pressrelease',component:PressreleaseComponent},
+  { path:'bookpanditmap/:servicetypeId/:serviceId/:cityId/:languageName', component: VendorSearchMapComponent },
 
 
 

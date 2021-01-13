@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup ,FormsModule} from "@angular/forms";
 import 'quill-emoji/dist/quill-emoji.js';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import {ToastService} from '../shared/services/toastservice';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-adminservicedetails',
   templateUrl: './adminservicedetails.component.html',
@@ -26,6 +27,7 @@ export class AdminservicedetailsComponent implements OnInit {
  btntext:string;
  serviceForm:FormGroup;
  selectedIndex:any;
+ @ViewChild('serviceForm') myForm: NgForm;
  constructor(private adminServiceDetailsService: AdminServiceDetailsService, private route: Router,
   private domSanitizer:DomSanitizer,private formBuilder:FormBuilder,private toastService:ToastService) {
   this.addModules();
@@ -85,6 +87,7 @@ onDelete(index:any)
             var c= data;
             this.showError('Service Deleted Successfully...')
             //this.ngOnInit();
+            this.myForm.resetForm();
             this.getServices();
             this.serviceModel={};
             this.imageURL="";
@@ -142,6 +145,7 @@ onDelete(index:any)
           var c = data;
           if(this.btntext=="Save")
           {
+            
             this.showError('Service Saved Successfully...')
           }
           if(this.btntext=="Update")
@@ -149,6 +153,7 @@ onDelete(index:any)
             this.showError('Service Updated Successfully...')
           }
           this.btntext="Save";
+          this.myForm.resetForm();
           //this.ngOnInit();
           this.getServices();
           this.serviceModel={};

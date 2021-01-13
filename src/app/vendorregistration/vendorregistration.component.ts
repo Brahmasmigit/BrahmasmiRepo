@@ -65,9 +65,9 @@ export class VendorRegistrationComponent implements OnInit {
     this.getVirtualPlatform();
     this.btnText="Register";
     this.userTypes=[
-      { userTypeID: 2, userTypeName: "Pandit" },
-      { userTypeID: 5, userTypeName: "Astrologer" },
-      { userTypeID: 6, userTypeName: "Others" }
+      { userTypeID: 2, userTypeName: "Pandit" }
+      // { userTypeID: 5, userTypeName: "Astrologer" },
+      // { userTypeID: 6, userTypeName: "Others" }
      ];
      this.vendor.userTypeID=this.userTypes[0].userTypeID;
      if(sessionStorage.getItem("vendorenquiry")!=null)

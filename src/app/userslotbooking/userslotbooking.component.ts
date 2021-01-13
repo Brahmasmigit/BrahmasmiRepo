@@ -57,7 +57,7 @@ export class UserslotbookingComponent implements OnInit {
           else{
                this.poojakitname=false;
           }
-
+       
           this.booking.Total=element.Total;
           this.booking.packageName=element.PackageName;
           this.booking.languageName=element.languageName;
@@ -86,7 +86,6 @@ export class UserslotbookingComponent implements OnInit {
         this.orderdetails[i].BookingTime=this.booking.BookingTime;
         this.orderdetails[i].ReviewComments="";//this.booking.ReviewComments;
         this.orderdetails[i].VendorId=this.selectVendorOption == true ? this.autoVendorId: Number(this.booking.vendorId);
-
       }
     });
     sessionStorage.setItem("orderdetails", JSON.stringify(this.orderdetails));

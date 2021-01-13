@@ -41,6 +41,7 @@ export class TempleDetailsComponent implements OnInit {
     this.bookedService = [];
     this.userServiceRequest.serviceDetails = [];
     this.userServiceRequest.accommodationDetails = [];
+    this.userDetails.AcmdNoOfDays = 100;
 
     if (JSON.parse(sessionStorage.getItem("templeServiceDetails")) != null || JSON.parse(sessionStorage.getItem("templeServiceDetails")) != undefined)
       this.BindServiceDetails();
@@ -99,6 +100,7 @@ export class TempleDetailsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    var dateTimeValid: boolean = true;
     if (form.invalid)
       return;
 
@@ -113,13 +115,28 @@ export class TempleDetailsComponent implements OnInit {
     this.userServiceRequest.UserRequestQuery = this.userDetails.UserRequestQuery;
 
     this.userServiceRequest.TempleId = JSON.parse(this.templeId.toString());
-    this.userServiceRequest.TempleCity = this.templeDetails.cityName;
+    this.userServiceRequest.TempleCityId = this.templeDetails.cityId;
+    this.userServiceRequest.TempleStateId = this.templeDetails.stateId;
 
     this.userServiceRequest.AcmdNoOfDays = this.userDetails.AcmdNoOfDays;
 
     this.userServiceRequest.serviceDetails = [];
 
     if (this.multiServiceDateTime) {
+
+      this.selectedServiceDetails.some((service) => {
+        let item = service.bookingDate.toString();
+        if (!item.includes("-") || service.bookingTime == "") {
+          dateTimeValid = false;
+          return true;
+        }
+      });
+
+      if (!dateTimeValid == true) {
+        this.showError("Booking date or time should be selected for all services");
+        return;
+      }
+
       this.selectedServiceDetails.forEach(service => {
         var item = {} as ServiceRequest;
         item.ServiceId = service.serviceId;
@@ -149,7 +166,11 @@ export class TempleDetailsComponent implements OnInit {
         item.RoomTypeId = acmd.roomTypeId;
         item.RoomType = acmd.roomType;
         item.RoomPrice = acmd.roomPrice;
-        item.RoomBookingDate = this.serviceDetails.AcmdDate;
+        // item.RoomBookingDate = this.serviceDetails.AcmdDate;
+        item.CheckInDate = this.serviceDetails.CheckInDate;
+        item.CheckInTime = this.serviceDetails.CheckInTime;
+        item.CheckOutDate = this.serviceDetails.CheckOutDate;
+        item.CheckOutTime = this.serviceDetails.CheckOutTime;
         this.userServiceRequest.accommodationDetails.push(item);
       })
     }
@@ -185,7 +206,7 @@ export class TempleDetailsComponent implements OnInit {
       classname: 'bg-danger text-light',
       delay: 5000,
       autohide: true,
-      headertext: 'Registration!'
+      headertext: 'Temple Service Booking!'
     });
   }
 }

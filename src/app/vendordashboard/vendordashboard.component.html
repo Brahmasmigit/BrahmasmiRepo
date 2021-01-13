@@ -15,9 +15,9 @@
 
 <tr><td>
 
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <div class="btn-group btn-group-toggle" >
         <label class="btn btn-primary">
-            <input (click)="CalendarTab('current')" type="radio" name="options" id="option1" autocomplete="off" checked=""> Current
+            <input (click)="CalendarTab('current')" type="radio" name="options" id="option1" autocomplete="off" checked="true"> Current
           </label>
         <label class="btn btn-primary">
           <input (click)="CalendarTab('tomorrow')"  type="radio" name="options" id="option1" autocomplete="off"> Tomorrow
@@ -96,10 +96,10 @@
                     <div class="btn-group" role="group">
                       <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" (click)="Accept(item.bookingId,2)">Accept</a>
-                        <a class="dropdown-item" (click)="Accept(item.bookingId,3)">In Progress</a>
+                        <a class="dropdown-item" *ngIf="item.bookingStatusId =='1'"  (click)="Accept(item.bookingId,2)">Accept</a>
+                        <a class="dropdown-item"  (click)="Accept(item.bookingId,3)">In Progress</a>
                         <a class="dropdown-item" (click)="Accept(item.bookingId,6)">Notify Admin</a>
-                        <a class="dropdown-item" (click)="Accept(item.bookingId,4)">Cancel</a>
+                        <a class="dropdown-item" *ngIf="item.bookingStatusId =='1'"  (click)="Accept(item.bookingId,4)">Cancel</a>
                       </div>
                     </div>
                   </div>

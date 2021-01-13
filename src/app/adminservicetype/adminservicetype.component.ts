@@ -1,11 +1,11 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,ViewChild} from '@angular/core';
 import {AdminServiceTypeService} from './adminservicetype.service';
 import {Router } from '@angular/router';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import { elementAt } from 'rxjs/internal/operators/elementAt';
 import {ToastService} from '../shared/services/toastservice';
-
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-adminservicetype',
   templateUrl: './adminservicetype.component.html',
@@ -28,6 +28,7 @@ export class AdminservicetypeComponent implements OnInit {
  base64Image:any;
  uploadForm: FormGroup;base64textString:string;
  selectedIndex:any;
+ @ViewChild('serviceTypeForm') myForm: NgForm;
  constructor(
   private adminServiceTypeService : AdminServiceTypeService,private route: Router,
   private domSanitizer:DomSanitizer,private toastService:ToastService
@@ -64,6 +65,7 @@ export class AdminservicetypeComponent implements OnInit {
               var c= data;
               this.showError('Service Type Deleted Successfully...');
              // this.ngOnInit();
+             this.myForm.resetForm();
              this.imageURL="";
              this.getServicetype();
              this.serviceTypeModel={};
@@ -143,6 +145,7 @@ showPreview(event) {
               {
                 this.showError('Service Type Updated Successfully...')
               }
+              this.myForm.resetForm();
               this.btntext="Save";
               this.imageURL="";
               this.getServicetype();

@@ -1,4 +1,3 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,7 +7,8 @@ import { ToastService } from '../shared/services/toastservice';
 import { UtilitiesService } from '../shared/services/utilities.service';
 import { VendorBookingService } from '../vendorbooking/vendorbooking.service';
 import { VendorLocationService } from '../vendorlocation/vendorlocation.service';
-import { City, Language, Marker, PanditModel, SelectedPanditForService, ServicePackageModel, VendorsDetails } from './vendorsearchmap.model';
+import { ActivatedRoute } from '@angular/router';
+import { City, Language, Marker, Pandit, PanditModel, SelectedPanditForService, ServicePackageModel, VendorsDetails } from './vendorsearchmap.model';
 
 @Component({
   selector: 'app-vendorsearchmap',
@@ -48,20 +48,38 @@ export class VendorSearchMapComponent implements OnInit {
   checkedValue = false;
   city: City;
   selectedCity: any;
+  languageName:any;
+  serviceId:any;cityID:any;serviceTypeId:any;
   @ViewChild('virtualSlotBookingForm') myForm: NgForm;
 
   constructor(private utilitiesService: UtilitiesService, private adminServiceDetailsService: AdminServiceDetailsService,
     private astrologySlotBookingService: AstrologySlotBookingService, private vendorBookingService: VendorBookingService,
-    private vendorLocationService: VendorLocationService, private router: Router, private toastService: ToastService) {
+    private vendorLocationService: VendorLocationService, private router: Router, private toastService: ToastService,private activatedRoute: ActivatedRoute,) {
     this.previous_info_window = null;
   }
 
   ngOnInit(): void {
     this.selectedPandit = [];
+ 
+    this.serviceTypeId= this.activatedRoute.snapshot.params['serviceTypeId'];
+    this.serviceId= this.activatedRoute.snapshot.params['serviceId'];
+    this.languageName= this.activatedRoute.snapshot.params['languageName'];
+    this.cityID= this.activatedRoute.snapshot.params['cityId'];
+
     this.getLanguages();
     this.setCurrentLocation();
     this.getVendorInfo();
     this.getCity();
+    
+  // if(this.serviceId!=null|| this.serviceId!="")
+  // {
+  //   console.log(this.serviceId)
+  //   this.panditModel.CityId=this.cityID;
+  //   console.log(  this.panditModel.CityId)
+  //   this.panditModel.languageName=this.languageName;
+  //   this.getCity();
+  //   this.getLanguages();
+  // }
     this.serviceBookingList = [];
     this.panditModel.isNewLocation = false;
     this.panditModel.currentLocationAddress = "";
@@ -74,6 +92,12 @@ export class VendorSearchMapComponent implements OnInit {
       (data) => {
         if (data) {
           this.language = data;
+          if(this.languageName!=null|| this.languageName!="")
+          {
+            this.panditModel.languageName=this.languageName;
+            console.log(this.panditModel.languageName)
+
+          }
         }
       },
       error => {
@@ -87,6 +111,13 @@ export class VendorSearchMapComponent implements OnInit {
       (data) => {
         if (data)
           this.city = data;
+          // if(this.cityID!=null|| this.cityID!="")
+          // {
+         
+          //   this.selectedCity=data[0].cityID;
+            
+
+          // }
       },
       (error) => {
         this.errorMessage = error;
@@ -97,10 +128,13 @@ export class VendorSearchMapComponent implements OnInit {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         console.log('pos', position);
+        // this.latitude = parseFloat(position.coords.latitude.toFixed(7));
+        // this.longitude =parseFloat( position.coords.longitude.toFixed(7));
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.radiusLat = this.latitude;
         this.radiusLong = this.longitude;
+        console.log(this.latitude,this.longitude)
         this.zoom = 14;
         this.getAddress(this.latitude, this.longitude);
       });
@@ -108,11 +142,12 @@ export class VendorSearchMapComponent implements OnInit {
   }
 
   getAddress(latitude, longitude) {
+  
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
           this.zoom = 16;
-          console.log('addr', results[0]);
+          console.log('addr', results);
           this.address = results[0].formatted_address;
           this.panditModel.pujaLocation = this.address;
 
@@ -281,10 +316,8 @@ export class VendorSearchMapComponent implements OnInit {
       (data) => {
         if (data) {
           this.vendors = data;
-          this.vendors.push({ vendorID: 940, vendor_Address1: 'ecil', vendor_FirstName: 'chari', vendor_MobileNumber: '4353453454', vendor_Latitude: '17.47047259687567', vendor_Longitude: '78.56627678706359' });
-          this.vendors.push({ vendorID: 945, vendor_Address1: 'sharada', vendor_FirstName: 'gowtham', vendor_MobileNumber: '6786545345', vendor_Latitude: '17.482721896434963', vendor_Longitude: '78.5507171958008' });
           console.log('vendor', this.vendors);
-          // this.showDefault();
+          //this.showDefault();
         }
       },
       (error) => {
@@ -310,17 +343,22 @@ export class VendorSearchMapComponent implements OnInit {
     for (var i = 0; i < this.vendors.length; i++) {
       this.isShown = this.getDistanceBetween(this.vendors[i].vendor_Latitude, this.vendors[i].vendor_Longitude, this.radiusLat, this.radiusLong);
       if (this.isShown == true) {
+        console.log(this.isShown)
         this.VendorsList.push(
           {
             vendorID: this.vendors[i].vendorID,
             vendor_FirstName: this.vendors[i].vendor_FirstName,
             vendor_MobileNumber: this.vendors[i].vendor_MobileNumber,
             vendor_Address1: this.vendors[i].vendor_Address1,
-            photo: this.vendors[i].photo,
-            specializationName: this.vendors[i].specializationName,
-            languages: this.vendors[i].languages
+            photo: this.vendors[i].vendor_Photo,
+            //specializationName: this.vendors[i].specializationName,
+            //languages: this.vendors[i].languages
+            vendor_Latitude:this.vendors[i].vendor_Latitude,
+            vendor_Longitude:this.vendors[i].vendor_Longitude
           }
+      
         )
+        console.log(this.VendorsList);
       }
     }
   }
@@ -411,8 +449,11 @@ export class VendorSearchMapComponent implements OnInit {
     this.checkedValue = evnt.target.checked;
   }
 
-  GoToCart() {
+  GoToService() {
     let userInfo: any;
+    // let item: Pandit = {} as Pandit;
+    this.finalVendorData.VendorList = [];
+
     if (this.selectedPandit.length == 0 || this.selectedPandit.length >= 4) {
       this.showError('Please select less or equal to 3 pandits.')
       return;
@@ -428,7 +469,7 @@ export class VendorSearchMapComponent implements OnInit {
     this.finalVendorData.description = this.panditModel.description;
     this.finalVendorData.pujaLocation = this.panditModel.pujaLocation;
     this.finalVendorData.languageId = Number(this.panditModel.languageId);
-
+    this.finalVendorData.languageName = this.languageName;
     this.finalVendorData.packageId = this.servicePackageModel.packageID;
     this.finalVendorData.packageName = this.servicePackageModel.packageName;
     this.finalVendorData.serviceId = this.servicePackageModel.serviceID;
@@ -450,7 +491,7 @@ export class VendorSearchMapComponent implements OnInit {
     this.finalVendorData.newCityName = this.panditModel.newCityName;
     this.finalVendorData.newLocationAddress = this.panditModel.newLocationAddress;
     this.finalVendorData.newLocationPincode = this.panditModel.newLocationPincode;
-
+    //this.finalVendorData.itemName='';
     if (sessionStorage.getItem("userInfo") != null) {
       userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
       this.finalVendorData.UserId = Number(userInfo.userId);
@@ -459,16 +500,25 @@ export class VendorSearchMapComponent implements OnInit {
       this.finalVendorData.UserId = 0;
     }
 
-    this.finalVendorData.VendorList = this.selectedPandit.map(x => x.vendorID).join(', ');
+    this.selectedPandit.forEach(pandit => {
+      let item: Pandit = {} as Pandit;
+      item.VendorID = Number(pandit.vendorID)
+      this.finalVendorData.VendorList.push(item);
+    });
+
 
     console.log('book', this.finalVendorData);
     this.serviceBookingList.push(this.finalVendorData);
 
     sessionStorage.setItem("orderdetailsByMap", JSON.stringify(this.serviceBookingList));
     sessionStorage.setItem("cartType", "panditByMap");
-    this.router.navigate(['/usercart']);
+   // this.router.navigate(['/usercart']);
+   this.router.navigate(['/servicedetails',this.finalVendorData.serviceTypeId,this.finalVendorData.serviceId,this.finalVendorData.CityId,this.finalVendorData.languageName]);
   }
-
+  selectlang(event) {
+   console.log('lang', event.target.options[event.target.options.selectedIndex].text)
+   this.languageName= event.target.options[event.target.options.selectedIndex].text;
+  }
   showError(msg) {
     this.toastService.show(msg, {
       classname: 'bg-info text-light',

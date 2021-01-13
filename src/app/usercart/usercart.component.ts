@@ -10,6 +10,7 @@ import { ToastService } from '../shared/services/toastservice'
 export class UsercartComponent implements OnInit {
 
   cartitems: any = [];
+  cartitemsByMap: any = [];
   subtotal: number = 0;
   discount: any = 0;
   total: number = 0;
@@ -17,7 +18,7 @@ export class UsercartComponent implements OnInit {
   serviceTypeId: any;
   cartType: any;
   productitems: any = []; poojakitname: boolean = false;
-  cartTypeByMap: boolean = false;
+  cartTypeByMap: boolean = false; poojakitbymap: any = [];
   constructor(private toastService: ToastService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -74,12 +75,28 @@ export class UsercartComponent implements OnInit {
       else if (sessionStorage.getItem("cartType") == "panditByMap") {
         if (sessionStorage.getItem("orderdetailsByMap") != null) {
           this.cartitems = JSON.parse(sessionStorage.getItem("orderdetailsByMap"));
-          this.cartTypeByMap = true;
+
+          // if (this.cartitems[0].itemName != null) {
+          //   this.poojakitname = true;
+
+          // }
+          // else {
+          //   this.poojakitname = false;
+          // }
+          if (this.cartitems[0].itemName != null) {
+            this.poojakitname = true;
+
+          }
+          else {
+            this.poojakitname = false;
+          }
+console.log(this.cartitems)
           this.cartitems.forEach(element => {
             this.subtotal += element.Total;
           });
           this.total = this.subtotal;
-        } else {
+        }
+        else {
           this.subtotal = 0;
           this.total = 0;
         }

@@ -7,6 +7,7 @@ export interface Language {
 
 export class PanditModel {
     languageId: number;
+    languageName: string;
     pujaLocation: string;        
     BookingDate: Date;
     BookingTime: string;
@@ -19,7 +20,7 @@ export class PanditModel {
     packageName: string;
     Total: number;
     description: string;
-    VendorList: string;
+    VendorList: Pandit[];
     UserId: number;
     CityId: number;
     CityName: string;
@@ -30,10 +31,14 @@ export class PanditModel {
     newCityName: string;
     newLocationAddress: string;
     newLocationPincode: string;
+    itemName:string;
+    itemPrice:number;
+    productID:number;
+   
 }
 
-export class PanditList {
-    vendorId: string;
+export class Pandit {
+    VendorID: number;
 }
 
 export interface ServicePackageModel {
@@ -58,8 +63,10 @@ export interface VendorsDetails {
     vendor_MobileNumber: string;
     vendor_Address1: string;
     photo: Binary;
-    specializationName: string;
-    languages: string;
+    vendor_Latitude:string;
+    vendor_Longitude:string;
+    //specializationName: string;
+    //languages: string;
 }
 
 export interface Marker {

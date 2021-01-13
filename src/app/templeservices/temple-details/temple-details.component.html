@@ -66,7 +66,8 @@
                                 </tr>
                             </table>
                             <br>
-                            <label style="font-weight: bold;" *ngIf="accommodationTimings.length>0">Accommodation at temple</label>
+                            <label style="font-weight: bold;" *ngIf="accommodationTimings.length>0">Accommodation at
+                                temple</label>
                             <table class="table table-striped table-bordered" *ngIf="accommodationTimings.length>0">
                                 <tr>
                                     <th>Room Type</th>
@@ -88,7 +89,8 @@
                                     novalidate class="serviceBookForm">
 
                                     <div class="form-group row">
-                                        <div class="col-5">
+                                        <div class="col-4">User Name</div>
+                                        <div class="col-8">
                                             <input type="text" class="form-control" id="userName" name="userName"
                                                 [(ngModel)]="userDetails.UserName" #userName="ngModel" required
                                                 placeholder="User Name" autocomplete="off">
@@ -97,7 +99,11 @@
                                                 User Name is required
                                             </span>
                                         </div>
-                                        <div class="col-5">
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-4">User Email</div>
+                                        <div class="col-8">
                                             <input type="email" class="form-control" id="emailId" name="emailId"
                                                 [(ngModel)]="userDetails.UserEmail" #emailId="ngModel" required
                                                 placeholder="Email Id" autocomplete="off"
@@ -110,7 +116,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-5">
+                                        <div class="col-4">Mobile Number</div>
+                                        <div class="col-8">
                                             <input type="text" class="form-control" id="mobNum" name="mobNum"
                                                 [(ngModel)]="userDetails.UserMobileNo" #mobNum="ngModel" required
                                                 placeholder="Mobile Number" autocomplete="off">
@@ -122,10 +129,10 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-3">
+                                        <div class="col-4">
                                             <label>Service</label>
                                         </div>
-                                        <div class="col-5">
+                                        <div class="col-8">
                                             <temple-services-multi-select-dropdown [serviceList]="servicesTimings"
                                                 (shareServiceCheckedList)="shareServiceCheckedList($event)">
                                             </temple-services-multi-select-dropdown>
@@ -148,12 +155,21 @@
                                         </div>
                                         <div class="col-5">
                                             <input type="date" class="form-control" id="bookingDate" name="bookingDate"
-                                                [(ngModel)]="serviceDetails.BookingDate" #bookingDate="ngModel">
+                                                [(ngModel)]="serviceDetails.BookingDate" #bookingDate="ngModel"
+                                                required>
+                                            <span class="text-danger"
+                                                *ngIf="!multiServiceDateTime && ((bookingDate.touched || userForm.submitted) && bookingDate.errors?.required)">
+                                                Service Date is required
+                                            </span>
                                         </div>
                                         <div class="col-4">
                                             <input type="time" width="100px" class="form-control" id="bookingTime"
                                                 name="bookingTime" [(ngModel)]="serviceDetails.BookingTime"
-                                                #bookingTime="ngModel">
+                                                #bookingTime="ngModel" required>
+                                            <span class="text-danger"
+                                                *ngIf="!multiServiceDateTime && ((bookingTime.touched || userForm.submitted) && bookingTime.errors?.required)">
+                                                Service Time is required
+                                            </span>
                                         </div>
                                     </div>
 
@@ -200,47 +216,63 @@
                                             </accommodation-multi-select-down>
                                         </div>
                                         <div class="col-4">
-                                            <input type="number" id="acmdNoOfDays" name="acmdNoOfDays"
+                                            <input type="number" id="acmdNoOfDays" name="acmdNoOfDays" [readOnly]="true"
                                                 [(ngModel)]="userDetails.AcmdNoOfDays" class="form-control"
                                                 placeholder="No of Days">
                                         </div>
                                     </div>
 
                                     <div class="form-group row" *ngIf="displayAcmd">
-                                        <div class="col-3">
-                                            <label>Select Accommodation Date</label>
-                                        </div>
-                                        <div class="col-5">
-                                            <input type="date" class="form-control" id="acmdDate" name="acmdDate"
-                                                [(ngModel)]="serviceDetails.AcmdDate" #acmdDate="ngModel">
-                                        </div>
-                                        <!-- <div class="col-4">
-                                            <input type="time" width="100px" class="form-control" id="acmdTime"
-                                                name="acmdTime" [(ngModel)]="serviceDetails.AcmdTime"
-                                                #acmdTime="ngModel">
-                                        </div> -->
+                                        <label class="col-12">Select Accommodation Dates</label>
                                     </div>
 
-
-                                    <!-- <div class="form-group row">
+                                    <div class="form-group row" *ngIf="displayAcmd">
                                         <div class="col-3">
-                                            Accommodation
+                                            <label>Select Check-In Date & Time</label>
+                                        </div>
+                                        <div class="col-5">
+                                            <input type="date" class="form-control" id="checkInDate" name="checkInDate"
+                                                [(ngModel)]="serviceDetails.CheckInDate" #checkInDate="ngModel"
+                                                required>
+                                            <span class="text-danger"
+                                                *ngIf="displayAcmd && ((checkInDate.touched || userForm.submitted) && checkInDate.errors?.required)">
+                                                Check-In Date is required
+                                            </span>
                                         </div>
                                         <div class="col-4">
-                                            <select name="roomTypeId" id="roomTypeId"
-                                                [(ngModel)]="userDetails.RoomTypeId" class="form-control"
-                                                #roomTypeId="ngModel">
-                                                <option [value]="0">Room Type</option>
-                                                <option [value]="1">A/C</option>
-                                                <option [value]="2">Non A/C</option>
-                                            </select>
+                                            <input type="time" width="100px" class="form-control" id="checkInTime"
+                                                name="checkInTime" [(ngModel)]="serviceDetails.CheckInTime"
+                                                #checkInTime="ngModel" required>
+                                            <span class="text-danger"
+                                                *ngIf="displayAcmd && ((checkInTime.touched || userForm.submitted) && checkInTime.errors?.required)">
+                                                Check-In Time is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row" *ngIf="displayAcmd">
+                                        <div class="col-3">
+                                            <label>Select Check-Out Date & Time</label>
+                                        </div>
+                                        <div class="col-5">
+                                            <input type="date" class="form-control" id="checkOutDate"
+                                                name="checkOutDate" [(ngModel)]="serviceDetails.CheckOutDate"
+                                                #checkOutDate="ngModel" required>
+                                            <span class="text-danger"
+                                                *ngIf="displayAcmd && ((checkOutDate.touched || userForm.submitted) && checkOutDate.errors?.required)">
+                                                Check-Out Date is required
+                                            </span>
                                         </div>
                                         <div class="col-4">
-                                            <input type="number" id="noOfPerson" name="noOfPerson"
-                                                [(ngModel)]="userDetails.NoOfPerson" class="form-control"
-                                                placeholder="No of person">
+                                            <input type="time" width="100px" class="form-control" id="checkOutTime"
+                                                name="checkOutTime" [(ngModel)]="serviceDetails.CheckOutTime"
+                                                #checkOutTime="ngModel" required>
+                                            <span class="text-danger"
+                                                *ngIf="displayAcmd && ((checkOutTime.touched || userForm.submitted) && checkOutTime.errors?.required)">
+                                                Check-Out Time is required
+                                            </span>
                                         </div>
-                                    </div> -->
+                                    </div>
 
                                     <div class="form-group row">
                                         <div class="col-3">

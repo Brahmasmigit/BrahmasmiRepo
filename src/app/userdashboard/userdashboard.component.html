@@ -5,7 +5,8 @@
         <tr><td style="text-align: center;"><h4>My Bookings</h4></td></tr>
         <tr><td style="height: 10px;"></td></tr>
 <tr><td>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <div class="btn-group btn-group-toggle" >
+      <!-- data-toggle="buttons" -->
         <label class="btn btn-primary">
           <input (click)="CalendarTab('current')" type="radio" name="options" id="option1" autocomplete="off" checked="true"> ONGOING
         </label>
@@ -19,7 +20,7 @@
     </tbody>
 </table>
 
-<div class="container" style="text-align: center;">
+<div class="container-fluid" style="text-align: center;">
     <div class="row" *ngIf="ongoing.length>0">
         <div class="col-md-4 w-100" *ngFor="let item of ongoing">
             <div class="card border-primary mb-3 w-100 h-100">
@@ -44,22 +45,22 @@
                             <div class="col-md-9">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-md-12">Professional Name: {{item.vendorname}}</div>
+                                            <div class="col-md-12"><b>Professional Name: </b>{{item.vendorname}}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-12">Booking Location: {{item.bookingLocation}}</div>
+                                            <div class="col-md-12"><b>Booking Location: </b>{{item.bookingLocation}}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-12">Booking Date: {{item.bookingDate}}</div>
+                                            <div class="col-md-12"><b>Booking Date: </b>{{item.bookingDate}}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-12">Booking Timings: {{item.bookingTime}}</div>
+                                            <div class="col-md-12"><b>Booking Timings: </b>{{item.bookingTime}}</div>
                                         </div>
                                         <div class="row text-left" *ngIf="item.timeIn">
-                                          <div class="col-md-12">Time In: {{item.timeIn}}</div>
+                                          <div class="col-md-12"><b>Time In: </b>{{item.timeIn}}</div>
                                       </div>
                                       <div class="row text-left" *ngIf="item.timeOut">
-                                        <div class="col-md-12">Time Out: {{item.timeOut}} </div>
+                                        <div class="col-md-12"><b>Time Out: </b>{{item.timeOut}} </div>
                                     </div>
                                     <div class="row text-left" *ngIf="item.bookingType=='virtualPooja' || item.bookingType=='virtualAstrology'">
                                       <div class="col-md-12" >

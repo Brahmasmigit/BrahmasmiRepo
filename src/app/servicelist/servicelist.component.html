@@ -11,10 +11,6 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-xl-6">
                                                 <h4 class="header-title m-b-30">Select Service to Perform</h4>
-                                              <!-- <video width="640"  height="600" controls   poster= "../../../assets/VinayakaPooja.jpg">
-
-                                                    <source src="https://brahmasmivideos-inct.streaming.media.azure.net/f31014e1-7eec-4145-8bd4-1d606aedbbbb/bird.mp4" type="video/mp4">
-                                              </video>-->
                                             </div>
                                         </div>
                                         <div class="row">
@@ -25,7 +21,8 @@
                                                       <!-- <img src="../../assets/No-Image.png" class="imgservice"  alt="icon"> -->
                                                     </div>
                                                     <div class="file-man-title">
-                                                        <h5 class="mb-0"><a [routerLink]="['/servicedetails',servicetypeId,item.serviceId,cityId,languageName]" routerLinkActive="active" style="color: black;">{{item.serviceName}}</a></h5>
+                                                        <!-- <h5 class="mb-0"><a [routerLink]="['/servicedetails',servicetypeId,item.serviceId,cityId,languageName]" routerLinkActive="active" style="color: black;">{{item.serviceName}}</a></h5> -->
+                                                        <h5 class="mb-0"><a [routerLink]="['/bookpanditmap',servicetypeId,item.serviceId,cityId,languageName]" routerLinkActive="active" style="color: black;">{{item.serviceName}}</a></h5>
 
                                                     </div>
                                                 </div>

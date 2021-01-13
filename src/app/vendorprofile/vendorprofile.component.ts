@@ -16,7 +16,7 @@ import { NgForm } from '@angular/forms';
 })
 export class VendorprofileComponent implements OnInit {
 vendor:any={};vendorID:any;errorMessage:any;userInfo:any={};
-@ViewChild('concernenquiryForm')myForm: NgForm;
+
   constructor(private vendorProfileService:VendorProfileService,private router:Router,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -40,6 +40,8 @@ vendor:any={};vendorID:any;errorMessage:any;userInfo:any={};
     if(  this.activatedRoute.snapshot.params['vendorId']!=null)
     {
       this.vendorID=this.activatedRoute.snapshot.params['vendorId'];
+      console.log(this.vendorID)
+      this.GetVendorProfile(this.vendorID);
     }
     else
     {

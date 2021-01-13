@@ -470,14 +470,16 @@ border-left: 1px solid;
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
       <a routerLink="/homepage" routerLinkActive="active">Home</a>
+      <a *ngIf="isLogin && isVendor"  routerLink="/vendordashboard" routerLinkActive="active">My Dashboard</a>
+      <a  *ngIf="isLogin && !isVendor"  routerLink="/userdashboard" routerLinkActive="active">My Dashboard</a>
       <div class="Pandit-container">
         <a class="Pandit-btn" (click)="showPandit=!showPandit">Pandit
           <i class="fa fa-caret-down" style="top:5px;"></i>
         </a>
         <div *ngIf="showPandit" style="background-color: #dd8c30;">
-          <a routerLink="/vendorsearch" routerLinkActive="active">Book Pandit</a>
+          <a routerLink="/bookpanditmap" routerLinkActive="active">Book Pandit</a>
           <a routerLink="/virtualslotbooking" routerLinkActive="active">Virtual Pooja for Pandit</a>
-          <a href="#">Bulk Pandit Booking</a>
+          <a routerLink="/bookpanditmap" routerLinkActive="active">Bulk Pandit Booking</a>
         </div>
       </div>
 
@@ -500,12 +502,14 @@ border-left: 1px solid;
           <a routerLink="/storeregistration" routerLinkActive="active">Register As a store</a>
         </div>
       </div>
-
+      <a routerLink="/userproductorders" routerLinkActive="active" *ngIf="isLogin && !isVendor">My Orders</a>
 
 
       <a routerLink="/templeservices" routerLinkActive="active">Temple Services</a>
+      <a  *ngIf="isLogin && !isVendor" class="nav-link" routerLink="/tempeuserdashboard" routerLinkActive="active">Temple Orders</a>
       <a routerLink="/adminlogin" routerLinkActive="active" *ngIf="!isLogin">Admin</a>
       <a routerLink="/blog" routerLinkActive="active">Blog</a>
+
       <a *ngIf="isLogin" (click)="Logout()">Logout</a>
       <!-- <a  [routerLink]="['/home']" routerLinkActive="active">Home</a>
         <a [routerLink]="['/vendorsearch']" routerLinkActive="active">Book Pandit</a>
@@ -513,7 +517,7 @@ border-left: 1px solid;
         <a *ngIf="isLogin && isVendor"  routerLink="['/vendordashboard']" routerLinkActive="active">My Dashboard</a>
         <a  *ngIf="isLogin && !isVendor"  routerLink="['/userdashboard']" routerLinkActive="active">My Dashboard</a>
         <a routerLink="['/vendorenquiry']" routerLinkActive="active">Pandit Enquiry</a>
-
+    
         <a routerLink="['/astrologyslotbooking']" routerLinkActive="active">Astrology</a>
         <a routerLink="['/storeregistration']" routerLinkActive="active">Register As a store</a>
         <a routerLink="['/productcategories']" routerLinkActive="active">Shop</a>
@@ -530,8 +534,6 @@ border-left: 1px solid;
         <a *ngIf="isLogin"  (click)="Logout()"  >Logout</a> -->
     </div>
     <div id="main">
-
-
       <nav class="header">
         <table class="head-table" style="width: 100%;background-image: url('../../assets/homepageimages/head01.png');">
           <tr>
@@ -555,7 +557,7 @@ border-left: 1px solid;
                 1800 891 6676</p>
               <a href="mailto:info@brahmasmi.in"><i class="fa fa-envelope"
                   style="width: 25px;height: 25px;margin-left: 50px;color: #63bc33;"></i>info@brahmasmi.in</a>
-              <a [routerLink]="['/vendorenquiry']" routerLinkActive="active" target="_blank"><i class="fa fa-comments"
+              <a [routerLink]="['/vendorenquiry']" routerLinkActive="active" ><i class="fa fa-comments"
                   style="width: 25px;height: 25px;margin-left: 50px;color: #63bc33;"></i>Enquiry</a>
               <a href="">
                 <img src="../../assets/homepageimages/user-icon.png"
@@ -583,6 +585,7 @@ border-left: 1px solid;
 
 
       <div class="container-fluid" style="width: 100%;position:inherit;">
+
 
         <ngb-carousel>
 
@@ -642,7 +645,7 @@ border-left: 1px solid;
         <div class="icon-bar">
           <a href="https://www.facebook.com/IndiaBrahmasmi" target="_blank" class="facebook"><i
               class="fa fa-facebook"></i></a>
-          <a href="https://www.instagram.com/brahmasmi.india/" target="_blank" class="instagram"><i
+          <a href="https://www.instagram.com/brahmasmi_india/" target="_blank" class="instagram"><i
               class="fa fa-instagram"></i></a>
           <a href="https://www.linkedin.com/company/brahmasmi/" target="_blank" class="linkedin"><i
               class="fa fa-linkedin"></i></a>
@@ -661,7 +664,7 @@ border-left: 1px solid;
           <div *ngIf="enrollment"
             style="color: black; background-color: #b7e1e4;margin-right: 10%; width: 170px;  box-shadow: 2px 2px 2px 2px grey;border:1px solid darkcyan"
             id="contentdiv">
-            <a [routerLink]="['/vendorregistration']" routerLinkActive="active" class="enrllinks">Pandit</a><br><br>
+            <a [routerLink]="['/panditregistration']" routerLinkActive="active" class="enrllinks">Pandit</a><br><br>
             <a [routerLink]="['/astrologyslotbooking']" routerLinkActive="active"
               class="enrllinks">Astrologer</a><br><br>
             <a [routerLink]="['/templeservices']" routerLinkActive="active" class="enrllinks">TempleServices</a><br><br>
@@ -671,7 +674,7 @@ border-left: 1px solid;
             <a [routerLink]="['/communityservices']" routerLinkActive="active" class="enrllinks">Community Services</a>
           </div>
         </div>
-        <!-- <jjva-ngx-whatsapp-button  triggers="hover" [autoClose]="true" ngbTooltip="Click anywhere"
+        <!-- <jjva-ngx-whatsapp-button  triggers="hover" [autoClose]="true" ngbTooltip="Click anywhere" 
     #tooltip3="ngbTooltip" ></jjva-ngx-whatsapp-button> -->
         <a (click)="showChat=!showChat"><i class="fa fa-whatsapp"
             style="font-size:48px;color:#63bc33;position: fixed;right:10px;"></i></a>
@@ -698,10 +701,10 @@ border-left: 1px solid;
         style="width: 90%;height:100%;background-color: #e1e2d0;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-top: 100px;">
         <!-- <div class="container-fluid" >
      <h3>Most Common Poojas</h3>
-
+      
     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="fiveslideConfig" (init)="slickInit($event)"
     (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
-
+    
     <div ngxSlickItem *ngFor="let slide of mostcommn" class="slide msthgt">
       <a [routerLink]="['/servicedetails',slide.imgid]" routerLinkActive="active">
         <img src="{{ slide.img }}" alt="" width="100%">
@@ -813,7 +816,7 @@ border-left: 1px solid;
 
                               </div>
                               <!-- <div class="col-md-3" *ngFor="let item of serviceTypes; let index = index">
-
+                                            
                                                     <div class="file-img-box">
                                                       <img src="data:image/png;base64,{{item.serviceTypeImage}}" class="imgservice"  alt="icon">
                                                     </div>
@@ -821,7 +824,7 @@ border-left: 1px solid;
                                                         <h5 class="mb-0"><a [routerLink]="['/servicelist',item.serviceTypeID,cityId]" routerLinkActive="active" style="color: black;text-align: center;">{{item.serviceTypeName}}</a></h5>
 
                                                     </div>
-
+                                               
                                             </div> -->
 
                             </div>
@@ -1115,10 +1118,10 @@ border-left: 1px solid;
                     <a [routerLink]="['/productcategories']" routerLinkActive="active">E-Cart</a>
                   </li>
                   <li>
-                    <a [routerLink]="['/vendorsearch']" routerLinkActive="active">Pandit Bulk Booking</a>
+                    <a [routerLink]="['/bookpanditmap']" routerLinkActive="active">Pandit Bulk Booking</a>
                   </li>
                   <li>
-                    <a [routerLink]="['/vendorsearch']" routerLinkActive="active">Streamed Videos</a>
+                    <a [routerLink]="['/']" routerLinkActive="active">Streamed Videos</a>
                   </li>
 
                 </ul>
@@ -1144,9 +1147,9 @@ border-left: 1px solid;
 
                 <ul class="list-unstyled" style="font-size:12px;">
                   <!--  <li>
-            <a href="mailto:info@brahmasmi.in"><i class="fa fa-envelope" style="width: 20px;color:white;"></i>info@brahmasmi.in</a>
+            <a href="mailto:info@brahmasmi.in"><i class="fa fa-envelope" style="width: 20px;color:white;"></i>info@brahmasmi.in</a> 
             </li>
-
+          
             <li>
               <a [routerLink]="['/vendorenquiry']" routerLinkActive="active"><i class="fa fa-comments" style="width: 20px;"></i>Enquiry</a>
             </li> -->
@@ -1330,17 +1333,17 @@ border-left: 1px solid;
               House Keeping</a>
 
           </div>
-          <!-- Social buttons
-
+          <!-- Social buttons 
+    
     <hr style="border-color: #9e9c9c;">
-
+  
      <div class="text-center">
       <a href="https://www.facebook.com/indiabrahmasmi">
         <i class="fa fa-facebook" style="width: 50px;"></i><span></span></a>
       <a href="https://twitter.com/BrahmasmiIndia">
         <i class="fa fa-twitter" style="width: 50px;"></i><span></span></a>
        <a href="#">
-        <i class="fa fa-google" style="width: 50px;"></i><span></span></a>
+        <i class="fa fa-google" style="width: 50px;"></i><span></span></a> 
       <a href="#">
         <i class="fa fa-linkedin" style="width: 50px;"> </i><span></span></a>
       <a href="https://www.instagram.com/brahmasmi_india">
@@ -1349,9 +1352,9 @@ border-left: 1px solid;
           <i class="fa fa-whatsapp" style="width: 50px;"></i><span></span></a>
           <a href="https://www.youtube.com/channel/UC1LJpLpZwmagE1iNkm04v5g/about">
             <i class="fa fa-youtube-play" style="width: 50px;"></i><span></span></a>
-
+        
     </div>
-
+   
     <hr style="border-color: #9e9c9c;">-->
 
 

@@ -28,7 +28,8 @@ export class UserbillingComponent implements OnInit {
   userdetails: any = {};
   errorMessage: any;
   closeResult: string;
-  isPaymentchecked: string = "razor";
+  isPaymentchecked: string = "ccavenue";
+  //isPaymentchecked: string = "cod";
   booking: any = {};
   serviceId: any;
   serviceTypeId: any;
@@ -44,6 +45,9 @@ export class UserbillingComponent implements OnInit {
   gst: number = 3.6;
   poojakitname: boolean = false;
   cartTypeByMap: boolean = false;
+  @ViewChild('form') form: ElementRef;
+  encRequestRes: any;
+  accessCode: any;
 
   constructor(private toastService: ToastService,
     private activatedRoute: ActivatedRoute,
@@ -63,7 +67,7 @@ export class UserbillingComponent implements OnInit {
     this.userdetails.billingcityId = 1;
     this.getCity();
     this.loadCart();
-
+    this.accessCode = 'AVPH98HL64CL17HPLC';
     if (sessionStorage.getItem("userInfo") != null) {
       this.userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
       this.userid = this.userInfo.userId;
@@ -155,12 +159,20 @@ export class UserbillingComponent implements OnInit {
       }
       else if (sessionStorage.getItem("cartType") == "panditByMap") {
         if (sessionStorage.getItem("orderdetailsByMap") != null) {
+
           this.cartTypeByMap = true;
           this.cartitems = JSON.parse(sessionStorage.getItem("orderdetailsByMap"));
+          if (this.cartitems[0].itemName != null) {
+            this.poojakitname = true;
+
+          }
+          else {
+            this.poojakitname = false;
+          }
           this.userdetails.billingAddress = this.userdetails.address = this.cartitems[0].isNewLocation ? this.cartitems[0].newLocationAddress : this.cartitems[0].currentLocationAddress;
           this.userdetails.billingPincode = this.userdetails.pinCode = this.cartitems[0].isNewLocation ? this.cartitems[0].newLocationPincode : this.cartitems[0].currentLocationPincode;
           this.userdetails.cityId = this.cartitems[0].CityId;
-
+          //this.userdetails.languageName=this.cartitems[0].languageName;
           this.ischecked = this.cartitems[0].isNewLocation;
           this.cartitems.forEach(element => {
             this.subtotal += element.Total;
@@ -253,31 +265,47 @@ export class UserbillingComponent implements OnInit {
       }
 
     }
-    if (this.isPaymentchecked == "razor") {
-      var payment: any = {};
-      payment.Amount = Number(this.total) * 100;
-      payment.Currency = "INR";
-      payment.orderId = "";
-      this.userBillingService.initializePayment(payment).subscribe(
-        (data) => {
-          if (data) {
-            this.razorpayOptions.order_id = data.orderId;
-            this.razorpayOptions.amount = Number(this.total) * 100;
-            this.razorpayOptions.name = this.userdetails.userName;
-            const rzp = new this.windowRefService.nativeWindow.Razorpay(this.razorpayOptions);
-            rzp.open();
-          }
 
-        },
-        (error) => {
-          this.errorMessage = error;
-          this.showError("Payment is failed, please try after some time");
-        },
-        () => {
 
-        });
-    }//razor if
-    else if (this.isPaymentchecked == "cod" || this.isPaymentchecked == "upi") {
+    // if (this.isPaymentchecked == "razor") {
+    //   var payment: any = {};
+    //   payment.Amount = Number(this.total) * 100;
+    //   payment.Currency = "INR";
+    //   payment.orderId = "";
+    //   this.userBillingService.initializePayment(payment).subscribe(
+    //     (data) => {
+    //       if (data) {
+    //         this.razorpayOptions.order_id = data.orderId;
+    //         this.razorpayOptions.amount = Number(this.total) * 100;
+    //         this.razorpayOptions.name = this.userdetails.userName;
+    //         const rzp = new this.windowRefService.nativeWindow.Razorpay(this.razorpayOptions);
+    //         rzp.open();
+    //       }
+
+    //     },
+    //     (error) => {
+    //       this.errorMessage = error;
+    //       this.showError("Payment is failed, please try after some time");
+    //     },
+    //     () => {
+
+    //     });
+    // }//razor if
+    // else
+    //  if (this.isPaymentchecked == "cod" || this.isPaymentchecked == "upi") {
+    //   this.modalplaceOrder(this.mymodal);
+    // }
+    if (this.isPaymentchecked == "ccavenue") {
+      this.Confirm();
+      // console.log('userd', this.userdetails);
+      // this.userBillingService.getEncryptedRequest(this.userdetails).subscribe((result) => {
+      //   console.log('res', result);
+      //   this.encRequestRes = result.respString;
+      //   setTimeout(() => {
+      //     this.form.nativeElement.submit();
+      //   }, 1000);
+      // });
+    } else if (this.isPaymentchecked == "cod" || this.isPaymentchecked == "upi") {
       this.modalplaceOrder(this.mymodal);
     }
 
@@ -343,7 +371,7 @@ export class UserbillingComponent implements OnInit {
         bookingstatusid = 7;//onhold
         paymentstatus = 4;//onhold
       }
-      else if (this.isPaymentchecked == 'razor') {
+      else if (this.isPaymentchecked == 'ccavenue') {
         paymentMode = 1;//card
         bookingstatusid = 7;//onhold
         paymentstatus = 4;//onhold
@@ -351,7 +379,7 @@ export class UserbillingComponent implements OnInit {
 
       for (var i = 0; i < this.cartitems.length; i++) {
         this.cartitems[i].BookingLocation = this.userdetails.address;
-        if (this.cartType == "virtual" || this.cartType == "pandit"|| this.cartType == "panditByMap") {
+        if (this.cartType == "virtual" || this.cartType == "pandit" || this.cartType == "panditByMap") {
           this.cartitems[i].BookingType = this.cartType + this.cartitems[i].serviceType;
         }
         else {
@@ -377,24 +405,32 @@ export class UserbillingComponent implements OnInit {
       this.userBillingService.UserBooking(this.cartitems).subscribe(
         (data) => {
           if (data) {
-            this.modalService.dismissAll("done");
-            let arrOrders: any = [];
-            arrOrders = data;
-            let checkresult = arrOrders.find(x => x.result == 0);
-            if (checkresult == null || checkresult == undefined) {
-              sessionStorage.removeItem("orderdetails");
-              sessionStorage.removeItem("orderdetailsByMap");
-              sessionStorage.setItem("orders", JSON.stringify(arrOrders));
-              this.ngZone.run(() => {
-                this.router.navigate(['/orderdetails']);
-              });
-            }
-            else {
-              this.showError("Booking is failed, We will manually check and refund your Amount");
-            }
+            if (this.isPaymentchecked == 'ccavenue') {
+              this.encRequestRes = data[0].encryptedResult;
+              setTimeout(() => {
+                this.form.nativeElement.submit();
+              }, 1000);
 
+            } else {
+
+              this.modalService.dismissAll("done");
+              let arrOrders: any = [];
+              arrOrders = data;
+              let checkresult = arrOrders.find(x => x.result == 0);
+              if (checkresult == null || checkresult == undefined) {
+                sessionStorage.removeItem("orderdetails");
+                sessionStorage.removeItem("orderdetailsByMap");
+                sessionStorage.setItem("orders", JSON.stringify(arrOrders));
+                this.ngZone.run(() => {
+                  this.router.navigate(['/orderdetails']);
+                });
+              }
+              else {
+                this.showError("Booking is failed, We will manually check and refund your Amount");
+              }
+
+            }
           }
-
         },
         (error) => {
           this.modalService.dismissAll("done");
@@ -424,7 +460,7 @@ export class UserbillingComponent implements OnInit {
         bookingstatusid = 7;//onhold
         paymentstatus = 4;//onhold
       }
-      else if (this.isPaymentchecked == 'razor') {
+      else if (this.isPaymentchecked == 'ccavenue') {
         paymentMode = 1;//card
         bookingstatusid = 7;//onhold
         paymentstatus = 4;//onhold

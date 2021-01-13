@@ -1,9 +1,10 @@
-<!-- <style>
+<app-adminheader></app-adminheader>
+<style>
     .clmnames
     {
         font-weight: bold;
     }
-</style> -->
+</style>
 
 <form (ngSubmit)="openDetailsPopup()">
   <div class="container-fluid w-100 h-100 mt-5">
@@ -32,7 +33,7 @@
                       <th>Membership</th>
                       <th>Booking Status</th>
                       <th>Payment Status</th>
-                      <th>Vendor Status</th>
+                      <th style="display: none;">Vendor Status</th>
                       <th></th>
 
                     </thead>
@@ -49,7 +50,7 @@
                         <td>{{item.membership}}</td>
                         <td>{{item.bookingStatusName}}</td>
                         <td>{{item.paymentStatusName}}</td>
-                        <td>{{item.vendor_Status}}</td>
+                        <td style="display: none;">{{item.vendor_Status}}</td>
                         <td><button type="submit" class="btn btn-primary" (click)="selectVendor(item)">View
                             Details</button></td>
                       </tr>
@@ -433,3 +434,4 @@
 
   </div>
 </ng-template>
+<app-footer></app-footer>

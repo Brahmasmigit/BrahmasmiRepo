@@ -81,6 +81,7 @@ export class TempleUserBillingComponent implements OnInit {
       (data) => {
         if (data)
           this.city = data;
+          this.templeUserBillingItems.TempleCity = this.city.find(c => c.cityID == this.templeUserBillingItems.TempleCityId).cityName;
       },
       (error) => {
         this.errorMessage = error;
@@ -209,7 +210,9 @@ export class TempleUserBillingComponent implements OnInit {
       this.cartItems.PinCode = this.templeUserBilling.Pincode;
       this.cartItems.MobileNumber = this.templeUserBilling.UserMobileNo;
       this.cartItems.EmailId = this.templeUserBilling.UserEmail;
-      this.cartItems.BillingAddress = this.templeUserBilling.UserAddress
+      this.cartItems.BillingAddress = this.templeUserBilling.UserAddress;
+      this.cartItems.TempleCityId = this.templeUserBillingItems.TempleCityId;
+      this.cartItems.TempleStateId = this.templeUserBillingItems.TempleStateId;
 
       this.cartItems.UserName = this.templeUserBilling.UserName;
       this.cartItems.CityId = Number(this.templeUserBilling.CityId);

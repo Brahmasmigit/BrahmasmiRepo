@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { TempleDashboardLoggedInUser, TempleOrderDetailsAccommodation, TempleOrderDetailService, TempleUserDashboardModel, TempleUserInvoiceData, TempleUserServiceData } from 'src/app/admin/admintempleservices/templeservice.model';
+import { InvoiceData, TempleDashboardLoggedInUser, TempleOrderDetailsAccommodation, TempleOrderDetailService, TempleUserDashboardModel, TempleUserInvoiceData, TempleUserServiceData } from 'src/app/admin/admintempleservices/templeservice.model';
 import { TempleService } from '../templeService.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class TempleUserDashboardComponent implements OnInit {
   stars: any = {};
   userInfo: any = {};
   userid: any;
-  templeDashboardData: TempleUserDashboardModel[] = {} as TempleUserDashboardModel[];
+  templeUserDashboardData: TempleUserDashboardModel[] = {} as TempleUserDashboardModel[];
   templeInvoiceData: TempleUserInvoiceData[] = {} as TempleUserInvoiceData[];
   templeServiceData: TempleUserServiceData[] = {} as TempleUserServiceData[];
   selectedTempleInvoiceData: TempleUserServiceData[] = {} as TempleUserServiceData[];
@@ -25,7 +25,14 @@ export class TempleUserDashboardComponent implements OnInit {
   closeResult: string;
   loggedUser: TempleDashboardLoggedInUser = {} as TempleDashboardLoggedInUser;
   templeServiceDetails: TempleOrderDetailService[] = {} as TempleOrderDetailService[];
+  serviceDetailView: TempleOrderDetailService[] = {} as TempleOrderDetailService[];
   templeAccommodationDetails: TempleOrderDetailsAccommodation[] = {} as TempleOrderDetailsAccommodation[];
+  accommodationDetailView: TempleOrderDetailsAccommodation[] = {} as TempleOrderDetailsAccommodation[];
+
+  invoiceDetails: InvoiceData[] = {} as InvoiceData[];
+
+  isRating: boolean = false;
+  totalAmount: number;
 
   constructor(private router: Router, private templeService: TempleService, private modalService: NgbModal,) { }
 
@@ -34,13 +41,38 @@ export class TempleUserDashboardComponent implements OnInit {
     this.GetUserDashBoardData();
     console.log('user', sessionStorage.getItem('userInfo'));
     console.log('user1', this.loggedUser);
+    this.invoiceDetails = [];
+    this.serviceDetailView = [];
   }
 
   GetUserDashBoardData() {
     this.templeService.GetTempleUserDashboard(this.loggedUser.userId).subscribe((data) => {
       if (data) {
+        // this.templeUserDashboardData = data;
+        // console.log('data', this.templeUserDashboardData)
         this.templeServiceDetails = data["item1"];
         this.templeAccommodationDetails = data["item2"];
+
+        this.templeServiceDetails.forEach(temple => {
+          let item = {} as InvoiceData;
+          item.invoice = temple.invoice;
+          item.templeName = temple.templeName;
+          item.templeState = temple.templeState;
+          item.templeCity = temple.templeCity;
+          item.paymentDate = temple.paymentDate;
+          item.bookingStatus = temple.bookingStatus;
+
+          if (this.invoiceDetails.length == 0)
+            this.invoiceDetails.push(item);
+          else if (!this.invoiceDetails.some(det => det.invoice == item.invoice)) {
+            this.invoiceDetails.push(item);
+          }
+        });
+
+        console.log('in', this.invoiceDetails);
+
+        console.log('tmpser', this.templeServiceDetails);
+        console.log('tmpacc', this.templeAccommodationDetails);
       }
     });
   }
@@ -100,6 +132,19 @@ export class TempleUserDashboardComponent implements OnInit {
     this.selectedTempleInvoiceData = [];
     this.selectedTempleInvoiceData = this.templeServiceData.filter(tmp => tmp.invoiceNo == invoiceNo && tmp.templeId == templeId);
     console.log('sele', this.selectedTempleInvoiceData);
+    this.placeOrder(this.mymodal);
+  }
+
+  OpenModalPopup(popup, invoice: string) {
+    if (popup == "booking") {
+      this.isRating = false;
+    }
+    else {
+      this.isRating = true;
+    }
+    this.serviceDetailView = this.templeServiceDetails.filter(x => x.invoice == invoice);
+    this.accommodationDetailView = this.templeAccommodationDetails.filter(x => x.invoice == invoice);
+    this.totalAmount = this.templeServiceDetails.filter(x => x.invoice == invoice)[0].totalAmount;
     this.placeOrder(this.mymodal);
   }
 

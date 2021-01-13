@@ -126,9 +126,11 @@ export interface TempleUserServiceRequest {
     RoomTypeId: number;
     RoomType: string;
     RoomPrice: number;
-    AcmdDate: Date
-    AcmdTime: string;
-    AcmdNoOfDays: number
+    CheckInDate: Date;
+    CheckInTime: string;
+    CheckOutDate: Date;
+    CheckOutTime: string;
+    AcmdNoOfDays: number;
     UserRequestQuery: string;
 
     DarshanTypeId: number;
@@ -143,6 +145,8 @@ export interface UserServiceRequest {
     TempleId: number;
     UserMobileNo: string;
     TempleCity: string;
+    TempleCityId: number;
+    TempleStateId: number;
     RoomTypeId: number;
     RoomType: string;
     RoomPrice: number;
@@ -173,6 +177,10 @@ export interface AccommodationRequest {
     RoomPrice: number;
     RoomBookingDate: Date;
     RoomBookingTime: string;
+    CheckInDate: Date;
+    CheckInTime: string;
+    CheckOutDate: Date;
+    CheckOutTime: string;
 }
 
 export interface CartItems {
@@ -187,6 +195,8 @@ export interface CartItems {
     // DarshanTypeId: number;
     // DarshanType: string;
     // DarshanPrice: number;
+    TempleCityId: number;
+    TempleStateId: number;
     AcmdNoOfDays: number;
     UserRequestQuery: string;
     BookingLocation: string;
@@ -246,6 +256,9 @@ export interface TempleOrderDetailService {
     modeOfPayment: number;
     paymentDate: string;
     totalAmount: number;
+    templeState: string;
+    templeCity: string;
+    bookingStatus: string;
 }
 
 export interface TempleOrderDetailsAccommodation {
@@ -255,7 +268,8 @@ export interface TempleOrderDetailsAccommodation {
     room: string;
     roomPrice: number;
     noOfDaysStay: number;
-    roomBookingDate: string;
+    checkInDateTime: string;
+    checkOutDateTime: string;
     modeOfPayment: number;
     paymentDate: string;
     totalAmount: number;
@@ -313,4 +327,13 @@ export interface TempleUserServiceData {
 export interface TempleDashboardLoggedInUser {
     userId: number;
     userTypeId: number
+}
+
+export interface InvoiceData {
+    invoice: string;
+    templeName: string;
+    templeCity: string;
+    templeState: string;
+    paymentDate: string;
+    bookingStatus: string;
 }

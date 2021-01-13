@@ -23,6 +23,7 @@ export class AstrologySlotbookingComponent implements OnInit {
   astrologyuser:any={};
   userid:any;
   cityId:any;
+  continueClicked: boolean = true;
   @ViewChild('slotBookingForm') myForm: NgForm;
   constructor(private utilitiesService:UtilitiesService, private toastService:ToastService,
                private userBillingService:UserBillingService,
@@ -142,11 +143,11 @@ getAstrologyAmount(astrologyID)
   }
   slotBooking()
   {
-    if(this.checkedValue==false)
-    {
-      this.showError('Please Accept Terms&Condition')
+    if (this.checkedValue == false) {
+      this.showError('Please Accept Terms & Conditions')
       return;
     }
+    this.continueClicked = !this.continueClicked;
     this.slot.astrologyID=Number(this.selectedCategory.astrologyID);
     this.slot.cityID=Number(this.selectedCity.cityID);
     this.slot.languageID=Number(this.slot.languageID);

@@ -1,277 +1,297 @@
-
 <app-header></app-header>
 
-<div class="jumbotron" style="background-color: linen;" >
-<div class="container">
-  <div class="row">
+<div class="jumbotron" style="background-color: linen;">
+  <div class="container">
+    <div class="row">
       <div class="col-md-7">
-          <div class="card border-primary mb-3 w-100">
-              <div class="card-header font-weight-bold">Billing Details</div>
+        <div class="card border-primary mb-3 w-100">
+          <div class="card-header font-weight-bold">Billing Details</div>
 
-              <div class="card-body" style="height: 100%">
+          <div class="card-body" style="height: 100%">
 
-                <form class="contact-form form-validate" novalidate="novalidate">
-                  <div class="row">
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <input  placeholder="Name" class="form-control" id="username" name="username" [(ngModel)]="userdetails.userName">
-                          </div>
-                      </div>
-
-                      <div class="col-md-6">
-                          <div class="form-group">
-                              <input  placeholder="Mobile Number" width="100px" class="form-control" id="mobileno" name="mobileno" [(ngModel)]="userdetails.mobileNumber">
-                          </div>
-                      </div>
+            <form class="contact-form form-validate" #form ngNoForm method="POST" id="nonseamless"
+            action="https://secure.ccavenue.com/transaction.do?command=initiateTransaction">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input placeholder="Name" class="form-control" id="username" name="username"
+                      [(ngModel)]="userdetails.userName">
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input  placeholder="Email Address" class="form-control" id="email" name="email" [(ngModel)]="userdetails.emailId">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                          <select style="width: 200px;margin-right: 20px;" name="cityID" placeholder="Title" class="form-control"
-                          (change)="selectCity($event)"  [(ngModel)]="userdetails.cityId"  >
-                                 <option *ngFor="let city of City"
-                                 [value]="city.cityID"
-                                 [selected]="cityId==city.cityID">
-
-                                  {{city.cityName}}
-                             </option>
-                          </select>
-                        </div>
-                    </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                      <div class="form-group">
-                          <input  placeholder="Address" class="form-control" id="address" name="address" [(ngModel)]="userdetails.address">
-                      </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input placeholder="Mobile Number" width="100px" class="form-control" id="mobileno" name="mobileno"
+                      [(ngModel)]="userdetails.mobileNumber">
                   </div>
-
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input placeholder="Email Address" class="form-control" id="email" name="email"
+                      [(ngModel)]="userdetails.emailId">
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input  placeholder="Pincode" class="form-control" id="pincode" name="pincode" [(ngModel)]="userdetails.pinCode">
-                        </div>
-                    </div>
+                </div>
 
-                    </div>
-                    <div *ngIf="!cartTypeByMap" class="row">
-                      <div class="col-md-12">
-                          <div class="form-group">
-                            <input type="checkbox" #checklocation (change)="isdifferentlocation($event)" />
-                            <label class="ml-2" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">Perform Service in different Location?</label>
-                            <label class="ml-2" *ngIf="cartType=='ecart'">Different Biiling Address?</label>
-                          </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select style="width: 200px;margin-right: 20px;" name="cityID" placeholder="Title"
+                      class="form-control" (change)="selectCity($event)" [(ngModel)]="userdetails.cityId">
+                      <option *ngFor="let city of City" [value]="city.cityID" [selected]="cityId==city.cityID">
 
-
-                      </div>
-
-                      </div>
-                      <div *ngIf="!cartTypeByMap" class="row" >
-                        <div class="col-md-12" *ngIf="ischecked">
-                          <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input  placeholder="Pincode" class="form-control" id="billingpincode" name="billingpincode" [(ngModel)]="userdetails.billingPincode">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                  <select style="width: 200px;margin-right: 20px;" name="billingcityID" placeholder="Title" class="form-control"
-                                  (change)="selectCity($event)"  [(ngModel)]="userdetails.billingcityId"  >
-                                         <option *ngFor="let city of City"
-                                         [value]="city.cityID"
-                                         [selected]="cityId==city.cityID">
-
-                                          {{city.cityName}}
-                                     </option>
-                                  </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                              <div class="form-group">
-                                  <input  placeholder="Address" class="form-control" id="billingaddress" name="billingaddress" [(ngModel)]="userdetails.billingAddress">
-                              </div>
-                          </div>
-
-                          </div>
-                          </div>
-
-                      </div>
-              </form>
+                        {{city.cityName}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <input placeholder="Address" class="form-control" id="address" name="address"
+                      [(ngModel)]="userdetails.address">
+                  </div>
+                </div>
 
               </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input placeholder="Pincode" class="form-control" id="pincode" name="pincode"
+                      [(ngModel)]="userdetails.pinCode">
+                  </div>
+                </div>
+
+              </div>
+              <div *ngIf="!cartTypeByMap" class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <input type="checkbox" #checklocation (change)="isdifferentlocation($event)" />
+                    <label class="ml-2"
+                      *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'">Perform
+                      Service in different Location?</label>
+                    <label class="ml-2" *ngIf="cartType=='ecart'">Different Biiling Address?</label>
+                  </div>
+
+
+                </div>
+
+              </div>
+              <div *ngIf="!cartTypeByMap" class="row">
+                <div class="col-md-12" *ngIf="ischecked">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input placeholder="Pincode" class="form-control" id="billingpincode" name="billingpincode"
+                          [(ngModel)]="userdetails.billingPincode">
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <select style="width: 200px;margin-right: 20px;" name="billingcityID" placeholder="Title"
+                          class="form-control" (change)="selectCity($event)" [(ngModel)]="userdetails.billingcityId">
+                          <option *ngFor="let city of City" [value]="city.cityID" [selected]="cityId==city.cityID">
+
+                            {{city.cityName}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input placeholder="Address" class="form-control" id="billingaddress" name="billingaddress"
+                          [(ngModel)]="userdetails.billingAddress">
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <!-- DO NOT REMOVE THIS DIV OR REMOVE THE STYLE -->
+              <div style="display: none;">
+                <input id="encRequest" name="encRequest" value="{{encRequestRes}}">
+                <input name="access_code" id="access_code" value="{{accessCode}}">
+              </div>
+              <!-- DO NOT REMOVE THIS DIV OR REMOVE THE STYLE -->
+            </form>
 
           </div>
+
+        </div>
       </div>
       <div class="col-md-5">
         <div class="card mb-3">
           <h5 class="card-header">Your Order</h5>
 
           <div class="conatiner-fluid">
-            <div class="row" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'|| cartType=='panditByMap'">
-                <div class="col-md-12">
-                  <table class="table table-bordered w-100" >
-                    <thead>
-                        <tr>
-
-                            <th>Service Name</th>
-                            <th>Total Price</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of cartitems;let i=index">
-
-                            <td>
-                              <ul class="list-style--none ">
-                                <li class="mb-2 pl-2">
-                                 Pooja name: {{item.ServiceName}}
-                                </li>
-                                <li *ngIf="poojakitname" class="mb-2 pl-2">
-                                  Pooja kit: {{item.itemName}}
-                                 </li>
-                                 <li class="mb-2 pl-2">
-                                 Language Preference: {{item.languageName}}
-                                 </li>
-                                <li class="mb-2 pl-2">
-                                 City:  {{item.CityName}}
-
-                                </li>
-                                <li class="mb-2 pl-2" *ngIf="item.PackageName">
-                                Package: {{item.PackageName}}
-
-                                </li>
-                                <li class="mb-2 pl-2">
-                                  Date: {{item.BookingDate}}
-
-                                  </li>
-                                  <li class="mb-2 pl-2">
-                                    Time: {{item.BookingTime}}
-
-                                    </li>
-
-
-                            </ul>
-                            </td>
-
-                              <td>{{item.Total}}</td>
-                        </tr>
-                        <tr>
-                          <td class="font-weight-bold">GST:</td>
-                          <td>{{gst}}%</td>
-                        </tr>
-                          <tr>
-                            <td class="font-weight-bold">Total:</td>
-                            <td>{{total}}</td>
-                          </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-            </div>
-            <div class="row" *ngIf="cartType=='ecart'">
+            <div class="row"
+              *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'|| cartType=='panditByMap'">
               <div class="col-md-12">
-                <table class="table table-bordered w-100" >
+                <table class="table table-bordered w-100">
                   <thead>
-                      <tr>
+                    <tr>
 
-                          <th>Product Name</th>
-                          <th>Price</th>
+                      <th>Service Name</th>
+                      <th>Total Price</th>
 
-                      </tr>
+                    </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let item of productitems;let i=index">
+                    <tr *ngFor="let item of cartitems;let i=index">
 
-                          <td>
-                            <ul class="list-style--none ">
-                              <li class="mb-2 pl-2">
-                               Product Name: {{item.ProductName}}
-                              </li>
-                              <li class="mb-2 pl-2">
-                               Quantity:  {{item.Quantity}}
+                      <td>
+                        <ul class="list-style--none ">
+                          <li class="mb-2 pl-2">
+                            <b>Pooja name :</b> {{item.ServiceName}}
+                          </li>
+                          <li *ngIf="poojakitname" class="mb-2 pl-2">
+                            <b>Pooja kit :</b> {{item.itemName}}
+                          </li>
+                          <li class="mb-2 pl-2">
+                            <b> Language :</b> {{item.languageName}}
+                          </li>
+                          <li class="mb-2 pl-2">
+                            <b> City : </b> {{item.CityName}}
 
-                              </li>
-                              <li class="mb-2 pl-2">
-                              Unit Price: {{item.ProductPrice}}
+                          </li>
+                          <li class="mb-2 pl-2">
+                            <b>Pooja Location :</b> {{userdetails.address}}
 
-                              </li>
+                          </li>
 
+                          <li class="mb-2 pl-2">
+                            <b> Pooja Date : </b>{{item.BookingDate}}
 
-                          </ul>
-                          </td>
+                          </li>
+                          <li class="mb-2 pl-2">
+                            <b>Pooja Time : </b> {{item.BookingTime}}
 
-                            <td>{{item.ProductCost}}</td>
-                      </tr>
-                      <tr>
-                        <td class="font-weight-bold">GST:</td>
-                        <td>{{gst}}%</td>
-                      </tr>
-                        <tr>
-                          <td class="font-weight-bold">Total:</td>
-                          <td>{{total}}</td>
-                        </tr>
+                          </li>
+                          <li class="mb-2 pl-2">
+                            <b>Package :</b> {{item.packageName}}
+
+                          </li>
+
+                        </ul>
+                      </td>
+
+                      <td>{{item.Total}}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">GST:</td>
+                      <td>{{gst}}%</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Total:</td>
+                      <td>{{total}}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
 
+            </div>
+            <div class="row" *ngIf="cartType=='ecart'">
+              <div class="col-md-12">
+                <table class="table table-bordered w-100">
+                  <thead>
+                    <tr>
+
+                      <th>Product Name</th>
+                      <th>Price</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of productitems;let i=index">
+
+                      <td>
+                        <ul class="list-style--none ">
+                          <li class="mb-2 pl-2">
+                            Product Name: {{item.ProductName}}
+                          </li>
+                          <li class="mb-2 pl-2">
+                            Quantity: {{item.Quantity}}
+
+                          </li>
+                          <li class="mb-2 pl-2">
+                            Unit Price: {{item.ProductPrice}}
+
+                          </li>
+
+
+                        </ul>
+                      </td>
+
+                      <td>{{item.ProductCost}}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">GST:</td>
+                      <td>{{gst}}%</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Total:</td>
+                      <td>{{total}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
           </div>
-        </div>
-        <div class="card-body">
+          <div class="card-body">
 
-          <div class="card border-primary mb-3">
-            <div class="card-header font-weight-bold">Choose Payment Method</div>
-            <div class="card-body">
+            <div class="card border-primary mb-3">
+              <div class="card-header font-weight-bold">Choose Payment Method</div>
+              <div class="card-body">
 
-              <div class="form-group">
-                <div class="custom-control custom-radio" style="display: none;">
-                  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="razor" checked="true"  [(ngModel)]="isPaymentchecked">
-                  <label class="custom-control-label" for="customRadio1">Pay with Card/ NetBanking/ Wallet</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="cod" [(ngModel)]="isPaymentchecked">
-                  <label class="custom-control-label" for="customRadio2">Cash after Service</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="upi" [(ngModel)]="isPaymentchecked">
-                  <label class="custom-control-label" for="customRadio3">Pay with UPI/  QR Code</label>
-                </div>
+                <div class="form-group">
+                  <div class="custom-control custom-radio" >
+                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="ccavenue"
+                      [(ngModel)]="isPaymentchecked">
+                    <label class="custom-control-label" for="customRadio1">Pay with Card/ NetBanking/ Wallet</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="cod"
+                      checked="true" [(ngModel)]="isPaymentchecked">
+                    <label class="custom-control-label" for="customRadio2">Cash after Service</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="upi"
+                      [(ngModel)]="isPaymentchecked">
+                    <label class="custom-control-label" for="customRadio3">Pay with UPI/ QR Code</label>
+                  </div>
 
+                </div>
               </div>
             </div>
           </div>
-        </div>
           <div class="card-footer pull-right">
 
-            <button  class="btn btn-primary" (click)="PlaceOrder()">Place Order</button>
+            <button class="btn btn-primary" (click)="PlaceOrder()">Place Order</button>
 
             <ng-template #mymodal let-modal>
               <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title"><span *ngIf="isPaymentchecked=='upi'">Scan QR Code</span><span *ngIf="isPaymentchecked=='cod'">Cash after Service</span></h4>
-                <button type="button" style="border:0px;"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <h4 class="modal-title" id="modal-basic-title"><span *ngIf="isPaymentchecked=='upi'">Scan QR
+                    Code</span><span *ngIf="isPaymentchecked=='cod'">Cash after Service</span></h4>
+                <button type="button" style="border:0px;" aria-label="Close" (click)="modal.dismiss('Cross click')">
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
               <div class="modal-body w-100">
                 <div class="contained-fluid w-100" *ngIf="isPaymentchecked=='upi'">
-                 <!--<div class="row">
+                  <!--<div class="row">
                     <div class="col-md-12 font-weight-bold">
                       UPI ID: 9243242434@BRAHMASMI
                     </div>
                   </div>-->
                   <div class="row">
                     <div class="col-md-12">
-                        <img src="../../assets/QRCode.jpg" height="400px" width="400px" />
+                      <img src="../../assets/QRCode.jpg" height="400px" width="400px" />
                     </div>
                   </div>
                   <div class="row" style="margin-top: 6px;">
@@ -281,7 +301,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12 font-weight-bold">
-                     Amount to be Paid: {{total}}
+                      Amount to be Paid: {{total}}
                     </div>
                   </div>
                   <div class="row" style="margin-top: 6px;">
@@ -291,8 +311,10 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12 p-3">
-                      <p>Scan the QR Code with any UPI apps like BHIM, Paytm, Google Pay, PhonePe or any Banking UPI app to make payment for this order.
-                      Click Confirm, only after the amount deducted from your account. We will manually verify your transaction.</p>
+                      <p>Scan the QR Code with any UPI apps like BHIM, Paytm, Google Pay, PhonePe or any Banking UPI app
+                        to make payment for this order.
+                        Click Confirm, only after the amount deducted from your account. We will manually verify your
+                        transaction.</p>
                     </div>
                   </div>
                 </div>
@@ -302,11 +324,14 @@
                       <p>Are you sure you want to do the payment after Service?</p>
                     </div>
                   </div>
-                  </div>
+                </div>
               </div>
               <div class="modal-footer">
-                <button type="button" *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'" class="btn btn-primary" (click)="Confirm()">Confirm</button>
-                <button type="button" *ngIf="cartType=='ecart'" class="btn btn-primary" (click)="ProductConfirm()">Confirm</button>
+                <button type="button"
+                  *ngIf="cartType=='service' || cartType=='astrology' || cartType=='virtual' || cartType=='pandit'|| cartType=='panditByMap'"
+                  class="btn btn-primary" (click)="Confirm()">Confirm</button>
+                <button type="button" *ngIf="cartType=='ecart'" class="btn btn-primary"
+                  (click)="ProductConfirm()">Confirm</button>
                 <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Cancel</button>
               </div>
             </ng-template>
@@ -317,7 +342,7 @@
 
 
       </div>
+    </div>
   </div>
-</div>
 </div>
 <app-footer></app-footer>
