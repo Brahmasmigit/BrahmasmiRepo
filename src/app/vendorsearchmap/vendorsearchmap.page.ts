@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { ToastController,AlertController  } from '@ionic/angular'; 
+import { LoadingController,NavController } from '@ionic/angular';  
 
 export interface Marker {
   vendor_Latitude: number;
@@ -47,16 +49,25 @@ export class VendorsearchmapPage {
   languageName:any;
   serviceId:any;cityID:any;serviceTypeId:any;
   height = 0;
-  constructor(public platform: Platform) {
+  loaderToShow: any; 
+  constructor(public platform: Platform,    private loadingCtrl: LoadingController,
+    public toastCtrl: ToastController,private navCtrl: NavController,
+    public alertController: AlertController) {
     this.height = platform.height() - 56;
   }
   ngOnInit() {
-    this.setCurrentLocation();
+   
  
+  }
+  ngAfterContentInit()
+  {
+    this.showLoader();
+    this.setCurrentLocation();
   }
   private setCurrentLocation() {
   if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
+        this.hideLoader();
         console.log('pos', position);
         // this.latitude = parseFloat(position.coords.latitude.toFixed(7));
         // this.longitude =parseFloat( position.coords.longitude.toFixed(7));
@@ -69,7 +80,9 @@ export class VendorsearchmapPage {
         this.zoom = 14;
         //this.getAddress(this.latitude, this.longitude);
       },
-      function error(msg) {alert('Please enable your GPS position feature.');},
+      function error(msg) {
+        this.hideLoader();
+        alert('Please enable your GPS position feature.');},
       {maximumAge:10000, timeout:5000, enableHighAccuracy: true});
     }
 
@@ -83,5 +96,19 @@ export class VendorsearchmapPage {
     this.longitude = $event.latLng.lng();
    // this.getAddress(this.latitude, this.longitude);
   }
+  showLoader() {  
+    this.loaderToShow = this.loadingCtrl.create({  
+      message: 'Loading...'  
+    }).then((res) => {  
+      res.present();  
+   
+      res.onDidDismiss().then((dis) => {  
+      });  
+    });  
+    //this.hideLoader();  
+  }
+  hideLoader() {  
+    this.loadingCtrl.dismiss();   
+  }   
 
 }
