@@ -33,4 +33,8 @@ go()
 {
   this.router.navigate(['/contact']); 
 }
+BookPandit()
+{
+  this.router.navigate(['/vendorsearchmap']); 
+}
 }
