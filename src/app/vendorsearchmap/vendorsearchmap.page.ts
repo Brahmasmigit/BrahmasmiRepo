@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { ToastController,AlertController  } from '@ionic/angular'; 
 import { LoadingController,NavController } from '@ionic/angular';  
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { Capacitor } from "@capacitor/core";
 
 export interface Marker {
   vendor_Latitude: number;
@@ -61,34 +63,50 @@ export class VendorsearchmapPage {
   }
   ngAfterContentInit()
   {
-    this.showLoader();
+  // this.showLoader();
     this.setCurrentLocation();
   }
   private setCurrentLocation() {
-  if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.hideLoader();
-        console.log('pos', position);
-        // this.latitude = parseFloat(position.coords.latitude.toFixed(7));
-        // this.longitude =parseFloat( position.coords.longitude.toFixed(7));
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.radiusLat = this.latitude;
-        this.radiusLong = this.longitude;
-        var accuracy = position.coords.accuracy;
-        console.log(this.latitude,this.longitude)
-        this.zoom = 14;
-        //this.getAddress(this.latitude, this.longitude);
-      },
-      function error(msg) {
-        this.hideLoader();
-        alert('Please enable your GPS position feature.');},
-      {maximumAge:10000, timeout:5000, enableHighAccuracy: true});
+    if (Capacitor.isNative) {
+    AndroidPermissions.requestPermission(AndroidPermissions.PERMISSION.ACCESS_FINE_LOCATION)
+    .then(
+      (result) => {
+          if (result.hasPermission) {
+            this.LoadMap();
+  }
+  });
     }
-
+    else
+    {
+      this.LoadMap();
+    }
   }
   
+ LoadMap(){
  
+  if ('geolocation' in navigator) {
+  
+    navigator.geolocation.getCurrentPosition((position) => {
+
+      console.log('pos', position);
+      // this.latitude = parseFloat(position.coords.latitude.toFixed(7));
+      // this.longitude =parseFloat( position.coords.longitude.toFixed(7));
+      this.latitude = position.coords.latitude;
+      this.longitude = position.coords.longitude;
+      this.radiusLat = this.latitude;
+      this.radiusLong = this.longitude;
+      var accuracy = position.coords.accuracy;
+      console.log(this.latitude,this.longitude)
+      this.zoom = 14;
+      //this.hideLoader();
+      //this.getAddress(this.latitude, this.longitude);
+    },
+    function error(msg) {
+    //  this.hideLoader();
+      alert('Please enable your GPS position feature.');},
+    {maximumAge:10000, timeout:5000, enableHighAccuracy: true});
+  }
+ }
 
   markerDragEnd($event) {
     console.log($event);
@@ -110,5 +128,10 @@ export class VendorsearchmapPage {
   hideLoader() {  
     this.loadingCtrl.dismiss();   
   }   
+  RefreshMap()
+  {
+
+    this.setCurrentLocation();
+  }
 
 }
