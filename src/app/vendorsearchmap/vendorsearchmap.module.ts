@@ -8,6 +8,7 @@ import { VendorsearchmapPageRoutingModule } from './vendorsearchmap-routing.modu
 
 import { VendorsearchmapPage } from './vendorsearchmap.page';
 import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { AgmCoreModule } from '@agm/core';
     VendorsearchmapPageRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCeA6ad2qsS-zSHDjdQX6qnuEbLQzsfDC0'
-    })
+    }),
+    AgmDirectionModule
   ],
   declarations: [VendorsearchmapPage]
 })

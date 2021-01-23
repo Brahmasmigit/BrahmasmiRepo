@@ -52,19 +52,24 @@ export class VendorsearchmapPage {
   serviceId:any;cityID:any;serviceTypeId:any;
   height = 0;
   loaderToShow: any; 
+  isMapError:boolean=false;
+  public origin: any;
+public destination: any;
   constructor(public platform: Platform,    private loadingCtrl: LoadingController,
     public toastCtrl: ToastController,private navCtrl: NavController,
     public alertController: AlertController) {
     this.height = platform.height() - 56;
   }
   ngOnInit() {
+    this.origin = { lat: 17.398789, lng:  78.395734 };
+    this.destination = { lat: 17.398754, lng: 78.396429 };
    
- 
   }
   ngAfterContentInit()
   {
    //this.showLoader();
-    this.setCurrentLocation();
+   // this.setCurrentLocation();
+ 
   }
  
   
@@ -89,8 +94,15 @@ export class VendorsearchmapPage {
     },
     function error(msg) {
     // this.hideLoader();
-      alert('Please enable your GPS position feature.');},
+      alert('Please enable your GPS position feature.');
+      if(!this.isMapError)
+      {
+        this.isMapError=true;
+        this. setCurrentLocation();
+      }
+    },
     {maximumAge:10000, timeout:5000, enableHighAccuracy: true});
+ 
   }
  }
 
@@ -116,8 +128,38 @@ export class VendorsearchmapPage {
   }   
   RefreshMap()
   {
+    let interval:any;
+let i=1;
+interval =   setInterval(() => { 
+      
+        if(i==1)
+        {
+          this.origin= { lat: 17.398782, lng: 78.395816 };
+        }
+        if(i==2)
+        {
+          this.origin = { lat: 17.398781, lng: 78.395936};
+        }
+        if(i==3)
+        {
+          this.origin = { lat: 17.398775, lng: 78.396092 };
+        }
+        if(i==4)
+        {
+          this.origin = { lat: 17.398755, lng: 78.396387 };
+        }
+        if(i==4)
+        {
+          clearInterval(interval);
+        }
+      i++;
+     }, 3000);
+
+    }
+   
     //this.showLoader();
-    this.setCurrentLocation();
-  }
+   // this.setCurrentLocation();
+  
+
 
 }
