@@ -3,7 +3,7 @@ import { Platform } from '@ionic/angular';
 import { ToastController,AlertController  } from '@ionic/angular'; 
 import { LoadingController,NavController } from '@ionic/angular';  
 import { AndroidPermissions } from '@ionic-native/android-permissions';
-import { Capacitor } from "@capacitor/core";
+
 
 export interface Marker {
   vendor_Latitude: number;
@@ -67,7 +67,7 @@ export class VendorsearchmapPage {
     this.setCurrentLocation();
   }
   private setCurrentLocation() {
-    if (Capacitor.isNative) {
+    if (this.platform.is('android')) {
     AndroidPermissions.requestPermission(AndroidPermissions.PERMISSION.ACCESS_FINE_LOCATION)
     .then(
       (result) => {
