@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { ToastController,AlertController  } from '@ionic/angular'; 
 import { LoadingController,NavController } from '@ionic/angular';  
-import { AndroidPermissions } from '@ionic-native/android-permissions';
+
 
 
 export interface Marker {
@@ -63,26 +63,12 @@ export class VendorsearchmapPage {
   }
   ngAfterContentInit()
   {
-  // this.showLoader();
+   //this.showLoader();
     this.setCurrentLocation();
   }
-  private setCurrentLocation() {
-    if (this.platform.is('android')) {
-    AndroidPermissions.requestPermission(AndroidPermissions.PERMISSION.ACCESS_FINE_LOCATION)
-    .then(
-      (result) => {
-          if (result.hasPermission) {
-            this.LoadMap();
-  }
-  });
-    }
-    else
-    {
-      this.LoadMap();
-    }
-  }
+ 
   
- LoadMap(){
+  setCurrentLocation(){
  
   if ('geolocation' in navigator) {
   
@@ -98,11 +84,11 @@ export class VendorsearchmapPage {
       var accuracy = position.coords.accuracy;
       console.log(this.latitude,this.longitude)
       this.zoom = 14;
-      //this.hideLoader();
+     // this.hideLoader();
       //this.getAddress(this.latitude, this.longitude);
     },
     function error(msg) {
-    //  this.hideLoader();
+    // this.hideLoader();
       alert('Please enable your GPS position feature.');},
     {maximumAge:10000, timeout:5000, enableHighAccuracy: true});
   }
@@ -130,7 +116,7 @@ export class VendorsearchmapPage {
   }   
   RefreshMap()
   {
-
+    //this.showLoader();
     this.setCurrentLocation();
   }
 
