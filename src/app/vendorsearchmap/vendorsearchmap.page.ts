@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { ToastController,AlertController  } from '@ionic/angular'; 
 import { LoadingController,NavController } from '@ionic/angular';  
-
-
+import {VendorSearchMapService} from './vendorsearchmap.service'
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Marker {
   vendor_Latitude: number;
@@ -53,9 +53,35 @@ export class VendorsearchmapPage {
   height = 0;
   loaderToShow: any; 
   isMapError:boolean=false;
+  track:any={};
+  trackdetails:any=[];
   public origin: any;
 public destination: any;
-  constructor(public platform: Platform,    private loadingCtrl: LoadingController,
+icon = {
+  url: './assets/icon/bike.png',
+  scaledSize: {
+    width: 32,
+    height: 32
+  }
+}
+public renderOptions = {
+  suppressMarkers: true,
+}
+
+public markerOptions = {
+  origin: {
+      icon: './assets/icon/bike.png',
+  },
+  destination: {
+     
+      infoWindow: `
+      <h4>Hello<h4>
+      <a href='http://www-e.ntust.edu.tw/home.php' target='_blank'>test message</a>
+      `
+  },
+}
+  constructor(public platform: Platform,    private loadingCtrl: LoadingController, private router: Router,
+    private vendorSearchMapService:VendorSearchMapService,
     public toastCtrl: ToastController,private navCtrl: NavController,
     public alertController: AlertController) {
     this.height = platform.height() - 56;
@@ -63,12 +89,12 @@ public destination: any;
   ngOnInit() {
     this.origin = { lat: 17.398789, lng:  78.395734 };
     this.destination = { lat: 17.398754, lng: 78.396429 };
-   
+    this.setCurrentLocation();
   }
   ngAfterContentInit()
   {
    //this.showLoader();
-   // this.setCurrentLocation();
+ 
  
   }
  
@@ -79,7 +105,6 @@ public destination: any;
   
     navigator.geolocation.getCurrentPosition((position) => {
 
-      console.log('pos', position);
       // this.latitude = parseFloat(position.coords.latitude.toFixed(7));
       // this.longitude =parseFloat( position.coords.longitude.toFixed(7));
       this.latitude = position.coords.latitude;
@@ -128,7 +153,7 @@ public destination: any;
   }   
   RefreshMap()
   {
-    let interval:any;
+ /* let interval:any;
 let i=1;
 interval =   setInterval(() => { 
       
@@ -153,13 +178,46 @@ interval =   setInterval(() => {
           clearInterval(interval);
         }
       i++;
-     }, 3000);
+     }, 3000);*/
+     let i=1;
+     let interval:any;
+    interval =   setInterval(() => { 
+    this.track.BookingId=1;
+    this.track.UserId=1;
+    this.track.VendorId=2;
+    this.track.isVendor=0;
+    this.track.UserLatitude=this.latitude;
+    this.track.UserLongitude=this.longitude;
+     this.vendorSearchMapService.GetUserTrack(this.track).subscribe(
+       (data) => {
+           if (data) {
+               this.trackdetails = data;
+             this.origin={lat: this.trackdetails.vendorLatitude,lng: this.trackdetails.vendorLongitude}
+             if(this.trackdetails .status==0)
+             {
+              clearInterval(interval);
+             }
+           }
+ 
+       },
+       (error) => {
+         this.errorMessage = error; 
+         console.log(error);    
+     
+       },
+       () => {
+      
+       });
 
-    }
-   
+    }, 4000);
+  }//end of Refresh
     //this.showLoader();
    // this.setCurrentLocation();
   
-
+   Track()
+   {
+    this.router.navigate(['/usertracklocation']);
+  }
+   
 
 }

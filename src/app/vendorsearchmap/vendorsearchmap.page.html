@@ -4,6 +4,9 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>GeoLocation</ion-title>
+    <ion-button type="button" class="primary" color="warning" size="small" (click)="Track()" slot="end" >
+      Track Location
+     </ion-button>
     <ion-button type="button" class="primary" color="warning" size="small" (click)="RefreshMap()" slot="end" >
       Refresh
      </ion-button>
@@ -14,6 +17,8 @@
   <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom"  >
    <!-- <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>-->
     <agm-direction 
+    [renderOptions]="renderOptions" 
+    [markerOptions]="markerOptions"
     [origin]="origin" 
     [destination]="destination" ></agm-direction>
 </agm-map>

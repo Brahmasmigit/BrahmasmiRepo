@@ -37,4 +37,9 @@ BookPandit()
 {
   this.router.navigate(['/vendorsearchmap']); 
 }
+VendorMap()
+{
+  this.router.navigate(['/vendordashboard']); 
+}
+
 }

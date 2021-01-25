@@ -9,6 +9,7 @@ import { VendorsearchmapPageRoutingModule } from './vendorsearchmap-routing.modu
 import { VendorsearchmapPage } from './vendorsearchmap.page';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
+import { VendorSearchMapService } from './vendorsearchmap.service';
 
 @NgModule({
   imports: [
@@ -21,6 +22,8 @@ import { AgmDirectionModule } from 'agm-direction';
     }),
     AgmDirectionModule
   ],
-  declarations: [VendorsearchmapPage]
+  declarations: [VendorsearchmapPage],
+  providers: [VendorSearchMapService]
+  
 })
 export class VendorsearchmapPageModule {}

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>User Location</ion-title>
+    <ion-button type="button" class="primary" color="warning" size="small" (click)="RefreshMap()" slot="end" >
+      Refresh
+     </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom"  >
+   <!-- <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>-->
+    <agm-direction 
+    [renderOptions]="renderOptions" 
+    [markerOptions]="markerOptions"
+    [origin]="origin" 
+    [destination]="destination" ></agm-direction>
+</agm-map>
+
+</ion-content>

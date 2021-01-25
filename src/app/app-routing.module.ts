@@ -51,6 +51,18 @@ const routes: Routes = [
     path: 'vendorsearchmap',
     loadChildren: () => import('./vendorsearchmap/vendorsearchmap.module').then( m => m.VendorsearchmapPageModule)
   },
+  {
+    path: 'vendordashboard',
+    loadChildren: () => import('./vendordashboard/vendordashboard.module').then( m => m.VendordashboardPageModule)
+  },
+  {
+    path: 'vendortracklocation',
+    loadChildren: () => import('./vendortracklocation/vendortracklocation.module').then( m => m.VendortracklocationPageModule)
+  },
+  {
+    path: 'usertracklocation',
+    loadChildren: () => import('./usertracklocation/usertracklocation.module').then( m => m.UsertracklocationPageModule)
+  },
 ];
 
 @NgModule({
