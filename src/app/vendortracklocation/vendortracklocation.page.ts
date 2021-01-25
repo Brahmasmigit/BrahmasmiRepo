@@ -50,7 +50,7 @@ export class VendortracklocationPage implements OnInit   {
   languageName:any;
   serviceId:any;cityID:any;serviceTypeId:any;
   height = 0;
-  loaderToShow: any; 
+  loaderToShow: any=false;  
   isMapError:boolean=false;
   track:any={};
   trackdetails:any=[];
@@ -95,9 +95,10 @@ ngOnInit() {
    //this.showLoader();
    //this.setCurrentLocation();
    let interval:any;
-  interval =   setInterval(() => { 
+ /* interval =   setInterval(() => { 
     this.setCurrentLocation(interval);
-  }, 5000);
+  }, 5000);*/
+  this.setCurrentLocation(interval);
   }
  
   
@@ -105,7 +106,7 @@ ngOnInit() {
  
   if ('geolocation' in navigator) {
   
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.watchPosition((position) => {
 
 
       // this.latitude = parseFloat(position.coords.latitude.toFixed(7));
@@ -127,7 +128,7 @@ ngOnInit() {
     },
     function error(msg) {
     // this.hideLoader();
-      alert('Please enable your GPS position feature.');
+      alert('Please enable your GPS position feature. ' + msg);
       if(!this.isMapError)
       {
         this.isMapError=true;
@@ -174,7 +175,7 @@ ngOnInit() {
              console.log(this.trackdetails.vendorLatitude,this.trackdetails.vendorLongitude)
              if(this.trackdetails .status==0)
              {
-              clearInterval(interval);
+             // clearInterval(interval);
              }
            }
  

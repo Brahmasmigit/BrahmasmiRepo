@@ -48,7 +48,7 @@ export class UsertracklocationPage implements OnInit  {
   languageName:any;
   serviceId:any;cityID:any;serviceTypeId:any;
   height = 0;
-  loaderToShow: any; 
+  loaderToShow: any=false;  
   isMapError:boolean=false;
   track:any={};
   trackdetails:any=[];
@@ -94,10 +94,12 @@ public markerOptions = {
   {
    //this.showLoader();
    //this.setCurrentLocation();
-   let interval:any;
-  interval =   setInterval(() => { 
+  let interval:any;
+ /*  interval =   setInterval(() => { 
     this.setCurrentLocation(interval);
-  }, 5000);
+  }, 5000);*/
+//  this.showLoader();
+  this.setCurrentLocation(interval);
   }
  
   
@@ -105,7 +107,7 @@ public markerOptions = {
  
   if ('geolocation' in navigator) {
   
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.watchPosition((position) => {
 
 
       // this.latitude = parseFloat(position.coords.latitude.toFixed(7));
@@ -122,12 +124,12 @@ public markerOptions = {
       this.TrackLocation(interval);
      // this.origin = { lat: 17.398789, lng:  78.395734 };
      // this.destination = { lat: 17.398754, lng: 78.396429 };
-     // this.hideLoader();
+      
       //this.getAddress(this.latitude, this.longitude);
     },
     function error(msg) {
-    // this.hideLoader();
-      alert('Please enable your GPS position feature.');
+  //  this.hideLoader();
+    alert('Please enable your GPS position feature. ' + msg);
       if(!this.isMapError)
       {
         this.isMapError=true;
@@ -157,7 +159,11 @@ public markerOptions = {
     //this.hideLoader();  
   }
   hideLoader() {  
+    if(this.loaderToShow)
+    {
     this.loadingCtrl.dismiss();   
+    this.loaderToShow=false;
+    }
   }   
   TrackLocation(interval) {
     this.track.BookingId=1;
@@ -169,13 +175,15 @@ public markerOptions = {
      this.userTrackLocationService.GetUserTrack(this.track).subscribe(
        (data) => {
            if (data) {
+       
                this.trackdetails = data;
              this.origin={lat: this.trackdetails.vendorLatitude,lng: this.trackdetails.vendorLongitude}
              console.log(this.trackdetails.vendorLatitude,this.trackdetails.vendorLongitude)
              if(this.trackdetails .status==0)
              {
-              clearInterval(interval);
+             // clearInterval(interval);
              }
+           //  this.hideLoader();
            }
  
        },
