@@ -63,6 +63,14 @@ const routes: Routes = [
     path: 'usertracklocation',
     loadChildren: () => import('./usertracklocation/usertracklocation.module').then( m => m.UsertracklocationPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'userdashboard',
+    loadChildren: () => import('./userdashboard/userdashboard.module').then( m => m.UserdashboardPageModule)
+  },
 ];
 
 @NgModule({

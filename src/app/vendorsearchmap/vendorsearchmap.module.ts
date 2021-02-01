@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { VendorsearchmapPageRoutingModule } from './vendorsearchmap-routing.module';
 
 import { VendorsearchmapPage } from './vendorsearchmap.page';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule,MapsAPILoader } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 import { VendorSearchMapService } from './vendorsearchmap.service';
 
@@ -18,7 +18,8 @@ import { VendorSearchMapService } from './vendorsearchmap.service';
     IonicModule,
     VendorsearchmapPageRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCeA6ad2qsS-zSHDjdQX6qnuEbLQzsfDC0'
+      apiKey: 'AIzaSyCeA6ad2qsS-zSHDjdQX6qnuEbLQzsfDC0',
+      libraries: ['places']
     }),
     AgmDirectionModule
   ],

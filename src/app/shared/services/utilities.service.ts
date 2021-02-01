@@ -135,6 +135,20 @@ export class UtilitiesService {
             catchError(this.handleError)
         );
       }
+      getPoojaServices(): Observable<any> {
+        return this.http.get<any>(this.API_URL + "Service/GetPoojaServices/")
+        .pipe(
+            tap(status => console.log("status: " + status)),
+            catchError(this.handleError)
+        );
+    }
+    getAstrologyCategories(): Observable<any> {
+      return this.http.get<any>(this.API_URL + "AstrologyCategories/GetAstrologyCategories/")
+      .pipe(
+          tap(status => console.log("status: " + status)),
+          catchError(this.handleError)
+      );
+  }
     private handleError(error: any) {
         console.error(error);
         return throwError(error);

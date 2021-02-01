@@ -3,24 +3,524 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>GeoLocation</ion-title>
-    <ion-button type="button" class="primary" color="warning" size="small" (click)="Track()" slot="end" >
-      Track Location
+    <ion-title>Book Pandit</ion-title>
+    <ion-button type="button" class="primary" color="warning" size="small" (click)="Back()" slot="end" >
+      Back
      </ion-button>
-    <ion-button type="button" class="primary" color="warning" size="small" (click)="RefreshMap()" slot="end" >
-      Refresh
-     </ion-button>
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom"  >
-   <!-- <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>-->
-    <agm-direction 
-    [renderOptions]="renderOptions" 
-    [markerOptions]="markerOptions"
-    [origin]="origin" 
-    [destination]="destination" ></agm-direction>
-</agm-map>
+
+
+
+  <ion-row>
+    <ion-col>
+
+  
+     
+    <div class="col-12 row p-2">
+      <div class="border col-4" [ngClass]="{'disableDiv': !continueClicked}">
+            <form #bookPanditForm="ngForm" (ngSubmit)="bookPanditForm.form.valid && BookPanditUsingMap()">
+
+                <div class="form-group row">
+                    <label style="font-size: 14px;">Pooja language</label>
+                    <select name="languageId" [(ngModel)]="panditModel.languageId" class="form-control"
+                        (change)="selectlang($event)" [ngClass]="{'disableDiv': !continueClicked}" #languageId="ngModel"
+                        required>
+                        <option *ngFor="let lang of language" [value]="lang.languageID">
+                            {{lang.languageName}}
+                        </option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="(languageId.touched || bookPanditForm.submitted) && languageId.errors?.required">
+                        Language is required
+                    </span>
+                </div>
+
+                <div class="form-group row">
+                    <label style="font-size: 14px;">Select City</label>
+                    <!-- <div class="col-12 "> -->
+                    <select name="cityID" class="form-control" [(ngModel)]="selectedCity" #cityID="ngModel"
+                        [ngClass]="{'disableDiv': !continueClicked}" required>
+                        <option [value]="undefined" disabled hidden>Select Your City </option>
+                        <option *ngFor="let item of city" [ngValue]="item">
+                            {{item.cityName}}
+                        </option>
+                    </select>
+
+                    <span class="text-danger"
+                        *ngIf="(cityID.touched || bookPanditForm.submitted) && cityID.errors?.required">
+                        City is required
+                    </span>
+                    <!-- </div> -->
+                </div>
+
+                <div class="form-group row">
+                    <label style="font-size: 14px;">Pooja Location</label>
+                    <input type="text" id="pujaLocation" name="pujaLocation" [(ngModel)]="panditModel.pujaLocation"
+                        class="form-control" #pujaLocation="ngModel" (change)="onAddressChanged()" [ngClass]="{'disableDiv': !continueClicked}" />
+                </div>
+
+                <div class="form-group row" *ngIf="false">
+                    <div class="col-1">
+                        <input type="checkbox" #checklocation (change)="isPujaDifferentLocation()"
+                            [ngClass]="{'disableDiv': !continueClicked}" [disabled]="panditModel.isNewLocation" />
+
+                    </div>
+                    <div class="col-11">
+                        <p style="font-size: 14px;">Pooja at different location?Drag marker on map to select location
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- <div class="col-12"> -->
+                    <label style="font-size: 14px;">Select Service Type</label>
+                    <select name="serviceType" class="form-control" (change)="onServiceTypeChange($event.target.value)"
+                        [(ngModel)]="panditModel.serviceType" #serviceType="ngModel"
+                        [ngClass]="{'disableDiv': !continueClicked}">
+                        <option [value]="undefined" disabled hidden>Select Service Type </option>
+                        <option>Pooja Services</option>
+                        <option>Astrology Services</option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="(serviceType.touched || bookPanditForm.submitted) && serviceType.errors?.required">
+                        Service Type is required
+                    </span>
+                    <!-- </div> -->
+                </div>
+
+                <div class="form-group row" *ngIf="showAstrology">
+                    <label style="font-size: 14px;">Select Astrology Services</label>
+                    <select name="astrologyId" class="form-control" (change)="onAstrologyChange(selectedCategory)"
+                        [(ngModel)]="selectedCategory" #astrologyId="ngModel" required
+                        [ngClass]="{'disableDiv': !continueClicked}">
+                        <option [value]="undefined" disabled hidden>Select Astrology Services </option>
+                        <option *ngFor="let category of AstroCategories" [ngValue]="category">
+                            {{category.astrologyName}}
+                        </option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="(astrologyId.touched || bookPanditForm.submitted) && astrologyId.errors?.required">
+                        Astrology Category is required
+                    </span>
+
+                </div>
+
+                <div class="form-group row" *ngIf="showPooja">
+                    <label style="font-size: 14px;">Select Pooja Services</label>
+                    <select name="serviceId" class="form-control" (change)="onPoojaChange(selectedCategory)"
+                        [(ngModel)]="selectedCategory" #serviceId="ngModel" required
+                        [ngClass]="{'disableDiv': !continueClicked}">
+                        <option [value]="undefined" disabled hidden>Select Pooja Services </option>
+                        <option *ngFor="let pooja of PoojaServices" [ngValue]="pooja">
+                            {{pooja.serviceName}}
+                        </option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="(serviceId.touched || bookPanditForm.submitted) && serviceId.errors?.required">
+                        Pooja Service is required
+                    </span>
+
+                </div>
+
+                <div class="form-group row" *ngIf="showPackage">
+                    <label style="font-size: 14px;">Select Service Package</label>
+                    <select name="packageName" class="form-control" (change)="onPackageChange(selectedPackage)"
+                        [(ngModel)]="selectedPackage" #packageId="ngModel" required
+                        [ngClass]="{'disableDiv': !continueClicked}">
+                        <option [value]="undefined" disabled hidden>Select Service Package </option>
+                        <option *ngFor="let pkg of ServicePackages" [ngValue]="pkg">
+                            {{pkg.packageName}}
+                        </option>
+                    </select>
+                    <span class="text-danger"
+                        *ngIf="(packageId.touched || bookPanditForm.submitted) && packageId.errors?.required">
+                        Category is required
+                    </span>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- <div class="col-12"> -->
+                    <label style="font-size: 14px;">Amount</label>
+                    <input type="textbox" name="amount" id="amount" [(ngModel)]="panditModel.Total" disabled="false"
+                        placeholder="Amount" class="form-control" [ngClass]="{'disableDiv': !continueClicked}">
+                    <!-- </div> -->
+                </div>
+
+                <div class="form-group row">
+                    <label style="font-size: 14px;">Select Booking Date</label>
+                    <!-- <div class="col-12"> -->
+                        <input type="text" name="bookingDate" id="bookingdate" [(ngModel)]="panditModel.BookingDate"
+                        placeholder="Select Booking Date" onfocus="this.type='date'" class="form-control"
+                        #bookingdate="ngModel" required [ngClass]="{'disableDiv': !continueClicked}">
+                    <span class="text-danger"
+                        *ngIf="(bookingdate.touched || bookPanditForm.submitted) && bookingdate.errors?.required">
+                        Booking Date is required
+                    </span>
+             
+                    <!-- </div> -->
+
+                </div>
+
+                <div class="form-group row">
+                    <label style="font-size: 14px;">Select Booking Time</label>
+                    <!-- <div class="col-12"> -->
+                    <input type="text" name="bookingTime" id="bookingTime" [(ngModel)]="panditModel.BookingTime"
+                        placeholder="Select Booking Time" onfocus="(this.type='time')" class="form-control"
+                        #bookingTime="ngModel" required [ngClass]="{'disableDiv': !continueClicked}">
+                    <span class="text-danger"
+                        *ngIf="(bookingTime.touched || bookPanditForm.submitted) && bookingTime.errors?.required">
+                        Booking Time is required
+                    </span>
+                    <!-- </div> -->
+                </div>
+
+                <div class="form-group row">
+                    <!-- <div class="col-12"> -->
+                    <textarea type="textbox" name="description" id="description" [(ngModel)]="panditModel.description"
+                        placeholder="Write your Questions here.." class="form-control"
+                        [ngClass]="{'disableDiv': !continueClicked}"></textarea>
+                    <!-- </div> -->
+                </div>
+
+                <div class="form-group row">
+                    <label><b style="font-size: 14px;">Note:</b> After Continue to select Pandits, above fields will be
+                        disabled</label>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-1 ">
+                        <input type="checkbox" (change)="onCheckboxChange($event)"
+                            [ngClass]="{'disableDiv': !continueClicked}" />
+                    </div>
+                    <div class="col-11 ">
+                        <p> I Agree to the <a routerLink="/terms" routerLinkActive="active">Terms and Conditions</a> of
+                            service.</p>
+                    </div>
+                </div>
+
+                <div class="form-group row" *ngIf="continueClicked">
+                  <button class="col-8 offset-2 btn ">Continue to Select Pandits</button>
+                   <!--<ion-button class="col-8 offset-2 btn " color="warning" size="">Continue to Select Pandits</ion-button>-->
+                </div>
+            </form>
+        </div>
+
+
+        <div class="border col-8" *ngIf="continueClicked">
+            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                    [visible]="panditModel.isNewLocation" (dragEnd)="markerDragEnd($event)"></agm-marker>
+            </agm-map>
+
+            <h5>Address: {{address}}</h5>
+        </div>
+
+        <div class="border col-8" *ngIf="!continueClicked">
+
+            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                    <agm-marker *ngFor="let marker of VendorsList; let i = index"	
+                            [latitude]="marker.vendor_Latitude"	
+                            [longitude]="marker.vendor_Longitude"	
+                            (mouseOver)="onMouseOver(infoWindow, $event)"	
+                            [iconUrl]="{url: '../assets/icon/pandit.png', scaledSize: {width: 30, height: 30}}">
+
+                        <agm-info-window [disableAutoPan]="false" #infoWindow style="background-color: #FFFFF2;">
+                            <div class="text-center">
+                                <button type="submit" (click)="openDetailsPopup(marker.vendorID)">
+                                    <img src="data:image/png;base64,{{marker.vendor_Photo}}" width="50px"
+                                        height="50px" />
+                                </button>
+                            </div><br>
+                            <div class="InfoWindow" style="font-family: 'Quicksand';">
+                                <div class="form-group row">
+                                    <div class="col-3">
+                                        <label><b style="font-size: 14px;">Name:</b></label>
+                                    </div>
+                                    <div class="col-9">
+                                        {{marker.vendor_FirstName}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-3">
+                                        <label><b style="font-size: 14px;">Address:</b></label>
+                                    </div>
+                                    <div class="col-9">
+                                        {{marker.vendor_Address1}}
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group row">
+                                    <div class="col-5">
+                                        <label>Latitude :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        {{marker.vendor_Latitude}}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-5">
+                                        <label>Longitude :</label>
+                                    </div>
+                                    <div class="col-7">
+                                        {{marker.vendor_Longitude}}
+                                    </div>
+                                </div> -->
+
+                                <div>
+                                    <button type="button" class="btn " style="margin-left: 30%;"
+                                        (click)="BookPandit(marker, infoWindow)">Book Pandit</button>
+                                </div>
+                            </div>
+                        </agm-info-window>
+                    </agm-marker>
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"></agm-marker>
+              <agm-circle [latitude]="radiusLat" [longitude]="radiusLong" [radius]="radius" [fillColor]="'red'"
+                    [circleDraggable]="true" [editable]="false" (dragEnd)="radiusDragEnd($event)"
+                    (radiusChange)="event('radiusChange',$event)">
+                </agm-circle>
+                
+            
+            </agm-map>
+
+           
+
+            <label>Select Distance To See Pandit:</label> &nbsp; &nbsp;
+
+            <select placeholder="Select Distance" name="distance" class="selectkm" (change)="changeKm($event)">
+                <option></option>
+                <option>5Km</option>
+                <option>10Km</option>
+                <option>15Km</option>
+                <option>More Than 15Km</option>
+            </select>
+         
+
+            <label><b>Please select Pandits on priority base, max upto 3. Next priority pandit will be assigned if
+                    former
+                    is not
+                    available.</b></label>
+           
+            <table class="table table-striped table-bordered col-5">
+                <tr style="font-weight: bold;">
+                    <td>Priority</td>
+                    <td>Pandit Name</td>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let pandit of selectedPandit; let i=index">
+                    <td>{{i + 1}}</td>
+                    <td>{{pandit.vendor_FirstName}}</td>
+                    <td><a class="text-danger" (click)="RemoveSelectedPandit(pandit)" data-toggle="tooltip"
+                            data-placement="top" title="" data-original-title="Close"> <i
+                                class="fa fa-remove h5 m-0"></i></a></td>
+                </tr>
+            </table>
+
+            <button type="button" class="btn " (click)="GoToService()">Next</button>
+        </div>
+    </div>
+    </ion-col>
+  </ion-row>
+
+ <!--<ng-template #mymodal let-modal>
+      <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title"></h4>
+          <button type="button" style="border:0px;" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span style="float: right;" aria-hidden="true">×</span>
+          </button>
+      </div>
+  
+      <div class="modal-body w-100">
+  
+              <div class="jumbotron">
+                  <div style="height: 20px;" ></div>
+                  <div class="container">
+                    <div class="main-body">
+                      <h3 style="text-align: center; font-weight: bold;color:orange">Pandit Profile</h3>
+                
+                
+                      <div class="row gutters-sm">
+                        <div class="col-md-4 mb-3">
+                
+                          <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                              <img src="data:image/png;base64,{{vendor.vendor_Photo}}" width="350" height="750">
+                            </div>
+                          </div>
+     
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card mb-3">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Application Number:</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{vendor.vendor_ApplicationNumber}}
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Full Name:</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{vendor.fullName}}
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Father's Name :</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{vendor.vendor_FatherName}}
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">MobileNumber :</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{vendor.vendor_MobileNumber}}
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Email :</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{vendor.vendor_EmailID}}
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">DOB :</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                  {{vendor.vendor_DOB | date}}
+                                </div>
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Caste :</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                  {{vendor.vendor_Caste}}
+                                </div>
+                              </div>
+                              <hr>
+                
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Gothram :</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                  {{vendor.vendor_Gothram}}
+                                </div>
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Sutram :</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                  {{vendor.vendor_Sutram}}
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Rishi Pravara :</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                  {{vendor.vendor_Rishipravara}}
+                                </div>
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Veda Shaka :</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                  {{vendor.vendor_VedaShakha}}
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Marital Status :</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                  {{vendor.vendor_MaritalStatus}}
+                                </div>
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Mother Tongue :</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                  {{vendor.vendor_MotherTongue}}
+                                </div>
+                              </div>
+                              <hr>
+                
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Address :</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{vendor.vendor_Address1}}
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Languages :</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{vendor.languages}}
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Certifications :</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{vendor.certifications}}
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-1">Specializations :</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{vendor.specializations}}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        
+                        </div>
+                
+                      </div>
+                
+                    </div>
+                
+                  </div>
+                </div>
+       
+      </div>
+  </ng-template>-->
+  
 
 </ion-content>
+<ion-footer>
+ 
+  <ion-toolbar class="footerbg">
+  <ion-button type="button" class="primary" color="warning" slot="end" size="default">
+    Continue
+    </ion-button>
+    </ion-toolbar>
+
+</ion-footer>
