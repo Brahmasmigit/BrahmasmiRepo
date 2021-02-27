@@ -1,9 +1,7 @@
 <ion-header>
   <ion-toolbar class="background">
-    <ion-title>Pooja Details</ion-title>
-    <button type="button" class="btn" (click)="Back()" slot="end" size="default">
-       Back
-      </button>
+    <ion-title class="title">Pooja Details</ion-title>
+    <a (click)="Back()" slot="start" style="margin-left: 13px;"> <img src="../../assets/Images/arrow-red.png"/></a>
   </ion-toolbar>
 </ion-header>
 
@@ -45,12 +43,11 @@
   
   </ion-card>
 </ion-content>
-<ion-footer>
- 
-  <ion-toolbar class="footerbg">
-  <ion-button type="button" class="primary" color="warning" (click)="Navigate()" slot="end" size="default">
-    Continue
-    </ion-button>
-    </ion-toolbar>
 
+<ion-footer>
+  <ion-toolbar class="footerbackground">
+    <ion-button type="button" class="primary" color="warning" (click)="Navigate(serviceDetails.serviceTypeId,serviceDetails.serviceId)" slot="end" size="default">
+      Continue
+      </ion-button>
+  </ion-toolbar>
 </ion-footer>

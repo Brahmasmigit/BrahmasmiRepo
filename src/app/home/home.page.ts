@@ -33,6 +33,10 @@ go()
 {
   this.router.navigate(['/contact']); 
 }
+BookPoojas()
+{
+  this.router.navigate(['/servicetype']); 
+}
 BookPandit()
 {
   this.router.navigate(['/vendorsearchmap']); 
@@ -41,5 +45,8 @@ VendorMap()
 {
   this.router.navigate(['/vendordashboard']); 
 }
-
+bookings()
+{
+  this.router.navigate(['/userdashboard']); 
+}
 }

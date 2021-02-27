@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {PackageService}  from './package.service';
 import { LoadingController,NavController } from '@ionic/angular'; 
 import { ToastController } from '@ionic/angular';  
+import { PanditModel } from '../vendorsearchmap/vendorsearchmap.model';
 
 @Component({
   selector: 'app-package',
@@ -18,20 +19,35 @@ export class PackagePage implements OnInit {
   serviceId:any;
   serviceTypeId:any;
   userInfo:any={};
-  vendorId:any;languageName:any;cityId:any;
+  vendorId:any;languageName:any;cityId:any;cityName:any;
   isPoojaKit:boolean=false;
   loaderToShow:any=false;
+  cartitems:  PanditModel = {} as PanditModel;
+  poojaLocation: any; isNewLocation: boolean; newLocationAddress: any; BookingDate: any; BookingTime: any;
   constructor(private activatedRoute: ActivatedRoute,  private loadingCtrl: LoadingController,public toastCtrl: ToastController,
     private router: Router,
     private navCtrl: NavController, private packageService:PackageService) { }
 
   ngOnInit() {
-    this.serviceId= this.activatedRoute.snapshot.params['serviceId'];
-   this.serviceTypeId= 1;//this.activatedRoute.snapshot.params['serviceTypeId'];
-  //  this.vendorId= this.activatedRoute.snapshot.params['vendorId'];
-   // this.languageName= this.activatedRoute.snapshot.params['languageName'];
-    this.cityId= 1;//this.activatedRoute.snapshot.params['cityId'];
+
+    this.serviceId = this.activatedRoute.snapshot.params['serviceId'];
+    this.serviceTypeId = this.activatedRoute.snapshot.params['serviceTypeId'];
+    this.vendorId = this.activatedRoute.snapshot.params['vendorId'];
+    this.languageName = this.activatedRoute.snapshot.params['languageName'];
+    this.cityId = this.activatedRoute.snapshot.params['cityId'];
     this.getServiceDetails(this.serviceId);
+    if (sessionStorage.getItem("orderdetailsByMap") != null) {
+      this.cartitems = JSON.parse(sessionStorage.getItem("orderdetailsByMap"));
+      console.log(this.cartitems)
+      this.poojaLocation = this.cartitems[0].currentLocationAddress;
+      this.isNewLocation = this.cartitems[0].isNewLocation;
+      this.BookingDate = this.cartitems[0].BookingDate;
+      this.BookingTime = this.cartitems[0].BookingTime;
+      this.cityName = this.cartitems[0].CityName;
+      if (this.isNewLocation == true) {
+        this.newLocationAddress = this.cartitems[0].newLocationAddress;
+      }
+    } 
   }
   getServiceDetails(serviceId)
   {
@@ -96,6 +112,21 @@ export class PackagePage implements OnInit {
         else{
           orders.itemName=null;
         }
+        if (sessionStorage.getItem("orderdetailsByMap") != null) {
+          this.cartitems[0].Total = Number(this.total);
+          if (this.isPoojaKit == true) {
+            this.cartitems[0].itemName = this.packages[0].itemName;
+            this.cartitems[0].itemPrice = this.packages[0].itemPrice;
+            this.cartitems[0].productID = Number(this.packages[0].productID);
+          }
+          else {
+            this.cartitems[0].itemName = null;
+          }
+          this.cartitems[0].packageId = Number(this.packages[0].packageId);
+          this.cartitems[0].packageName = this.packages[0].packageName;
+          console.log(this.cartitems)
+          sessionStorage.setItem("orderdetailsByMap", JSON.stringify(this.cartitems));
+        }
         if(sessionStorage.getItem("userInfo")!=null)
         {
         this.userInfo=JSON.parse(sessionStorage.getItem("userInfo"));
@@ -106,7 +137,7 @@ export class PackagePage implements OnInit {
           orders.UserId=0;
         }
 
-        orders.VendorId= 1;//Number(this.vendorId); //TBD
+        orders.VendorId= Number(this.vendorId); 
         orderdetails.push(orders);
         if(sessionStorage.getItem("orderdetails")!=null)
         {
@@ -128,8 +159,8 @@ export class PackagePage implements OnInit {
         {
           sessionStorage.setItem("orderdetails",JSON.stringify(orderdetails));
         }
-
-        this.router.navigate(['/userslotbooking'], { queryParams: { serviceId: this.serviceId,serviceTypeId:this.serviceTypeId} });
+        this.router.navigate(['/usercart']);
+       // this.router.navigate(['/userslotbooking'], { queryParams: { serviceId: this.serviceId,serviceTypeId:this.serviceTypeId} });
         }
       }
       else

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar  class="background">
-    <ion-title>My Dashboard</ion-title>
-    
+    <ion-title class="title">My Dashboard</ion-title>
+    <a (click)="Back()" slot="start" style="margin-left: 13px;"> <img src="../../assets/Images/arrow-red.png"/></a>
   </ion-toolbar>
 </ion-header>
 
@@ -79,6 +79,15 @@
             </div>
                   </ion-col>
                 </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-button type="button" color="warning" align="center">View Booking</ion-button>
+  
+                      <ion-button type="button" color="warning" align="center" (click)="TrackLocation(item.bookingId,item.vendorId)">Track Location</ion-button>
+                      </ion-item>
+                  </ion-col>
+                </ion-row>
               </ion-card-content>
               </ion-card>
       
@@ -96,29 +105,26 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar style="background-color: #f1f1f1;">
-  <ion-tabs style="background-color: #f1f1f1;">
-    <ion-tab-bar slot="bottom" style="background-color: #f1f1f1;">
+  <ion-toolbar class="footerbackground">
+  <ion-tabs class="footerbackground">
+    <ion-tab-bar slot="bottom" class="footerbackground">
       <ion-tab-button tab="schedule">
-        <ion-icon name="briefcase"></ion-icon>
-        <ion-label>My Bookings</ion-label>
-        <ion-badge>6</ion-badge>
+        <ion-icon name="home"  (click)="go()"></ion-icon>
+        <ion-label color="white" style="color:white;">Home</ion-label>
+     
       </ion-tab-button>
   
       <ion-tab-button tab="speakers">
-        <ion-icon name="person-circle"></ion-icon>
-        <ion-label>My Account</ion-label>
+        <ion-icon name="briefcase"></ion-icon>
+        <ion-label style="color:white;">My Bookings</ion-label>
+        <ion-badge>6</ion-badge>
       </ion-tab-button>
   
       <ion-tab-button tab="map">
-        <ion-icon name="map"></ion-icon>
-        <ion-label>Map</ion-label>
+        <ion-icon name="settings"></ion-icon>
+        <ion-label style="color:white;">Services</ion-label>
       </ion-tab-button>
-  
-      <ion-tab-button tab="about">
-        <ion-icon name="information-circle"></ion-icon>
-        <ion-label>About</ion-label>
-      </ion-tab-button>
+ 
     </ion-tab-bar>
   </ion-tabs>
   </ion-toolbar>

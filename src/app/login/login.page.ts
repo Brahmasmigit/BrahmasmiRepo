@@ -85,6 +85,7 @@ export class LoginPage implements OnInit {
           this.userInfo.userId=data.vendorID;
           this.userInfo.userTypeId=data.userTypeID;
           this.userInfo.name=data.name;
+          this.userInfo.mobile=data.Vendor_MobileNumber;
           console.log(this.userInfo)
           sessionStorage.clear();
           sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
@@ -99,6 +100,7 @@ export class LoginPage implements OnInit {
                   this.userInfo.userId=data.userID;
                   this.userInfo.userTypeId=data.userTypeID;
                   this.userInfo.name=data.name;
+                  this.userInfo.mobile=data.User_MobileNumber;
                   console.log(data)
                   console.log(this.userInfo)
                   sessionStorage.clear();
@@ -195,7 +197,7 @@ export class LoginPage implements OnInit {
                   this.userInfo.name=data.name;
                   sessionStorage.clear();
                   sessionStorage.setItem("userInfo",JSON.stringify(this.userInfo));
-                  this.route.navigate(['/userdashboard']);
+                  this.route.navigate(['/home']);
                 }
                 else{
                   this.loginservice.getStoreData(this.userModel).subscribe(

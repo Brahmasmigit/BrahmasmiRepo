@@ -22,7 +22,7 @@ export class ServicelistPage implements OnInit {
   ngOnInit() {
     this.servicetypeId= this.activatedRoute.snapshot.params['servicetypeId'];
     this.cityId= this.activatedRoute.snapshot.params['cityId'];
- //  this.languageName= this.activatedRoute.snapshot.params['languageName'];
+    this.languageName= this.activatedRoute.snapshot.params['languageName'];
     this.getServices(this.servicetypeId, this.cityId)
   }
   getServices(servicetypeId, cityId)
@@ -63,8 +63,9 @@ export class ServicelistPage implements OnInit {
   {
     this.router.navigate(['/servicetype']); 
   }
-  Navigate(serviceid)
+  Navigate(servicetypeId,serviceid,cityId,languageName)
   {
-    this.router.navigate(['/servicedetails',serviceid]); 
+    var language=languageName !=undefined ? languageName: '';
+    this.router.navigate(['/vendorsearchmap',servicetypeId,serviceid,cityId,language]); 
   }
 }

@@ -43,18 +43,37 @@ color: white;
 }
 
 ion-card {
-  height: 70px;
+  height: 93%;
   text-align: center;
-  background-color: #f1f1f1;
-  margin-left:0 !important;
-  margin-right:0 !important;
+  background-color: rgba(197,21,21,1);
+  margin-left:25px !important;
   margin-bottom:0 !important;
-  margin-top: 0!important;
+ 
   ion-card-content{
       padding: 0 !important; 
   };
   font-weight: bold;
+  width:105px !important;
+  padding: 6px;
 
+}
+.cardtext {
+  margin-left:15px !important;
+  position: absolute;
+  overflow: visible;
+  width: 140px;
+  white-space: nowrap;
+  text-align: center;
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  background-color:rgba(244,147,33,1);
+  color:rgba(197,21,21,1);
+  border-radius: 5px;
+  padding:6px;
+  margin-top: 10px;
+  
 }
 #a{
   text-decoration: none;
@@ -80,4 +99,58 @@ ion-card {
   background-image:url("../../assets/Images/btnbg.jpg");
   font-weight: bold;
   color: #f7f9f9 !important;
+}
+.footerbackground{
+  --background: url(../../assets/Images/down-bg.png) ;
+  --background-repeat: no-repeat;
+--background-size: cover; 
+color: white;
+}
+
+.Rectangle_1 {
+ 
+  background-color:   #f49321;
+
+  width: 375px;
+  height: 120px !important;
+  left: 0px;
+  top: 0px;
+}
+.fbackground{
+  --background-color: #f49321;
+  --background-repeat: no-repeat;
+--background-size: cover; 
+color: white;
+}
+.logotext{
+  left: 116px;
+    top: 62px;
+    position: absolute;
+    overflow: visible;
+    width: 145px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Forte;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    color: rgba(197,21,21,1);
+}
+.logosubtext{
+  left: 199px;
+  top: 95px;
+  position: absolute;
+  overflow: visible;
+  width: 61px;
+  white-space: nowrap;
+  text-align: center;
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  color: rgba(197,21,21,1);
+}
+.button-inner{
+  justify-content:left !important;
+  width: 2px !important;
 }

@@ -217,6 +217,10 @@ export class VendordashboardPage implements OnInit {
   hideLoader() {  
     this.loadingCtrl.dismiss();   
   } 
+  TrackLocation(bookingId,userId)
+  {
+    this.router.navigate(['/vendortracklocation',bookingId,this.vendorId,userId]); 
+  }
   ngOnDestroy() {
   }
 }

@@ -21,6 +21,10 @@ export class ServicedetailsPage implements OnInit {
   public isCollapsed2= true;
   public isCollapsed3= true;
   public isCollapsed4= true;
+  noImg:boolean=false;
+  cartitems:any=[];
+  vendorId:any;
+
   constructor(private activatedRoute: ActivatedRoute,private serviceDetailsService:ServiceDetailsService,
     private loadingCtrl: LoadingController,
     private router: Router,
@@ -28,16 +32,30 @@ export class ServicedetailsPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.serviceId= this.activatedRoute.snapshot.params['serviceId'];
+    var serviceTypeId= this.activatedRoute.snapshot.params['serviceTypeId'];
+    var serviceId= this.activatedRoute.snapshot.params['serviceId'];
+    var languageName= this.activatedRoute.snapshot.params['languageName'];
+    var CityId= this.activatedRoute.snapshot.params['cityId'];
+    
+    this.paramsModel.languageName=languageName;
+    console.log(this.serviceDetails.languageName)
+    this.paramsModel.cityId=CityId;
     //var languageName= this.activatedRoute.snapshot.params['languageName'];
     //var CityId= this.activatedRoute.snapshot.params['cityId'];
     //this.paramsModel.languageName=languageName;
     //this.paramsModel.cityId=CityId;
-    this.getServiceDetails(this.serviceId);
+  
+    if (sessionStorage.getItem("orderdetailsByMap") != null) {
+      this.cartitems = JSON.parse(sessionStorage.getItem("orderdetailsByMap"));
+      console.log(this.cartitems)
+      this.vendorId=this.cartitems[0].VendorList[0].VendorID;
+
+      }
+      this.getServiceDetails(serviceId);
   }
   getServiceDetails(serviceId)
   {
-    this.showLoader();
+  //  this.showLoader();
     this.serviceDetailsService.getServiceDetails(serviceId).subscribe(
       (data) => {
           if (data) {
@@ -49,16 +67,17 @@ export class ServicedetailsPage implements OnInit {
               else{
                 this.haveImg=true;
               }
+            //  this.hideLoader();  
           }
 
       },
       (error) => {
         this.errorMessage = error; 
         console.log(error);    
-        this. hideLoader();   
+     //   this.hideLoader();   
       },
       () => {
-        this. hideLoader();
+     //   this.hideLoader();
       });
   }
   showLoader() {  
@@ -83,9 +102,10 @@ export class ServicedetailsPage implements OnInit {
     //this.router.navigate(['/servicelist']); 
     
   }
-  Navigate()
+  Navigate(serviceTypeId,serviceId)
   {
-    this.router.navigate(['/package',  this.serviceId]); 
+    this.router.navigate(['/package',  serviceTypeId,serviceId,this.paramsModel.cityId,this.paramsModel.languageName]); 
+
   }
 
 }

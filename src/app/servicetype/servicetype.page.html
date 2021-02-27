@@ -2,12 +2,13 @@
   <ion-toolbar class="background">
     
    
-    <ion-title>Pooja Categories</ion-title>
+    <ion-title class="title">Pooja Categories</ion-title>
     
     
-    <button type="button" class="btn" (click)="Back()" slot="end" size="default">
+   <!-- <button type="button" class="btn" (click)="Back()" slot="end" size="default" >
       Back
-     </button>
+     </button>-->
+    <a (click)="Back()" slot="start" style="margin-left: 13px;"> <img src="../../assets/Images/arrow-red.png"/></a>
     
   </ion-toolbar>
 </ion-header>
@@ -24,13 +25,41 @@
     <ion-col *ngFor="let item of servicetypes" >  
         <ion-card (click)="Navigate(item.serviceTypeID,cityId)">  
           <ion-card-content>
-          <img src="data:image/png;base64,{{item.serviceTypeImage}}" width="70%" height="70%"  style="margin-top: 10px;"
+          <img src="data:image/png;base64,{{item.serviceTypeImage}}" width="90%" height="90%"  style="margin-top: 10px;"
           alt="icon">
         
-          <p>{{item.serviceTypeName}}</p>  
+         
         </ion-card-content>
         </ion-card>  
+        <!--<div class="cardtext" style="margin-top:10px;">
+          {{item.serviceTypeName}}
+        </div>-->
     </ion-col>
     </ion-row>
  </ion-content>
  
+ <ion-footer  style="margin-top:25px;">
+  <ion-toolbar class=".footerbackground">
+  <ion-tabs class="footerbackground">
+    <ion-tab-bar slot="bottom" class="footerbackground">
+      <ion-tab-button tab="schedule">
+        <ion-icon name="home"  (click)="go()"></ion-icon>
+        <ion-label color="white" style="color:white;">Home</ion-label>
+     
+      </ion-tab-button>
+  
+      <ion-tab-button tab="speakers">
+        <ion-icon name="briefcase"></ion-icon>
+        <ion-label style="color:white;">My Bookings</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="settings"></ion-icon>
+        <ion-label style="color:white;">Services</ion-label>
+      </ion-tab-button>
+ 
+    </ion-tab-bar>
+  </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

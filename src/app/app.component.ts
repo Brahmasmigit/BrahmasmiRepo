@@ -35,15 +35,11 @@ export class AppComponent {
         icon  : 'home'  
       },  
       {  
-        title : 'My Profile',  
-        url   : '/chat',  
+        title : 'Logout',  
+        url   : '/login',  
         icon  : 'chatboxes'  
-      },  
-      {  
-        title : 'Blog',  
-        url   : '/contacts',  
-        icon  : 'contacts'  
-      },  
+      }
+     
     ];  
   }  
 }

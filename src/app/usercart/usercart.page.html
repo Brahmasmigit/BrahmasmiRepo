@@ -1,9 +1,7 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Cart</ion-title>
-    <ion-button type="button" class="primary" color="warning" size="small" (click)="Back()" slot="end" >
-      Back
-     </ion-button>
+  <ion-toolbar class="background">
+    <ion-title  class="title">Cart</ion-title>
+    <a (click)="Back()" slot="start" style="margin-left: 13px;"> <img src="../../assets/Images/arrow-red.png"/></a>
   </ion-toolbar>
 </ion-header>
 
@@ -110,3 +108,28 @@
     
     
 </ion-content>
+<ion-footer >
+  <ion-toolbar class="footerbackground">
+  <ion-tabs class="footerbackground">
+    <ion-tab-bar slot="bottom" class="footerbackground">
+      <ion-tab-button tab="schedule">
+        <ion-icon name="home"  (click)="go()"></ion-icon>
+        <ion-label color="white" style="color:white;">Home</ion-label>
+     
+      </ion-tab-button>
+  
+      <ion-tab-button tab="speakers">
+        <ion-icon name="briefcase"></ion-icon>
+        <ion-label style="color:white;">My Bookings</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="settings"></ion-icon>
+        <ion-label style="color:white;">Services</ion-label>
+      </ion-tab-button>
+ 
+    </ion-tab-bar>
+  </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

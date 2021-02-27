@@ -1,0 +1,59 @@
+.background{
+    --background:#f49321 !important;
+    --background-repeat: no-repeat;
+  --background-size: cover; 
+  
+  }
+  .footerbackground{
+    --background: url(../../assets/Images/down-bg.png) ;
+    --background-repeat: no-repeat;
+  --background-size: cover; 
+  color: white;
+  }
+  .title {
+    color: rgba(197,21,21,1);
+    font-weight: bold;
+    font-size:25px;
+   }
+   
+.Rectangle_1 {
+ 
+  background-color:   #f49321;
+
+  width: 375px;
+  height: 120px !important;
+  left: 0px;
+  top: 0px;
+}
+.logotext{
+  left: 116px;
+    top: 62px;
+    position: absolute;
+    overflow: visible;
+    width: 145px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Forte;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    color: rgba(197,21,21,1);
+}
+.logosubtext{
+  left: 199px;
+  top: 95px;
+  position: absolute;
+  overflow: visible;
+  width: 61px;
+  white-space: nowrap;
+  text-align: center;
+  font-family: Quicksand;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  color: rgba(197,21,21,1);
+}
+.cardbgcolor{
+  --background: #f49321 !important;
+
+}

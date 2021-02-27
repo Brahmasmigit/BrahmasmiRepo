@@ -22,28 +22,109 @@
     </ion-toolbar>
   </ion-footer>-->
 
-  <ion-header [translucent]="true" >
-    <ion-toolbar class="background">
-      <ion-buttons slot="start" color="primary">  
-       <ion-menu-button></ion-menu-button>
-        <img src="../../assets/Images/Brahmasmi_logo.png" width="40%"/>   
-      </ion-buttons>  
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+
+      <div class="Rectangle_1" align="center">
+      
+   <!--    <ion-menu-button></ion-menu-button>-->
+        <img src="../../assets/Images/leaf.png" style="margin-top:10px;" />   
+       <div class="logotext">Brahmasmi</div>
+       <div class="logosubtext">TECHPANDIT</div>
       <ion-title>
         
       </ion-title>
-      <ion-buttons slot="end" color="primary" style="margin-right: 15px;">  
+   <!-- <ion-buttons slot="end" color="primary" style="margin-right: 15px;">  
         <img src="../../assets/icon/search2.png" width="30%" height="30%" style="margin-right: 15px;"/> 
         <img src="../../assets/icon/bell2.png" width="30%" height="30%"  style="margin-right: 45px;"/> 
 
-      </ion-buttons>  
+      </ion-buttons>  -->  
+    </div>
+    <div style="background-color:rgba(197,21,21,1);">
+      <ion-row>
+        <ion-col style="text-align: left;">
+   
+      <ion-menu-button text-  style="text-align: left !important;color:white; justify-content:left !important;"></ion-menu-button>
+     
+    </ion-col>
+  
+    
+      <ion-col style="text-align: right;">
+        <ion-icon name="call" style="color:white;"></ion-icon>
+       <span style="color:white;margin-left: 3px;"> 1800-891-6676</span>
+        <ion-icon name="people" style="color:white;margin-left: 6px;"></ion-icon>
+      </ion-col>
+      </ion-row>
+    </div>
     </ion-toolbar>
   </ion-header>
      
 <ion-content> 
-
   <ion-row>
+    <ion-col>
+      <img src="../../assets/Images/ganapathi.png" width="100%" style="margin: top 0px !important;"/> 
+    </ion-col>
+  </ion-row>
+<ion-row>
+  <ion-col>
+    <ion-card (click)="BookPoojas()">  
+    <img src="../../assets/Images/homalu.png"/>  
+   
+    </ion-card>
+    <div class="cardtext" style="margin-top:10px;">
+      Book Poojas
+    </div>
+  </ion-col>
+  <ion-col>
+    <ion-card (click)="BookPandit()">  
+    <img src="../../assets/Images/ganesh.png"/>  
+    </ion-card>
+    <div class="cardtext" >
+     Book Pandit
+    </div>
+  </ion-col>
+</ion-row>
+<ion-row style="margin-top:35px;">
+  <ion-col>
+    <ion-card (click)="Navigate()">  
+    <img src="../../assets/Images/astro@2x.png"/>  
+   
+    </ion-card>
+    <div class="cardtext" >
+      Astrologer
+    </div>
+  </ion-col>
+  <ion-col>
+    <ion-card (click)="BookPandit()">  
+    <img src="../../assets/Images/temple@2x.png"/>  
+    </ion-card>
+    <div class="cardtext" >
+    Temple Services
+    </div>
+  </ion-col>
+</ion-row>
+<ion-row style="margin-top:35px;">
+  <ion-col>
+    <ion-card (click)="Navigate()">  
+    <img src="../../assets/Images/E-cart@2x.png"/>  
+   
+    </ion-card>
+    <div class="cardtext" >
+     E-Cart
+    </div>
+  </ion-col>
+  <ion-col>
+    <ion-card (click)="BookPandit()">  
+    <img src="../../assets/Images/servces@2x.png"/>  
+    </ion-card>
+    <div class="cardtext" >
+     Special Services
+    </div>
+  </ion-col>
+</ion-row>
+  <!--<ion-row>
     <ion-col >  
-  <ion-slides pager="true" [options]="slideOpts">  
+ <ion-slides pager="true" [options]="slideOpts">  
 
   
     <ion-slide >  
@@ -64,16 +145,10 @@
   
   </ion-slides>  
   </ion-col>
-  </ion-row>
-  <ion-row>
+  </ion-row>-->
+  <!--<ion-row>
     <ion-col >  
-     <!--<ion-button expand="block" routerLink="/servicetype" routerDirection="root">
-      
-    
-        Login
-      </ion-button>
-      <ion-button routerLink="/servicetype" routerDirection="forward">sign</ion-button>
-      <a routerLink="servicetype">road to nowhere</a>--> 
+  
         <ion-card (click)="Navigate()">  
        
           <p>Book Pooja</p>  
@@ -103,8 +178,8 @@
             </P>  
           </ion-card>  
       </ion-col>
-      </ion-row>
-      <div style="text-align: left;font-weight: bold;color: red;margin-top: 15px;margin-bottom: 5px;">Recent Poojas</div> 
+      </ion-row>-->
+      <!--<div style="text-align: left;font-weight: bold;color: red;margin-top: 15px;margin-bottom: 5px;">Recent Poojas</div> 
       <div>
      <ion-slides pager="true" [options]="slideOpts">  
 
@@ -126,34 +201,31 @@
       
       
       </ion-slides>  
-    </div>
+    </div>-->
 </ion-content> 
 
 
-<ion-footer>
-  <ion-toolbar style="background-color: #f1f1f1;">
-  <ion-tabs style="background-color: #f1f1f1;">
-    <ion-tab-bar slot="bottom" style="background-color: #f1f1f1;">
+<ion-footer  style="margin-top:25px;">
+  <ion-toolbar class=".footerbackground">
+  <ion-tabs class="footerbackground">
+    <ion-tab-bar slot="bottom" class="footerbackground">
       <ion-tab-button tab="schedule">
-        <ion-icon name="briefcase" (click)="go()"></ion-icon>
-        <ion-label>My Bookings</ion-label>
-        <ion-badge>6</ion-badge>
+        <ion-icon name="home"  (click)="go()"></ion-icon>
+        <ion-label color="white" style="color:white;">Home</ion-label>
+     
       </ion-tab-button>
   
       <ion-tab-button tab="speakers">
-        <ion-icon name="person-circle"></ion-icon>
-        <ion-label>My Account</ion-label>
+        <ion-icon name="briefcase" (click)="bookings()"></ion-icon>
+        <ion-label style="color:white;">My Bookings</ion-label>
+        <ion-badge>6</ion-badge>
       </ion-tab-button>
   
       <ion-tab-button tab="map">
-        <ion-icon name="map"></ion-icon>
-        <ion-label>Map</ion-label>
+        <ion-icon name="settings"></ion-icon>
+        <ion-label style="color:white;">Services</ion-label>
       </ion-tab-button>
-  
-      <ion-tab-button tab="about">
-        <ion-icon name="information-circle"></ion-icon>
-        <ion-label>About</ion-label>
-      </ion-tab-button>
+ 
     </ion-tab-bar>
   </ion-tabs>
   </ion-toolbar>

@@ -2,3 +2,20 @@ agm-map {
     height: 100%;
     width:100%
   }
+  .background{
+    --background:#f49321 !important;
+    --background-repeat: no-repeat;
+  --background-size: cover; 
+  
+  }
+  .footerbackground{
+    --background: url(../../assets/Images/down-bg.png) ;
+    --background-repeat: no-repeat;
+  --background-size: cover; 
+  color: white;
+  }
+  .title {
+    color: rgba(197,21,21,1);
+    font-weight: bold;
+    font-size:25px;
+   }

@@ -1,6 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <div class="Rectangle_1" align="center">
+    
+           <img src="../../assets/Images/leaf.png" style="margin-top:10px;" />   
+          <div class="logotext">Brahmasmi</div>
+          <div class="logosubtext">TECHPANDIT</div>
+         <ion-title>
+           
+         </ion-title>  
+       </div>
   </ion-toolbar>
 </ion-header>
 
@@ -8,15 +16,17 @@
 
   <ion-card style="margin-top:30%">
     <ion-card-header>
-      <ion-text color="default" style="text-align: left;">
+     
+      <ion-text  style="text-align: left;">
+        
         <ion-tabs>  
-          <ion-tab-bar slot="top" color="light">  
+          <ion-tab-bar slot="top" class="cardbgcolor">  
             <ion-tab-button tab="otp" (click)="ShowPanel('otp')">  
-              <ion-label>OTP</ion-label>  
+              <ion-label style="font-weight: bold;color:rgba(197,21,21,1)">Login with OTP</ion-label>  
             </ion-tab-button>  
               
             <ion-tab-button tab="password" (click)="ShowPanel('password')">  
-              <ion-label>Password</ion-label>  
+              <ion-label style="font-weight: bold;color:rgba(197,21,21,1)">Login with Password</ion-label>  
             </ion-tab-button>  
                      
           </ion-tab-bar>  
@@ -122,3 +132,8 @@
 
 
 </ion-content>
+<ion-footer>
+  <ion-toolbar class="footerbackground" style="text-align: center;">
+<ion-label text-align="center">© 2020 Copyright: www.brahmasmi.in</ion-label>
+  </ion-toolbar>
+</ion-footer>

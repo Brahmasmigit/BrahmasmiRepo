@@ -57,6 +57,7 @@ export class VendorsearchmapPage implements OnInit {
   serviceId:any;cityID:any;serviceTypeId:any;  closeResult: string;
   selectedCategory:any;
   selectedPackage:any;
+  isMapError:boolean=false;
   @ViewChild('virtualSlotBookingForm') myForm: NgForm;
   @ViewChild('mymodal') mymodal: ElementRef;
 
@@ -176,7 +177,16 @@ export class VendorsearchmapPage implements OnInit {
         this.panditModel.isNewLocation =  true; //!this.panditModel.isNewLocation;
         this.panditModel.currentLocationAddress = this.panditModel.pujaLocation;
         this.getAddress(this.latitude, this.longitude);
-      });
+      },
+      function error(msg) {
+          alert('Please enable your GPS position feature. ' + msg);
+          if(!this.isMapError)
+          {
+            this.isMapError=true;
+            this.setCurrentLocation();
+          }
+        },
+        {maximumAge:10000, timeout:5000, enableHighAccuracy: true});
     }
   }
 

@@ -3,6 +3,7 @@ import { Platform } from '@ionic/angular';
 import { ToastController,AlertController  } from '@ionic/angular'; 
 import { LoadingController,NavController } from '@ionic/angular';  
 import {UserTrackLocationService} from './usertracklocation.service'
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Marker {
   vendor_Latitude: number;
@@ -52,6 +53,9 @@ export class UsertracklocationPage implements OnInit  {
   isMapError:boolean=false;
   track:any={};
   trackdetails:any=[];
+  bookingId:any;
+  vendorId:any;
+  userId:any;
   public origin: any;
 public destination: any;
 icon = {
@@ -79,13 +83,16 @@ public markerOptions = {
 }
   constructor(public platform: Platform,    private loadingCtrl: LoadingController, 
     private userTrackLocationService:UserTrackLocationService,
-    public toastCtrl: ToastController,private navCtrl: NavController,
+    public toastCtrl: ToastController,private navCtrl: NavController, private activatedRoute:ActivatedRoute,
     public alertController: AlertController) {
    // this.height = platform.height() - 56;
   }
   ngOnInit() {
  // this.origin = { };
   // this.destination = { };
+  this.bookingId = this.activatedRoute.snapshot.params['bookingId'];
+    this.vendorId = this.activatedRoute.snapshot.params['vendorId'];
+    this.userId=this.activatedRoute.snapshot.params['userId'];
   this.origin = { lat: 0, lng:  0 };
   this.destination = { lat: 0, lng: 0};
     
@@ -166,9 +173,9 @@ public markerOptions = {
     }
   }   
   TrackLocation(interval) {
-    this.track.BookingId=1;
-    this.track.UserId=1;
-    this.track.VendorId=2;
+    this.track.BookingId= Number(this.bookingId);
+    this.track.UserId= Number(this.userId);
+    this.track.VendorId=208;
     this.track.isVendor=0;
     this.track.UserLatitude=this.latitude;
     this.track.UserLongitude=this.longitude;
@@ -227,9 +234,9 @@ interval =   setInterval(() => {
      let i=1;
      let interval:any;
     interval =   setInterval(() => { 
-    this.track.BookingId=1;
-    this.track.UserId=1;
-    this.track.VendorId=2;
+    this.track.BookingId=  this.bookingId;
+    this.track.UserId=this.userId;
+    this.track.VendorId=208;
     this.track.isVendor=2;
     this.track.UserLatitude=this.latitude;
     this.track.UserLongitude=this.longitude;
@@ -256,4 +263,9 @@ interval =   setInterval(() => {
 
     }, 5000);
   }//end of Refresh
+  Back()
+  {
+    this.navCtrl.back();
+    
+  }
 }

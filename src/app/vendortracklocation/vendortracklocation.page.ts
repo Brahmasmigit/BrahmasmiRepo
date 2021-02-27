@@ -3,7 +3,7 @@ import { Platform } from '@ionic/angular';
 import { ToastController,AlertController  } from '@ionic/angular'; 
 import { LoadingController,NavController } from '@ionic/angular';  
 import {VendorTrackLocationService} from './vendortracklocation.service';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Marker {
   vendor_Latitude: number;
@@ -54,6 +54,9 @@ export class VendortracklocationPage implements OnInit   {
   isMapError:boolean=false;
   track:any={};
   trackdetails:any=[];
+  bookingId:any;
+  vendorId:any;
+  userId:any;
   public origin: any;
 public destination: any;
 icon = {
@@ -81,11 +84,14 @@ public markerOptions = {
 }
 constructor(public platform: Platform,    private loadingCtrl: LoadingController, 
   private vendorTrackLocationService:VendorTrackLocationService,
-  public toastCtrl: ToastController,private navCtrl: NavController,
+  public toastCtrl: ToastController,private navCtrl: NavController, private activatedRoute:ActivatedRoute,
   public alertController: AlertController) {
  // this.height = platform.height() - 56;
 }
 ngOnInit() {
+  this.bookingId = this.activatedRoute.snapshot.params['bookingId'];
+  this.vendorId = this.activatedRoute.snapshot.params['vendorId'];
+  this.userId=this.activatedRoute.snapshot.params['userId'];
   this.origin = { lat: 0, lng:  0 };
   this.destination = { lat: 0, lng: 0};
     
@@ -121,6 +127,7 @@ ngOnInit() {
      // this.origin = { lat: 17.398789, lng:  78.395734 };
       this.origin = { lat:  this.latitude, lng:  this.longitude  };
       this.TrackLocation(interval);
+     // var watchID = navigator.geolocation.watchPosition( this.TrackLocation(interval),);
      // this.origin = { lat: 17.398789, lng:  78.395734 };
      // this.destination = { lat: 17.398754, lng: 78.396429 };
      // this.hideLoader();
@@ -132,7 +139,7 @@ ngOnInit() {
       if(!this.isMapError)
       {
         this.isMapError=true;
-        this. setCurrentLocation();
+        this.setCurrentLocation();
       }
     },
     {maximumAge:10000, timeout:5000, enableHighAccuracy: true});
@@ -161,9 +168,9 @@ ngOnInit() {
     this.loadingCtrl.dismiss();   
   }   
   TrackLocation(interval) {
-    this.track.BookingId=1;
-    this.track.UserId=1;
-    this.track.VendorId=2;
+    this.track.BookingId= Number(this.bookingId);
+    this.track.UserId= Number(this.userId);
+    this.track.VendorId=208;
     this.track.isVendor=1;
     this.track.VendorLatitude=this.latitude;
     this.track.VendorLongitude=this.longitude;
@@ -173,7 +180,7 @@ ngOnInit() {
                this.trackdetails = data;
              this.destination={lat: this.trackdetails.userLatitude,lng: this.trackdetails.userLongitude}
              console.log(this.trackdetails.vendorLatitude,this.trackdetails.vendorLongitude)
-             if(this.trackdetails .status==0)
+             if(this.trackdetails.status==0)
              {
              // clearInterval(interval);
              }
@@ -249,4 +256,14 @@ interval =   setInterval(() => {
 
     }, 5000);
   }//end of Refresh
+  Back()
+  {
+    this.navCtrl.back();
+    
+  }
+  ngOnDestroy() {
+    
+    //navigator.geolocation.clearWatch();
+  }
+
 }

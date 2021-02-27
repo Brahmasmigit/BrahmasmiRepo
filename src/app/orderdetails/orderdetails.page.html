@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Order Details</ion-title>
+  <ion-toolbar class="background">
+    <ion-title  class="title">Order Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,7 +10,61 @@
       Order Details
     </ion-card-header>
     <ion-card-content>
-      <table class="table table-bordered w-100" style="border:1px solid;">
+      <ion-grid class="ion-text-center">   
+        <ion-row class="header-row">
+          <ion-col>
+            <ion-text>Service Name</ion-text>
+          </ion-col>
+    
+          <ion-col>
+            <ion-text>Date</ion-text>
+          </ion-col>
+    
+          <ion-col>
+            <ion-text>Email Id</ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-text>Total</ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-text>Payment Method</ion-text>
+          </ion-col>
+         
+        </ion-row>
+
+        <ion-row *ngFor="let item of orderdetails;let i=index">
+          <ion-col>
+            <ion-text>
+              {{item.serviceName}}
+            </ion-text>
+          </ion-col>
+    
+            <ion-col>
+              <ion-text>
+                {{item.paymentDate}}
+              </ion-text>
+            </ion-col>
+      
+            <ion-col>
+              <ion-text>
+                {{item.emailId}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                {{item.total}}
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text>
+                {{item.modeofPayment}}
+              </ion-text>
+            </ion-col>
+          
+        </ion-row>
+    
+      </ion-grid>
+  <!--  <table class="table table-bordered w-100" style="border:1px solid;">
         <thead class="thead-light">
             <tr style="border:1px solid;">
                 <th>Order No</th>
@@ -50,24 +104,20 @@
             </tr>
 
         </tbody>
-      </table>
-      <div class="card-footer">
-        <button type="button" *ngIf="!isAdmin" class="btn btn-primary" [routerLink]="['/userdashboard']" routerLinkActive="active">Track your Order</button>
-
-        <button type="button"  *ngIf="isAdmin" class="btn btn-primary" [routerLink]="['/admindashboard']" routerLinkActive="active">Verify Payment and Approve Pandit</button>
-    </div>
+      </table>-->  
+     
     </ion-card-content>
   </ion-card>
 
 
 </ion-content>
-<ion-footer>
- 
-  <ion-toolbar class="footerbg">
- 
-    <ion-button type="button" class="primary" color="warning" slot="start" size="default"  *ngIf="!isAdmin" class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="active">Track your Order</ion-button>
 
-    <ion-button type="button" class="primary" color="warning" slot="start" size="default"  *ngIf="isAdmin" class="btn btn-primary" [routerLink]="['/admindashboard']" routerLinkActive="active">Verify Payment and Approve Pandit</ion-button>
-    </ion-toolbar>
 
+<ion-footer >
+  <ion-toolbar class="footerbackground">
+    
+    <ion-button type="button" class="primary" color="warning" slot="end" size="default"  *ngIf="!isAdmin" class="btn btn-primary" [routerLink]="['/userdashboard']" routerLinkActive="active">Track your Order</ion-button>
+
+    <ion-button type="button" class="primary" color="warning" slot="end" size="default"  *ngIf="isAdmin" class="btn btn-primary" [routerLink]="['/admindashboard']" routerLinkActive="active">Verify Payment and Approve Pandit</ion-button>
+  </ion-toolbar>
 </ion-footer>

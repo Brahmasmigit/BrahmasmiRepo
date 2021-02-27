@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -20,15 +20,34 @@ const routes: Routes = [
     loadChildren: () => import('./contact/contact.module').then( m => m.ContactPageModule)
   },
   {
+    
     path: 'servicelist/:servicetypeId/:cityId',
     loadChildren: () => import('./servicelist/servicelist.module').then( m => m.ServicelistPageModule)
   },
   {
-    path: 'servicedetails/:serviceId',
+    
+    path: 'servicelist/:servicetypeId/:cityId/:languageName',
+    loadChildren: () => import('./servicelist/servicelist.module').then( m => m.ServicelistPageModule)
+  },
+  {
+    
+    path: 'servicelist/:serviceId/:servicetypeId/:cityId/:languageName',
+    loadChildren: () => import('./servicelist/servicelist.module').then( m => m.ServicelistPageModule)
+  },
+  {
+    path: 'servicedetails/:servicetypeId/:serviceId/:cityId/:languageName',
     loadChildren: () => import('./servicedetails/servicedetails.module').then( m => m.ServicedetailsPageModule)
   },
   {
-    path: 'package/:serviceId',
+    path: 'package/:serviceId/:serviceTypeId/:vendorId',
+    loadChildren: () => import('./package/package.module').then( m => m.PackagePageModule)
+  },
+  {
+    path: 'package/:serviceTypeId/:serviceId/:vendorId/:cityId/:languageName',
+    loadChildren: () => import('./package/package.module').then( m => m.PackagePageModule)
+  },
+  {
+    path: 'package/:serviceTypeId/:serviceId/:cityId/:languageName',
     loadChildren: () => import('./package/package.module').then( m => m.PackagePageModule)
   },
   {
@@ -48,6 +67,10 @@ const routes: Routes = [
     loadChildren: () => import('./orderdetails/orderdetails.module').then( m => m.OrderdetailsPageModule)
   },
   {
+    path: 'vendorsearchmap/:servicetypeId/:serviceId/:cityId/:languageName',
+    loadChildren: () => import('./vendorsearchmap/vendorsearchmap.module').then( m => m.VendorsearchmapPageModule)
+  },
+  {
     path: 'vendorsearchmap',
     loadChildren: () => import('./vendorsearchmap/vendorsearchmap.module').then( m => m.VendorsearchmapPageModule)
   },
@@ -56,11 +79,11 @@ const routes: Routes = [
     loadChildren: () => import('./vendordashboard/vendordashboard.module').then( m => m.VendordashboardPageModule)
   },
   {
-    path: 'vendortracklocation',
+    path: 'vendortracklocation/:bookingId/:vendorId/:userId',
     loadChildren: () => import('./vendortracklocation/vendortracklocation.module').then( m => m.VendortracklocationPageModule)
   },
   {
-    path: 'usertracklocation',
+    path: 'usertracklocation/:bookingId/:userId/:vendorId',
     loadChildren: () => import('./usertracklocation/usertracklocation.module').then( m => m.UsertracklocationPageModule)
   },
   {

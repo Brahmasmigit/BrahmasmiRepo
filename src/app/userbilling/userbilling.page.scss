@@ -1,9 +1,20 @@
 .background{
-    --background: url(../../assets/bg.png) ;
-    --background-repeat: no-repeat;
-  --background-size: cover; 
-  color: white;
-  }
+  --background:#f49321 !important;
+  --background-repeat: no-repeat;
+--background-size: cover; 
+
+}
+.footerbackground{
+  --background: url(../../assets/Images/down-bg.png) ;
+  --background-repeat: no-repeat;
+--background-size: cover; 
+color: white;
+}
+.title {
+  color: rgba(197,21,21,1);
+  font-weight: bold;
+  font-size:25px;
+ }
   .footerbg{
     --background: url(../../assets/foot.png) ;
     --background-repeat: no-repeat;

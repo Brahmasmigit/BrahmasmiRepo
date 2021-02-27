@@ -291,10 +291,20 @@ export class UserdashboardPage implements OnInit {
     });  
     //this.hideLoader();  
   }  
-   
+
   hideLoader() {  
     this.loadingCtrl.dismiss();   
   } 
+  Back()
+  {
+    this.navCtrl.back();
+    
+  }
+  TrackLocation(bookingId,vendorId)
+  {
+    var userId=this.userid;
+    this.router.navigate(['/usertracklocation',bookingId,userId,vendorId]); 
+  }
   ngOnDestroy() {
   }
 
