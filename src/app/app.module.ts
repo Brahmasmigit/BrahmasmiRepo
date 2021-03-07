@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { Routes, RouterModule } from '@angular/router';  
 import {UtilitiesService} from './shared/services/utilities.service';
 import { HttpClientModule } from "@angular/common/http";
+import { WebIntent } from '@ionic-native/web-intent/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,8 +21,10 @@ import { HttpClientModule } from "@angular/common/http";
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    UtilitiesService
+    UtilitiesService,
+    WebIntent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule {}

@@ -5,6 +5,7 @@ import { UtilitiesService } from '../shared/services/utilities.service';
 import { environment } from '../../environments/environment'
 import { ToastController,AlertController  } from '@ionic/angular'; 
 import { LoadingController,NavController } from '@ionic/angular';  
+import { WebIntent } from '@ionic-native/web-intent/ngx';
 
 declare var RazorPay: any;
 @Component({
@@ -48,6 +49,7 @@ export class UserbillingPage implements OnInit {
     private loadingCtrl: LoadingController,
     public toastCtrl: ToastController,private navCtrl: NavController,
     public alertController: AlertController,
+    private webIntent: WebIntent,
     private ngZone: NgZone) { }
 
   ngOnInit() {
@@ -261,12 +263,66 @@ export class UserbillingPage implements OnInit {
     if (this.isPaymentchecked == "ccavenue") {
       this.Confirm();
     }
-    else if (this.isPaymentchecked == "cod" || this.isPaymentchecked == "upi") {
-     this.modalplaceOrder();
+    else if (this.isPaymentchecked == "upi") {
+    
+     this.payWithUPI();
    
+    }
+    else if (this.isPaymentchecked == "cod")
+    {
+      this.modalplaceOrder();
     }
 
 
+  }
+  payWithUPI() {
+    const tid = this.getRandomString();
+    const orderId = this.getRandomString();
+    const totalPrice = this.total;//1.00;
+    const UPI_ID = '9100746698@paytm';
+    const UPI_NAME = 'Farooq Mohammed';
+    const UPI_TXN_NOTE = 'Brahmasmi UPI Transaction';
+    // tslint:disable-next-line: max-line-length
+    let uri = `upi://pay?pa=${UPI_ID}&pn=${UPI_NAME}&tid=${tid}&am=${totalPrice}&cu=INR&tn=${UPI_TXN_NOTE}&tr=${orderId}`;
+    uri = uri.replace(' ', '+');
+   /* const options = {
+      action: this.webIntent.ACTION_VIEW,
+      url: 'path/to/file',
+      type: 'application/vnd.android.package-archive'
+    }*/
+    
+   // this.webIntent.startActivity(options).then(onSuccess, onError);
+    (window as any).plugins.intentShim.startActivityForResult(
+      {
+        action: this.webIntent.ACTION_VIEW,
+        url: uri,
+        requestCode: 1
+      }, intent => {
+        if (intent.extras.requestCode === 1 &&
+            intent.extras.resultCode === (window as any).plugins.intentShim.RESULT_OK &&
+            intent.extras.Status &&
+            (((intent.extras.Status as string).toLowerCase()) === ('success'))) {
+          this.paymentSuccess(orderId, 'UPI');
+        } else {
+          alert('payment failed');
+        }
+      }, err => {
+        alert('error ' + err);
+      });
+  }
+  getRandomString() {
+    const len = 10;
+    const arr = '1234567890asdfghjklqwertyuiopzxcvbnmASDFGHJKLQWERTYUIOPZXCVBNM';
+    let ans = '';
+    for (let i = len; i > 0; i--) {
+        ans += arr[Math.floor(Math.random() * arr.length)];
+    }
+    return ans;
+  }
+
+  paymentSuccess(orderId: string, paymentMethod: string) {
+    //alert(`Payment successful Order Id ${orderId} payment method ${paymentMethod}`);
+    this.Confirm();
   }
   razorPayResponseHandler(response) {
     let paymentResponse: any = {};

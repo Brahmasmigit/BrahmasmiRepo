@@ -218,13 +218,14 @@
               <label class="custom-control-label" for="customRadio1">Pay with Card/ NetBanking/ Wallet</label>
             </div>
             <div class="custom-control custom-radio">
+              <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="upi" [(ngModel)]="isPaymentchecked">
+              <label class="custom-control-label" for="customRadio3">Pay with UPI</label>
+            </div>
+            <div class="custom-control custom-radio">
               <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="cod" [(ngModel)]="isPaymentchecked">
               <label class="custom-control-label" for="customRadio2">Cash after Service</label>
             </div>
-            <div class="custom-control custom-radio">
-              <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="upi" [(ngModel)]="isPaymentchecked">
-              <label class="custom-control-label" for="customRadio3">Pay with UPI/  QR Code</label>
-            </div>
+  
 
           </div>
           <div style="text-align: right;">
