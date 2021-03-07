@@ -29,6 +29,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="@string/custom_url_scheme" />
+               <action android:name="android.intent.action.SEND" />
+               <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <data android:mimeType="*/*" />
             </intent-filter>
 
         </activity>
