@@ -36,7 +36,7 @@ export class AppComponent {
       },  
       {  
         title : 'Logout',  
-        url   : '/login',  
+        url   : '/loginhome',  
         icon  : 'chatboxes'  
       }
      

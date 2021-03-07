@@ -87,12 +87,16 @@ const routes: Routes = [
     loadChildren: () => import('./usertracklocation/usertracklocation.module').then( m => m.UsertracklocationPageModule)
   },
   {
-    path: 'login',
+    path: 'login/:isotp',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'userdashboard',
     loadChildren: () => import('./userdashboard/userdashboard.module').then( m => m.UserdashboardPageModule)
+  },
+  {
+    path: 'loginhome',
+    loadChildren: () => import('./loginhome/loginhome.module').then( m => m.LoginhomePageModule)
   },
 ];
 

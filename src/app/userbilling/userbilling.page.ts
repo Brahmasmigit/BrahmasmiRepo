@@ -22,7 +22,7 @@ export class UserbillingPage implements OnInit {
   userdetails: any = {};
   errorMessage: any;
   closeResult: string;
-  isPaymentchecked: string = "razor";
+  isPaymentchecked: string = "ccavenue";
   booking: any = {};
   serviceId: any;
   serviceTypeId: any;
@@ -38,6 +38,8 @@ export class UserbillingPage implements OnInit {
   poojakitname: boolean = false;
   cartTypeByMap: boolean = false;
   loaderToShow: any;  
+  encRequestRes: any;
+  @ViewChild('form') form: ElementRef;
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -232,7 +234,7 @@ export class UserbillingPage implements OnInit {
       }
 
     }
-    if (this.isPaymentchecked == "razor") {
+   /* if (this.isPaymentchecked == "razor") {
       var payment: any = {};
       payment.Amount = Number(this.total) * 100;
       payment.Currency = "INR";
@@ -255,7 +257,10 @@ export class UserbillingPage implements OnInit {
         () => {
 
         });
-    }//razor if
+    }*///razor if
+    if (this.isPaymentchecked == "ccavenue") {
+      this.Confirm();
+    }
     else if (this.isPaymentchecked == "cod" || this.isPaymentchecked == "upi") {
      this.modalplaceOrder();
    
@@ -345,7 +350,7 @@ export class UserbillingPage implements OnInit {
         bookingstatusid = 7;//onhold
         paymentstatus = 4;//onhold
       }
-      else if (this.isPaymentchecked == 'razor') {
+      else if (this.isPaymentchecked == 'ccavenue') {
         paymentMode = 1;//card
         bookingstatusid = 7;//onhold
         paymentstatus = 4;//onhold
@@ -379,27 +384,35 @@ export class UserbillingPage implements OnInit {
       this.userBillingService.UserBooking(this.cartitems).subscribe(
         (data) => {
           if (data) {
-         //   this.modalService.dismissAll("done");
-            let arrOrders: any = [];
-            arrOrders = data;
-            let checkresult = arrOrders.find(x => x.result == 0);
-            if (checkresult == null || checkresult == undefined) {
-              sessionStorage.removeItem("orderdetails");
-              sessionStorage.removeItem("orderdetailsByMap");
-              sessionStorage.setItem("orders", JSON.stringify(arrOrders));
-              this.ngZone.run(() => {
-                this.router.navigate(['/orderdetails']);
-              });
-            }
-            else {
-              this.showError("Booking is failed, We will manually check and refund your Amount");
-            }
+            if (this.isPaymentchecked == 'ccavenue') {
+              this.encRequestRes = data[0].encryptedResult;
+              setTimeout(() => {
+                this.form.nativeElement.submit();
+              }, 1000);
 
+            } else {
+
+              //this.modalService.dismissAll("done");
+              let arrOrders: any = [];
+              arrOrders = data;
+              let checkresult = arrOrders.find(x => x.result == 0);
+              if (checkresult == null || checkresult == undefined) {
+                sessionStorage.removeItem("orderdetails");
+                sessionStorage.removeItem("orderdetailsByMap");
+                sessionStorage.setItem("orders", JSON.stringify(arrOrders));
+                this.ngZone.run(() => {
+                  this.router.navigate(['/orderdetails']);
+                });
+              }
+              else {
+                this.showError("Booking is failed, We will manually check and refund your Amount");
+              }
+
+            }
           }
-
         },
         (error) => {
-        //  this.modalService.dismissAll("done");
+         // this.modalService.dismissAll("done");
           this.errorMessage = error;
           this.showError("Booking is failed, We will manually check and refund your Amount");
         },
@@ -426,7 +439,7 @@ export class UserbillingPage implements OnInit {
         bookingstatusid = 7;//onhold
         paymentstatus = 4;//onhold
       }
-      else if (this.isPaymentchecked == 'razor') {
+      else if (this.isPaymentchecked == 'ccavenue') {
         paymentMode = 1;//card
         bookingstatusid = 7;//onhold
         paymentstatus = 4;//onhold

@@ -11,7 +11,8 @@
       Billing Details
     </ion-card-header>
     <ion-card-content style="text-align: left;">
-      <form  novalidate="novalidate">
+      <form  class="contact-form form-validate" #form ngNoForm method="POST" id="nonseamless"
+      action="https://secure.ccavenue.com/transaction.do?command=initiateTransaction">
       <ion-row >
         <ion-col size="5"  size-sm>
           <input  placeholder="Name" class="form-control" id="username" name="username" [(ngModel)]="userdetails.userName">
@@ -213,7 +214,7 @@
         <ion-card-content>
           <div class="form-group">
             <div class="custom-control custom-radio">
-              <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="razor" checked="true"  [(ngModel)]="isPaymentchecked">
+              <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="ccavenue" checked="true"  [(ngModel)]="isPaymentchecked">
               <label class="custom-control-label" for="customRadio1">Pay with Card/ NetBanking/ Wallet</label>
             </div>
             <div class="custom-control custom-radio">

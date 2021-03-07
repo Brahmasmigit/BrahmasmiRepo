@@ -14,7 +14,8 @@ export class LoginPage implements OnInit {
   constructor(
     private loginservice : LoginService,
     public toastCtrl: ToastController,
-   private route: Router
+   private route: Router,    private activatedRoute: ActivatedRoute,
+   private navCtrl: NavController
   ) { }
 
   errorMessage:string;
@@ -27,6 +28,8 @@ export class LoginPage implements OnInit {
   userRegModel:any={};
   isotpPanel:boolean=true;
   ngOnInit(): void {
+    var isotp= this.activatedRoute.snapshot.params['isotp'];
+    this.isotpPanel = isotp=="1" ? true: false;
     this.loginModel.mobileNumber="";
   }
   SendOTP()
@@ -247,5 +250,11 @@ ShowPanel(otp)
 {
 this.isotpPanel = otp=="otp" ? true: false;
 } 
+Back()
+{
+  this.navCtrl.back();
+  
+  
+}
 
 }
